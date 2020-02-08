@@ -1,0 +1,9 @@
+<div>
+    <ion-grid class="ion-no-padding">
+        <ion-row>
+            <ion-col size-lg="3" size-md="4" size-sm="6" size-xs="12" *ngFor="let stay of stays">
+                <app-search-card [stay]="stay"></app-search-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>

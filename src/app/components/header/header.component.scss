@@ -1,0 +1,76 @@
+:host {
+  z-index: 100 !important;
+  .header {
+    background-color: var(--ion-color-step-0);
+    width: 100vw;
+    &__container {
+      padding: 10px 20px;
+      &-search {
+      }
+
+      &-logo {
+        &:hover {
+          cursor: pointer;
+        }
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
+      }
+
+      &-navs {
+        &-button {
+          padding: 10px 20px;
+          color: white;
+          font-weight: bolder;
+          &:hover {
+            border-bottom: 3px solid white;
+            cursor: pointer;
+          }
+        }
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .header.sticky {
+    border-bottom: 1px solid var(--ion-color-step-100);
+    box-shadow: 8px 0px 12px var(--ion-color-step-300);
+    .header__container-navs-button {
+      color: var(--ion-color-step-500) !important;
+      &:hover {
+        border: none;
+      }
+    }
+  }
+
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  //right: 0;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.absolute {
+  position: absolute;
+  top: 0;
+  z-index: 100;
+}
+
+.text-white {
+  color: var(--ion-color-step-950)
+}

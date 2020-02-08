@@ -1,0 +1,17 @@
+<ion-grid class="header"
+      [ngClass]="styles">
+    <ion-row class="ion-justify-content-between ion-align-items-center header__container">
+        <ion-col class="header__container-logo" routerLink='/home'>
+            <img width="40px" height="40px" src="../../../assets/images/logo_only_black.png">
+        </ion-col>
+        <ion-col *ngIf="hasSearch">
+            <go-input type="search"></go-input>
+        </ion-col>
+        <ion-col class="header__container-navs ion-align-self-end">
+            <span class="header__container-navs-button">{{text.btn1}}</span>
+            <span class="header__container-navs-button">{{text.btn2}}</span>
+            <span class="header__container-navs-button">{{text.btn3}}</span>
+            <span class="header__container-navs-button">{{text.btn4}}</span>
+        </ion-col>
+    </ion-row>
+</ion-grid>
