@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
+import { HostService } from './api/host.service';
 import { StayService } from './api/stay.service';
 import { TemplateService } from './api/template.service';
 
@@ -11,6 +12,7 @@ import { TemplateService } from './api/template.service';
   declarations: [],
   exports:      [],
   providers: [
+    HostService,
     StayService,
     TemplateService ]
 })

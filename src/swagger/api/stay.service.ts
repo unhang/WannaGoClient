@@ -19,6 +19,7 @@ import { Observable }                                        from 'rxjs';
 
 import { HighlightPlaces } from '../model/highlightPlaces';
 import { StayByTypeArray } from '../model/stayByTypeArray';
+import { StayDetail } from '../model/stayDetail';
 import { StaySearch } from '../model/staySearch';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -102,20 +103,65 @@ export class StayService {
     }
 
     /**
+     * getStayDetail()
+     * lấy thông tin chi tiết của stay, trong trang
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getStayDetail(lang?: string, observe?: 'body', reportProgress?: boolean): Observable<StayDetail>;
+    public getStayDetail(lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StayDetail>>;
+    public getStayDetail(lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StayDetail>>;
+    public getStayDetail(lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<StayDetail>(`${this.basePath}/api/stay/detail`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * search()
      * danh sách tìm kiếm
      * @param checkIn Ngày check in
      * @param checkOut Ngày check out
      * @param cityId Thành phố lựa chọn
      * @param guestCount Số lượng khách
+     * @param page trang hiện tại
      * @param lang Ngôn ngữ（vn） - vn - en 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public search(checkIn: string, checkOut: string, cityId: number, guestCount: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<StaySearch>;
-    public search(checkIn: string, checkOut: string, cityId: number, guestCount: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StaySearch>>;
-    public search(checkIn: string, checkOut: string, cityId: number, guestCount: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StaySearch>>;
-    public search(checkIn: string, checkOut: string, cityId: number, guestCount: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public search(checkIn: string, checkOut: string, cityId: number, guestCount: number, page: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<StaySearch>;
+    public search(checkIn: string, checkOut: string, cityId: number, guestCount: number, page: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StaySearch>>;
+    public search(checkIn: string, checkOut: string, cityId: number, guestCount: number, page: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StaySearch>>;
+    public search(checkIn: string, checkOut: string, cityId: number, guestCount: number, page: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (checkIn === null || checkIn === undefined) {
             throw new Error('Required parameter checkIn was null or undefined when calling search.');
@@ -131,6 +177,10 @@ export class StayService {
 
         if (guestCount === null || guestCount === undefined) {
             throw new Error('Required parameter guestCount was null or undefined when calling search.');
+        }
+
+        if (page === null || page === undefined) {
+            throw new Error('Required parameter page was null or undefined when calling search.');
         }
 
 
@@ -149,6 +199,9 @@ export class StayService {
         }
         if (guestCount !== undefined && guestCount !== null) {
             queryParameters = queryParameters.set('guest_count', <any>guestCount);
+        }
+        if (page !== undefined && page !== null) {
+            queryParameters = queryParameters.set('page', <any>page);
         }
 
         let headers = this.defaultHeaders;

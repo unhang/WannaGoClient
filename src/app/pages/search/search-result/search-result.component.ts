@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {StaySearch, StaySearchResult} from '../../../../swagger';
+import {StayDetail, StayService} from '../../../../swagger';
+import {MockDataService} from '../../../service/mock-data.service';
 
 @Component({
   selector: 'app-search-result',
@@ -8,12 +9,17 @@ import {StaySearch, StaySearchResult} from '../../../../swagger';
 })
 export class SearchResultComponent implements OnInit, AfterViewInit {
 
-  @Input() stays: StaySearchResult[] = [];
+  @Input() stays: StayDetail [] = [];
 
-  constructor() { }
+  constructor(
+      private stayService: StayService,
+      private mockDataService: MockDataService) { }
 
   ngOnInit() {
-    console.log(this.stays);
+    this.stayService.search('01-05-2020', '31-05-2020', 79, 12, 1, 'vn')
+        .subscribe(res => {
+          this.stays = this.mockDataService.multiply<StayDetail>(res.result, 20);
+        });
   }
 
   ngAfterViewInit(): void {

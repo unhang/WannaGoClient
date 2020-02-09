@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {StaySearchResult} from '../../../../../swagger';
+// @ts-ignore
+import {StayDetail} from '../../../../../swagger';
+
 
 @Component({
     selector: 'app-search-card',
@@ -8,7 +10,7 @@ import {StaySearchResult} from '../../../../../swagger';
 })
 export class SearchCardComponent implements OnInit {
 
-    @Input() stay: StaySearchResult;
+    @Input() stay: StayDetail
 
     constructor() {
     }

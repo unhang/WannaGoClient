@@ -14,11 +14,17 @@ export class GoHeader implements OnInit {
 
     textVn: any = {
         btn1: 'Trở thành chủ nhà',
-        btn2: 'Trợ ',
-        btn3: 'Đăng Nhập',
-        btn4: 'Đăng ',
+        btn2: 'Trợ giúp',
+        btn3: 'Đăng nhập',
+        btn4: 'Đăng ký',
     };
-    textEn: any = {};
+    textEn: any = {
+        btn1: 'Become host',
+        btn2: 'Help',
+        btn3: 'Sign up',
+        btn4: 'Sign in',
+    };
+
     text: any = {};
 
     constructor() {

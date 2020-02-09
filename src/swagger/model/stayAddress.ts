@@ -9,12 +9,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { StayDetail } from './stayDetail';
 
-export interface StaySearch { 
+export interface StayAddress { 
     /**
-     * Tổng số stay tìm được theo điều kiện query
+     * tên thành phố lấy từ bảng tỉnh
      */
-    totalCount?: number;
-    result?: Array<StayDetail>;
+    city?: string;
+    /**
+     * tên quận
+     */
+    district?: string;
+    /**
+     * tên phường/xã
+     */
+    ward?: string;
+    /**
+     * trong address
+     */
+    street?: string;
+    /**
+     * số địa chỉ nhà
+     */
+    addressNumber?: string;
 }

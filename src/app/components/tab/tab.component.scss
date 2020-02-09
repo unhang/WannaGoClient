@@ -1,0 +1,32 @@
+.go-tab {
+  width: 100vw;
+  z-index: 101 !important;
+  background-color: var(--ion-color-step-0);
+  border-top: 1px solid var(--go-border-gray);
+  &__bar {
+    &-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      &-icon {
+        font-size: 24px;
+      }
+      &-text{
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+
+
+.sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+}
+
+.active-tab * {
+  color: var(--ion-color-primary);
+}

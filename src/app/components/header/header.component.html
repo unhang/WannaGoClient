@@ -1,17 +1,28 @@
 <ion-grid class="header"
       [ngClass]="styles">
-    <ion-row class="ion-justify-content-between ion-align-items-center header__container">
-        <ion-col class="header__container-logo" routerLink='/home'>
-            <img width="40px" height="40px" src="../../../assets/images/logo_only_black.png">
+    <ion-row class="header__container ion-justify-content-between ion-align-items-center">
+        <ion-col size="1"
+                 class="header__container-logo ion-hide-sm-down" routerLink='/home'>
+            <img class="ion-margin-start" width="40px" height="40px" src="../../../assets/images/logo_only_black.png">
         </ion-col>
-        <ion-col *ngIf="hasSearch">
+        <ion-col size="12" size-md="3" *ngIf="hasSearch">
             <go-input type="search"></go-input>
         </ion-col>
-        <ion-col class="header__container-navs ion-align-self-end">
-            <span class="header__container-navs-button">{{text.btn1}}</span>
-            <span class="header__container-navs-button">{{text.btn2}}</span>
-            <span class="header__container-navs-button">{{text.btn3}}</span>
-            <span class="header__container-navs-button">{{text.btn4}}</span>
+        <ion-col size="8"
+                 class="header__container-navs ion-hide-sm-down ion-align-self-end">
+            <ion-grid>
+                <ion-row class="ion-justify-content-end ion-align-items-center">
+                    <ion-col size="auto" class="header__container-navs-button">{{text.btn1}}</ion-col>
+                    <ion-col size="auto" class="header__container-navs-button">{{text.btn2}}</ion-col>
+                    <ion-col size="auto" class="header__container-navs-button">{{text.btn3}}</ion-col>
+                    <ion-col size="auto" class="header__container-navs-button">
+                        <ion-text>{{text.btn4}}</ion-text>
+                        <ion-button slot="icon-only">
+                            <ion-icon name="heart"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-col>
     </ion-row>
 </ion-grid>

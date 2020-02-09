@@ -9,12 +9,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { StayDetail } from './stayDetail';
 
-export interface StaySearch { 
+export interface HostInfo { 
     /**
-     * Tổng số stay tìm được theo điều kiện query
+     * đường dẫn url image
      */
-    totalCount?: number;
-    result?: Array<StayDetail>;
+    avatarUrl?: string;
+    /**
+     * ngày Host tạo tài khoản host
+     */
+    signInDate?: string;
+    /**
+     * Id của Host
+     */
+    hostId?: number;
+    /**
+     * Họ và Tên host
+     */
+    hostName?: string;
+    /**
+     * sđt của host
+     */
+    phoneNumber?: string;
 }

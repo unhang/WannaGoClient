@@ -9,12 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { StayAddress } from './stayAddress';
+import { StayUtility } from './stayUtility';
 
-export interface StaySearchResult { 
+export interface StayDetail { 
     /**
-     * img_url
+     * Id của Host
      */
-    imgUrl?: string;
+    hostId?: number;
     /**
      * stay_type from m_code
      */
@@ -27,14 +29,6 @@ export interface StaySearchResult {
      * stay_name
      */
     stayName?: string;
-    /**
-     * tên quận lấy từ m_code
-     */
-    district?: string;
-    /**
-     * tên thành phố lấy từ m_code
-     */
-    city?: string;
     /**
      * rating_point
      */
@@ -63,4 +57,7 @@ export interface StaySearchResult {
      * discounted price
      */
     discount?: number;
+    stayAddress?: StayAddress;
+    stayUtility?: StayUtility;
+    imgUrls?: Array<string>;
 }

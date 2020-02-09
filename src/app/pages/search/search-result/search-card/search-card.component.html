@@ -1,5 +1,5 @@
 <ion-card>
-  <img [src]="stay.imgUrl" alt="">
+  <img [src]="stay.imgUrls[0]" alt="">
   <ion-card-content>
     <ion-text class="">
       <h3>{{stay.stayTypeName}}</h3>
@@ -13,7 +13,7 @@
     </ion-text>
     <ion-text>{{stay.guestCount + ' hách・' + stay.bedCount + ' phòng・' + stay.bathCount + ' phòng tắm '}} </ion-text>
     <ion-text>
-      <h5>{{stay.district}}, {{stay.city}}</h5>
+      <h5>{{stay.stayAddress.district}}, {{stay.stayAddress.city}}</h5>
     </ion-text>
   </ion-card-content>
 </ion-card>
