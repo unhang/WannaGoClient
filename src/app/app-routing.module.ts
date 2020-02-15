@@ -2,21 +2,21 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    data: {
-      activatedTab: 1
-    }
-  },
-  {
-    path: 'search',
-    loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule),
-    data: {
-      activatedTab: 1
-    }
-  },
+  { path: '', redirectTo: 'explore', pathMatch: 'full' },
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./pages/explore/home/home.module').then(m => m.HomePageModule),
+  //   data: {
+  //     activatedTab: 1
+  //   }
+  // },
+  // {
+  //   path: 'search',
+  //   loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule),
+  //   data: {
+  //     activatedTab: 1
+  //   }
+  // },
   {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
@@ -31,7 +31,10 @@ const routes: Routes = [
       activatedTab: 1
     }
   },
-
+  {
+    path: 'explore',
+    loadChildren: () => import('./pages/explore/explore.module').then( m => m.ExplorePageModule)
+  },
 ];
 
 @NgModule({

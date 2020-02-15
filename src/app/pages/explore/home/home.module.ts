@@ -8,7 +8,7 @@ import {HomePageRoutingModule} from './home-routing.module';
 
 import {HomePage} from './home.page';
 import {CoverComponent} from './cover/cover.component';
-import {ComponentModule} from '../../components/component.module';
+import {ComponentModule} from '../../../components/component.module';
 
 @NgModule({
     imports: [

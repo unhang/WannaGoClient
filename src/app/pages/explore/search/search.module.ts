@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 import {SearchPageRoutingModule} from './search-routing.module';
-import {ComponentModule} from '../../components/component.module';
+import {ComponentModule} from 'src/app/components/component.module';
 
 import {SearchPage} from './search.page';
 import {SearchResultComponent} from './search-result/search-result.component';

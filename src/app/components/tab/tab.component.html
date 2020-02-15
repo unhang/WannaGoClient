@@ -3,11 +3,10 @@
         <ion-row class="ion-justify-content-around go-tab__bar">
             <ion-col size="auto">
                 <div class="go-tab__bar-item"
-                     routerLink='/home'
+                     routerLink='/explore'
                      [ngClass]="{'active-tab': activatedTab === 1}">
                     <ion-icon class="go-tab__bar-item-icon"
-
-                              name="map"></ion-icon>
+                              name="search-outline"></ion-icon>
                     <ion-text class="go-tab__bar-item-text">{{text.tab1}}</ion-text>
                 </div>
             </ion-col>
@@ -21,7 +20,7 @@
             <ion-col size="auto">
                 <div class="go-tab__bar-item">
                     <ion-icon class="go-tab__bar-item-icon"
-                              name="heart"></ion-icon>
+                              name="heart-outline"></ion-icon>
                     <ion-text class="go-tab__bar-item-text">{{text.tab3}}</ion-text>
                 </div>
             </ion-col>
@@ -30,7 +29,7 @@
                      routerLink='/profile'
                      [ngClass]="{'active-tab': activatedTab === 4}">
                     <ion-icon class="go-tab__bar-item-icon"
-                              name="contact"></ion-icon>
+                              name="person-outline"></ion-icon>
                     <ion-text class="go-tab__bar-item-text">{{text.tab4}}</ion-text>
                 </div>
             </ion-col>

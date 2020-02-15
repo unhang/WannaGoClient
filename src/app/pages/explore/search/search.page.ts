@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HeaderStyle} from '../../constant/HeaderStyle';
+import {HeaderStyle} from 'src/app/constant/HeaderStyle';
 
 @Component({
     selector: 'app-search',

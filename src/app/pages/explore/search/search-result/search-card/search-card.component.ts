@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 // @ts-ignore
-import {StayDetail} from '../../../../../swagger';
+import {StayDetail} from 'src/swagger';
 
 
 @Component({
