@@ -9,8 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { StayAddress } from './stayAddress';
-import { StayUtility } from './stayUtility';
 
 export interface StayDetail { 
     /**
@@ -57,7 +55,53 @@ export interface StayDetail {
      * discounted price
      */
     discount?: number;
-    stayAddress?: StayAddress;
-    stayUtility?: StayUtility;
+    /**
+     * tên thành phố lấy từ bảng tỉnh
+     */
+    city?: string;
+    /**
+     * tên quận
+     */
+    district?: string;
+    /**
+     * tên phường/xã
+     */
+    ward?: string;
+    /**
+     * trong address
+     */
+    street?: string;
+    /**
+     * số địa chỉ nhà
+     */
+    addressNumber?: string;
+    /**
+     * Tiện ích có/không
+     */
+    wifi?: boolean;
+    /**
+     * Tiện ích có/không
+     */
+    tivi?: boolean;
+    /**
+     * Tiện ích có/không
+     */
+    smoking?: boolean;
+    /**
+     * Tiện ích có/không
+     */
+    cooler?: boolean;
+    /**
+     * Tiện ích có/không
+     */
+    refrigerator?: boolean;
+    /**
+     * Tiện ích có/không
+     */
+    pool?: boolean;
+    /**
+     * Tiện ích có/không
+     */
+    kitchen?: boolean;
     imgUrls?: Array<string>;
 }

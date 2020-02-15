@@ -1,4 +1,6 @@
 export * from './category';
+export * from './commentDetail';
+export * from './commentPost';
 export * from './highlightPlace';
 export * from './highlightPlaces';
 export * from './hostInfo';

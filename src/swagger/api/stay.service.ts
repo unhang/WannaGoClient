@@ -17,6 +17,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { CommentDetail } from '../model/commentDetail';
+import { CommentPost } from '../model/commentPost';
 import { HighlightPlaces } from '../model/highlightPlaces';
 import { StayByTypeArray } from '../model/stayByTypeArray';
 import { StayDetail } from '../model/stayDetail';
@@ -103,6 +105,50 @@ export class StayService {
     }
 
     /**
+     * getStayComments()
+     * get comment của stay theo id
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getStayComments(lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<CommentDetail>>;
+    public getStayComments(lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<CommentDetail>>>;
+    public getStayComments(lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<CommentDetail>>>;
+    public getStayComments(lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<CommentDetail>>(`${this.basePath}/api/stay/comments`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * getStayDetail()
      * lấy thông tin chi tiết của stay, trong trang
      * @param lang Ngôn ngữ（vn） - vn - en 
@@ -136,6 +182,50 @@ export class StayService {
         ];
 
         return this.httpClient.get<StayDetail>(`${this.basePath}/api/stay/detail`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * postStayComment()
+     * post comment
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postStayComment(lang?: string, observe?: 'body', reportProgress?: boolean): Observable<CommentPost>;
+    public postStayComment(lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CommentPost>>;
+    public postStayComment(lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CommentPost>>;
+    public postStayComment(lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.post<CommentPost>(`${this.basePath}/api/stay/comments`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
