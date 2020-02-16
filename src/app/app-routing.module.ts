@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'stay-detail',
-    loadChildren: () => import('./pages/stay-detail/stay-detail.module').then( m => m.StayDetailPageModule),
+    loadChildren: () => import('./pages/explore/stay-detail/stay-detail.module').then(m => m.StayDetailPageModule),
     data: {
       activatedTab: 1
     }
