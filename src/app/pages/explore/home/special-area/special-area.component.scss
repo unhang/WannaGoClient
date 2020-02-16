@@ -1,5 +1,6 @@
-.go-service {
+.go-special-area {
   padding: 1.5rem 0 2.5rem 0;
+  background: #FCFCFC;
 
   ion-grid {
     --ion-grid-column-padding: 15px;
@@ -12,23 +13,12 @@
         font-weight: 600;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
       }
-    }
 
-    ion-card {
-      margin: 0;
-      img {
-        width: 100%;
-        height: auto;
-      }
-
-      ion-card-header {
-        padding: .5rem 1rem 0rem 1rem;
-
-        ion-card-title {
-          font-size: 1.2rem;
-        }
-
+      .text-between {
+        display: flex;
+        justify-content: space-between;
       }
     }
+
   }
 }

@@ -23,6 +23,7 @@ export class SearchResultComponent implements OnInit {
                 .subscribe(res => {
                     this.stays = this.mockDataService.multiply<StayDetail>(res.result, 20);
                 });
-        }, 1000);
+        }, 500);
     }
+
 }
