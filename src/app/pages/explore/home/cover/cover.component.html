@@ -1,36 +1,9 @@
 <div class="cover">
-    <div class="cover__pickerbox">
-        <ion-card class="">
-            <ion-card-header>
-                <ion-card-title>
-                    <ion-text>{{ text.title }}</ion-text>
-                </ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-                <ion-item lines="none">
-                    <ion-label position="floating">
-                        <ion-icon name="map"></ion-icon>
-                        Location
-                    </ion-label>
-                    <ion-input placeholder="Location"></ion-input>
-                </ion-item>
-                <ion-item lines="none">
-                    <ion-label position="floating">
-                        <ion-icon name="map"></ion-icon>
-                        Location
-                    </ion-label>
-                    <ion-input placeholder="Location"></ion-input>
-                </ion-item>
-                <ion-item lines="none">
-                    <ion-label position="floating">
-                        <ion-icon name="map"></ion-icon>
-                        Location
-                    </ion-label>
-                    <ion-input placeholder="Location"></ion-input>
-                </ion-item>
-                <ion-button expand="block"
-                            routerLink='/explore/search'>{{text.searchBtn}}</ion-button>
-            </ion-card-content>
-        </ion-card>
-    </div>
+    <ion-grid fixed="true">
+        <ion-row class="ion-align-items-center">
+            <ion-col size-lg="5" size-md="6">
+                <go-search-card></go-search-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </div>

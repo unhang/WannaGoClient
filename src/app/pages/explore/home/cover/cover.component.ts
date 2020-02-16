@@ -7,23 +7,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CoverComponent implements OnInit {
 
-    lang = localStorage.getItem('lang')
-    textVn: any = {
-      title: 'NHẬN PHÒNG NGAY VỚI WANNAGO !!!',
-      searchBtn: 'TÌM KIẾM'
-    };
-    textEn: any = {
-      title: 'GET YOUR ROOM RIGHT NOW WITH WANNGO !!!',
-      searchBtn: 'SEARCH'
-    };
 
-    text: any = {};
 
     constructor() {
     }
 
     ngOnInit() {
-      this.text = this.lang === 'en' ? this.textEn : this.textVn;
+
     }
 
 }
