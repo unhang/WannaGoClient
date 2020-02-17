@@ -1,40 +1,25 @@
 .cover {
-  position: relative;
-  min-height: 100vh;
-  max-height: 100vh;
-  background: url('../../../../../assets/images/cover.jpg') no-repeat;
+  height: 100vh;
+  background-image: url('https://www.tranduythien.net/wp-content/uploads/2020/02/oia-416136-scaled.jpg');
+  background-repeat: no-repeat;
   background-size: cover;
-  &__header {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 10;
-    &-container {
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      // color: white;
-      &-button {
-        padding: 20px 30px;
-        color: white;
-        font-weight: bolder;
-       &:hover {
-         border-bottom: 3px solid white;
-         cursor: pointer;
-       } 
-      }
+  ion-grid {
+    position: relative;
+    height: 100%;
+    z-index: 2;
+    ion-row {
+      height: 100%;
     }
   }
-  &__pickerbox {
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: rgba(black, .15);
     position: absolute;
-    top: 100px;
-    left: 200px;
-    width: 400px;
-    z-index: 10;
-    ion-card{
-      --background: white;
-    }
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
 }

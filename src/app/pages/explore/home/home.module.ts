@@ -9,6 +9,9 @@ import {HomePageRoutingModule} from './home-routing.module';
 import {HomePage} from './home.page';
 import {CoverComponent} from './cover/cover.component';
 import {ComponentModule} from '../../../components/component.module';
+import {GoService} from './go-service/go-service.component';
+import {GoSpecialAreaComponent} from './special-area/special-area.component';
+import {GoAreaCardComponent} from './special-area/area-card/area-card.component';
 
 @NgModule({
     imports: [
@@ -21,6 +24,9 @@ import {ComponentModule} from '../../../components/component.module';
     declarations: [
         HomePage,
         CoverComponent,
+        GoService,
+        GoSpecialAreaComponent,
+        GoAreaCardComponent
     ]
 })
 export class HomePageModule {

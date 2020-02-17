@@ -24,10 +24,11 @@ export class SearchResultComponent implements OnInit {
                 .subscribe(res => {
                     this.stays = this.mockDataService.multiply<StayDetail>(res.result, 20);
                 });
-        }, 1000);
+        }, 500);
     }
 
     goToStayDetail(stayId: number) {
         this.router.navigate(['/explore', stayId, 'stay']);
     }
+
 }
