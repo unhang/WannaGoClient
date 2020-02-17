@@ -1,0 +1,10 @@
+:host {
+  ion-card {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 8px;
+    transition: 300ms;
+    &:hover {
+      box-shadow: rgba(255, 103, 42, 0.3) 0px 4px 16px;
+      cursor: pointer;
+    }
+  }
+}

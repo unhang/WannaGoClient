@@ -1,0 +1,32 @@
+<ion-card>
+    <ion-card-header>
+        <ion-card-title>{{stayDetail.price}}đ</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+        <ion-grid class="ion-no-padding">
+            <ion-row class="ion-justify-content-between">
+                <ion-col>{{text.guest}}</ion-col>
+                <ion-col class="ion-text-end">{{guestCount}}</ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-text><h2>chi tiết hóa đơn</h2></ion-text>
+        <ion-grid class="ion-no-padding">
+            <ion-row class="ion-justify-content-between">
+                <ion-col>{{text.price}}</ion-col>
+                <ion-col class="ion-text-end">{{stayDetail.price}}đ</ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-button class="ion-margin-top"
+                    expand="block">
+            <ion-icon name="flash-outline"></ion-icon>
+            {{text.bookBtn}}</ion-button>
+        <ion-item-divider class="ion-margin-top">
+            <ion-text class="ion-padding-vertical">
+                {{'1800 0000 '}}
+                <ion-icon name="call-outline"></ion-icon>
+                <span>({{text.help}})</span>
+            </ion-text>
+        </ion-item-divider>
+    </ion-card-content>
+</ion-card>

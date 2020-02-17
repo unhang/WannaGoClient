@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StayDetail, StayService} from 'src/swagger';
 import {MockDataService} from 'src/app/service/mock-data.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-search-result',
@@ -11,9 +12,9 @@ export class SearchResultComponent implements OnInit {
 
     stays: StayDetail [] = [];
 
-    constructor(
-        private stayService: StayService,
-        private mockDataService: MockDataService) {
+    constructor(private router: Router,
+                private stayService: StayService,
+                private mockDataService: MockDataService) {
     }
 
     ngOnInit() {
@@ -24,6 +25,10 @@ export class SearchResultComponent implements OnInit {
                     this.stays = this.mockDataService.multiply<StayDetail>(res.result, 20);
                 });
         }, 500);
+    }
+
+    goToStayDetail(stayId: number) {
+        this.router.navigate(['/explore', stayId, 'stay']);
     }
 
 }

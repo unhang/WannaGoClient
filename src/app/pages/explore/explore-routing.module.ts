@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 import {ExplorePage} from './explore.page';
 
@@ -19,10 +19,21 @@ const routes: Routes = [
                 data: {activatedTab: 1}
             },
             {
-              path: '', redirectTo: 'home', pathMatch: 'full'
+                path: ':id/stay',
+                loadChildren: () => import('./stay-detail/stay-detail.module').then(m => m.StayDetailPageModule),
+                data: {activatedTab: 1}
+            },
+            {
+                path: ':id/checkout',
+                loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutPageModule),
+                data: {activatedTab: 1}
+            },
+            {
+                path: '', redirectTo: 'home', pathMatch: 'full'
             }
         ]
-    }
+    },
+
 ];
 
 @NgModule({

@@ -12,6 +12,10 @@
 
 export interface HighlightPlace { 
     /**
+     * hình nền của 5 địa diểm nổi bật
+     */
+    imgUrl?: string;
+    /**
      * City code
      */
     cityCode?: number;

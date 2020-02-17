@@ -1,0 +1,14 @@
+.primary-info {
+  font-size: 14px;
+  ion-item {
+    --min-height: 36px;
+    ion-icon {
+      font-size: 18px;
+    }
+    ion-label {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+}

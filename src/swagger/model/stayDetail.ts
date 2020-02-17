@@ -9,6 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { StayUtility } from './stayUtility';
 
 export interface StayDetail { 
     /**
@@ -24,9 +25,25 @@ export interface StayDetail {
      */
     stayId?: number;
     /**
+     * tung độ vị trí google map
+     */
+    lng?: number;
+    /**
+     * vĩ độ vị trí google map
+     */
+    lat?: number;
+    /**
      * stay_name
      */
     stayName?: string;
+    /**
+     * description
+     */
+    stayDescription?: string;
+    /**
+     * Diện tíchc của stay
+     */
+    areaSquare?: number;
     /**
      * rating_point
      */
@@ -75,33 +92,6 @@ export interface StayDetail {
      * số địa chỉ nhà
      */
     addressNumber?: string;
-    /**
-     * Tiện ích có/không
-     */
-    wifi?: boolean;
-    /**
-     * Tiện ích có/không
-     */
-    tivi?: boolean;
-    /**
-     * Tiện ích có/không
-     */
-    smoking?: boolean;
-    /**
-     * Tiện ích có/không
-     */
-    cooler?: boolean;
-    /**
-     * Tiện ích có/không
-     */
-    refrigerator?: boolean;
-    /**
-     * Tiện ích có/không
-     */
-    pool?: boolean;
-    /**
-     * Tiện ích có/không
-     */
-    kitchen?: boolean;
+    stayUtility?: StayUtility;
     imgUrls?: Array<string>;
 }

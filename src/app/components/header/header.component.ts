@@ -34,5 +34,7 @@ export class GoHeader implements OnInit {
     ngOnInit() {
 
     }
-
+    onScroll($evt){
+        console.log($evt);
+    }
 }

@@ -1,9 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>StayDetail</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [scrollEvents]="true"
+             (ionScroll)="scrollCheck($event)">
+    <go-header [hasSearch]="true"
+               [styles]="[headerStyle.sticky]"></go-header>
 
-<ion-content>
-
+    <ng-container *ngIf="stayDetail">
+        <app-gallery-cover *ngIf="stayDetail.imgUrls.length !==0"
+                           [imgUrls]="stayDetail.imgUrls"></app-gallery-cover>
+    </ng-container>
+    <ion-grid fixed="true">
+        <ion-row>
+            <ion-col size-sm="8" size="12">
+                <app-description *ngIf="stayDetail"
+                                 [stayDetail]="stayDetail"></app-description>
+                <app-map-preview *ngIf="stayDetail"
+                                 [lng]="stayDetail.lng"
+                                 [lat]="stayDetail.lat"></app-map-preview>
+            </ion-col>
+            <ion-col class="ion-hide-sm-down" size="4">
+                <app-host-card *ngIf="hostInfo"
+                               [host]="hostInfo"></app-host-card>
+                <app-booking-card *ngIf="stayDetail"
+                                  [stayDetail]="stayDetail"></app-booking-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <go-payment-tab *ngIf="stayDetail"
+                    [price]="stayDetail.price"></go-payment-tab>
 </ion-content>
