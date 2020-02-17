@@ -1,0 +1,7 @@
+<ion-slides pager="true"
+            class="slide-container"
+            [options]="topSlideOpts">
+    <ion-slide *ngFor="let img of imgUrls">
+        <ion-img height="auto" width="auto" [src]="img"></ion-img>
+    </ion-slide>
+</ion-slides>

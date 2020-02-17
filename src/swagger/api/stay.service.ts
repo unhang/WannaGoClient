@@ -107,14 +107,19 @@ export class StayService {
     /**
      * getStayComments()
      * get comment của stay theo id
+     * @param stayId lấy comment của stay thông qua stay_id
      * @param lang Ngôn ngữ（vn） - vn - en 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getStayComments(lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<CommentDetail>>;
-    public getStayComments(lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<CommentDetail>>>;
-    public getStayComments(lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<CommentDetail>>>;
-    public getStayComments(lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getStayComments(stayId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<CommentDetail>>;
+    public getStayComments(stayId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<CommentDetail>>>;
+    public getStayComments(stayId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<CommentDetail>>>;
+    public getStayComments(stayId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (stayId === null || stayId === undefined) {
+            throw new Error('Required parameter stayId was null or undefined when calling getStayComments.');
+        }
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -137,7 +142,7 @@ export class StayService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<CommentDetail>>(`${this.basePath}/api/stay/comments`,
+        return this.httpClient.get<Array<CommentDetail>>(`${this.basePath}/api/stay/${encodeURIComponent(String(stayId))}/comments`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -151,14 +156,19 @@ export class StayService {
     /**
      * getStayDetail()
      * lấy thông tin chi tiết của stay, trong trang
+     * @param stayId id của stay
      * @param lang Ngôn ngữ（vn） - vn - en 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getStayDetail(lang?: string, observe?: 'body', reportProgress?: boolean): Observable<StayDetail>;
-    public getStayDetail(lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StayDetail>>;
-    public getStayDetail(lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StayDetail>>;
-    public getStayDetail(lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getStayDetail(stayId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<StayDetail>;
+    public getStayDetail(stayId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StayDetail>>;
+    public getStayDetail(stayId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StayDetail>>;
+    public getStayDetail(stayId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (stayId === null || stayId === undefined) {
+            throw new Error('Required parameter stayId was null or undefined when calling getStayDetail.');
+        }
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -181,7 +191,7 @@ export class StayService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<StayDetail>(`${this.basePath}/api/stay/detail`,
+        return this.httpClient.get<StayDetail>(`${this.basePath}/api/stay/${encodeURIComponent(String(stayId))}/detail`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

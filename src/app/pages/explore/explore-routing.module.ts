@@ -19,6 +19,11 @@ const routes: Routes = [
                 data: {activatedTab: 1}
             },
             {
+                path: ':id/stay',
+                loadChildren: () => import('./stay-detail/stay-detail.module').then(m => m.StayDetailPageModule),
+                data: {activatedTab: 1}
+            },
+            {
               path: '', redirectTo: 'home', pathMatch: 'full'
             }
         ]

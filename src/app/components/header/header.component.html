@@ -1,15 +1,16 @@
 <ion-grid class="header"
-      [ngClass]="styles">
+          (scroll)="onScroll($event)"
+          [ngClass]="styles">
     <ion-row class="header__container ion-justify-content-between ion-align-items-center">
         <ion-col size="1"
-                 class="header__container-logo ion-hide-sm-down" routerLink='/home'>
+                 class="header__container-logo ion-hide-md-down" routerLink='/explore/home'>
             <img class="ion-margin-start" width="40px" height="40px" src="../../../assets/images/logo_only_black.png">
         </ion-col>
         <ion-col size="12" size-md="3" *ngIf="hasSearch">
             <go-input type="search"></go-input>
         </ion-col>
         <ion-col size="8"
-                 class="header__container-navs ion-hide-sm-down ion-align-self-end">
+                 class="header__container-navs ion-hide-md-down ion-align-self-end">
             <ion-grid>
                 <ion-row class="ion-justify-content-end ion-align-items-center">
                     <ion-col size="auto" class="header__container-navs-button">{{text.btn1}}</ion-col>
