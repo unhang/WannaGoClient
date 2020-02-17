@@ -11,6 +11,8 @@ import {ComponentModule} from '../../../components/component.module';
 import {GalleryCoverComponent} from './gallery-cover/gallery-cover.component';
 import {HostCardComponent} from './host-card/host-card.component';
 import {DescriptionComponent} from './description/description.component';
+import {MapPreviewComponent} from './map-preview/map-preview.component';
+import {BookingCardComponent} from './booking-card/booking-card.component';
 
 @NgModule({
     imports: [
@@ -25,6 +27,8 @@ import {DescriptionComponent} from './description/description.component';
         GalleryCoverComponent,
         HostCardComponent,
         DescriptionComponent,
+        MapPreviewComponent,
+        BookingCardComponent,
     ]
 })
 export class StayDetailPageModule {

@@ -1,0 +1,22 @@
+<div class="go-payment-tab sticky ion-hide-md-up ion-padding-horizontal">
+    <ion-grid *ngIf="mode === 1">
+        <ion-row class="ion-justify-content-between ion-align-items-center go-tab__bar">
+            <ion-col size="auto"
+                     style="font-size: 14px;">
+                <p class="ion-no-padding ion-no-margin">{{price}} đ</p>
+                <ion-text color="primary">{{text.mode1Text}}</ion-text>
+            </ion-col>
+
+            <ion-col size="auto">
+                <ion-button>
+                    <ion-text class="ion-padding-horizontal"><ion-icon name="flash-outline"></ion-icon> {{text.mode1Btn}}</ion-text>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+<!--    mode 2-->
+    <ion-grid *ngIf="mode === 2">
+        <ion-row class="ion-justify-content-around go-tab__bar">
+        </ion-row>
+    </ion-grid>
+</div>

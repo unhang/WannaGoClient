@@ -5,13 +5,15 @@ import {RouterModule} from '@angular/router';
 import {GoHeader} from './header/header.component';
 import {GoInput} from './input/input.component';
 import {GoTab} from './tab/tab.component';
+import {GoPaymentTab} from './payment-tab/payment-tab.component';
 
 
 @NgModule({
     declarations: [
         GoHeader,
         GoInput,
-        GoTab
+        GoTab,
+        GoPaymentTab,
     ],
     imports: [
         CommonModule,
@@ -21,7 +23,8 @@ import {GoTab} from './tab/tab.component';
     exports: [
         GoHeader,
         GoInput,
-        GoTab
+        GoTab,
+        GoPaymentTab,
     ]
 })
 export class ComponentModule {

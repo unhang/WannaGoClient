@@ -25,6 +25,14 @@ export interface StayDetail {
      */
     stayId?: number;
     /**
+     * tung độ vị trí google map
+     */
+    lng?: number;
+    /**
+     * vĩ độ vị trí google map
+     */
+    lat?: number;
+    /**
      * stay_name
      */
     stayName?: string;

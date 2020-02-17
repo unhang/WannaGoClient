@@ -26,67 +26,63 @@
 <div class="ion-padding">
     <ion-text class="ion-text-justify">
         {{stayDetail.stayDescription}}
-        {{stayDetail.stayDescription}}
-        {{stayDetail.stayDescription}}
-        {{stayDetail.stayDescription}}
-        {{stayDetail.stayDescription}}
-        {{stayDetail.stayDescription}}
-        {{stayDetail.stayDescription}}
-        {{stayDetail.stayDescription}}
     </ion-text>
 </div>
 
-<div>
-    <ion-grid *ngIf="utilities.length > 0">
-        <h1>Tiện ích căn hộ</h1>
+<div class="ion-padding">
+    <ion-grid *ngIf="utilities.length > 0"
+              class="ion-no-padding">
         <ion-row>
-            <ion-col size="4" *ngIf="stayDetail.stayUtility['wifi']">
+            <h1>Tiện ích căn hộ</h1>
+        </ion-row>
+        <ion-row class="ion-no-padding">
+            <ion-col size-sm="4" size="6" *ngIf="stayDetail.stayUtility.wifi">
                 <ion-item lines="none">
                     <ion-icon slot="start"
                               color="secondary" name="wifi-outline"></ion-icon>
                     <ion-label>wifi</ion-label>
                 </ion-item>
             </ion-col>
-            <ion-col size="4" *ngIf="stayDetail.stayUtility['wifi']">
+            <ion-col size-sm="4" size="6" *ngIf="stayDetail.stayUtility.cooler">
                 <ion-item lines="none">
                     <ion-icon slot="start"
-                              name="wifi-outline"></ion-icon>
-                    <ion-label>wifi</ion-label>
+                              color="secondary" name="wifi-outline"></ion-icon>
+                    <ion-label>cooler</ion-label>
                 </ion-item>
             </ion-col>
-            <ion-col size="4" *ngIf="stayDetail.stayUtility['wifi']">
+            <ion-col size-sm="4" size="6" *ngIf="stayDetail.stayUtility.kitchen">
                 <ion-item lines="none">
                     <ion-icon slot="start"
-                              name="wifi-outline"></ion-icon>
-                    <ion-label>wifi</ion-label>
+                              color="secondary" name="wifi-outline"></ion-icon>
+                    <ion-label>cooler</ion-label>
                 </ion-item>
             </ion-col>
-            <ion-col size="4" *ngIf="stayDetail.stayUtility['wifi']">
+            <ion-col size-sm="4" size="6" *ngIf="stayDetail.stayUtility.pool">
                 <ion-item lines="none">
                     <ion-icon slot="start"
-                              name="wifi-outline"></ion-icon>
-                    <ion-label>wifi</ion-label>
+                              color="secondary" name="wifi-outline"></ion-icon>
+                    <ion-label>cooler</ion-label>
                 </ion-item>
             </ion-col>
-            <ion-col size="4" *ngIf="stayDetail.stayUtility['wifi']">
+            <ion-col size-sm="4" size="6" *ngIf="stayDetail.stayUtility.refrigerator">
                 <ion-item lines="none">
                     <ion-icon slot="start"
-                              name="wifi-outline"></ion-icon>
-                    <ion-label>wifi</ion-label>
+                              color="secondary" name="wifi-outline"></ion-icon>
+                    <ion-label>cooler</ion-label>
                 </ion-item>
             </ion-col>
-            <ion-col size="4" *ngIf="stayDetail.stayUtility['wifi']">
+            <ion-col size-sm="4" size="6" *ngIf="stayDetail.stayUtility.smoking">
                 <ion-item lines="none">
                     <ion-icon slot="start"
-                              name="wifi-outline"></ion-icon>
-                    <ion-label>wifi</ion-label>
+                              color="secondary" name="wifi-outline"></ion-icon>
+                    <ion-label>cooler</ion-label>
                 </ion-item>
             </ion-col>
-            <ion-col size="4" *ngIf="stayDetail.stayUtility['wifi']">
+            <ion-col size-sm="4" size="6" *ngIf="stayDetail.stayUtility.tivi">
                 <ion-item lines="none">
                     <ion-icon slot="start"
-                              name="wifi-outline"></ion-icon>
-                    <ion-label>wifi</ion-label>
+                              color="secondary" name="wifi-outline"></ion-icon>
+                    <ion-label>cooler</ion-label>
                 </ion-item>
             </ion-col>
         </ion-row>

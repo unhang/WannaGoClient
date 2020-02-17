@@ -1,28 +1,18 @@
 <ion-card *ngIf="host">
-<!--  <ion-item lines="none">-->
-<!--    <ion-avatar slot="start">-->
-<!--      <img [src]="host.avatarUrl" alt="">-->
-<!--    </ion-avatar>-->
-<!--    <ion-label>-->
-<!--      <h3>Host: {{host.hostName}}</h3>-->
-<!--      <p>Ngày tham gia: {{host.signInDate}}</p>-->
-<!--      <p>Số điện thoại: {{host.phoneNumber}}</p>-->
-<!--    </ion-label>-->
-<!--  </ion-item>-->
-
-  <ion-grid>
-    <ion-row>
-      <ion-col size="3">
-        <img class="host-avatar"[src]="host.avatarUrl" alt="">
-      </ion-col>
-      <ion-col size="9">
-        <ion-label>
-          <h3>Host: {{host.hostName}}</h3>
-          <p>Ngày tham gia: {{host.signInDate}}</p>
-          <p>Số điện thoại: {{host.phoneNumber}}</p>
-        </ion-label>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+    <ion-card-content>
+        <ion-grid class="ion-no-padding">
+            <ion-row>
+                <ion-col size="auto">
+                    <img class="host-avatar" [src]="host.avatarUrl" alt="">
+                </ion-col>
+                <ion-col size="8">
+                    <ion-label>
+                        <h3>Host: {{host.hostName}}</h3>
+                        <p>Ngày tham gia: {{host.signInDate}}</p>
+                        <p>Số điện thoại: {{host.phoneNumber}}</p>
+                    </ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card-content>
 </ion-card>

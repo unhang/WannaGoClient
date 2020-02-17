@@ -9,4 +9,8 @@
       width: 100% !important;
     }
   }
+
+  @media screen and (max-width: 767px) {
+    height: 230px;
+  }
 }
