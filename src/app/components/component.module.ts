@@ -5,13 +5,14 @@ import {RouterModule} from '@angular/router';
 import {GoHeader} from './header/header.component';
 import {GoInput} from './input/input.component';
 import {GoTab} from './tab/tab.component';
-
+import {GoSearchCard} from './search-card/search-card.component';
 
 @NgModule({
     declarations: [
         GoHeader,
         GoInput,
-        GoTab
+        GoTab,
+        GoSearchCard
     ],
     imports: [
         CommonModule,
@@ -21,7 +22,8 @@ import {GoTab} from './tab/tab.component';
     exports: [
         GoHeader,
         GoInput,
-        GoTab
+        GoTab,
+        GoSearchCard
     ]
 })
 export class ComponentModule {
