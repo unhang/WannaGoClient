@@ -1,0 +1,8 @@
+{
+  "appId": "com.wanngo.test",
+  "appName": "WannaGo",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "html",
+  "cordova": {}
+}

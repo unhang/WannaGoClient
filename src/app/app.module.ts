@@ -25,6 +25,7 @@ import {ComponentModule} from './components/component.module';
         }),
         AppRoutingModule,
         HttpClientModule,
+        ComponentModule
     ],
     providers: [
         StatusBar,

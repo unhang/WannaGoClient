@@ -3,6 +3,7 @@
   z-index: 101 !important;
   background-color: var(--ion-color-step-0);
   border-top: 1px solid var(--go-border-gray);
+
   &__bar {
     &-item {
       display: flex;
@@ -10,10 +11,12 @@
       justify-content: space-between;
       align-items: center;
       color: var(--ion-color-step-500);
+
       &-icon {
         font-size: 24px;
       }
-      &-text{
+
+      &-text {
         font-size: 12px;
       }
     }
@@ -21,9 +24,10 @@
 }
 
 
-
 .sticky {
   position: sticky;
+  position: -webkit-sticky;
+  position: fixed;
   bottom: 0;
   z-index: 100;
 }
