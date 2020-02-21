@@ -1,0 +1,63 @@
+.header {
+  border-bottom: 1px solid var(--ion-color-step-50);
+  .logo{
+    width: 48px;
+    height: 48px;
+  }
+
+}
+
+.content {
+  min-height: 100vh;
+  background-color: var(--ion-color-step-50);
+  .step-container {
+    margin: 0 48px;
+    font-size: 18px;
+
+    .step-item {
+      //&:first-child {
+      //  &::before {
+      //    display: none;
+      //  }
+      //}
+      display: inline-block;
+      position: relative;
+      height: 48px;
+      color: var(--ion-color-step-300);
+      background-color: var(--ion-color-step-150);
+      margin-right: 56px;
+      .step-item__text {
+        line-height: 48px;
+        padding: 0px 10px;
+      }
+
+      &::after,&::before {
+        content: '';
+        position: absolute;
+      }
+      &::before {
+        left: -48px;
+        border: 24px solid var(--ion-color-step-150);
+        border-right: 10px solid var(--ion-color-step-150);
+        border-left: 38px solid transparent;
+      }
+      &::after {
+        right: -48px;
+        border: 24px solid transparent;
+        border-right: 10px solid transparent;
+        border-left: 38px solid var(--ion-color-step-150);
+      }
+    }
+    .step-item.step-item-active {
+      background-color: var(--ion-color-primary);
+      color: var(--ion-color-step-50);
+      &::before {
+        border-color: var(--ion-color-primary);
+        border-left-color: transparent;
+      }
+      &::after{
+        border-left-color: var(--ion-color-primary);
+      }
+    }
+  }
+}

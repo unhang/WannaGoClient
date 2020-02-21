@@ -17,7 +17,8 @@
                 <ion-col class="ion-text-end">{{stayDetail.price}}đ</ion-col>
             </ion-row>
         </ion-grid>
-        <ion-button class="ion-margin-top"
+        <ion-button (click)="goToBookingInfo()"
+                    class="ion-margin-top"
                     expand="block">
             <ion-icon name="flash-outline"></ion-icon>
             {{text.bookBtn}}</ion-button>
