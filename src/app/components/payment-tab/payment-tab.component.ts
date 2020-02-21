@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'go-payment-tab',
@@ -23,11 +24,21 @@ export class GoPaymentTab implements OnInit {
         mode1Btn: 'Đặt ngay',
     };
     text: any = {};
-    constructor() {
+
+    constructor(private router: Router) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
     ngOnInit() {
+    }
+
+    goToBookingInfo() {
+        this.router.navigate(
+            ['/explore/booking-info'],
+            {
+                queryParams: {step: 1}
+            }
+        );
     }
 
 }

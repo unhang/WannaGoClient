@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {StayDetail} from '../../../../../swagger';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
     selector: 'app-booking-card',
@@ -26,7 +26,8 @@ export class BookingCardComponent implements OnInit {
     text: any = {};
     guestCount;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute,
+                private router: Router) {
         this.text = this.lang === 'en' ? {...this.textEn} : {...this.textVn};
     }
 
@@ -34,4 +35,13 @@ export class BookingCardComponent implements OnInit {
         this.route.paramMap.subscribe((paramMap: ParamMap) => this.guestCount = paramMap.get('guest'));
     }
 
+
+    goToBookingInfo() {
+        this.router.navigate(
+            ['/explore/booking-info'],
+            {
+                queryParams: {step: 1}
+            }
+        );
+    }
 }
