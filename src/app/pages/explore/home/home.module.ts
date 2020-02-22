@@ -15,6 +15,7 @@ import {GoAreaCardComponent} from './special-area/area-card/area-card.component'
 import {GoSlicesTypeComponent} from './slices-type/slices-type.component';
 import {GoTypeCardComponent} from './slices-type/type-card/type-card.component';
 import {GoOneHundredComponent} from './one-hundred/one-hundred.component';
+import {GoIntroAppComponent} from './intro-app/intro-app.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import {GoOneHundredComponent} from './one-hundred/one-hundred.component';
         GoAreaCardComponent,
         GoSlicesTypeComponent,
         GoTypeCardComponent,
-        GoOneHundredComponent
+        GoOneHundredComponent,
+        GoIntroAppComponent
     ]
 })
 export class HomePageModule {
