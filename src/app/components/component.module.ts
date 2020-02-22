@@ -10,6 +10,7 @@ import {GoPaymentTab} from './payment-tab/payment-tab.component';
 
 
 import {GoSearchCard} from './search-card/search-card.component';
+import {GoStayCardComponent} from './stay-card/stay-card.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {GoSearchCard} from './search-card/search-card.component';
         GoInput,
         GoTab,
         GoPaymentTab,
-        GoSearchCard
+        GoSearchCard,
+        GoStayCardComponent
     ],
     imports: [
         CommonModule,
@@ -30,7 +32,8 @@ import {GoSearchCard} from './search-card/search-card.component';
         GoInput,
         GoTab,
         GoPaymentTab,
-        GoSearchCard
+        GoSearchCard,
+        GoStayCardComponent
     ]
 })
 export class ComponentModule {

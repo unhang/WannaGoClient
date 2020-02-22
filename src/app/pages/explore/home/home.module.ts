@@ -14,6 +14,7 @@ import {GoSpecialAreaComponent} from './special-area/special-area.component';
 import {GoAreaCardComponent} from './special-area/area-card/area-card.component';
 import {GoSlicesTypeComponent} from './slices-type/slices-type.component';
 import {GoTypeCardComponent} from './slices-type/type-card/type-card.component';
+import {GoOneHundredComponent} from './one-hundred/one-hundred.component';
 
 @NgModule({
     imports: [
@@ -21,7 +22,7 @@ import {GoTypeCardComponent} from './slices-type/type-card/type-card.component';
         FormsModule,
         IonicModule,
         HomePageRoutingModule,
-        ComponentModule
+        ComponentModule,
     ],
     declarations: [
         HomePage,
@@ -30,7 +31,8 @@ import {GoTypeCardComponent} from './slices-type/type-card/type-card.component';
         GoSpecialAreaComponent,
         GoAreaCardComponent,
         GoSlicesTypeComponent,
-        GoTypeCardComponent
+        GoTypeCardComponent,
+        GoOneHundredComponent
     ]
 })
 export class HomePageModule {
