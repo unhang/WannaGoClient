@@ -1,14 +1,14 @@
-# FRONTEND KIT
-Easy, Faster, light-weight
+# WANAGO
+
 
 ## Author
-Name: Duy Thien Tran
+Name: 
 
-Phone number: 07 88 95 84 86
+Phone number: 
 
-Email: duythientran1998@gmail.com
+Email: 
 
-Website: www.tranduythien.net
+Website: 
 
 ## Introduction
 
@@ -22,7 +22,7 @@ Website: www.tranduythien.net
 
 ## Used
 
-    ng g component <URL>
+    ionic g component [path] <componentName>
     
 ## Support
     [N] 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HighlightPlace, StayService} from '../../../../../swagger';
-import {MockDataService} from "../../../../service/mock-data.service";
+import {MockDataService} from '../../../../service/mock-data.service';
 
 @Component({
   selector: 'go-special-area',
@@ -39,8 +39,6 @@ export class GoSpecialAreaComponent implements OnInit {
     this.stayService.stayGetHighlightPlaces(this.lang)
         .subscribe((res: HighlightPlace[]) => {
           this.highLightPlaces = this.mockDataService.multiply<HighlightPlace>(res, 5)
-          console.log(res);
-          console.log(this.highLightPlaces);
         });
   }
 

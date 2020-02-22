@@ -12,6 +12,8 @@ import {ComponentModule} from '../../../components/component.module';
 import {GoService} from './go-service/go-service.component';
 import {GoSpecialAreaComponent} from './special-area/special-area.component';
 import {GoAreaCardComponent} from './special-area/area-card/area-card.component';
+import {GoSlicesTypeComponent} from './slices-type/slices-type.component';
+import {GoTypeCardComponent} from './slices-type/type-card/type-card.component';
 
 @NgModule({
     imports: [
@@ -26,7 +28,9 @@ import {GoAreaCardComponent} from './special-area/area-card/area-card.component'
         CoverComponent,
         GoService,
         GoSpecialAreaComponent,
-        GoAreaCardComponent
+        GoAreaCardComponent,
+        GoSlicesTypeComponent,
+        GoTypeCardComponent
     ]
 })
 export class HomePageModule {
