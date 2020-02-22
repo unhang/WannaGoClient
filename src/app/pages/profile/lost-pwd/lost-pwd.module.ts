@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LostPwdPageRoutingModule } from './lost-pwd-routing.module';
 
 import { LostPwdPage } from './lost-pwd.page';
+import {FormLostPwdComponent} from './form-lost-pwd/form-lost-pwd.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { LostPwdPage } from './lost-pwd.page';
     IonicModule,
     LostPwdPageRoutingModule
   ],
-  declarations: [LostPwdPage]
+  declarations: [LostPwdPage, FormLostPwdComponent]
 })
 export class LostPwdPageModule {}
