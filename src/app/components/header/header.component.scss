@@ -16,9 +16,8 @@
         &-button {
           padding: 10px 20px;
           color: white;
-          font-weight: bolder;
-          &:hover {
-            box-shadow: 0 3px white;
+          &:hover, &:active {
+            box-shadow: 0 2px white;
             cursor: pointer;
           }
         }
@@ -30,9 +29,10 @@
     border-bottom: 1px solid var(--ion-color-step-100);
     box-shadow: 8px 0px 12px var(--ion-color-step-300);
     .header__container-navs-button {
-      color: var(--ion-color-step-500) !important;
-      &:hover {
-        border: none;
+      color: black;
+      &:hover, &:active {
+        box-shadow: 0 2px black;
+        cursor: pointer;
       }
     }
   }

@@ -1,6 +1,11 @@
 .go-input {
   display: inline-block;
   width: 100%;
+
+  ion-input {
+    --padding-start: .5rem;
+    border-radius: 3px;
+  }
 }
 
 .bordered {

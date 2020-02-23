@@ -1,16 +1,16 @@
 <ion-card *ngIf="host">
     <ion-card-content>
         <ion-grid class="ion-no-padding">
-            <ion-row>
-                <ion-col size="auto">
+            <ion-row fixex="true">
+                <ion-col size="3" class="ion-hide-lg-down">
                     <img class="host-avatar" [src]="host.avatarUrl" alt="">
                 </ion-col>
-                <ion-col size="8">
-                    <ion-label>
-                        <h3>Host: {{host.hostName}}</h3>
-                        <p>Ngày tham gia: {{host.signInDate}}</p>
-                        <p>Số điện thoại: {{host.phoneNumber}}</p>
-                    </ion-label>
+                <ion-col size-lg="8" size="12">
+                    <div class="host-info">
+                        <h3>HOST: {{host.hostName}}</h3>
+                        <p class="date">Ngày tham gia: {{host.signInDate}}</p>
+                        <p class="phone">Hotline: {{host.phoneNumber}}</p>
+                    </div>
                 </ion-col>
             </ion-row>
         </ion-grid>

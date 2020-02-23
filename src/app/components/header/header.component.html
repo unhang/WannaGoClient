@@ -2,12 +2,13 @@
           (scroll)="onScroll($event)"
           [ngClass]="styles">
     <ion-row class="header__container ion-justify-content-between ion-align-items-center">
-        <ion-col size="1"
-                 class="header__container-logo ion-hide-sm-down" routerLink='/home'>
-            <img class="ion-margin-start" width="40px" height="40px" src="https://www.tranduythien.net/wp-content/uploads/2020/02/logo_white.png">
+        <ion-col size-sm="2" size-md="1"
+                 class="header__container-logo" routerLink='/home'>
+            <img class="ion-margin-start" width="40px" height="40px"
+                 [src]="logoBlack ? logoBlackUrl : logoWhiteUrl">
 
         </ion-col>
-        <ion-col size="12" size-md="3" *ngIf="hasSearch">
+        <ion-col size="10" size-md="3" *ngIf="hasSearch">
             <go-input type="search"></go-input>
         </ion-col>
         <ion-col size="8"
