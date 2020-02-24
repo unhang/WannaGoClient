@@ -1,7 +1,9 @@
 ion-card{
-  background-color: var(--ion-color-step-50);
-  background: url("../../../../../assets/images/login-bg.png") no-repeat;
+  //background-color: var(--ion-color-step-50);
+  background-image: url("../../../../../assets/images/login-bg.png");
+  -webkit-background-image: url("../../../../../assets/images/login-bg.png");
   //background-attachment: fixed;
+  background-repeat: no-repeat;
   background-position: right;
   background-size: 300px 170px;
 }

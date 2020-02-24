@@ -18,17 +18,9 @@
             </ion-row>
         </ion-grid>
     </div>
+
+    <!--  STEP 1  -->
     <div class="content ion-padding-top">
-<!--        <ion-grid class="ion-no-padding" fixed="true">-->
-<!--            <ion-row class="step-container ion-no-padding ion-justify-content-start ion-align-items-center">-->
-<!--                <ion-col class="step-item ion-no-padding" size="auto">-->
-<!--                    <span class="step-item__text">{{text.step1Text}}</span>-->
-<!--                </ion-col>-->
-<!--                <ion-col class="step-item ion-no-padding" size="auto">-->
-<!--                    <span class="step-item__text">{{text.step2Text}}</span>-->
-<!--                </ion-col>-->
-<!--            </ion-row>-->
-<!--        </ion-grid>-->
         <ion-grid class="ion-no-padding" fixed="true">
             <div class="step-container">
                 <span class="step-item" [ngClass]="{'step-item-active': step === 1}">
@@ -65,7 +57,49 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-
     </div>
+    <!--/  STEP 1  -->
+
+    <!-- STEP 2   -->
+    <div class="content ion-padding-top">
+        <ion-grid class="ion-no-padding" fixed="true">
+            <div class="step-container">
+                <span class="step-item" [ngClass]="{'step-item-active': step === 1}">
+                    <span class="step-item__text">{{text.step1Text}}</span>
+                </span>
+                <span class="step-item" [ngClass]="{'step-item-active': step === 2}">
+                    <span class="step-item__text">{{text.step2Text}}</span>
+                </span>
+            </div>
+        </ion-grid>
+
+        <ion-grid class="ion-no-padding" fixed="true">
+            <ion-row>
+                <h1><ion-text>{{text.step1Text}}</ion-text></h1>
+            </ion-row>
+            <ion-row>
+                <ion-col size="9">
+                    <ion-row>
+                        <ion-col size="9">
+                            <app-login-card></app-login-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+                <ion-col size="3">
+                    <ion-card>
+                        <ion-card-content>
+                            <div>thong tin thanh toan</div>
+                            <div>thong tin thanh toan</div>
+                            <div>thong tin thanh toan</div>
+                            <div>thong tin thanh toan</div>
+                            <div>thong tin thanh toan</div>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <!--/ STEP 2    -->
+
     <go-footer></go-footer>
 </ion-content>
