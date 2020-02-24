@@ -16,9 +16,11 @@
 
     ion-card {
       margin: 0;
+
       img {
         width: 100%;
         height: auto;
+        max-height: 190px;
       }
 
       ion-card-header {

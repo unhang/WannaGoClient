@@ -8,6 +8,11 @@ const routes: Routes = [
         data: {activatedTab: 1}
     },
     {
+        path: 'faqs',
+        loadChildren: () => import('./faqs/faqs.module').then(m => m.FaqsPageModule),
+        data: {activatedTab: 1}
+    },
+    {
         path: 'search',
         loadChildren: () => import('./search/search.module').then(m => m.SearchPageModule),
         data: {activatedTab: 1}
@@ -30,6 +35,11 @@ const routes: Routes = [
     {
         path: '', redirectTo: 'home', pathMatch: 'full'
     },
+  {
+    path: 'faqs',
+    loadChildren: () => import('./faqs/faqs.module').then( m => m.FaqsPageModule)
+  },
+
 ];
 
 @NgModule({

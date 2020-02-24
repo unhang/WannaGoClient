@@ -1,0 +1,11 @@
+ion-header {
+  --background: transparent;
+  ion-toolbar {
+    --background: transparent;
+    ion-title {
+      line-height: 40px;
+      padding-left: 50px;
+      --background: url('../../../../assets/images/logo_only_black.png') no-repeat left center;
+    }
+  }
+}

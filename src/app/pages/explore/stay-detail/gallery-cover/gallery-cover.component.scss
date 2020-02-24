@@ -1,16 +1,16 @@
 .slide-container{
-  height: 500px;
+  //height: 500px;
   background-color: var(--ion-color-step-50);
   ion-slide {
-    height: 100% !important;
+    //height: 100% !important;
     ion-img {
-      display: block;
-      height: 100% !important;
-      width: 100% !important;
+      //display: block;
+      //height: 100% !important;
+      //width: 100% !important;
     }
   }
 
   @media screen and (max-width: 767px) {
-    height: 230px;
+    //height: 230px;
   }
 }

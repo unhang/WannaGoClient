@@ -1,0 +1,29 @@
+.wrapper {
+  height: 100vh;
+  background-size: cover;
+  background: url('https://www.tranduythien.net/wp-content/uploads/2020/02/mariadevlogin.png') center;
+
+  ion-grid {
+    position: relative;
+    height: 100vh;
+    z-index: 2;
+    ion-row {
+      height: 100%;
+
+      figure {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 50%;
+          min-width: 330px;
+          margin: auto;
+        }
+      }
+    }
+  }
+
+}

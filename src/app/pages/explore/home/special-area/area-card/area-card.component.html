@@ -1,12 +1,14 @@
-<ion-card>
-  <img [src]="place.imgUrl" alt="{{place.cityName}}">
+<ion-card class="place-item"
+          [ngStyle]="{'background-image': 'url(' + place.imgUrl + ')', 'background-size': 'cover'}"
+>
   <ion-card-content>
-    <ion-text class="">
+    <ion-text class="brand">
       <h3>{{place.cityName}}</h3>
-      <div>{{place.totalStays}}</div>
+      <div>{{place.totalStays}} {{text.addressPrice}}</div>
     </ion-text>
-    <ion-text class="">
-      <div>{{place.averagePrice}}</div>
+    <ion-text class="price">
+      <div>{{ text.avgPrice }}</div>
+      <span class="numPrice">{{place.averagePrice}} {{text.unitPrice}}</span>
     </ion-text>
   </ion-card-content>
 </ion-card>

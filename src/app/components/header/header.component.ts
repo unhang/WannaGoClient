@@ -9,8 +9,11 @@ export class GoHeader implements OnInit {
     lang = localStorage.getItem('lang');
     // class style từ header.component.scss
     @Input() styles: string [] = [];
-
+    @Input() logoBlack = true;
     @Input() hasSearch = false;
+
+    logoBlackUrl = 'https://www.tranduythien.net/wp-content/uploads/2020/02/logo_only.png';
+    logoWhiteUrl = 'https://www.tranduythien.net/wp-content/uploads/2020/02/logo_white.png';
 
     textVn: any = {
         btn1: 'Trở thành chủ nhà',
