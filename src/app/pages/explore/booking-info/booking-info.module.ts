@@ -11,6 +11,7 @@ import {LoginCardComponent} from './login-card/login-card.component';
 import {ComponentModule} from '../../../components/component.module';
 import {StepOneComponent} from './step-one/step-one.component';
 import {StepTwoComponent} from './step-two/step-two.component';
+import {PaymentCardComponent} from './payment-card/payment-card.component';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import {StepTwoComponent} from './step-two/step-two.component';
         BookingInfoPage,
         LoginCardComponent,
         StepOneComponent,
-        StepTwoComponent
+        StepTwoComponent,
+        PaymentCardComponent
     ]
 })
 export class BookingInfoPageModule {

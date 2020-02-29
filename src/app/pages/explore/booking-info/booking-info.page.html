@@ -1,18 +1,6 @@
 <ion-content>
-    <div class="header">
-        <ion-grid fixed="true">
-            <ion-row class="ion-justify-content-start ion-align-items-center">
-                <ion-col size="auto">
-                    <img class="logo"
-                         src="../../../../assets/images/logo_only_black.png" alt="wannago logo">
-                </ion-col>
-                <ion-col size="auto">
-                    <ion-text><h1 class="ion-no-margin">WANNAGO</h1></ion-text>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
-
+    <go-header [hasSearch]="true"
+               [styles]="[headerStyle.sticky]"></go-header>
     <div class="content ion-padding-top">
         <ion-grid fixed="true">
             <div class="step-container">

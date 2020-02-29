@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {HeaderStyle} from '../../../constant/HeaderStyle';
 
 @Component({
     selector: 'app-booking-info',
@@ -20,7 +21,7 @@ export class BookingInfoPage implements OnInit {
     };
     text: any = {};
     step: number;
-
+    headerStyle: any = HeaderStyle;
     constructor(private route: ActivatedRoute,
                 private router: Router) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;

@@ -1,0 +1,19 @@
+ion-card {
+  background: none;
+  ion-card-header {
+    ion-card-title {
+      font-size: 1rem;
+    }
+  }
+
+  .box-img {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 90%;
+    }
+  }
+}

@@ -8,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class StepTwoComponent implements OnInit {
   lang = localStorage.getItem('lang');
   textVn: any = {
-    step2Text: 'Xác nhận và thanh toán',
+    step2Text: 'Thanh toán',
+    step2TextDescription: 'Xác nhận phương thức thanh toán',
+    optionPay: 'Vui lòng lựa chọn Phương thức thanh toán',
     bookingInfoBtn: 'Xác nhận thông tin thanh toán'
   };
   textEn: any = {
     step2Text: 'Confirm and payment',
+    step2TextDescription: 'Proccess to payment',
+    optionPay: 'Please! select your option payment',
     bookingInfoBtn: 'Booking info confirm'
   };
   text: any = {};
