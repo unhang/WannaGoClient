@@ -1,0 +1,52 @@
+.title {
+  margin-bottom: 1rem;
+  h2 {
+    margin-bottom: .25rem;
+    font-size: 1.2rem;
+    margin-top: 0;
+    text-transform: uppercase;
+  }
+}
+
+.titleMin {
+  h4 {
+    font-size: 1rem;
+  }
+}
+
+ion-item {
+  --background: none;
+  --padding-start: 0;
+
+  .label-font-size {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+ion-card {
+  margin: 0;
+  margin-bottom: 1rem;
+  padding: .5rem 1.5rem;
+  position: relative;
+  .card-text {
+    font-size: 1rem;
+    padding: .5rem 0;
+    line-height: 1.2;
+  }
+  span {
+    color: black;
+    font-size: 1.2rem;
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    width: 2px;
+    height: calc(100% - 1rem);
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    background: #1aaaff;
+  }
+}

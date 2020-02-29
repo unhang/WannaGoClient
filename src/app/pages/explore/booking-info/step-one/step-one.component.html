@@ -1,38 +1,78 @@
 <ion-grid fixed="true">
     <ion-row>
-        <h1>
-            <ion-text>{{text.step1Text}}</ion-text>
-        </h1>
-    </ion-row>
-    <ion-row>
-        <ion-col size="9">
-            <ion-row class="ion-no-padding ion-margin-bottom">
-                <ion-col class="ion-no-padding" size="9">
-                    <app-login-card></app-login-card>
+        <ion-col size="12"  size-md="6">
+            <div class="title">
+                <h2><ion-text>{{text.step1Text}}</ion-text></h2>
+            </div>
+            <ion-row>
+<!--                <ion-col size="12">-->
+<!--                    <app-login-card></app-login-card>-->
+<!--                </ion-col>-->
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="label-font-size" position="floating">
+                            {{ text.numCustomers }}
+                        </ion-label>
+                        <ion-input type="number" placeholder="{{ text.numCustomers }}"></ion-input>
+                    </ion-item>
                 </ion-col>
             </ion-row>
-            <ion-row class="ion-margin-top">
+            <ion-row>
+                <div class="titleMin">
+                    <h4><ion-text>{{text.step13Text}}</ion-text></h4>
+                </div>
                 <ion-col size="6">
-                    <ion-label position="floating">Thong tin nguoi dung</ion-label>
-                    <ion-input></ion-input>
+                    <ion-card class="date-booking">
+                        <div class="card-text">{{text.startDateBookinng}}</div>
+                        <span>21/02/2020</span>
+                        <div class="card-text">Thứ 6</div>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-card class="date-booking">
+                        <div class="card-text">{{text.endDateBookinng}}</div>
+                        <span>21/02/2020</span>
+                        <div class="card-text">Thứ 6</div>
+                    </ion-card>
                 </ion-col>
             </ion-row>
         </ion-col>
-        <ion-col size="3">
-            <ion-card>
-                <ion-card-content>
-                    <div>thong tin thanh toan</div>
-                    <div>thong tin thanh toan</div>
-                    <div>thong tin thanh toan</div>
-                    <div>thong tin thanh toan</div>
-                    <div>thong tin thanh toan</div>
-                </ion-card-content>
-            </ion-card>
+        <ion-col size="12" size-md="6">
+            <div class="title">
+                <h2><ion-text>{{text.step12Text}}</ion-text></h2>
+            </div>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="label-font-size" position="floating">
+                            {{ text.customerName }}
+                        </ion-label>
+                        <ion-input placeholder="{{ text.customerName }}"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label class="label-font-size" position="floating">
+                            {{ text.customerPhone }}
+                        </ion-label>
+                        <ion-input type="number"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label class="label-font-size" position="floating">
+                            {{ text.customerEmail }}
+                        </ion-label>
+                        <ion-input></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
         </ion-col>
     </ion-row>
-
     <ion-row>
-        <ion-col size="auto">
+        <ion-col size="6">
             <ion-button [routerLink]="['/explore/booking-info']"
                         [queryParams]="{step: 2}">{{text.bookingInfoBtn}}</ion-button>
         </ion-col>
