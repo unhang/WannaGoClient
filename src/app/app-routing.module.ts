@@ -10,13 +10,27 @@ const routes: Routes = [
   //     activatedTab: 1
   //   }
   // },
-  // {
-  //   path: 'search',
-  //   loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule),
-  //   data: {
-  //     activatedTab: 1
-  //   }
-  // },
+  {
+    path: 'faqs',
+    loadChildren: () => import('./pages/explore/faqs/faqs.module').then( m => m.FaqsPageModule),
+    data: {
+      activatedTab: 1
+    }
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/profile/login/login.module').then( m => m.LoginPageModule),
+    data: {
+      activatedTab: 4
+    }
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/profile/register/register.module').then( m => m.RegisterPageModule),
+    data: {
+      activatedTab: 4
+    }
+  },
   {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
