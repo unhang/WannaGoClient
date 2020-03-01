@@ -1,0 +1,41 @@
+.title {
+  h2 {
+    text-transform: uppercase;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+ion-item {
+  --background: none;
+  .item-inner {
+    border: none;
+  }
+  ion-input {
+    background: rgba(white, .7);
+    border-radius: 30px;
+    --padding-start: 1rem;
+  }
+}
+
+ion-button {
+  width: 180px;
+  text-align: center;
+  padding: .25rem .5rem;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  a {
+    color: white;
+    padding-bottom: .25rem;
+
+    &:hover, &:active {
+      color: #1aaaff;
+    }
+  }
+}
