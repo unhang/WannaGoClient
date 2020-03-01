@@ -1,35 +1,35 @@
 <ion-row>
-  <ion-col size="12" size-md="6">
+  <ion-col size="12">
     <div class="title">
-      <h2><ion-text>{{text.step12Text}}</ion-text></h2>
+      <h2><ion-text>{{text.title}}</ion-text></h2>
     </div>
-    <ion-row>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label class="label-font-size" position="floating">
-            {{ text.customerName }}
-          </ion-label>
-          <ion-input placeholder="{{ text.customerName }}"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="6">
-        <ion-item>
-          <ion-label class="label-font-size" position="floating">
-            {{ text.customerPhone }}
-          </ion-label>
-          <ion-input type="number"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="6">
-        <ion-item>
-          <ion-label class="label-font-size" position="floating">
-            {{ text.customerEmail }}
-          </ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+  </ion-col>
+  <ion-col size="12">
+    <ion-item>
+      <ion-input placeholder="{{ text.plusername }}"></ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col size="12">
+    <ion-item>
+      <ion-input type="password" placeholder="{{ text.plpassword }}"></ion-input>
+    </ion-item>
+  </ion-col>
+</ion-row>
+<ion-row class="ion-align-items-center ion-justify-content-between">
+  <ion-col size="6">
+    <ion-toggle color="secondary"></ion-toggle>
+  </ion-col>
+  <ion-col size="6" class="d-flex ion-justify-content-end">
+    <ion-button expand="block"
+                color="secondary"
+                routerLink='/explore/search'>{{text.btnLogin}}</ion-button>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col size="12">
+    <div class="toolbar">
+      <a routerLink='/profile/register'>{{text.linkRegister}}</a>
+      <a routerLink='/profile/lost-pwd'>{{text.linkForget}}</a>
+    </div>
   </ion-col>
 </ion-row>
