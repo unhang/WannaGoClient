@@ -7,7 +7,6 @@ import {IonicModule} from '@ionic/angular';
 import {ExplorePageRoutingModule} from './explore-routing.module';
 
 import {ExplorePage} from './explore.page';
-import {StayBookingService} from './stay-booking.service';
 
 @NgModule({
     imports: [
@@ -17,9 +16,6 @@ import {StayBookingService} from './stay-booking.service';
         ExplorePageRoutingModule,
     ],
     declarations: [ExplorePage],
-    providers: [
-        StayBookingService,
-    ]
 })
 export class ExplorePageModule {
 }
