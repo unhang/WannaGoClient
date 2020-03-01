@@ -28,7 +28,7 @@ export class SearchResultComponent implements OnInit {
     }
 
     goToStayDetail(stayId: number) {
-        this.router.navigate(['/explore', stayId, 'stay']);
+        this.router.navigate(['/pages', 'tabs', 'explore', stayId, 'stay']);
     }
 
 }

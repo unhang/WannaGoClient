@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'go-search-card',
@@ -29,10 +30,15 @@ export class GoSearchCard implements OnInit {
 
   text: any = {};
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.text = this.lang === 'en' ? this.textEn : this.textVn;
   }
 
+  search() {
+    this.router.navigate(
+        ['pages', 'tabs', 'explore', 'search']
+    );
+  }
 }

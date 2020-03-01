@@ -2,14 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'explore', pathMatch: 'full' },
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./pages/explore/home/home.module').then(m => m.HomePageModule),
-  //   data: {
-  //     activatedTab: 1
-  //   }
-  // },
+  { path: '', redirectTo: 'pages', pathMatch: 'full' },
   {
     path: 'faqs',
     loadChildren: () => import('./pages/explore/faqs/faqs.module').then( m => m.FaqsPageModule),
@@ -48,6 +41,10 @@ const routes: Routes = [
   {
     path: 'explore',
     loadChildren: () => import('./pages/explore/explore.module').then( m => m.ExplorePageModule)
+  },
+  {
+    path: 'pages',
+    loadChildren: () => import('./pages/pages.module').then( m => m.PagesPageModule)
   },
 ];
 

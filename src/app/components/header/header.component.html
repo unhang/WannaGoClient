@@ -3,7 +3,7 @@
           [ngClass]="styles">
     <ion-row class="header__container ion-justify-content-between ion-align-items-center">
         <ion-col size-sm="2" size-md="1"
-                 class="header__container-logo" routerLink='/home'>
+                 class="header__container-logo" routerLink='/pages/tabs/explore/home'>
             <img class="ion-margin-start" width="40px" height="40px"
                  [src]="logoBlack ? logoBlackUrl : logoWhiteUrl">
 
@@ -15,10 +15,10 @@
                  class="header__container-navs ion-hide-md-down ion-align-self-end">
             <ion-grid>
                 <ion-row class="ion-justify-content-end ion-align-items-center">
-                    <ion-col size="auto" class="header__container-navs-button" routerLink='/home'>{{text.btn1}}</ion-col>
-                    <ion-col size="auto" class="header__container-navs-button" routerLink='/explore/faqs'>{{text.btn2}}</ion-col>
-                    <ion-col size="auto" class="header__container-navs-button" routerLink='/profile/login'>{{text.btn3}}</ion-col>
-                    <ion-col size="auto" class="header__container-navs-button" routerLink='/profile/register'>
+                    <ion-col size="auto" class="header__container-navs-button" routerLink='/pages/tabs/explore/home'>{{text.btn1}}</ion-col>
+                    <ion-col size="auto" class="header__container-navs-button" routerLink='/pages/tabs/explore/faqs'>{{text.btn2}}</ion-col>
+                    <ion-col size="auto" class="header__container-navs-button" routerLink='/pages/tabs/profile/login'>{{text.btn3}}</ion-col>
+                    <ion-col size="auto" class="header__container-navs-button" routerLink='/pages/tabs/profile/register'>
                         <ion-text>{{text.btn4}}</ion-text>
                         <ion-button slot="icon-only">
                             <ion-icon name="heart"></ion-icon>
