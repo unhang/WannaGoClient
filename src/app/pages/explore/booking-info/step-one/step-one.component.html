@@ -1,0 +1,81 @@
+<ion-grid fixed="true">
+    <ion-row>
+        <ion-col size="12"  size-md="6">
+            <div class="title">
+                <h2><ion-text>{{text.step1Text}}</ion-text></h2>
+            </div>
+            <ion-row>
+<!--                <ion-col size="12">-->
+<!--                    <app-login-card></app-login-card>-->
+<!--                </ion-col>-->
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="label-font-size" position="floating">
+                            {{ text.numCustomers }}
+                        </ion-label>
+                        <ion-input type="number" placeholder="{{ text.numCustomers }}"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <div class="titleMin">
+                    <h4><ion-text>{{text.step13Text}}</ion-text></h4>
+                </div>
+                <ion-col size="6">
+                    <ion-card class="date-booking">
+                        <div class="card-text">{{text.startDateBookinng}}</div>
+                        <span>21/02/2020</span>
+                        <div class="card-text">Thứ 6</div>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-card class="date-booking">
+                        <div class="card-text">{{text.endDateBookinng}}</div>
+                        <span>21/02/2020</span>
+                        <div class="card-text">Thứ 6</div>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+        <ion-col size="12" size-md="6">
+            <div class="title">
+                <h2><ion-text>{{text.step12Text}}</ion-text></h2>
+            </div>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="label-font-size" position="floating">
+                            {{ text.customerName }}
+                        </ion-label>
+                        <ion-input placeholder="{{ text.customerName }}"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label class="label-font-size" position="floating">
+                            {{ text.customerPhone }}
+                        </ion-label>
+                        <ion-input type="number"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label class="label-font-size" position="floating">
+                            {{ text.customerEmail }}
+                        </ion-label>
+                        <ion-input></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="6">
+            <ion-button [routerLink]="['/explore/booking-info']"
+                        [queryParams]="{step: 2}">{{text.bookingInfoBtn}}</ion-button>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
