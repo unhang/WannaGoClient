@@ -38,7 +38,7 @@ export class BookingCardComponent implements OnInit {
 
     goToBookingInfo() {
         this.router.navigate(
-            ['/explore/booking-info'],
+            ['/pages/tabs/explore/booking-info'],
             {
                 queryParams: {step: 1}
             }
