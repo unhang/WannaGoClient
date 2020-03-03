@@ -21,7 +21,6 @@ import {ComponentModule} from './components/component.module';
         IonicModule.forRoot({
             mode: 'ios',
             backButtonText: '',
-            backButtonIcon: 'arrow-back'
         }),
         AppRoutingModule,
         HttpClientModule,
