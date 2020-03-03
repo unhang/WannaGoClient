@@ -9,6 +9,16 @@ const routes: Routes = [
     component: ProfilePage
   },
   // {
+  //   path: 'profile-info',
+  //   loadChildren: () => import('./profile-info/profile-info.module').then( m => m.ProfileInfoPageModule)
+  // },
+
+  // {
+  //   path: 'booking-history',
+  //   loadChildren: () => import('./booking-history/booking-history.module').then( m => m.BookingHistoryPageModule)
+  // },
+
+  // {
   //   path: 'login',
   //   loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   // },

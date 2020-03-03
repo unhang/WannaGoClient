@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { GoHeader } from './header.component';
+import { ProfileInfoPage } from './profile-info.page';
 
-describe('GoHeader', () => {
-  let component: GoHeader;
-  let fixture: ComponentFixture<GoHeader>;
+describe('ProfileInfoPage', () => {
+  let component: ProfileInfoPage;
+  let fixture: ComponentFixture<ProfileInfoPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GoHeader ],
+      declarations: [ ProfileInfoPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GoHeader);
+    fixture = TestBed.createComponent(ProfileInfoPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
