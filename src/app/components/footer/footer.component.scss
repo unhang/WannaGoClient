@@ -12,18 +12,18 @@
 
     img {
       &.logo {
-        width: 210px;
+        width: 150px;
         margin-right: auto;
       }
 
       &.paymethod {
         width: 100%;
-        max-width: 300px;
+        max-width: 200px;
         margin-top: 1.5rem;
       }
 
       &.certification {
-        width: 200px;
+        width: 150px;
         padding-right: .5rem;
         margin-right: auto;
       }
@@ -42,6 +42,9 @@
     p {
       margin: 0;
       color: #B0B0B1;
+      strong {
+        color: black
+      }
     }
   }
 

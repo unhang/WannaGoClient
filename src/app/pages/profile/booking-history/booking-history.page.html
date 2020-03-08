@@ -12,44 +12,77 @@
     <go-header [hasSearch]="true"
                class="ion-hide-sm-down"
                [styles]="[headerStyle.sticky]"></go-header>
-    <div class="go-bg-gray-50 ion-padding-top">
+    <div class="ion-padding-top">
         <ion-grid class="ion-padding-top" fixed="true">
             <ion-row class="ion-margin-top">
-                <ion-col size-sm="8">
-                    <h1 class="ion-margin-bottom ion-hide-sm-down">{{text.header}}</h1>
-                    <ion-card class="ion-no-margin go-no-shadow">
+                <ion-col size-md="8">
+                    <ion-card class="ion-no-margin">
+                        <ion-card-header><h1 class="ion-hide-sm-down">{{text.header}}</h1></ion-card-header>
                         <ion-card-content>
-                            <ion-row>
-                                <ion-col size-sm="6">
-                                        <h1>Số khách:</h1>
-                                        <p>1</p>
-
-
-                                        <h1>Thời gian :</h1>
-                                        <p>21/2/2020-22/2/2020</p>
-
-
-                                        <h1>Tổng tiền thanh toán:</h1>
-                                        <p>1.000.000 vnđ</p>
-
-                                </ion-col>
-                                <ion-col size-sm="6">
-                                    <h1> Tên của stay đặt ở đây</h1>
-                                    <p> Địa chỉ của stay đặt ở đây Địa chỉ của stay đặt ở đây Địa chỉ của stay đặt ở đây</p>
-                                    <img src="" alt="">
-                                </ion-col>
-                            </ion-row>
+                            <div class="box-stay-details">
+                                <ion-row class="ion-margin-bottom">
+                                    <ion-col size="12"><h2 class="title-stay active">Ngày 21/02/2020 - 2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</h2></ion-col>
+                                    <ion-col size="12" size-md="6">
+                                        <ion-row>
+                                            <ion-col size="12">
+                                                <ion-item>
+                                                    <ion-label class="label-font-size" position="floating">
+                                                        {{ text.numCustomers }}
+                                                    </ion-label>
+                                                    <ion-input type="number" placeholder="{{ text.numCustomers }}"></ion-input>
+                                                </ion-item>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col size="12">
+                                                <div class="titleMin">
+                                                    <h4><ion-text>{{text.time}}</ion-text></h4>
+                                                </div>
+                                            </ion-col>
+                                            <ion-col size="12" size-md="6">
+                                                <ion-card class="date-booking go-no-shadow">
+                                                    <div class="card-text">{{text.startDateBookinng}}</div>
+                                                    <span>21/02/2020</span>
+                                                    <div class="card-text">Thứ 6</div>
+                                                </ion-card>
+                                            </ion-col>
+                                            <ion-col size="12" size-md="6">
+                                                <ion-card class="date-booking go-no-shadow">
+                                                    <div class="card-text">{{text.endDateBookinng}}</div>
+                                                    <span>21/02/2020</span>
+                                                    <div class="card-text">Thứ 6</div>
+                                                </ion-card>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                    <ion-col size="12" size-md="6">
+                                        <h4><ion-text>{{text.step13Text}}</ion-text></h4>
+                                        <div class="box-description">Địa điểm: Ngũ Hành Sơn, Đà Nẵng</div>
+                                        <div class="box-img">
+                                            <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/090ab768-d4fe-40ae-b84d-c828fb4dfa36.jpg" alt="">
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                            <div class="box-stay-details">
+                                <ion-row><ion-col size="12"><h2 class="title-stay">Ngày 21/02/2020 - 2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</h2></ion-col></ion-row>
+                            </div>
+                            <div class="box-stay-details">
+                                <ion-row><ion-col size="12"><h2 class="title-stay">Ngày 21/02/2020 - 2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</h2></ion-col></ion-row>
+                            </div>
+                            <div class="box-stay-details">
+                                <ion-row><ion-col size="12"><h2 class="title-stay">Ngày 21/02/2020 - 2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</h2></ion-col></ion-row>
+                            </div>
                         </ion-card-content>
                     </ion-card>
                 </ion-col>
-                <ion-col class="ion-hide-sm-down" size-sm="3" offset-sm="1">
-                    <ion-button class="ion-margin-bottom"
+                <ion-col class="ion-hide-md-down" size-md="3" offset-md="1">
+                    <ion-button class="ion-margin-bottom no-active-page"
                                 color="medium"
                                 fill="outline"
                                 expand="block"
                                 [routerLink]="['/pages', 'tabs', 'profile', 'profile-info']">{{text.btn1}}</ion-button>
                     <ion-button expand="block">{{text.btn2}}</ion-button>
-
                 </ion-col>
             </ion-row>
         </ion-grid>
