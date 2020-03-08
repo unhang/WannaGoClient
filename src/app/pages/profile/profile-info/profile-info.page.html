@@ -12,18 +12,18 @@
     <go-header [hasSearch]="true"
                class="ion-hide-sm-down"
                [styles]="[headerStyle.sticky]"></go-header>
-    <div class="go-bg-gray-50 ion-padding-top">
+    <div class="ion-padding-top ion-padding-bottom">
         <ion-grid class="ion-padding-top" fixed="true">
             <ion-row class="ion-margin-top">
-                <ion-col size-sm="8">
-                    <h1 class="ion-margin-bottom ion-hide-sm-down">{{text.header}}</h1>
-                    <ion-card class="ion-no-margin go-no-shadow">
+                <ion-col size-md="8">
+                    <ion-card class="ion-no-margin">
+                        <ion-card-header><h1 class="ion-hide-sm-down">{{text.header}}</h1></ion-card-header>
                         <ion-card-content>
-                            <ion-row>
+                            <ion-row fixed="true">
                                 <ion-col size="12" size-sm="6">
                                     <!-- hiển thị screen lớn -->
-                                    <div>
-                                        <h1>Ảnh đại diện</h1>
+                                    <h2>Ảnh đại diện</h2>
+                                    <div class="avatar">
                                         <div>
                                             <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/35830347.jpg"
                                                  alt="">
@@ -31,6 +31,7 @@
                                     </div>
                                 </ion-col>
                                 <ion-col size="12" size-sm="6">
+                                    <h2>Cập nhập thông tin</h2>
                                     <ion-item>
                                         <ion-label position="floating">Họ và tên</ion-label>
                                         <ion-input></ion-input>
@@ -49,16 +50,16 @@
                                         <ion-input></ion-input>
                                     </ion-item>
                                     <ion-item>
-                                        <ion-label position="floating">Mật </ion-label>
+                                        <ion-label position="floating">Mật khẩu</ion-label>
                                         <ion-input></ion-input>
                                     </ion-item>
-                                    <ion-button expand="block">Cập nhật thông tin</ion-button>
+                                    <ion-button expand="block" class="ion-margin-top">Cập nhật thông tin</ion-button>
                                 </ion-col>
                             </ion-row>
                         </ion-card-content>
                     </ion-card>
                 </ion-col>
-                <ion-col class="ion-hide-sm-down" size-sm="3" offset-sm="1">
+                <ion-col class="ion-hide-md-down" size-md="3" offset-md="1">
                     <ion-button class="ion-margin-bottom"
                                 expand="block">{{text.btn1}}</ion-button>
                     <ion-button expand="block"
