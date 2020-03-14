@@ -10,21 +10,11 @@
  * Do not edit the class manually.
  */
 
-export interface CommentPost { 
-    /**
-     * id user
-     */
-    userId?: number;
-    /**
-     * id của stay được comment
-     */
+export interface BookingHistory { 
+    stayName?: string;
     stayId?: number;
-    /**
-     * Nội dung của comment
-     */
-    comment?: string;
-    /**
-     * Điểm cho stay, không quá 5
-     */
-    commentRate?: number;
+    totalPrice?: number;
+    guestCount?: number;
+    checkIn?: string;
+    checkOut?: string;
 }

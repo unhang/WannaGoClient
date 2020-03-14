@@ -28,7 +28,9 @@ import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables'
 import { Configuration }                                     from '../configuration';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class StayService {
 
     protected basePath = 'https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0';
@@ -93,7 +95,7 @@ export class StayService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<StayByTypeArray>(`${this.basePath}/api/stay/get-slices-by-type`,
+        return this.httpClient.request<StayByTypeArray>('get',`${this.basePath}/api/stay/get-slices-by-type`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -142,7 +144,7 @@ export class StayService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<CommentDetail>>(`${this.basePath}/api/stay/${encodeURIComponent(String(stayId))}/comments`,
+        return this.httpClient.request<Array<CommentDetail>>('get',`${this.basePath}/api/stay/${encodeURIComponent(String(stayId))}/comments`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -191,7 +193,7 @@ export class StayService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<StayDetail>(`${this.basePath}/api/stay/${encodeURIComponent(String(stayId))}/detail`,
+        return this.httpClient.request<StayDetail>('get',`${this.basePath}/api/stay/${encodeURIComponent(String(stayId))}/detail`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -205,14 +207,16 @@ export class StayService {
     /**
      * postStayComment()
      * post comment
+     * @param body Thông tin post của comment
      * @param lang Ngôn ngữ（vn） - vn - en 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postStayComment(lang?: string, observe?: 'body', reportProgress?: boolean): Observable<CommentPost>;
-    public postStayComment(lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CommentPost>>;
-    public postStayComment(lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CommentPost>>;
-    public postStayComment(lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postStayComment(body?: CommentPost, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<CommentPost>;
+    public postStayComment(body?: CommentPost, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CommentPost>>;
+    public postStayComment(body?: CommentPost, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CommentPost>>;
+    public postStayComment(body?: CommentPost, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -233,10 +237,16 @@ export class StayService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+            'application/json'
         ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
 
-        return this.httpClient.post<CommentPost>(`${this.basePath}/api/stay/comments`,
+        return this.httpClient.request<CommentPost>('post',`${this.basePath}/api/stay/comments`,
             {
+                body: body,
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -319,7 +329,7 @@ export class StayService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<StaySearch>(`${this.basePath}/api/stay/search`,
+        return this.httpClient.request<StaySearch>('get',`${this.basePath}/api/stay/search`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -363,7 +373,7 @@ export class StayService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<HighlightPlaces>(`${this.basePath}/api/stay/get-highlight-places`,
+        return this.httpClient.request<HighlightPlaces>('get',`${this.basePath}/api/stay/get-highlight-places`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

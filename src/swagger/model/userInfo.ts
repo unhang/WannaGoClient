@@ -10,21 +10,27 @@
  * Do not edit the class manually.
  */
 
-export interface CommentPost { 
+export interface UserInfo { 
     /**
-     * id user
+     * id của user
      */
     userId?: number;
     /**
-     * id của stay được comment
+     * Họ và tên của user
      */
-    stayId?: number;
+    name?: string;
+    birthday?: string;
+    avatar?: string;
     /**
-     * Nội dung của comment
+     * email đăng ký của user
      */
-    comment?: string;
+    emailAddress?: string;
     /**
-     * Điểm cho stay, không quá 5
+     * null nếu request là GET, hoặc trả về response
      */
-    commentRate?: number;
+    password?: string;
+    /**
+     * Số điện thoại của uuser
+     */
+    phone?: string;
 }
