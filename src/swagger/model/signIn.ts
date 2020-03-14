@@ -10,21 +10,7 @@
  * Do not edit the class manually.
  */
 
-export interface CommentPost { 
-    /**
-     * id user
-     */
-    userId?: number;
-    /**
-     * id của stay được comment
-     */
-    stayId?: number;
-    /**
-     * Nội dung của comment
-     */
-    comment?: string;
-    /**
-     * Điểm cho stay, không quá 5
-     */
-    commentRate?: number;
+export interface SignIn { 
+    emailAddress?: string;
+    password?: string;
 }

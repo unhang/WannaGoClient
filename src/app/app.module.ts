@@ -8,10 +8,11 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {HostService, StayService} from '../swagger';
+import {HostService, StayService, UserService, BookingService, } from 'src/swagger';
 import {HttpClientModule} from '@angular/common/http';
 import {MockDataService} from './service/mock-data.service';
 import {ComponentModule} from './components/component.module';
+import {AuthService} from './services/auth.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -30,9 +31,10 @@ import {ComponentModule} from './components/component.module';
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        StayService,
         MockDataService,
-        HostService,
+        // swagger service
+        StayService, HostService, UserService, BookingService,
+        AuthService,
     ],
     bootstrap: [AppComponent]
 })

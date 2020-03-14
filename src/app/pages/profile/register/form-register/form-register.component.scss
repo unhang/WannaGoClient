@@ -7,13 +7,25 @@
   }
 }
 
+ion-item.item-has-focus {
+  ion-label {
+    color: var(--ion-color-secondary);
+    font-size: 16px !important;
+    font-weight: bold;
+  }
+}
+
 ion-item {
+
+
   --background: none;
+
   .item-inner {
     border: none;
   }
+
   ion-input {
-    background: rgba(white, .7);
+    background: rgba(white, .4);
     border-radius: 30px;
     --padding-start: 1rem;
   }
@@ -30,6 +42,7 @@ ion-button {
   justify-content: center;
   align-items: flex-end;
   flex-direction: column;
+
   a {
     color: white;
     padding-bottom: .25rem;

@@ -23,7 +23,9 @@ import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables'
 import { Configuration }                                     from '../configuration';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HostService {
 
     protected basePath = 'https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0';
@@ -93,7 +95,7 @@ export class HostService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<HostInfo>(`${this.basePath}/api/host/${encodeURIComponent(String(hostId))}/info`,
+        return this.httpClient.request<HostInfo>('get',`${this.basePath}/api/host/${encodeURIComponent(String(hostId))}/info`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

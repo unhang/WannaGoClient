@@ -17,7 +17,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { User } from '../model/user';
+import { BookingHistory } from '../model/bookingHistory';
+import { BookingPost } from '../model/bookingPost';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -26,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class TemplateService {
+export class BookingService {
 
     protected basePath = 'https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0';
     public defaultHeaders = new HttpHeaders();
@@ -58,19 +59,26 @@ export class TemplateService {
 
 
     /**
-     * Creates list of users with given input array
-     * 
-     * @param body List of user object
+     * addBooking()
+     * tạo booking stay cho user
+     * @param body Booking object thêm vào record
+     * @param lang Ngôn ngữ（vn） - vn - en 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createUsersWithListInput(body: Array<User>, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public createUsersWithListInput(body: Array<User>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public createUsersWithListInput(body: Array<User>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public createUsersWithListInput(body: Array<User>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public addBooking(body: BookingPost, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public addBooking(body: BookingPost, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public addBooking(body: BookingPost, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public addBooking(body: BookingPost, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createUsersWithListInput.');
+            throw new Error('Required parameter body was null or undefined when calling addBooking.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
         }
 
         let headers = this.defaultHeaders;
@@ -92,9 +100,10 @@ export class TemplateService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/user/createWithList`,
+        return this.httpClient.request<any>('post',`${this.basePath}/api/booking/add`,
             {
                 body: body,
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -104,25 +113,33 @@ export class TemplateService {
     }
 
     /**
-     * Delete user
-     * This can only be done by the logged in user.
-     * @param username The name that needs to be deleted
+     * getBookingHistory()
+     * lấy danh sách booking của user
+     * @param userId userId dùng để get lịch sử booking
+     * @param lang Ngôn ngữ（vn） - vn - en 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteUser(username: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteUser(username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteUser(username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteUser(username: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getBookingHistory(userId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<BookingHistory>>;
+    public getBookingHistory(userId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<BookingHistory>>>;
+    public getBookingHistory(userId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<BookingHistory>>>;
+    public getBookingHistory(userId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (username === null || username === undefined) {
-            throw new Error('Required parameter username was null or undefined when calling deleteUser.');
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getBookingHistory.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
         }
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -133,8 +150,9 @@ export class TemplateService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('delete',`${this.basePath}/user/${encodeURIComponent(String(username))}`,
+        return this.httpClient.request<Array<BookingHistory>>('get',`${this.basePath}/api/booking/${encodeURIComponent(String(userId))}/history`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -144,66 +162,26 @@ export class TemplateService {
     }
 
     /**
-     * Get user by user name
-     * 
-     * @param username The name that needs to be fetched. Use user1 for testing.
+     * updateBooking()
+     * tạo booking stay cho user, căn bản giống như addBooking, chỉ khác tên
+     * @param body Booking object thêm vào record
+     * @param lang Ngôn ngữ（vn） - vn - en 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getUserByName(username: string, observe?: 'body', reportProgress?: boolean): Observable<User>;
-    public getUserByName(username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
-    public getUserByName(username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
-    public getUserByName(username: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (username === null || username === undefined) {
-            throw new Error('Required parameter username was null or undefined when calling getUserByName.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json',
-            'application/xml'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<User>('get',`${this.basePath}/user/${encodeURIComponent(String(username))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Updated user
-     * This can only be done by the logged in user.
-     * @param body Updated user object
-     * @param username name that need to be updated
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public updateUser(body: User, username: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public updateUser(body: User, username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public updateUser(body: User, username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateUser(body: User, username: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateBooking(body: BookingPost, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateBooking(body: BookingPost, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateBooking(body: BookingPost, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateBooking(body: BookingPost, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling updateUser.');
+            throw new Error('Required parameter body was null or undefined when calling updateBooking.');
         }
 
-        if (username === null || username === undefined) {
-            throw new Error('Required parameter username was null or undefined when calling updateUser.');
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
         }
 
         let headers = this.defaultHeaders;
@@ -225,9 +203,10 @@ export class TemplateService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/user/${encodeURIComponent(String(username))}`,
+        return this.httpClient.request<any>('put',`${this.basePath}/api/booking/update`,
             {
                 body: body,
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
