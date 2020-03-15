@@ -18,7 +18,12 @@ export class AuthService {
     }
 
     getToken() {
-        console.log(jwt_decode(this.token));
+        let token = '';
+        try {
+            token = jwt_decode(this.token);
+        } catch (e) {
+            token = '';
+        }
     }
 
 
@@ -27,7 +32,7 @@ export class AuthService {
             .subscribe(res => {
                 console.log(res);
                 this.token = res['token'];
-                localStorage.setItem('token', this.token);
+                // localStorage.setItem('token', this.token);
                 this.router.navigate(['pages/tabs/explore/home']);
             });
     }
