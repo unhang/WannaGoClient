@@ -1,5 +1,5 @@
+export * from './booking';
 export * from './bookingHistory';
-export * from './bookingPost';
 export * from './category';
 export * from './commentDetail';
 export * from './commentPost';

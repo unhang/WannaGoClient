@@ -17,8 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { BookingHistory } from '../model/bookingHistory';
-import { BookingPost } from '../model/bookingPost';
+import { Booking } from '../model/booking';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -66,10 +65,10 @@ export class BookingService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addBooking(body: BookingPost, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public addBooking(body: BookingPost, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public addBooking(body: BookingPost, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public addBooking(body: BookingPost, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public addBooking(body: Booking, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Booking>;
+    public addBooking(body: Booking, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Booking>>;
+    public addBooking(body: Booking, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Booking>>;
+    public addBooking(body: Booking, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling addBooking.');
@@ -85,6 +84,7 @@ export class BookingService {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -100,9 +100,58 @@ export class BookingService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/booking/add`,
+        return this.httpClient.request<Booking>('post',`${this.basePath}/api/booking/add`,
             {
                 body: body,
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * getBookingById()
+     * lấy thông tin booking theo booking_id
+     * @param bookingId 
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getBookingById(bookingId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Booking>;
+    public getBookingById(bookingId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Booking>>;
+    public getBookingById(bookingId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Booking>>;
+    public getBookingById(bookingId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (bookingId === null || bookingId === undefined) {
+            throw new Error('Required parameter bookingId was null or undefined when calling getBookingById.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Booking>('get',`${this.basePath}/api/booking/${encodeURIComponent(String(bookingId))}/get`,
+            {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -120,9 +169,9 @@ export class BookingService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getBookingHistory(userId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<BookingHistory>>;
-    public getBookingHistory(userId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<BookingHistory>>>;
-    public getBookingHistory(userId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<BookingHistory>>>;
+    public getBookingHistory(userId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Booking>>;
+    public getBookingHistory(userId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Booking>>>;
+    public getBookingHistory(userId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Booking>>>;
     public getBookingHistory(userId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (userId === null || userId === undefined) {
@@ -150,7 +199,7 @@ export class BookingService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<BookingHistory>>('get',`${this.basePath}/api/booking/${encodeURIComponent(String(userId))}/history`,
+        return this.httpClient.request<Array<Booking>>('get',`${this.basePath}/api/booking/${encodeURIComponent(String(userId))}/history`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -169,10 +218,10 @@ export class BookingService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateBooking(body: BookingPost, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public updateBooking(body: BookingPost, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public updateBooking(body: BookingPost, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateBooking(body: BookingPost, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateBooking(body: Booking, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Booking>;
+    public updateBooking(body: Booking, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Booking>>;
+    public updateBooking(body: Booking, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Booking>>;
+    public updateBooking(body: Booking, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling updateBooking.');
@@ -188,6 +237,7 @@ export class BookingService {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -203,7 +253,7 @@ export class BookingService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/api/booking/update`,
+        return this.httpClient.request<Booking>('put',`${this.basePath}/api/booking/update`,
             {
                 body: body,
                 params: queryParameters,

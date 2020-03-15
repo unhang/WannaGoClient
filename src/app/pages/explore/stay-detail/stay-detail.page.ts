@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderStyle} from '../../../constant/HeaderStyle';
-import {BookingPost, BookingService, CommentDetail, HostInfo, HostService, StayDetail, StayService, UserInfo} from '../../../../swagger';
+import {Booking, BookingService, CommentDetail, HostInfo, HostService, StayDetail, StayService, UserInfo} from '../../../../swagger';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {MockDataService} from '../../../service/mock-data.service';
 import {AuthService} from '../../../services/auth.service';
+import {LoadingController} from '@ionic/angular';
 
 @Component({
     selector: 'app-stay-detail',
@@ -20,13 +21,24 @@ export class StayDetailPage implements OnInit {
     stayComments: CommentDetail[] = [];
     queryParams: ParamMap;
 
-    constructor(private stayService: StayService,
-                private hostService: HostService,
-                private router: Router,
+    textVn: any = {
+        loading: 'Xin vui lòng đợi...'
+    };
+
+    textEn: any = {
+        loading: 'Please wait...'
+    };
+    text: any = {};
+
+    constructor(private router: Router,
                 private route: ActivatedRoute,
+                private stayService: StayService,
+                private hostService: HostService,
+                private authService: AuthService,
+                private loadCtrl: LoadingController,
                 private bookingService: BookingService,
-                private mockDataService: MockDataService,
-                private authService: AuthService) {
+                private mockDataService: MockDataService) {
+        this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
     ngOnInit() {
@@ -36,7 +48,7 @@ export class StayDetailPage implements OnInit {
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if (!paramMap.has('id')) {
                 this.router.navigate(['/pages']);
-            } else {
+            } else if (!this.stayId) {
                 this.stayId = (+paramMap.get('id')) as number;
                 this.queryParams = paramMap;
                 this.getStayDetail();
@@ -46,13 +58,22 @@ export class StayDetailPage implements OnInit {
 
     getStayDetail() {
         // @ts-ignore
-        this.stayService.getStayDetail(this.stayId, this.lang)
-            .subscribe(stayDetail => {
-                this.stayDetail = stayDetail;
-                this.stayDetail.imgUrls = this.mockDataService.multiply<string>(this.stayDetail.imgUrls, 10);
-                this.getHostInfo(this.stayDetail.hostId);
-                this.getStayComment();
-            });
+        this.loadCtrl.create({
+            mode: 'md',
+            message: this.text.loading,
+            spinner: 'dots'
+        }).then(loadEl => {
+            loadEl.present();
+            this.stayService.getStayDetail(this.stayId, this.lang)
+                .subscribe(stayDetail => {
+                    this.stayDetail = stayDetail;
+                    this.stayDetail.imgUrls = this.mockDataService.multiply<string>(this.stayDetail.imgUrls, 10);
+                    this.getHostInfo(this.stayDetail.hostId);
+                    this.getStayComment();
+                    loadEl.dismiss();
+                });
+        });
+
     }
 
     getHostInfo(hostId: number) {
@@ -68,7 +89,7 @@ export class StayDetailPage implements OnInit {
 
     goToBookingInfo() {
         const userInfo: UserInfo = this.authService.getUserInfo();
-        const bookingPost: BookingPost = {
+        const bookingPost: Booking = {
             userId: userInfo.userId,
             customerName: userInfo.name,
             phone: userInfo.phone,
@@ -83,8 +104,27 @@ export class StayDetailPage implements OnInit {
             statusCode: 1,
             // status: ''
         };
-        console.log('btn clic lcik');
-        this.bookingService.addBooking(bookingPost, this.lang)
-            .subscribe();
+
+        this.loadCtrl.create({
+            mode: 'md',
+            message: this.text.loading,
+            spinner: 'dots'
+        }).then(loadEl => {
+            loadEl.present();
+            this.bookingService.addBooking(bookingPost, this.lang)
+                .subscribe((booking: Booking) => {
+                    loadEl.dismiss();
+                    this.router.navigate(
+                        ['/pages/tabs/explore/booking-info'],
+                        {
+                            queryParams: {
+                                step: 1,
+                                booking_id: booking.bookingId
+                            }
+                        }
+                    );
+                });
+        });
+
     }
 }
