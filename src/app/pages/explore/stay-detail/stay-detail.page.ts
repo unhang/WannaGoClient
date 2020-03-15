@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderStyle} from '../../../constant/HeaderStyle';
-import {CommentDetail, HostInfo, HostService, StayDetail, StayService} from '../../../../swagger';
+import {BookingPost, BookingService, CommentDetail, HostInfo, HostService, StayDetail, StayService, UserInfo} from '../../../../swagger';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {MockDataService} from '../../../service/mock-data.service';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-stay-detail',
@@ -17,12 +18,15 @@ export class StayDetailPage implements OnInit {
     stayDetail: StayDetail;
     hostInfo: HostInfo;
     stayComments: CommentDetail[] = [];
+    queryParams: ParamMap;
 
     constructor(private stayService: StayService,
                 private hostService: HostService,
                 private router: Router,
                 private route: ActivatedRoute,
-                private mockDataService: MockDataService) {
+                private bookingService: BookingService,
+                private mockDataService: MockDataService,
+                private authService: AuthService) {
     }
 
     ngOnInit() {
@@ -30,22 +34,17 @@ export class StayDetailPage implements OnInit {
 
     ionViewDidEnter() {
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
-            console.log(paramMap.get('id'));
             if (!paramMap.has('id')) {
-                this.router.navigate(['/explore']);
+                this.router.navigate(['/pages']);
             } else {
                 this.stayId = (+paramMap.get('id')) as number;
+                this.queryParams = paramMap;
                 this.getStayDetail();
             }
         });
     }
 
-    scrollCheck($event) {
-         console.log($event);
-    }
-
     getStayDetail() {
-        console.log(this.stayId);
         // @ts-ignore
         this.stayService.getStayDetail(this.stayId, this.lang)
             .subscribe(stayDetail => {
@@ -65,5 +64,27 @@ export class StayDetailPage implements OnInit {
         // @ts-ignore
         this.stayService.getStayComments(this.stayId, this.lang)
             .subscribe(comment => this.stayComments = comment);
+    }
+
+    goToBookingInfo() {
+        const userInfo: UserInfo = this.authService.getUserInfo();
+        const bookingPost: BookingPost = {
+            userId: userInfo.userId,
+            customerName: userInfo.name,
+            phone: userInfo.phone,
+            email: userInfo.emailAddress,
+            stayId: this.stayId,
+            checkIn: this.queryParams.get('check_in'),
+            checkOut: this.queryParams.get('check_out'),
+            guestCount: +this.queryParams.get('guest_count'),
+            totalPrice: 12312312312,
+            paymentCode: '',
+            // statusCode chưa thanh toán nên là 1
+            statusCode: 1,
+            // status: ''
+        };
+        console.log('btn clic lcik');
+        this.bookingService.addBooking(bookingPost, this.lang)
+            .subscribe();
     }
 }
