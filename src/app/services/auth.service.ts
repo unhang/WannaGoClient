@@ -9,7 +9,8 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
     private token = localStorage.getItem('token') || '';
-    loading;
+
+    private userInfo: UserInfo;
 
     constructor(private userService: UserService,
                 private navController: NavController,
@@ -26,6 +27,9 @@ export class AuthService {
         }
     }
 
+    getUserInfo(): UserInfo {
+        return {...this.userInfo};
+    }
 
     signIn(userInfo: UserInfo) {
         this.userService.signIn(userInfo)

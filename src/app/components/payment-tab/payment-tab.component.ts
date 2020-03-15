@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -14,6 +14,7 @@ export class GoPaymentTab implements OnInit {
     * */
     @Input() mode = 1;
     @Input() price = 0;
+    @Output() BookingBtnClicked: EventEmitter<any> = new EventEmitter();
     lang = localStorage.getItem('lang');
     textEn: any = {
         mode1Text: 'Booking detail',
@@ -25,7 +26,7 @@ export class GoPaymentTab implements OnInit {
     };
     text: any = {};
 
-    constructor(private router: Router) {
+    constructor() {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
@@ -33,12 +34,6 @@ export class GoPaymentTab implements OnInit {
     }
 
     goToBookingInfo() {
-        this.router.navigate(
-            ['pages/tabs/explore/booking-info'],
-            {
-                queryParams: {step: 1}
-            }
-        );
+        this.BookingBtnClicked.emit();
     }
-
 }

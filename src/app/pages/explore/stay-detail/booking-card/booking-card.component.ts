@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {StayDetail} from '../../../../../swagger';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
@@ -10,6 +10,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 export class BookingCardComponent implements OnInit {
 
     @Input() stayDetail: StayDetail;
+    @Output() BookingBtnClicked: EventEmitter<any> = new EventEmitter();
     lang = localStorage.getItem('lang');
     private textEn: any = {
         price: 'Price per night',
@@ -37,11 +38,6 @@ export class BookingCardComponent implements OnInit {
 
 
     goToBookingInfo() {
-        this.router.navigate(
-            ['/pages/tabs/explore/booking-info'],
-            {
-                queryParams: {step: 1}
-            }
-        );
+        this.BookingBtnClicked.emit();
     }
 }

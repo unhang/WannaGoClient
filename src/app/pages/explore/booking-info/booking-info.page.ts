@@ -22,6 +22,7 @@ export class BookingInfoPage implements OnInit {
     text: any = {};
     step: number;
     headerStyle: any = HeaderStyle;
+
     constructor(private route: ActivatedRoute,
                 private router: Router) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
@@ -29,11 +30,11 @@ export class BookingInfoPage implements OnInit {
 
     ngOnInit() {
         this.route.queryParamMap.subscribe((params: ParamMap) => {
-           if (!params.has('step')) {
-               this.router.navigate(['/']);
-           } else {
-               this.step = +params.get('step') as number;
-           }
+            if (!params.has('step') || !params.has('booking_id')) {
+                this.router.navigate(['/']);
+            } else {
+                this.step = +params.get('step') as number;
+            }
         });
     }
 

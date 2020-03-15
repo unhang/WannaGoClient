@@ -10,13 +10,17 @@
  * Do not edit the class manually.
  */
 
-export interface BookingPost { 
+export interface Booking { 
+    /**
+     * - null khi gọi api/booking/add - booking id phải có giá trị khi gọi api/booking/update 
+     */
+    bookingId?: number;
     /**
      * id cuả user đặt booking
      */
     userId?: number;
     /**
-     * Tênc của khách hàng, phải trùng tên CMND
+     * Tên của khách hàng, phải trùng tên CMND
      */
     customerName?: string;
     /**
@@ -31,6 +35,10 @@ export interface BookingPost {
      * id của stay được booking
      */
     stayId?: number;
+    /**
+     * lấy tên cuả stay bỏ ở đây
+     */
+    stayName?: string;
     /**
      * ngày check in
      */

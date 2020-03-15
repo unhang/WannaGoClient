@@ -29,7 +29,7 @@ import { Configuration }                                     from '../configurat
 })
 export class UserService {
 
-    protected basePath = 'http://wannago.ml';
+    protected basePath = 'https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
