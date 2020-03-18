@@ -8,6 +8,7 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
+
 import {HostService, StayService, UserService, BookingService, } from 'src/swagger';
 import {HttpClientModule} from '@angular/common/http';
 import {MockDataService} from './service/mock-data.service';
