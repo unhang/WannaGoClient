@@ -17,7 +17,6 @@ export class AppComponent {
         private statusBar: StatusBar,
         private authService: AuthService) {
         this.initializeApp();
-        this.authService.getToken();
     }
 
     initializeApp() {
@@ -25,5 +24,7 @@ export class AppComponent {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });
+
     }
+
 }

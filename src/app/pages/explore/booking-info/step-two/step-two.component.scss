@@ -44,3 +44,19 @@ h4 {
     margin: auto;
   }
 }
+
+.form-row{
+  width:  100%;
+}
+
+// Main form styling
+.StripeElement {
+  display: block;
+
+}
+
+// Focused field that user has text cursor in
+.StripeElement--focus { }
+
+// A field with an error or incomplete
+.StripeElement--invalid { }
