@@ -26,9 +26,19 @@
     }
 
     ion-button {
-      width: 40%;
+      width: 100%;
       padding: .1rem;
-      margin: 1.5rem 0 0 auto;
+      margin: 1.5rem auto;
+      margin-bottom: 0;
     }
   }
+}
+
+.listCityArr {
+  height: 500px;
+  max-height: calc(44px * 4);
+  overflow: scroll;
+  width: 100%;
+  position: absolute;
+  z-index: 99;
 }
