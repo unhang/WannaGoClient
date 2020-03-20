@@ -20,7 +20,7 @@
           <ion-col size="12">
             <div class="listCityArr" *ngIf="showCityArr" >
               <ion-list *ngFor="let cityItem of cityArr ">
-                <ion-item (click)="getSelectedValue(cityItem.code_place, cityItem.name_place)">{{cityItem.name_place}}</ion-item>
+                <ion-item *ngIf="cityItem.show == 1"  (click)="getSelectedValue(cityItem.code_place, cityItem.name_place)">{{cityItem.name_place}}</ion-item>
               </ion-list>
             </div>
           </ion-col>

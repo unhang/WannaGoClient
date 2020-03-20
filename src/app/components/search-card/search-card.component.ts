@@ -39,7 +39,6 @@ check_in: string;
 check_out: string;
 guest_count: number;
 pages: number;
-
 showCityArr: boolean;
 
 public cityArr:Array<Object> = [
@@ -484,11 +483,22 @@ ngOnInit() {
 }
 
 searchNow() {
-  if (this.city_name === '' || this.city_name == null) {
-    this.showCityArr = false;
-  } else {
-    this.showCityArr = true;
-  }
+    if (this.city_name === '' || this.city_name == null) {
+        this.showCityArr = false;
+    } else {
+        this.showCityArr = true;
+    }
+
+    for (let i = 0; i < this.cityArr.length; i++) {
+        let placeNameInArr = this.cityArr[i]['name_place'];
+        if (placeNameInArr) {
+            if (placeNameInArr.indexOf(this.city_name) > -1) {
+                this.cityArr[i]['show'] = 1;
+            } else {
+                this.cityArr[i]['show'] = 0;
+            }
+        }
+    }
 }
 
 getSelectedValue(placeCode, placeName) {
