@@ -4,48 +4,58 @@
       <ion-text><h2>{{ text.title }}</h2></ion-text>
     </ion-card-title>
   </ion-card-header>
-  <ion-card-content>
-    <ion-grid class="ion-no-padding">
-      <ion-row>
-        <ion-col size="12">
-          <ion-item>
-            <ion-label position="floating">
-              {{ text.address }}
-            </ion-label>
-            <ion-input placeholder="{{ text.addressPlaceholder }}" autocomplete="address"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12">
-          <ion-item>
-            <ion-label position="floating">
-              {{ text.date }}
-            </ion-label>
-            <ion-input placeholder="{{ text.addressPlaceholder }}" autocomplete="address"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">
-              {{ text.people }}
-            </ion-label>
-            <ion-input type="number"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">
-              {{ text.money }}
-            </ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-button expand="block"
-                (click)='search()'>{{text.searchBtn}}</ion-button>
-  </ion-card-content>
+  <form>
+    <ion-card-content>
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="floating">
+                {{ text.address }}
+              </ion-label>
+              <ion-input [(ngModel)]="city_name" name="city_name" (keyup)="searchNow()"></ion-input>
+              <input [(ngModel)]="city_id" name="city_id" type="hidden">
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <div class="listCityArr" *ngIf="showCityArr" >
+              <ion-list *ngFor="let cityItem of cityArr ">
+                <ion-item *ngIf="cityItem.show == 1"  (click)="getSelectedValue(cityItem.code_place, cityItem.name_place)">{{cityItem.name_place}}</ion-item>
+              </ion-list>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">
+                {{ text.checkIn }}
+              </ion-label>
+              <ion-input [(ngModel)]="check_in" name="check_in" autocomplete="address"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">
+                {{ text.checkOut }}
+              </ion-label>
+              <ion-input [(ngModel)]="check_out" name="check_out" autocomplete="address"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="floating">
+                {{ text.people }}
+              </ion-label>
+              <ion-input [(ngModel)]="guest_count" name="guest_count" type="number"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button expand="block"
+                  (click)='search()'>{{text.searchBtn}}</ion-button>
+    </ion-card-content>
+  </form>
 </ion-card>
