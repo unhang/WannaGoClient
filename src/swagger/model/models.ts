@@ -6,6 +6,7 @@ export * from './commentPost';
 export * from './highlightPlace';
 export * from './highlightPlaces';
 export * from './hostInfo';
+export * from './paymentIntent';
 export * from './pet';
 export * from './signIn';
 export * from './stayAddress';

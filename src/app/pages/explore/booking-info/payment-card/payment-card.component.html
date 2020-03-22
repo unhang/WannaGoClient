@@ -1,47 +1,28 @@
-<!--<ion-card class="ion-no-margin">-->
-<!--    <div>-->
-<!--        <ion-img style="width: 80px"-->
-<!--                 src="https://www.tranduythien.net/wp-content/uploads/2020/02/visa_master_jcb.svg"-->
-<!--                 alt="Wanago payment"></ion-img>-->
-<!--    </div>-->
-<!--    <ion-item class="ion-no-padding" lines="none">-->
-<!--        <ion-label>{{text.title}}</ion-label>-->
-<!--    </ion-item>-->
-
-<!--    <ion-card-header class="ion-no-padding ion-padding-horizontal">-->
-<!--        <ion-card-subtitle>-->
-<!--            <ion-text>{{text.description}}</ion-text>-->
-<!--        </ion-card-subtitle>-->
-<!--    </ion-card-header>-->
-
-<!--    <ion-card-content>-->
-<!--        <ion-item lines="none">-->
-<!--            <ion-label slot="end"><ion-icon color="medium" name="card-outline"></ion-icon></ion-label>-->
-<!--            <ion-input></ion-input>-->
-<!--        </ion-item>-->
-<!--    </ion-card-content>-->
-<!--</ion-card>-->
-
-<div>
-    <ion-img style="width: 80px"
-             src="https://www.tranduythien.net/wp-content/uploads/2020/02/visa_master_jcb.svg"
-             alt="Wanago payment"></ion-img>
-    <ion-text>{{text.title}}</ion-text>
-</div>
-
-<div *ngIf="selected">
+<<<<<<< HEAD
+<div class="payment-container">
     <div class="ion-margin-bottom">
-        <ion-input placeholder="Email" class="StripeElement custom" type="email">
-            <ion-icon color="medium" class="ion-padding-horizontal" name="mail-outline"></ion-icon>
+        <ion-input placeholder="Email"
+                   class="StripeElement custom"
+                   type="email">
+            <ion-icon color="medium"
+                      class="ion-padding-horizontal"
+                      name="mail-outline"></ion-icon>
         </ion-input>
     </div>
     <div class="ion-margin-bottom">
-        <ion-input placeholder="Tên trên thẻ" class="StripeElement custom" type="text">
-            <ion-icon color="medium" class="ion-padding-horizontal" name="person-outline"></ion-icon>
+        <ion-input placeholder="Tên trên thẻ"
+                   class="StripeElement custom"
+                   type="text">
+            <ion-icon color="medium"
+                      class="ion-padding-horizontal"
+                      name="person-outline"></ion-icon>
         </ion-input>
     </div>
     <div class="ion-margin-bottom" [id]="method"></div>
     <div>
-        <ion-button color="secondary" expand="block">Submit</ion-button>
+        <ion-button (click)="pay(123213)"
+                    color="secondary"
+                    expand="block">Submit
+        </ion-button>
     </div>
 </div>

@@ -42,14 +42,25 @@ ion-card {
 }
 
 .go-bg-gray {
-  background-color: #FCFCFC;
+  background: #FCFCFC;
 }
 .go-bg-gray-50 {
-  background-color: var(--ion-color-step-50);
+  background: var(--ion-color-step-50);
 }
 
 .go-bg-gray-100 {
-  background-color: var(--ion-color-step-100);
+  background: var(--ion-color-step-100);
+}
+.go-bg-gray-150 {
+  background: var(--ion-color-step-150);
+}
+
+.go-bg-gray-200 {
+  background: var(--ion-color-step-200);
+}
+
+.go-bg-gray-300 {
+  background: var(--ion-color-step-300);
 }
 
 .d-flex {

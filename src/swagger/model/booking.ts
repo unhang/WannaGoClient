@@ -55,16 +55,10 @@ export interface Booking {
      * giá tiền tính theo check-in và check-out
      */
     totalPrice?: number;
+    stripePaymentId?: string;
+    stripePaymentClientSecret?: string;
     /**
-     * code giao dịch
+     * - 'Succeess | thành công' - 'incomplete | chưa hoàn thành' 
      */
-    paymentCode?: string;
-    /**
-     * - 1 : 'Chờ thanh toán | Payment pending' - 2 : 'Đã thanh toán | Payment success' 
-     */
-    statusCode?: number;
-    /**
-     * Tên trạng thái của booking - 'Đã thanh toán' - 'Chờ thanh toán' 
-     */
-    status?: string;
+    status?: number;
 }

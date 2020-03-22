@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { BookingService } from './api/booking.service';
 import { HostService } from './api/host.service';
 import { StayService } from './api/stay.service';
+import { StripeService } from './api/stripe.service';
 import { TemplateService } from './api/template.service';
 import { UserService } from './api/user.service';
 
@@ -17,6 +18,7 @@ import { UserService } from './api/user.service';
     BookingService,
     HostService,
     StayService,
+    StripeService,
     TemplateService,
     UserService ]
 })
