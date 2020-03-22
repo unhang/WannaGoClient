@@ -1,31 +1,31 @@
 <ion-content>
-    <go-header [hasSearch]="true"
-               [styles]="[headerStyle.sticky]"></go-header>
-    <div class="content ion-padding-top">
-        <ion-grid fixed="true">
-            <div class="step-container">
+    <div [ngClass]="{'go-bg-gray-50': isMobile}">
+        <go-header [hasSearch]="true"
+                   [styles]="[headerStyle.sticky]"></go-header>
+        <div class="content ion-padding-top">
+            <ion-grid fixed="true">
+                <div class="step-container">
                 <span class="step-item" [ngClass]="{'step-item-active': step === 1}">
                     <span class="step-item__text">{{text.step1Text}}</span>
                 </span>
-                <span class="step-item" [ngClass]="{'step-item-active': step === 2}">
+                    <span class="step-item" [ngClass]="{'step-item-active': step === 2}">
                     <span class="step-item__text">{{text.step2Text}}</span>
                 </span>
-            </div>
-        </ion-grid>
+                </div>
+            </ion-grid>
+        </div>
+
+        <!--  STEP 1  -->
+        <div class="on-padding-top" *ngIf="step === 1">
+            <app-step-one></app-step-one>
+        </div>
+        <!--/  STEP 1  -->
+        <!-- STEP 2   -->
+        <div class="ion-padding-top" *ngIf="step === 2">
+            <app-step-two></app-step-two>
+        </div>
+        <!--/ STEP 2    -->
+
+        <go-footer></go-footer>
     </div>
-
-    <!--  STEP 1  -->
-    <div class="go-bg-gray ion-padding-top" *ngIf="step === 1">
-        <app-step-one></app-step-one>
-
-    </div>
-    <!--/  STEP 1  -->
-
-    <!-- STEP 2   -->
-    <div class="go-bg-gray ion-padding-top" *ngIf="step === 2">
-        <app-step-two></app-step-two>
-    </div>
-    <!--/ STEP 2    -->
-
-    <go-footer></go-footer>
 </ion-content>

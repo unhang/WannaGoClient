@@ -1,20 +1,28 @@
-<ion-card class="ion-no-margin">
-  <ion-card-header>
-    <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/visa_master_jcb.svg" alt="Wanago payment">
-    <ion-card-title>{{text.title}}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <ion-text>{{text.description}}</ion-text>
-  </ion-card-content>
+<div class="payment-container">
+    <div class="ion-margin-bottom">
+        <ion-input placeholder="Email"
+                   class="StripeElement custom"
+                   type="email">
+            <ion-icon color="medium"
+                      class="ion-padding-horizontal"
+                      name="mail-outline"></ion-icon>
+        </ion-input>
+    </div>
+    <div class="ion-margin-bottom">
+        <ion-input placeholder="Tên trên thẻ"
+                   class="StripeElement custom"
+                   type="text">
+            <ion-icon color="medium"
+                      class="ion-padding-horizontal"
+                      name="person-outline"></ion-icon>
+        </ion-input>
+    </div>
+    <div class="ion-margin-bottom" [id]="method"></div>
+    <div>
+        <ion-button (click)="pay(123213)"
+                    color="secondary"
+                    expand="block">Submit
+        </ion-button>
+    </div>
+</div>
 
-<!--  <ion-row>-->
-<!--    <ion-col size="12" size-md="8">-->
-
-<!--    </ion-col>-->
-<!--    <ion-col class="ion-hide-md-down" size="4">-->
-<!--      <div class="box-img">-->
-<!--        <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/visa_master_jcb.svg" alt="Wanago payment">-->
-<!--      </div>-->
-<!--    </ion-col>-->
-<!--  </ion-row>-->
-</ion-card>

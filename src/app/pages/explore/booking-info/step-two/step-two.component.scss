@@ -6,13 +6,26 @@ h1 {
 }
 
 ion-list {
-  background: none;
-  ion-list-header {
-    padding-left: 0;
-    font-size: 1.2rem;
-    ion-label {
-      margin-top: .5rem;
-      margin-bottom: .5rem;
+  //background: none;
+  background: transparent;
+  ion-radio-group {
+    background: transparent;
+    ion-list-header {
+      padding-left: 0;
+      font-size: 1.2rem;
+      ion-label {
+        margin-top: .5rem;
+        margin-bottom: .5rem;
+      }
+    }
+    ion-item {
+      background: transparent;
+      margin-bottom: 1rem;
+      border: none;
+      .item-native {
+        background: transparent;
+      }
+
     }
   }
   ion-item {
@@ -58,5 +71,6 @@ h4 {
 // Focused field that user has text cursor in
 .StripeElement--focus { }
 
-// A field with an error or incomplete
-.StripeElement--invalid { }
+ion-grid * {
+  background: transparent;
+}

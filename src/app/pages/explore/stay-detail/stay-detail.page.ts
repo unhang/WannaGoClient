@@ -99,10 +99,7 @@ export class StayDetailPage implements OnInit {
             checkOut: this.queryParams.get('check_out'),
             guestCount: +this.queryParams.get('guest_count'),
             totalPrice: 12312312312,
-            paymentCode: '',
-            // statusCode chưa thanh toán nên là 1
-            statusCode: 1,
-            // status: ''
+            status: 1,
         };
 
         this.loadCtrl.create({
