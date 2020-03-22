@@ -29,76 +29,22 @@
                              *ngIf="radioGroup.value === i">
                             <app-payment-card [method]="i"></app-payment-card>
                         </div>
-
                     </ng-container>
-
                 </ion-radio-group>
             </ion-list>
         </ion-col>
-    </ion-row>
-    <ion-row>
-        <ion-col size="12" size-md="8">
-            <ion-row>
-                <ion-col size="12">
-                    <ion-list>
-                        <ion-radio-group #radioGroup value="1">
-                            <ion-list-header>
-                                <ion-label>
-                                    <ion-text color="secondary">{{text.optionPay}}</ion-text>
-                                </ion-label>
-                            </ion-list-header>
-                            <ion-item>
-                                <div>
-                                    <div>
-                                        <app-payment-card *ngIf="radioGroup.value != '1' "></app-payment-card>
-                                    </div>
-                                    <div #paymentForm>
-                                        <div class="form-row">
-                                            <label for="card-element">
-                                                <ion-text color="secondary">Xin nhập thông tin thẻ thanh toán</ion-text>
-                                            </label>
-                                            <div id="card-element"></div>
-                                            <div id="card-errors" role="alert"></div>
-                                        </div>
-                                        <ion-button (click)="pay(10000)">Add payment source</ion-button>
-                                    </div>
-                                </div>
-                                <ion-radio slot="start" value="1"></ion-radio>
-                            </ion-item>
-                            <ion-item>
-                                <app-payment-card></app-payment-card>
-                                <ion-radio slot="start" value="2"></ion-radio>
-                            </ion-item>
-                            <ion-item>
-                                <app-payment-card></app-payment-card>
-                                <ion-radio slot="start" value="3"></ion-radio>
-                            </ion-item>
-                            <ion-item>
-                                <app-payment-card></app-payment-card>
-                                <ion-radio slot="start" value="4"></ion-radio>
-                            </ion-item>
-                            <ion-item>
-                                <app-payment-card></app-payment-card>
-                                <ion-radio slot="start" value="5"></ion-radio>
-                            </ion-item>
-                        </ion-radio-group>
-                    </ion-list>
-                </ion-col>
-            </ion-row>
-        </ion-col>
-        <ion-col size="12" size-md="4">
-            <ion-card>
-                <ion-card-content>
-                    <h4>
-                        <ion-text>2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</ion-text>
-                    </h4>
-                    <div class="box-description">Địa điểm: Ngũ Hành Sơn, Đà Nẵng</div>
-                    <div class="box-img">
-                        <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/090ab768-d4fe-40ae-b84d-c828fb4dfa36.jpg"
-                             alt="">
-                    </div>
-                </ion-card-content>
-            </ion-card>
+        <ion-col size="12" size-md="4" offset-md="2">
+            <div>
+                <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/090ab768-d4fe-40ae-b84d-c828fb4dfa36.jpg"
+                     alt="">
+            </div>
+            <h4>
+                <ion-text color="secondary">2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</ion-text>
+            </h4>
+            <div class="box-description">
+                <ion-text color="medium">Địa điểm: Ngũ Hành Sơn, Đà Nẵng</ion-text>
+            </div>
+
         </ion-col>
     </ion-row>
 </ion-grid>

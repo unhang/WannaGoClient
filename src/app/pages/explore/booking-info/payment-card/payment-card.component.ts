@@ -3,9 +3,9 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 declare var Stripe: any;
 
 @Component({
-  selector: 'app-payment-card',
-  templateUrl: './payment-card.component.html',
-  styleUrls: ['./payment-card.component.scss'],
+    selector: 'app-payment-card',
+    templateUrl: './payment-card.component.html',
+    styleUrls: ['./payment-card.component.scss'],
 })
 export class PaymentCardComponent implements OnInit, OnChanges {
 
@@ -41,12 +41,12 @@ export class PaymentCardComponent implements OnInit, OnChanges {
         }
     }
 
-    loadStripe() {
+
+    async loadStripe() {
         this.stripe = new Stripe('pk_test_l3crbRAv6t4lHTQvoMDr05FU002pfY2tkb', {
             apiVersion: '2020-03-02',
         });
         this.elements = this.stripe.elements();
-
         this.createCard();
     }
 
@@ -102,5 +102,6 @@ export class PaymentCardComponent implements OnInit, OnChanges {
                 console.log(result);
             }
         });
+
     }
 }

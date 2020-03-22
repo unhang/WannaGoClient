@@ -12,6 +12,7 @@ import {GoPaymentTab} from './payment-tab/payment-tab.component';
 import {GoSearchCard} from './search-card/search-card.component';
 import {GoStayCardComponent} from './stay-card/stay-card.component';
 import {GoFooterComponent} from './footer/footer.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {GoFooterComponent} from './footer/footer.component';
     imports: [
         CommonModule,
         IonicModule,
-        RouterModule
+        RouterModule,
+        FormsModule
     ],
     exports: [
         GoHeader,

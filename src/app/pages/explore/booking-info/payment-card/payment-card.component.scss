@@ -1,3 +1,4 @@
+
 .StripeElement {
   box-sizing: border-box;
 
@@ -12,10 +13,6 @@
   box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
-
-  iframe {
-    width: 100% !important;
-  }
 }
 
 .StripeElement--focus {
@@ -35,15 +32,8 @@
     color: #aab7c4;
   }
 
-  .box-img {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 90%;
-    }
+  &:focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
   }
 }
 
