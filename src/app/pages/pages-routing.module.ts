@@ -31,11 +31,11 @@ const routes: Routes = [
                         loadChildren: () => import('./explore/stay-detail/stay-detail.module').then(m => m.StayDetailPageModule),
                         data: {activatedTab: 1}
                     },
-                    {
-                        path: ':id/checkout',
-                        loadChildren: () => import('./explore/checkout/checkout.module').then(m => m.CheckoutPageModule),
-                        data: {activatedTab: 1}
-                    },
+                    // {
+                    //                     //     path: ':id/checkout',
+                    //                     //     loadChildren: () => import('./explore/checkout/checkout.module').then(m => m.CheckoutPageModule),
+                    //                     //     data: {activatedTab: 1}
+                    //                     // },
                     {
                         path: 'booking-info',
                         loadChildren: () => import('./explore/booking-info/booking-info.module').then(m => m.BookingInfoPageModule)

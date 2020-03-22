@@ -34,7 +34,7 @@ export class GoSearchCard implements OnInit {
 
     text: any = {};
 
-    city_id: string;
+    city_id: number;
     city_name: string;
     check_in: string;
     check_out: string;
@@ -51,23 +51,20 @@ export class GoSearchCard implements OnInit {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
-    searchNow() {
+    async searchNow() {
         if (this.city_name === '' || this.city_name == null) {
             this.showCityArr = false;
         } else {
             this.showCityArr = true;
         }
 
-        for (let i = 0; i < this.cityArr.length; i++) {
-            let placeNameInArr = this.cityArr[i]['name_place'];
-            if (placeNameInArr) {
-                if (placeNameInArr.indexOf(this.city_name) > -1) {
-                    this.cityArr[i]['show'] = 1;
-                } else {
-                    this.cityArr[i]['show'] = 0;
-                }
+        this.cityArr = this.cityArr.map(city => {
+            if (city.name_place.indexOf(this.city_name) > -1) {
+                return {...city, show: 1};
+            } else {
+                return {...city, show: 0};
             }
-        }
+        });
     }
 
     getSelectedValue(placeCode, placeName) {
