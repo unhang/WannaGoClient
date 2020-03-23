@@ -78,6 +78,12 @@ export class GoSearchCard implements OnInit {
 
     search() {
         // TODO: viết hàm validate this.check_in < this.check_out
+
+        // return nếu chưa đủ điều kiện tìm kiếm
+        if (!this.city_id || !this.check_in || !this.check_out || !this.guest_count) {
+            return;
+        }
+
         this.router.navigate(
             ['pages', 'tabs', 'explore', 'search'],
             {
@@ -100,7 +106,7 @@ export class GoSearchCard implements OnInit {
     }
 
     disabledDate = (current: Date): boolean => {
-        const comparedDate =  this.check_in ? this.check_in : new Date();
+        const comparedDate = this.check_in ? this.check_in : new Date();
         return dateFn.differenceInCalendarDays(current, comparedDate) < 0;
     };
 }
