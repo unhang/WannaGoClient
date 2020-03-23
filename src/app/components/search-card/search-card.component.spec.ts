@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SearchCardComponent } from './search-card.component';
+import { GoSearchCard } from './search-card.component';
 
 describe('SearchCardComponent', () => {
-  let component: SearchCardComponent;
-  let fixture: ComponentFixture<SearchCardComponent>;
+  let component: GoSearchCard;
+  let fixture: ComponentFixture<GoSearchCard>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchCardComponent ],
+      declarations: [ GoSearchCard ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SearchCardComponent);
+    fixture = TestBed.createComponent(GoSearchCard);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

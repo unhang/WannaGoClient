@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import * as dateFn from 'date-fns';
 import {Router} from '@angular/router';
 import * as cities from './cities.data';
 
@@ -10,18 +11,20 @@ import * as cities from './cities.data';
 export class GoSearchCard implements OnInit {
     lang = localStorage.getItem('lang');
     textVn: any = {
-        title: 'NHẬN PHÒNG NGAY VỚI WANNAGO !!!',
+        subtitle: '',
+        title: 'Nhận phòng ngay với WannaGo',
         address: 'Địa điểm',
         addressPlaceholder: 'Nhập địa điểm bạn muốn đến',
         date: 'Ngày đặt',
         people: 'Số người',
         money: 'Mức giá',
-        checkIn: 'Ngày đến',
-        checkOut: 'Ngày đi',
+        checkIn: 'Ngày đi',
+        checkOut: 'Ngày ',
         searchBtn: 'TÌM KIẾM'
     };
     textEn: any = {
-        title: 'GET YOUR ROOM RIGHT NOW WITH WANNGO !!!',
+        subtitle: '',
+        title: 'Get your room right now with WannaGo',
         address: 'Address',
         addressPlaceholder: 'Where is your place?',
         date: 'Date',
@@ -36,10 +39,9 @@ export class GoSearchCard implements OnInit {
 
     city_id: number;
     city_name: string;
-    check_in: string;
-    check_out: string;
+    check_in: Date;
+    check_out: Date;
     guest_count: number;
-    pages: number;
     showCityArr: boolean;
 
     cityArr = cities.cities;
@@ -51,7 +53,7 @@ export class GoSearchCard implements OnInit {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
-    async searchNow() {
+    searchNow() {
         if (this.city_name === '' || this.city_name == null) {
             this.showCityArr = false;
         } else {
@@ -75,17 +77,30 @@ export class GoSearchCard implements OnInit {
     }
 
     search() {
+        // TODO: viết hàm validate this.check_in < this.check_out
         this.router.navigate(
             ['pages', 'tabs', 'explore', 'search'],
             {
                 queryParams: {
                     city_id: this.city_id,
-                    check_in: this.check_in,
-                    check_out: this.check_out,
+                    check_in: this.convertDate(this.check_in),
+                    check_out: this.convertDate(this.check_out),
                     guest_count: this.guest_count,
-                    pages: this.pages
+                    pages: 1
                 }
             }
         );
     }
+
+
+    private convertDate(inputDate): string {
+        return ('0' + inputDate.getDate()).slice(-2) + '-' +
+            ('0' + (inputDate.getMonth() + 1)).slice(-2) + '-' +
+            inputDate.getFullYear();
+    }
+
+    disabledDate = (current: Date): boolean => {
+        const comparedDate =  this.check_in ? this.check_in : new Date();
+        return dateFn.differenceInCalendarDays(current, comparedDate) < 0;
+    };
 }
