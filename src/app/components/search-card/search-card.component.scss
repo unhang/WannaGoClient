@@ -1,15 +1,19 @@
-.search-card {
+ion-card.search-card {
+  border-radius: 4px;
   transition: ease-in-out all .3s;
-
+  padding: 1rem;
   &:hover, &:active {
     box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.3);
     transform: translate(0, -5px);
   }
 
   ion-card-header {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+    padding-bottom: 0;
+    //text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
     ion-card-title {
-
+      color: var(--ion-color-dark);
+      font-size: 36px;
+      font-weight: 700;
     }
   }
 
@@ -28,7 +32,8 @@
 }
 
 
-.search-item {
+ion-item.search-item {
+  margin-top: 12px;
   ion-label {
     font-size: 12px;
     font-weight: 800;
@@ -36,17 +41,24 @@
   }
 
   ion-input {
-    border: 1px solid var(--ion-color-light);
-    border-radius: 6px;
-
-    input {
-      padding: 8px !important;
+    border: 1px solid rgba(143, 153, 169, 0.22);
+    border-radius: 4px;
+    --padding-start: 8px;
+    --padding-end: 40px;
+    input.native-input.sc-ion-input-ios {
+      padding-left: 8px !important;
+      width: 90%;
     }
-
     &.has-focus {
       border-color: var(--ion-color-secondary);
     }
   }
+}
+
+.range-picker-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(44, 47, 52, 0.76);
 }
 
 .listCityArr {
@@ -68,4 +80,17 @@
 .listCityArr::-webkit-scrollbar-thumb {
   height: 3px;
   background: #ff672a;
+}
+
+nz-range-picker {
+  border-radius: 4px;
+  height: 40px;
+  padding-right: 8px;
+}
+
+
+.suffix-icon {
+  position: absolute;
+  bottom: 11px;
+  right: 11px;
 }

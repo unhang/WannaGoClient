@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
+import {NzDatePickerModule} from 'ng-zorro-antd';
 import {IonicModule} from '@ionic/angular';
-
 import {HomePageRoutingModule} from './home-routing.module';
 
 import {HomePage} from './home.page';
@@ -17,6 +17,7 @@ import {GoTypeCardComponent} from './slices-type/type-card/type-card.component';
 import {GoOneHundredComponent} from './one-hundred/one-hundred.component';
 import {GoIntroAppComponent} from './intro-app/intro-app.component';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -24,6 +25,7 @@ import {GoIntroAppComponent} from './intro-app/intro-app.component';
         IonicModule,
         HomePageRoutingModule,
         ComponentModule,
+        NzDatePickerModule,
     ],
     declarations: [
         HomePage,
