@@ -36,8 +36,7 @@ export class StayDetailPage implements OnInit {
                 private hostService: HostService,
                 private authService: AuthService,
                 private loadCtrl: LoadingController,
-                private bookingService: BookingService,
-                private mockDataService: MockDataService) {
+                private bookingService: BookingService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
@@ -66,8 +65,8 @@ export class StayDetailPage implements OnInit {
             loadEl.present();
             this.stayService.getStayDetail(this.stayId, this.lang)
                 .subscribe(stayDetail => {
-                    this.stayDetail = stayDetail;
-                    this.stayDetail.imgUrls = this.mockDataService.multiply<string>(this.stayDetail.imgUrls, 10);
+                    this.stayDetail = stayDetail[0];
+                    console.log(this.stayDetail);
                     this.getHostInfo(this.stayDetail.hostId);
                     this.getStayComment();
                     loadEl.dismiss();
@@ -77,6 +76,7 @@ export class StayDetailPage implements OnInit {
     }
 
     getHostInfo(hostId: number) {
+        console.log('host IINFO', hostId);
         this.hostService.getHostInfo(hostId, this.lang)
             .subscribe(hostInfo => this.hostInfo = hostInfo);
     }

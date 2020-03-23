@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderStyle} from 'src/app/constant/HeaderStyle';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {StayService} from '../../../../swagger';
+import {StaySearch, StayService} from '../../../../swagger';
 
 @Component({
     selector: 'app-search',
@@ -17,6 +17,7 @@ export class SearchPage implements OnInit {
     checkOut: string;
     guestCount: number;
     page: number;
+    stays: StaySearch;
 
     constructor(private route: ActivatedRoute,
                 private stayService: StayService) {
@@ -25,9 +26,9 @@ export class SearchPage implements OnInit {
     ngOnInit() { }
 
     ionViewDidEnter() {
+        console.log('search')
         this.route.queryParamMap
             .subscribe((queryParam: ParamMap) => {
-                // console.log(queryParam);
                 this.getStay(queryParam);
             });
     }
@@ -40,8 +41,8 @@ export class SearchPage implements OnInit {
         const pages = +queryParam.get('pages');
         console.log(cityId, checkIn, checkOut, guestCount, pages);
         this.stayService.search(checkIn, checkOut, cityId, guestCount, pages)
-            .subscribe(res => {
-                console.log(res);
+            .subscribe((result: StaySearch) => {
+                this.stays = result;
             });
     }
 

@@ -7,20 +7,21 @@ import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 
-import { NgZorroAntdModule, en_US, NZ_I18N} from 'ng-zorro-antd';
-import { registerLocaleData } from '@angular/common';
+import {en_US, NgZorroAntdModule, NZ_I18N} from 'ng-zorro-antd';
+import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
-registerLocaleData(en);
-
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
-import {HostService, StayService, UserService, BookingService, } from 'src/swagger';
+import {environment} from '../environments/environment';
+import {BASE_PATH, BookingService, HostService, StayService, UserService,} from 'src/swagger';
 import {HttpClientModule} from '@angular/common/http';
 import {MockDataService} from './service/mock-data.service';
 import {ComponentModule} from './components/component.module';
 import {AuthService} from './services/auth.service';
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+
+registerLocaleData(en);
 
 @NgModule({
     declarations: [AppComponent],
@@ -42,7 +43,8 @@ import { FormsModule } from '@angular/forms';
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        { provide: NZ_I18N, useValue: en_US },
+        {provide: NZ_I18N, useValue: en_US},
+        {provide: BASE_PATH, useValue: environment.basePath},
         MockDataService,
         // swagger service
         StayService, HostService, UserService, BookingService,
