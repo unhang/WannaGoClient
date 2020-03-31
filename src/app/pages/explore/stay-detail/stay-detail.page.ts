@@ -66,6 +66,7 @@ export class StayDetailPage implements OnInit {
             this.stayService.getStayDetail(this.stayId, this.lang)
                 .subscribe(stayDetail => {
                     this.stayDetail = stayDetail[0];
+                    console.log(stayDetail);
                     console.log(this.stayDetail);
                     this.getHostInfo(this.stayDetail.hostId);
                     this.getStayComment();

@@ -17,6 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { AccessToken } from '../model/accessToken';
 import { SignIn } from '../model/signIn';
 import { UserInfo } from '../model/userInfo';
 
@@ -61,19 +62,14 @@ export class UserService {
     /**
      * getUserInfo()
      * lấy thông tin của user
-     * @param userId user id để lây thông tin
      * @param lang Ngôn ngữ（vn） - vn - en 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getUserInfo(userId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<UserInfo>;
-    public getUserInfo(userId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserInfo>>;
-    public getUserInfo(userId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserInfo>>;
-    public getUserInfo(userId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling getUserInfo.');
-        }
+    public getUserInfo(lang?: string, observe?: 'body', reportProgress?: boolean): Observable<UserInfo>;
+    public getUserInfo(lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserInfo>>;
+    public getUserInfo(lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserInfo>>;
+    public getUserInfo(lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -83,6 +79,13 @@ export class UserService {
 
         let headers = this.defaultHeaders;
 
+        // authentication (bearerAuth) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'application/json'
@@ -96,7 +99,7 @@ export class UserService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<UserInfo>('get',`${this.basePath}/api/user/${encodeURIComponent(String(userId))}/info`,
+        return this.httpClient.request<UserInfo>('get',`${this.basePath}/api/user/info`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -115,9 +118,9 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public signIn(body?: SignIn, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<UserInfo>;
-    public signIn(body?: SignIn, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserInfo>>;
-    public signIn(body?: SignIn, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserInfo>>;
+    public signIn(body?: SignIn, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<AccessToken>;
+    public signIn(body?: SignIn, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccessToken>>;
+    public signIn(body?: SignIn, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccessToken>>;
     public signIn(body?: SignIn, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
@@ -147,7 +150,7 @@ export class UserService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<UserInfo>('post',`${this.basePath}/api/user/signin`,
+        return this.httpClient.request<AccessToken>('post',`${this.basePath}/api/user/signin`,
             {
                 body: body,
                 params: queryParameters,

@@ -13,6 +13,9 @@
 export interface PaymentIntent { 
     id?: string;
     amount?: number;
+    /**
+     * - 'Chỉ trả cho client khi đã tạo PaymentIntent phía server' - 'Null khi client postt request booking' 
+     */
     clientSecret?: string;
     created?: number;
     currency?: string;

@@ -14,12 +14,13 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
 import {environment} from '../environments/environment';
-import {BASE_PATH, BookingService, HostService, StayService, UserService,} from 'src/swagger';
-import {HttpClientModule} from '@angular/common/http';
+import {Configuration, ConfigurationParameters, UserService,} from 'src/swagger';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MockDataService} from './service/mock-data.service';
 import {ComponentModule} from './components/component.module';
-import {AuthService} from './services/auth.service';
+
 import {FormsModule} from '@angular/forms';
+import {AuthService} from './services/auth.service';
 
 registerLocaleData(en);
 
@@ -42,13 +43,22 @@ registerLocaleData(en);
     providers: [
         StatusBar,
         SplashScreen,
+        AuthService,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: NZ_I18N, useValue: en_US},
-        {provide: BASE_PATH, useValue: environment.basePath},
+        {
+            provide: UserService,
+            useFactory: (authService: AuthService, httpClient: HttpClient) => {
+                const configurationParameters: ConfigurationParameters = {
+                    accessToken: authService.getAccessToken(),
+                    basePath: environment.basePath,
+                };
+                const configuration = new Configuration(configurationParameters);
+                return new UserService(httpClient, environment.basePath, configuration);
+            },
+            deps: [AuthService, HttpClient]
+        },
         MockDataService,
-        // swagger service
-        StayService, HostService, UserService, BookingService,
-        AuthService,
     ],
     bootstrap: [AppComponent]
 })

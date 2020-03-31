@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     selector: 'go-header',
@@ -20,24 +21,25 @@ export class GoHeader implements OnInit {
         btn2: 'Trợ giúp',
         btn3: 'Đăng nhập',
         btn4: 'Đăng ký',
+        btn5: 'Tài khoản',
     };
     textEn: any = {
         btn1: 'Become host',
         btn2: 'Help',
         btn3: 'Sign up',
         btn4: 'Sign in',
+        btn5: 'Account',
     };
 
     text: any = {};
+    isSignIn: boolean;
 
-    constructor() {
+    constructor(private authService: AuthService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
     ngOnInit() {
-
-    }
-    onScroll($evt){
-        console.log($evt);
+        this.isSignIn = this.authService.isSignIn;
+        console.log(this.isSignIn)
     }
 }

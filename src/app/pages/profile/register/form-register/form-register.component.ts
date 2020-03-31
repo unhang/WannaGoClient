@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserInfo} from '../../../../../swagger';
-import {AuthService} from '../../../../services/auth.service';
+import {UserInfo, UserService} from '../../../../../swagger';
 
 @Component({
     selector: 'app-form-register',
@@ -44,7 +43,7 @@ export class FormRegisterComponent implements OnInit {
     });
 
     constructor(private fb: FormBuilder,
-                private authService: AuthService) {
+                private userService: UserService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
@@ -54,7 +53,7 @@ export class FormRegisterComponent implements OnInit {
     signUp() {
         const userInfo: UserInfo = {...this.signUpForm.value};
         delete userInfo['confirmPassword'];
-        this.authService.signUp(userInfo);
+        this.userService.signUp(userInfo);
     }
 
 }

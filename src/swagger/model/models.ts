@@ -1,3 +1,4 @@
+export * from './accessToken';
 export * from './booking';
 export * from './bookingHistory';
 export * from './category';

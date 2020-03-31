@@ -55,7 +55,13 @@ export interface Booking {
      * giá tiền tính theo check-in và check-out
      */
     totalPrice?: number;
+    /**
+     * - 'Chỉ trả cho client khi đã tạo PaymentIntent phía server' - 'ban đầu Null khi client postt request booking' 
+     */
     stripePaymentId?: string;
+    /**
+     * - 'Chỉ trả cho client khi đã tạo PaymentIntent phía server' - 'ban đầu Null khi client postt request booking' 
+     */
     stripePaymentClientSecret?: string;
     /**
      * - 'Succeess | thành công' - 'incomplete | chưa hoàn thành' 

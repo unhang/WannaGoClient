@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {UserInfo, UserService} from '../../swagger';
+import {AccessToken, SignIn, UserInfo, UserService} from '../../swagger';
 import * as jwt_decode from 'jwt-decode';
 import {LoadingController, NavController} from '@ionic/angular';
 import {Router} from '@angular/router';
@@ -8,45 +8,34 @@ import {Router} from '@angular/router';
     providedIn: 'root'
 })
 export class AuthService {
-    private token = localStorage.getItem('token') || '';
-
+    private accessToken: string = localStorage.getItem('accessToken') || '';
     private userInfo: UserInfo;
 
-    constructor(private userService: UserService,
-                private navController: NavController,
-                private router: Router,
-                private loadCtrl: LoadingController) {
+    constructor(private navController: NavController,
+                private router: Router) {
     }
 
-    getToken() {
-        let token = '';
-        try {
-            token = jwt_decode(this.token);
-        } catch (e) {
-            token = '';
-        }
-    }
+
 
     getUserInfo(): UserInfo {
         return {...this.userInfo};
     }
 
-    signIn(userInfo: UserInfo) {
-        this.userService.signIn(userInfo)
-            .subscribe(res => {
-                console.log(res);
-                this.token = res['token'];
-                // localStorage.setItem('token', this.token);
-                this.router.navigate(['pages/tabs/explore/home']);
-            });
+    setUserInfo(userInfo) {
+        this.userInfo = userInfo;
     }
 
-    signUp(userInfo: UserInfo) {
-        this.userService.signUp(userInfo)
-            .subscribe((ResUserInfo: UserInfo) => {
-                this.signIn(userInfo);
-            });
+    getAccessToken() {
+        return this.accessToken || '';
+    }
+    setAccessToken(accessToken: string) {
+        this.accessToken = accessToken;
+        console.log('Setter: ' + this.accessToken);
+        localStorage.setItem('accessToken', accessToken);
     }
 
+    get isSignIn(): boolean {
+        return this.accessToken !== '';
+    }
 
 }

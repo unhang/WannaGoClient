@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  basePath: 'http://wannago.cf'
+  basePath: 'https://wannago.cf'
 };
