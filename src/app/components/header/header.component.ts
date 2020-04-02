@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {AuthService} from '../../services/auth.service';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
 })
-export class GoHeader implements OnInit {
+export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
     lang = localStorage.getItem('lang');
     // class style từ header.component.scss
     @Input() styles: string [] = [];
@@ -22,6 +22,7 @@ export class GoHeader implements OnInit {
         btn3: 'Đăng nhập',
         btn4: 'Đăng ký',
         btn5: 'Tài khoản',
+        btn6: 'Đăng xuất'
     };
     textEn: any = {
         btn1: 'Become host',
@@ -29,6 +30,7 @@ export class GoHeader implements OnInit {
         btn3: 'Sign up',
         btn4: 'Sign in',
         btn5: 'Account',
+        btn6: 'Sign out'
     };
 
     text: any = {};
@@ -39,7 +41,19 @@ export class GoHeader implements OnInit {
     }
 
     ngOnInit() {
+
+    }
+
+    ngAfterViewInit(): void {
+
+    }
+
+    ngAfterContentInit(): void {
         this.isSignIn = this.authService.isSignIn;
-        console.log(this.isSignIn)
+        console.log(this.isSignIn);
+    }
+
+    signOut() {
+        this.authService.signOut();
     }
 }

@@ -27,6 +27,8 @@
                     <ng-container *ngIf="isSignIn">
                         <ion-col size="auto" class="header__container-navs-button"
                                  routerLink='/pages/tabs/profile/profile-info'>{{text.btn5}}</ion-col>
+                        <ion-col size="auto" class="header__container-navs-button"
+                                 (click)="signOut()">{{text.btn6}}</ion-col>
                     </ng-container>
 
                 </ion-row>

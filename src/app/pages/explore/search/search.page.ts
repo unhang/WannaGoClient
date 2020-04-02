@@ -39,7 +39,6 @@ export class SearchPage implements OnInit {
         const checkOut = queryParam.get('check_out');
         const guestCount = +queryParam.get('guest_count');
         const pages = +queryParam.get('pages');
-        console.log(cityId, checkIn, checkOut, guestCount, pages);
         this.stayService.search(checkIn, checkOut, cityId, guestCount, pages)
             .subscribe((result: StaySearch) => {
                 this.stays = result;

@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {HeaderStyle} from '../../../constant/HeaderStyle';
 import {Booking, BookingService, CommentDetail, HostInfo, HostService, StayDetail, StayService, UserInfo} from '../../../../swagger';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {MockDataService} from '../../../service/mock-data.service';
 import {AuthService} from '../../../services/auth.service';
 import {LoadingController} from '@ionic/angular';
+import {SpinnerOptService} from '../../../services/spinner-opt.service';
 
 @Component({
     selector: 'app-stay-detail',
@@ -22,13 +22,15 @@ export class StayDetailPage implements OnInit {
     queryParams: ParamMap;
 
     textVn: any = {
-        loading: 'Xin vui lòng đợi...'
+
     };
 
     textEn: any = {
-        loading: 'Please wait...'
+
     };
     text: any = {};
+
+    loadEl: any;
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
@@ -36,6 +38,7 @@ export class StayDetailPage implements OnInit {
                 private hostService: HostService,
                 private authService: AuthService,
                 private loadCtrl: LoadingController,
+                private spinnerOptService: SpinnerOptService,
                 private bookingService: BookingService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
@@ -43,7 +46,8 @@ export class StayDetailPage implements OnInit {
     ngOnInit() {
     }
 
-    ionViewDidEnter() {
+    async ionViewDidEnter() {
+        this.loadEl = await this.loadCtrl.create(this.spinnerOptService.createOpts());
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if (!paramMap.has('id')) {
                 this.router.navigate(['/pages']);
@@ -56,28 +60,19 @@ export class StayDetailPage implements OnInit {
     }
 
     getStayDetail() {
-        // @ts-ignore
-        this.loadCtrl.create({
-            mode: 'md',
-            message: this.text.loading,
-            spinner: 'dots'
-        }).then(loadEl => {
-            loadEl.present();
-            this.stayService.getStayDetail(this.stayId, this.lang)
-                .subscribe(stayDetail => {
-                    this.stayDetail = stayDetail[0];
-                    console.log(stayDetail);
-                    console.log(this.stayDetail);
-                    this.getHostInfo(this.stayDetail.hostId);
-                    this.getStayComment();
-                    loadEl.dismiss();
-                });
-        });
+        this.loadEl.present();
+        this.stayService.getStayDetail(this.stayId, this.lang)
+            .subscribe(stayDetail => {
+                console.log(stayDetail);
+                this.stayDetail = stayDetail;
+                this.getHostInfo(this.stayDetail.hostId);
+                this.getStayComment();
+                this.loadEl.dismiss();
+            });
 
     }
 
     getHostInfo(hostId: number) {
-        console.log('host IINFO', hostId);
         this.hostService.getHostInfo(hostId, this.lang)
             .subscribe(hostInfo => this.hostInfo = hostInfo);
     }
@@ -88,8 +83,10 @@ export class StayDetailPage implements OnInit {
             .subscribe(comment => this.stayComments = comment);
     }
 
-    goToBookingInfo() {
+    async goToBookingInfo() {
+        await this.loadEl.present();
         const userInfo: UserInfo = this.authService.getUserInfo();
+        console.log(userInfo);
         const bookingPost: Booking = {
             userId: userInfo.userId,
             customerName: userInfo.name,
@@ -99,30 +96,25 @@ export class StayDetailPage implements OnInit {
             checkIn: this.queryParams.get('check_in'),
             checkOut: this.queryParams.get('check_out'),
             guestCount: +this.queryParams.get('guest_count'),
+            stripePaymentId: '',
+            stripePaymentClientSecret: '',
             totalPrice: 12312312312,
-            status: 1,
+            status: '',
         };
 
-        this.loadCtrl.create({
-            mode: 'md',
-            message: this.text.loading,
-            spinner: 'dots'
-        }).then(loadEl => {
-            loadEl.present();
-            this.bookingService.addBooking(bookingPost, this.lang)
-                .subscribe((booking: Booking) => {
-                    loadEl.dismiss();
-                    this.router.navigate(
-                        ['/pages/tabs/explore/booking-info'],
-                        {
-                            queryParams: {
-                                step: 1,
-                                booking_id: booking.bookingId
-                            }
+        this.bookingService.addBooking(bookingPost, this.lang)
+            .subscribe((booking: Booking) => {
+                this.loadEl.dismiss();
+                this.router.navigate(
+                    ['/pages/tabs/explore/booking-info'],
+                    {
+                        queryParams: {
+                            step: 1,
+                            booking_id: booking.bookingId
                         }
-                    );
-                });
-        });
+                    }
+                );
+            });
 
     }
 }

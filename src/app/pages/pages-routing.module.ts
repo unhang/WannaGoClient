@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {PagesPage} from './pages.page';
+import {AuthGuard} from '../services/auth.guard';
 
 const routes: Routes = [
     {
@@ -31,13 +32,9 @@ const routes: Routes = [
                         loadChildren: () => import('./explore/stay-detail/stay-detail.module').then(m => m.StayDetailPageModule),
                         data: {activatedTab: 1}
                     },
-                    // {
-                    //                     //     path: ':id/checkout',
-                    //                     //     loadChildren: () => import('./explore/checkout/checkout.module').then(m => m.CheckoutPageModule),
-                    //                     //     data: {activatedTab: 1}
-                    //                     // },
                     {
                         path: 'booking-info',
+                        canActivate: [AuthGuard],
                         loadChildren: () => import('./explore/booking-info/booking-info.module').then(m => m.BookingInfoPageModule)
                     },
                     {

@@ -14,7 +14,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
 import {environment} from '../environments/environment';
-import {Configuration, ConfigurationParameters, UserService,} from 'src/swagger';
+import {BASE_PATH, Configuration, ConfigurationParameters, UserService,} from 'src/swagger';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MockDataService} from './service/mock-data.service';
 import {ComponentModule} from './components/component.module';
@@ -46,11 +46,14 @@ registerLocaleData(en);
         AuthService,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: NZ_I18N, useValue: en_US},
+        {provide: BASE_PATH, useValue: environment.basePath},
         {
             provide: UserService,
             useFactory: (authService: AuthService, httpClient: HttpClient) => {
                 const configurationParameters: ConfigurationParameters = {
-                    accessToken: authService.getAccessToken(),
+                    accessToken: (): string => {
+                        return authService.getAccessToken();
+                    },
                     basePath: environment.basePath,
                 };
                 const configuration = new Configuration(configurationParameters);

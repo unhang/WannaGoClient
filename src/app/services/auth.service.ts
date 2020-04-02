@@ -9,28 +9,29 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
     private accessToken: string = localStorage.getItem('accessToken') || '';
-    private userInfo: UserInfo;
+    private userInfo: UserInfo = {...JSON.parse(localStorage.getItem('user'))};
 
     constructor(private navController: NavController,
                 private router: Router) {
     }
-
-
 
     getUserInfo(): UserInfo {
         return {...this.userInfo};
     }
 
     setUserInfo(userInfo) {
+        localStorage.setItem('user', JSON.stringify(userInfo));
         this.userInfo = userInfo;
     }
 
-    getAccessToken() {
+    getAccessToken(): string {
         return this.accessToken || '';
     }
+
     setAccessToken(accessToken: string) {
-        this.accessToken = accessToken;
-        console.log('Setter: ' + this.accessToken);
+        this.accessToken = accessToken + '';
+        console.log('AUTH ' + this.accessToken);
+        localStorage.removeItem('accessToken');
         localStorage.setItem('accessToken', accessToken);
     }
 
@@ -38,4 +39,11 @@ export class AuthService {
         return this.accessToken !== '';
     }
 
+    signOut() {
+        this.accessToken = '';
+        this.userInfo = {};
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
+        window.location.reload();
+    }
 }

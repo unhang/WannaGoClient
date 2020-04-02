@@ -12,19 +12,10 @@ export class SearchResultComponent implements OnInit {
 
     @Input() stays: StayDetail [] = [];
 
-    constructor(private router: Router,
-                private stayService: StayService,
-                private mockDataService: MockDataService) {
+    constructor(private router: Router,) {
     }
 
     ngOnInit() {
-        // console.log('hohooho');
-        // setTimeout(() => {
-        //     this.stayService.search('01-05-2020', '31-05-2020', 79, 12, 1, 'vn')
-        //         .subscribe(res => {
-        //             this.stays = this.mockDataService.multiply<StayDetail>(res.result, 20);
-        //         });
-        // }, 500);
     }
 
     goToStayDetail(stayId: number) {

@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../../services/auth.service';
 import {AccessToken, SignIn, UserInfo, UserService} from '../../../../../swagger';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {LoadingController} from '@ionic/angular';
+import {SpinnerOptService} from '../../../../services/spinner-opt.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'go-form-login',
@@ -33,8 +36,12 @@ export class GoFormLoginComponent implements OnInit {
         password: this.fb.control(null, Validators.required)
     });
 
+    loadEl: any;
     constructor(private userService: UserService,
                 private authService: AuthService,
+                private loadCtrl: LoadingController,
+                private spinnerOptService: SpinnerOptService,
+                private router: Router,
                 private fb: FormBuilder) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
@@ -42,7 +49,10 @@ export class GoFormLoginComponent implements OnInit {
     ngOnInit() {
     }
 
-    signIn() {
+    async signIn() {
+        this.loadEl = await this.loadCtrl.create(this.spinnerOptService.createOpts());
+        await this.loadEl.present();
+
         const signIn: SignIn = {...this.loginForm.value};
         this.userService.signIn(signIn).subscribe((accessToken: AccessToken) => {
             this.authService.setAccessToken(accessToken.accessToken);
@@ -55,6 +65,9 @@ export class GoFormLoginComponent implements OnInit {
             .subscribe((userInfo: UserInfo) => {
                 console.log(userInfo);
                 this.authService.setUserInfo(userInfo);
+                console.log(this.authService.getUserInfo());
+                this.loadEl.dismiss();
+                this.router.navigate(['/pages']);
             });
     }
 }

@@ -66,5 +66,5 @@ export interface Booking {
     /**
      * - 'Succeess | thành công' - 'incomplete | chưa hoàn thành' 
      */
-    status?: number;
+    status?: string;
 }
