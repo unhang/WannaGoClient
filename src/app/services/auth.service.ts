@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {AccessToken, SignIn, UserInfo, UserService} from '../../swagger';
-import * as jwt_decode from 'jwt-decode';
-import {LoadingController, NavController} from '@ionic/angular';
+import {UserInfo} from '../../swagger';
+import {NavController} from '@ionic/angular';
 import {Router} from '@angular/router';
 
 @Injectable({
@@ -10,9 +9,11 @@ import {Router} from '@angular/router';
 export class AuthService {
     private accessToken: string = localStorage.getItem('accessToken') || '';
     private userInfo: UserInfo = {...JSON.parse(localStorage.getItem('user'))};
+    isAuthenticated: boolean;
 
     constructor(private navController: NavController,
                 private router: Router) {
+        this.isAuthenticated = this.accessToken ? true : false;
     }
 
     getUserInfo(): UserInfo {
@@ -30,7 +31,7 @@ export class AuthService {
 
     setAccessToken(accessToken: string) {
         this.accessToken = accessToken + '';
-        console.log('AUTH ' + this.accessToken);
+        this.isAuthenticated = true;
         localStorage.removeItem('accessToken');
         localStorage.setItem('accessToken', accessToken);
     }
@@ -42,6 +43,7 @@ export class AuthService {
     signOut() {
         this.accessToken = '';
         this.userInfo = {};
+        this.isAuthenticated = false;
         localStorage.removeItem('accessToken');
         localStorage.removeItem('user');
         window.location.reload();
