@@ -4,7 +4,7 @@ import {AccessToken, SignIn, UserInfo, UserService} from '../../../../../swagger
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoadingController} from '@ionic/angular';
 import {SpinnerOptService} from '../../../../services/spinner-opt.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'go-form-login',
@@ -37,11 +37,13 @@ export class GoFormLoginComponent implements OnInit {
     });
 
     loadEl: any;
+
     constructor(private userService: UserService,
                 private authService: AuthService,
                 private loadCtrl: LoadingController,
                 private spinnerOptService: SpinnerOptService,
                 private router: Router,
+                private route: ActivatedRoute,
                 private fb: FormBuilder) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
@@ -67,7 +69,13 @@ export class GoFormLoginComponent implements OnInit {
                 this.authService.setUserInfo(userInfo);
                 console.log(this.authService.getUserInfo());
                 this.loadEl.dismiss();
-                this.router.navigate(['/pages']);
+
+                if (this.route.snapshot.queryParams['returnUrl']) {
+                    this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl']);
+                } else {
+                    this.router.navigate(['/pages']);
+
+                }
             });
     }
 }

@@ -21,13 +21,9 @@ export class StayDetailPage implements OnInit {
     stayComments: CommentDetail[] = [];
     queryParams: ParamMap;
 
-    textVn: any = {
+    textVn: any = {};
 
-    };
-
-    textEn: any = {
-
-    };
+    textEn: any = {};
     text: any = {};
 
     loadEl: any;
@@ -41,6 +37,8 @@ export class StayDetailPage implements OnInit {
                 private spinnerOptService: SpinnerOptService,
                 private bookingService: BookingService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
+        this.stayId = +this.route.snapshot.params['id'];
+        console.log(this.stayId);
     }
 
     ngOnInit() {
@@ -48,11 +46,10 @@ export class StayDetailPage implements OnInit {
 
     async ionViewDidEnter() {
         this.loadEl = await this.loadCtrl.create(this.spinnerOptService.createOpts());
-        this.route.paramMap.subscribe((paramMap: ParamMap) => {
-            if (!paramMap.has('id')) {
+        this.route.queryParamMap.subscribe((paramMap: ParamMap) => {
+            if (!this.stayId) {
                 this.router.navigate(['/pages']);
-            } else if (!this.stayId) {
-                this.stayId = (+paramMap.get('id')) as number;
+            } else if (this.stayId) {
                 this.queryParams = paramMap;
                 this.getStayDetail();
             }
@@ -63,7 +60,6 @@ export class StayDetailPage implements OnInit {
         this.loadEl.present();
         this.stayService.getStayDetail(this.stayId, this.lang)
             .subscribe(stayDetail => {
-                console.log(stayDetail);
                 this.stayDetail = stayDetail;
                 this.getHostInfo(this.stayDetail.hostId);
                 this.getStayComment();
@@ -83,28 +79,50 @@ export class StayDetailPage implements OnInit {
             .subscribe(comment => this.stayComments = comment);
     }
 
+    // return total price: (check_out - check_in) x price
+    sumPrice(pricePerNight: number): number {
+        const checkInStr = this.queryParams.get('check_in').split('-');
+        const checkOutStr = this.queryParams.get('check_out').split('-');
+        const checkIn = new Date(+checkInStr[2], +checkInStr[1], +checkInStr[0]);
+        const checkOut = new Date(+checkOutStr[2], +checkOutStr[1], +checkOutStr[0]);
+        return ((checkOut.getTime() - checkIn.getTime()) / 86400000) * pricePerNight;
+    }
+
     async goToBookingInfo() {
+
+        if (this.authService.isAuthenticated === false) {
+            console.log(this.router.url);
+            this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
+                queryParams: {
+                    returnUrl: this.router.url || '/'
+                },
+            });
+        }
+
         await this.loadEl.present();
+
         const userInfo: UserInfo = this.authService.getUserInfo();
-        console.log(userInfo);
         const bookingPost: Booking = {
+            bookingId: null,
             userId: userInfo.userId,
             customerName: userInfo.name,
             phone: userInfo.phone,
             email: userInfo.emailAddress,
             stayId: this.stayId,
+            stayName: this.stayDetail.stayName,
             checkIn: this.queryParams.get('check_in'),
             checkOut: this.queryParams.get('check_out'),
             guestCount: +this.queryParams.get('guest_count'),
             stripePaymentId: '',
             stripePaymentClientSecret: '',
-            totalPrice: 12312312312,
+            totalPrice: this.sumPrice(this.stayDetail.price),
             status: '',
         };
 
         this.bookingService.addBooking(bookingPost, this.lang)
             .subscribe((booking: Booking) => {
                 this.loadEl.dismiss();
+                console.log(booking);
                 this.router.navigate(
                     ['/pages/tabs/explore/booking-info'],
                     {
