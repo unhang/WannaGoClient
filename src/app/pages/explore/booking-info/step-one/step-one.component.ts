@@ -59,12 +59,16 @@ export class StepOneComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.bookingId);
         this.bookingService.getBookingById(this.bookingId)
-            .subscribe((booking: Booking) => {
-                this.booking = booking;
-                this.updateBookingForm();
-            });
+            .subscribe(
+                (booking: Booking) => {
+                    this.booking = booking;
+                    this.updateBookingForm();
+                },
+                () => {
+                    this.router.navigate(['/pages']);
+                }
+            );
     }
 
     updateBookingForm() {

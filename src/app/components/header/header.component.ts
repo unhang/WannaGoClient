@@ -50,7 +50,6 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
 
     ngAfterContentInit(): void {
         this.isSignIn = this.authService.isSignIn;
-        console.log(this.isSignIn);
     }
 
     signOut() {
