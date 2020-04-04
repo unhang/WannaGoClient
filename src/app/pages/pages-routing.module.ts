@@ -30,7 +30,10 @@ const routes: Routes = [
                     {
                         path: ':id/stay',
                         loadChildren: () => import('./explore/stay-detail/stay-detail.module').then(m => m.StayDetailPageModule),
-                        data: {activatedTab: 1}
+                        data: {
+                            activatedTab: 1,
+                            hideTabBar: true
+                        }
                     },
                     {
                         path: 'booking-info',
