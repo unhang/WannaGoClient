@@ -1,25 +1,26 @@
 <div class="payment-container">
-    <div class="ion-margin-bottom">
-        <ion-input placeholder="Email"
-                   class="StripeElement custom"
-                   type="email">
-            <ion-icon color="medium"
-                      class="ion-padding-horizontal"
-                      name="mail-outline"></ion-icon>
-        </ion-input>
-    </div>
-    <div class="ion-margin-bottom">
-        <ion-input placeholder="Tên trên thẻ"
-                   class="StripeElement custom"
-                   type="text">
-            <ion-icon color="medium"
-                      class="ion-padding-horizontal"
-                      name="person-outline"></ion-icon>
-        </ion-input>
-    </div>
-    <div class="ion-margin-bottom" [id]="method"></div>
+<!--    <div class="ion-margin-bottom">-->
+<!--        <ion-input placeholder="Email"-->
+<!--                   class="StripeElement custom"-->
+<!--                   type="email">-->
+<!--            <ion-icon color="medium"-->
+<!--                      class="ion-padding-horizontal"-->
+<!--                      name="mail-outline"></ion-icon>-->
+<!--        </ion-input>-->
+<!--    </div>-->
+<!--    <div class="ion-margin-bottom">-->
+<!--        <ion-input placeholder="Tên trên thẻ"-->
+<!--                   class="StripeElement custom"-->
+<!--                   type="text">-->
+<!--            <ion-icon color="medium"-->
+<!--                      class="ion-padding-horizontal"-->
+<!--                      name="person-outline"></ion-icon>-->
+<!--        </ion-input>-->
+<!--    </div>-->
+    <div class="ion-margin-bottom" [id]="PAYMENT_CARD"></div>
+    <div><ion-text color="medium">Example: 4242 4242 4242 4242 - 04/24  &nbsp;&nbsp;&nbsp;&nbsp;CVC:242</ion-text></div>
     <div>
-        <ion-button (click)="pay(123213)"
+        <ion-button (click)="pay()"
                     color="secondary"
                     expand="block">Submit
         </ion-button>
