@@ -13,8 +13,8 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
     @Input() logoBlack = true;
     @Input() hasSearch = false;
 
-    logoBlackUrl = 'https://www.tranduythien.net/wp-content/uploads/2020/02/logo_only.png';
-    logoWhiteUrl = 'https://www.tranduythien.net/wp-content/uploads/2020/02/logo_white.png';
+    logoBlackUrl = 'https://wannago.cf/storage/library/logo1024x1024_opacity.png';
+    logoWhiteUrl = 'https://wannago.cf/storage/library/logo1024x1024_color_white_opacity.png';
 
     textVn: any = {
         btn1: 'Trở thành chủ nhà',

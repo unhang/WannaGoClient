@@ -43,6 +43,8 @@ export class GoSearchCard implements OnInit {
     check_out: Date;
     guest_count: number;
     showCityArr: boolean;
+    today: Date;
+    tomorrow: Date;
 
     cityArr = cities.cities;
 
@@ -81,22 +83,41 @@ export class GoSearchCard implements OnInit {
 
         // return nếu chưa đủ điều kiện tìm kiếm
         if (!this.city_id || !this.check_in || !this.check_out || !this.guest_count) {
-            return;
-        }
+            this.today = new Date();
+            this.tomorrow = new Date(Date.now() + 1*24*60*60*1000);
 
-        this.router.navigate(
-            ['pages', 'tabs', 'explore', 'search'],
-            {
-                queryParams: {
-                    city_id: this.city_id,
-                    check_in: this.convertDate(this.check_in),
-                    check_out: this.convertDate(this.check_out),
-                    guest_count: this.guest_count,
-                    pages: 1
+            this.router.navigate(
+                ['pages', 'tabs', 'explore', 'search'],
+                {
+                    queryParams: {
+                        city_id: 197,
+                        check_in: this.convertDate(this.today),
+                        check_out: this.convertDate(this.tomorrow),
+                        guest_count: 2,
+                        pages: 1
+                    }
                 }
-            }
-        );
+            );
+        } else {
+            this.router.navigate(
+                ['pages', 'tabs', 'explore', 'search'],
+                {
+                    queryParams: {
+                        city_id: this.city_id,
+                        check_in: this.convertDate(this.check_in),
+                        check_out: this.convertDate(this.check_out),
+                        guest_count: this.guest_count,
+                        pages: 1
+                    }
+                }
+            );
+        }
     }
+
+    addDays(date, days) {
+        this.tomorow.setDate(this.today.getDate() + days);
+        return this.tomorow;
+      }
 
 
     private convertDate(inputDate): string {
