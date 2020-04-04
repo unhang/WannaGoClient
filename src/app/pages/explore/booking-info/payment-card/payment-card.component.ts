@@ -37,6 +37,7 @@ export class PaymentCardComponent implements OnInit, OnChanges {
     stripe: any;
     elements: any;
     card: any;
+    paymentIntent: PaymentIntent;
 
     PAYMENT_CARD = 'go-stipe-payment-card';
     INCOMPLETE = 'incomplete';
@@ -95,9 +96,6 @@ export class PaymentCardComponent implements OnInit, OnChanges {
             hidePostalCode: true,
         });
         this.card.mount(`#${this.PAYMENT_CARD}`);
-        this.card.on('change', event => {
-            console.log(event);
-        });
     }
 
     async pay() {
@@ -108,10 +106,10 @@ export class PaymentCardComponent implements OnInit, OnChanges {
         }
         this.stripeService.paymentIntent(this.booking)
             .subscribe((paymentIntent: PaymentIntent) => {
-                console.log(paymentIntent);
+                this.paymentIntent = paymentIntent;
                 if ((paymentIntent.status === this.INCOMPLETE || paymentIntent.status === this.PENDING)
                     && paymentIntent.clientSecret) {
-                    this.confirmPayment(paymentIntent.clientSecret);
+                    this.confirmPayment(this.paymentIntent.clientSecret);
                 }
             });
     }
@@ -131,25 +129,19 @@ export class PaymentCardComponent implements OnInit, OnChanges {
                 header: this.text.alHeader,
                 message: this.text.alText,
                 buttons: [
-                    {
-                        text: 'Ok',
-                        handler: () => {
-                        }
-                    }
+                    {text: 'Ok'}
                 ]
             });
             await alert.present();
         } else {
             this.loadEl.dismiss();
-            console.log(payment);
-            this.updateBooking(payment.paymentIntent.status);
+            this.paymentIntent.status = payment.paymentIntent.status;
+
+            this.stripeService.confirmPayment({...this.paymentIntent})
+                .subscribe((paymentIntent) => {
+                    this.router.navigate(['/pages', 'tabs', 'profile', 'booking-history']);
+                });
         }
     }
 
-    updateBooking(status: string) {
-        this.bookingService.updateBooking({...this.booking, status})
-            .subscribe((booking) => {
-                this.router.navigate(['/pages', 'tabs', 'profile', 'booking-history']);
-            });
-    }
 }
