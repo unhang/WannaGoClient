@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserInfo, UserService} from '../../../../../swagger';
+import {Router} from '@angular/router';
+import {LoadingController} from '@ionic/angular';
+import {SpinnerOptService} from '../../../../services/spinner-opt.service';
 
 @Component({
     selector: 'app-form-register',
@@ -42,18 +45,36 @@ export class FormRegisterComponent implements OnInit {
         phone: this.fb.control(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)])
     });
 
+    loadEl: any;
+
     constructor(private fb: FormBuilder,
+                private router: Router,
+                private loadCrtl: LoadingController,
+                private spinnerOptService: SpinnerOptService,
                 private userService: UserService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
     ngOnInit() {
+        this.createLoadEl();
+    }
+
+    async createLoadEl() {
+        if (this.loadEl) {
+            return;
+        }
+        this.loadEl = await this.loadCrtl.create(this.spinnerOptService.createOpts());
     }
 
     signUp() {
+        this.loadEl.present();
         const userInfo: UserInfo = {...this.signUpForm.value};
         delete userInfo['confirmPassword'];
-        this.userService.signUp(userInfo);
+        this.userService.signUp(userInfo).subscribe((userInfo: UserInfo) => {
+                this.loadEl.dismiss();
+                this.router.navigate(['/pages/tabs/profile/login']);
+            }
+        );
     }
 
 }
