@@ -5,6 +5,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 import {LoadingController} from '@ionic/angular';
 import {SpinnerOptService} from '../../../services/spinner-opt.service';
+import {NightCountService} from '../../../services/night-count.service';
 
 @Component({
     selector: 'app-stay-detail',
@@ -33,6 +34,7 @@ export class StayDetailPage implements OnInit {
                 private stayService: StayService,
                 private hostService: HostService,
                 private authService: AuthService,
+                private nightCountService: NightCountService,
                 private loadCtrl: LoadingController,
                 private spinnerOptService: SpinnerOptService,
                 private bookingService: BookingService) {
@@ -80,16 +82,13 @@ export class StayDetailPage implements OnInit {
     }
 
     // return total price: (check_out - check_in) x price
-    sumPrice(pricePerNight: number): number {
-        const checkInStr = this.queryParams.get('check_in').split('-');
-        const checkOutStr = this.queryParams.get('check_out').split('-');
-        const checkIn = new Date(+checkInStr[2], +checkInStr[1], +checkInStr[0]);
-        const checkOut = new Date(+checkOutStr[2], +checkOutStr[1], +checkOutStr[0]);
-        return ((checkOut.getTime() - checkIn.getTime()) / 86400000) * pricePerNight;
+    sumPrice(pricePerNight: number, discount: number): number {
+        const checkIn = this.route.snapshot.queryParams['check_in'];
+        const checkOut = this.route.snapshot.queryParams['check_out'];
+        return (this.nightCountService.nightCount(checkIn, checkOut) / 86400000) * (discount ?  discount : pricePerNight);
     }
 
     async goToBookingInfo() {
-
         if (this.authService.isAuthenticated === false) {
             console.log(this.router.url);
             this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
@@ -115,7 +114,7 @@ export class StayDetailPage implements OnInit {
             guestCount: +this.queryParams.get('guest_count'),
             stripePaymentId: '',
             stripePaymentClientSecret: '',
-            totalPrice: this.sumPrice(this.stayDetail.price),
+            totalPrice: this.sumPrice(this.stayDetail.price, this.stayDetail.discount),
             status: '',
         };
 

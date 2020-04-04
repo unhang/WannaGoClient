@@ -1,4 +1,8 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Booking, BookingService, PaymentIntent, StripeService} from '../../../../../swagger';
+import {SpinnerOptService} from '../../../../services/spinner-opt.service';
+import {AlertController, LoadingController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 declare var Stripe: any;
 
@@ -13,39 +17,58 @@ export class PaymentCardComponent implements OnInit, OnChanges {
     textVn: any = {
         title: 'Thanh toán bằng thẻ quốc tế Visa, Master, JCB',
         description: 'Nhập thông tin hoặc lựa chọn thẻ đã lưu để tiến hành thanh toán quốc tế qua Stripe.',
-        cardError: 'Thông tin thẻ của bạn không chính xác'
+        cardError: 'Thông tin thẻ của bạn không chính xác',
+        alText: 'Đã phát sinh lỗi, xin thử lại sau',
+        alHeader: 'cảnh báo'
     };
     textEn: any = {
         title: 'Payment by Visa, Master Card',
         description: 'Select the option to pay your service my booking',
-        cardError: 'Card is invalid'
+        cardError: 'Card is invalid',
+        alText: 'Error! Please try again',
+        alHeader: 'warn'
     };
     text: any = {};
-    @Input() method: string;
+
+    loadEl: any;
+
+    @Input() booking: Booking;
+
     stripe: any;
     elements: any;
     card: any;
 
-    constructor() {
+    PAYMENT_CARD = 'go-stipe-payment-card';
+    INCOMPLETE = 'incomplete';
+    PENDING = 'pending';
+
+
+    constructor(private stripeService: StripeService,
+                private bookingService: BookingService,
+                private alertCtrl: AlertController,
+                private router: Router,
+                private loadCtrl: LoadingController,
+                private spinnerOptService: SpinnerOptService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
     ngOnInit() {
-
     }
 
     ngOnChanges(): void {
-        if (this.method) {
-            this.method = 'method-' + this.method;
-            this.loadStripe();
-        }
+        this.createLoadEl();
+        this.loadStripe();
     }
 
+    async createLoadEl() {
+        if (this.loadEl) {
+            return;
+        }
+        this.loadEl = await this.loadCtrl.create(this.spinnerOptService.createOpts());
+    }
 
     async loadStripe() {
-        this.stripe = new Stripe('pk_test_l3crbRAv6t4lHTQvoMDr05FU002pfY2tkb', {
-            apiVersion: '2020-03-02',
-        });
+        this.stripe = new Stripe('pk_test_l3crbRAv6t4lHTQvoMDr05FU002pfY2tkb');
         this.elements = this.stripe.elements();
         this.createCard();
     }
@@ -71,37 +94,62 @@ export class PaymentCardComponent implements OnInit, OnChanges {
             style,
             hidePostalCode: true,
         });
-        this.card.mount(`#${this.method}`);
+        this.card.mount(`#${this.PAYMENT_CARD}`);
         this.card.on('change', event => {
             console.log(event);
         });
     }
 
-    async pay(amount) {
-        // TODO: thanh toan
-        // gọi server để lấy client_secret;
-
-
-        this.confirmPayment();
+    async pay() {
+        this.loadEl.present();
+        if (!this.booking) {
+            this.loadEl.dismiss();
+            return;
+        }
+        this.stripeService.paymentIntent(this.booking)
+            .subscribe((paymentIntent: PaymentIntent) => {
+                console.log(paymentIntent);
+                if ((paymentIntent.status === this.INCOMPLETE || paymentIntent.status === this.PENDING)
+                    && paymentIntent.clientSecret) {
+                    this.confirmPayment(paymentIntent.clientSecret);
+                }
+            });
     }
 
-    confirmPayment() {
-        const secret = 'pi_1GP3zOGmBXNfqIUsMWoTfwgG_secret_VFryyzCdJcE8GrJKvZYHuYyuh';
-        this.stripe.confirmCardPayment(secret, {
+    async confirmPayment(clientSecret: string) {
+        const payment = await this.stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: this.card,
-                billing_details: {
-                    name: 'Jenny Rosen'
-                }
-            }
-        }).then(result => {
-            if (result.error) {
-                console.log(result.error);
-            } else {
-                console.log('successsssss');
-                console.log(result);
+                billing_details: {}
             }
         });
 
+        if (payment.error) {
+            this.loadEl.dismiss();
+            const alert = await this.alertCtrl.create({
+                mode: 'md',
+                header: this.text.alHeader,
+                message: this.text.alText,
+                buttons: [
+                    {
+                        text: 'Ok',
+                        handler: () => {
+                        }
+                    }
+                ]
+            });
+            await alert.present();
+        } else {
+            this.loadEl.dismiss();
+            console.log(payment);
+            this.updateBooking(payment.paymentIntent.status);
+        }
+    }
+
+    updateBooking(status: string) {
+        this.bookingService.updateBooking({...this.booking, status})
+            .subscribe((booking) => {
+                this.router.navigate(['/pages', 'tabs', 'profile', 'booking-history']);
+            });
     }
 }

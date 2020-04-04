@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderStyle} from '../../../constant/HeaderStyle';
-import {NavController} from '@ionic/angular';
+import {BookingHistory, BookingService} from '../../../../swagger';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-booking-history',
@@ -47,15 +48,19 @@ export class BookingHistoryPage implements OnInit {
     };
     text: any = {};
 
-    constructor(private navCtrl: NavController) {
+    bookingHistory: BookingHistory[] = [];
+
+    constructor(private bookingService: BookingService,
+                private authService: AuthService) {
         this.text = this.lang === 'ev' ? this.textEn : this.textVn;
     }
 
     ngOnInit() {
-    }
-
-    checkNav() {
-        console.log(this.navCtrl);
+        this.bookingService.getBookingHistory(this.authService.getUserInfo().userId)
+            .subscribe((bookingHistory: BookingHistory[]) => {
+                this.bookingHistory = bookingHistory;
+                console.table(this.bookingHistory);
+            });
     }
 
 }
