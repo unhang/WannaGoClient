@@ -73,7 +73,6 @@ export class GoSearchCard implements OnInit {
         this.city_id = placeCode;
         this.city_name = placeName;
         this.showCityArr = false;
-        console.log(this.city_id);
     }
 
     search() {
@@ -97,7 +96,6 @@ export class GoSearchCard implements OnInit {
     }
 
     handleEmptyInput() {
-        console.log(666666666666);
         if (!this.city_id) {
             this.city_id = 197;
         }
