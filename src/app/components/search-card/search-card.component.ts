@@ -73,31 +73,45 @@ export class GoSearchCard implements OnInit {
         this.city_id = placeCode;
         this.city_name = placeName;
         this.showCityArr = false;
-        console.log(this.city_id);
     }
 
     search() {
         // TODO: viết hàm validate this.check_in < this.check_out
 
         // return nếu chưa đủ điều kiện tìm kiếm
-        if (!this.city_id || !this.check_in || !this.check_out || !this.guest_count) {
-            return;
-        }
-
-        this.router.navigate(
-            ['pages', 'tabs', 'explore', 'search'],
-            {
-                queryParams: {
-                    city_id: this.city_id,
-                    check_in: this.convertDate(this.check_in),
-                    check_out: this.convertDate(this.check_out),
-                    guest_count: this.guest_count,
-                    pages: 1
+        // Gán trục tiếp giá trị = , return phải click button search 3 lần, mới thực hiện function
+            this.handleEmptyInput();
+            this.router.navigate(
+                ['pages', 'tabs', 'explore', 'search'],
+                {
+                    queryParams: {
+                        city_id: this.city_id,
+                        check_in: this.convertDate(this.check_in),
+                        check_out: this.convertDate(this.check_out),
+                        guest_count: this.guest_count,
+                        pages: 1
+                    }
                 }
-            }
-        );
+            );
     }
 
+    handleEmptyInput() {
+        if (!this.city_id) {
+            this.city_id = 197;
+        }
+
+        if (!this.check_in) {
+            this.check_in = new Date();
+        }
+
+        if (!this.check_out) {
+            this.check_out = new Date(Date.now() + 1*24*60*60*1000);
+        }
+
+        if (!this.guest_count) {
+            this.guest_count = 2;
+        }
+    }
 
     private convertDate(inputDate): string {
         return ('0' + inputDate.getDate()).slice(-2) + '-' +
