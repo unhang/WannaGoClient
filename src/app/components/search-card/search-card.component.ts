@@ -43,8 +43,6 @@ export class GoSearchCard implements OnInit {
     check_out: Date;
     guest_count: number;
     showCityArr: boolean;
-    today: Date;
-    tomorrow: Date;
 
     cityArr = cities.cities;
 
@@ -82,23 +80,8 @@ export class GoSearchCard implements OnInit {
         // TODO: viết hàm validate this.check_in < this.check_out
 
         // return nếu chưa đủ điều kiện tìm kiếm
-        if (!this.city_id || !this.check_in || !this.check_out || !this.guest_count) {
-            this.today = new Date();
-            this.tomorrow = new Date(Date.now() + 1*24*60*60*1000);
-
-            this.router.navigate(
-                ['pages', 'tabs', 'explore', 'search'],
-                {
-                    queryParams: {
-                        city_id: 197,
-                        check_in: this.convertDate(this.today),
-                        check_out: this.convertDate(this.tomorrow),
-                        guest_count: 2,
-                        pages: 1
-                    }
-                }
-            );
-        } else {
+        // Gán trục tiếp giá trị = , return phải click button search 3 lần, mới thực hiện function
+            this.handleEmptyInput();
             this.router.navigate(
                 ['pages', 'tabs', 'explore', 'search'],
                 {
@@ -111,14 +94,26 @@ export class GoSearchCard implements OnInit {
                     }
                 }
             );
-        }
     }
 
-    addDays(date, days) {
-        this.tomorow.setDate(this.today.getDate() + days);
-        return this.tomorow;
-      }
+    handleEmptyInput() {
+        console.log(666666666666);
+        if (!this.city_id) {
+            this.city_id = 197;
+        }
 
+        if (!this.check_in) {
+            this.check_in = new Date();
+        }
+
+        if (!this.check_out) {
+            this.check_out = new Date(Date.now() + 1*24*60*60*1000);
+        }
+
+        if (!this.guest_count) {
+            this.guest_count = 2;
+        }
+    }
 
     private convertDate(inputDate): string {
         return ('0' + inputDate.getDate()).slice(-2) + '-' +
