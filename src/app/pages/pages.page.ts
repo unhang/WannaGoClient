@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 @Component({
     selector: 'app-pages',
@@ -46,6 +46,9 @@ export class PagesPage implements OnInit {
             console.log(res);
             console.log(this.route.children);
         });
+
+
+
 
         // this.route.data.subscribe((data: Data) => {
         //     console.log(data);
