@@ -1,7 +1,5 @@
 .go-special-area {
   padding: 1.5rem 0 2.5rem 0;
-  background: #FCFCFC;
-
   ion-grid {
     --ion-grid-column-padding: 15px;
 
@@ -9,9 +7,7 @@
       margin-bottom: 1.5rem;
 
       h2 {
-        color: black;
         font-weight: 600;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
       }
 
       .text-between {

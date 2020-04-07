@@ -1,46 +1,45 @@
 <div class="go-one-hundred">
-  <ion-grid fixed="true">
-    <ion-row>
-      <ion-col size="12">
-        <div class="title">
-          <h2>{{ text.title }}</h2>
-          <div class="text-between">
-            {{ text.description }}
-            <a href="#">
-              {{ text.loadMore }}
-            </a>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row  *ngIf="stays.length === 0">
-      <ion-col size-lg="3" size-md="4" size-sm="6" size-xs="12"
-               *ngFor="let i of [1,2,3,4]">
-        <ion-card>
-          <div style="width: 100%; height: 200px; background: var(--ion-color-step-100)"></div>
-          <ion-card-content>
-            <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
-            <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
-            <ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text>
-            <ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text>
-            <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
-            <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="stays">
-      <ion-col size="12">
-          <ion-slides pager="true"
-                      class="slide-container"
-                      [options]="topSlideOpts"
-                      >
-          <ion-slide *ngFor="let stay of stays">
-              <go-stay-card (click)="goToStayDetail(stay.stayId)"
-                            [stay]="stay"></go-stay-card>
-          </ion-slide>
-        </ion-slides>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid fixed="true">
+        <ion-row>
+            <ion-col size="12">
+                <div class="title">
+                    <h2>{{ text.title }}</h2>
+                    <div class="text-between">
+                        {{ text.description }}
+                        <a href="#">
+                            {{ text.loadMore }}
+                        </a>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="stays.length === 0">
+            <ion-col size-lg="3" size-md="4" size-sm="6" size-xs="12"
+                     *ngFor="let i of [1,2,3,4]">
+                <ion-card>
+                    <div style="width: 100%; height: 200px; background: var(--ion-color-step-100)"></div>
+                    <ion-card-content>
+                        <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
+                        <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+                        <ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text>
+                        <ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text>
+                        <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
+                        <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="stays">
+            <ion-col size="12">
+                <ion-slides pager="true"
+                            class="slide-container"
+                            [options]="topSlideOpts">
+                    <ion-slide *ngFor="let stay of stays">
+                        <go-stay-card (click)="goToStayDetail(stay.stayId)"
+                                      [stay]="stay"></go-stay-card>
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </div>

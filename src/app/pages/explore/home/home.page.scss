@@ -9,3 +9,8 @@ ion-header {
     }
   }
 }
+
+
+ion-content {
+  --background: var(--go-app-background);
+}
