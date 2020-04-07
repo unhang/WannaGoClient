@@ -14,7 +14,6 @@ export class PagesPage implements OnInit {
         tab3: 'Đã lưu',
         tab4: 'Hồ sơ',
     };
-
     textEn: any = {
         tab1: 'Explore',
         tab2: 'Booked',
@@ -24,38 +23,11 @@ export class PagesPage implements OnInit {
 
     text: any = {};
 
-    hideTabbar: boolean;
-
-    constructor(private route: ActivatedRoute, private router: Router) {
+    constructor() {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
-        this.hideTabbar = this.route.snapshot.data['hideTabBar'];
-        console.log(this.route.snapshot.data);
     }
 
     ngOnInit() {
-        // this.router.
-        // this.route.url.subscribe(() => {
-        //     console.log(this.route.snapshot.firstChild.firstChild.data.);
-        // });
-
-        // this.route.url.subscribe(() => {
-        //     console.log(this.route.snapshot.children);
-        // });
-
-        this.route.url.subscribe((res) => {
-            console.log(res);
-            console.log(this.route.children);
-        });
-
-
-
-
-        // this.route.data.subscribe((data: Data) => {
-        //     console.log(data);
-        //     if (data['hideTabBar']) {
-        //         this.hideTabbar = data['hideTabBar'];
-        //     }
-        // });
     }
 
 }

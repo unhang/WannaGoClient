@@ -1,0 +1,13 @@
+<div>
+    <div>{{txt.addRate}}</div>
+    <nz-rate [(ngModel)]="inputStar"></nz-rate>
+</div>
+<div class="ion-padding-top">
+    <div>{{txt.addComment}}</div>
+    <textarea nz-input rows="4" cols="30" [(ngModel)]="inputComment"></textarea>
+</div>
+<div class="ion-padding-top">
+    <ion-button fill="outline" color="medium"
+                (click)="cancel()">{{'Hủy'}}</ion-button>&nbsp;
+    <ion-button (click)="submitComment()">{{'Gửi bình luận'}}</ion-button>
+</div>

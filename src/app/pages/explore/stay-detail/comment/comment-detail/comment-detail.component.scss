@@ -1,0 +1,18 @@
+ion-grid {
+  border-bottom: 1px solid var(--ion-color-step-100);
+}
+
+.guard {
+
+}
+
+.comment {
+  &__guard {
+    font-size: 14px;
+  }
+
+  &__text {
+    padding-top: 8px;
+    font-size: 16px;
+  }
+}
