@@ -104,14 +104,35 @@ export class PaymentCardComponent implements OnInit, OnChanges {
             this.loadEl.dismiss();
             return;
         }
-        this.stripeService.paymentIntent(this.booking)
-            .subscribe((paymentIntent: PaymentIntent) => {
-                this.paymentIntent = paymentIntent;
-                if ((paymentIntent.status === this.INCOMPLETE || paymentIntent.status === this.PENDING)
-                    && paymentIntent.clientSecret) {
-                    this.confirmPayment(this.paymentIntent.clientSecret);
+        console.log(this.booking);
+        this.stripeService.paymentIntent({...this.booking})
+            .subscribe(
+                (paymentIntent: PaymentIntent) => {
+                    this.paymentIntent = paymentIntent;
+                    if ((paymentIntent.status === this.INCOMPLETE || paymentIntent.status === this.PENDING)
+                        && paymentIntent.clientSecret) {
+                        this.confirmPayment(this.paymentIntent.clientSecret);
+                    }
+                },
+                (err) => {
+                    this.loadEl.dismiss();
+                    this.errorAlert();
                 }
-            });
+            )
+        ;
+    }
+
+    private async errorAlert() {
+
+        const alert = await this.alertCtrl.create({
+            mode: 'md',
+            header: this.text.alHeader,
+            message: this.text.alText,
+            buttons: [
+                {text: 'Ok'}
+            ]
+        });
+        await alert.present();
     }
 
     async confirmPayment(clientSecret: string) {
@@ -124,15 +145,7 @@ export class PaymentCardComponent implements OnInit, OnChanges {
 
         if (payment.error) {
             this.loadEl.dismiss();
-            const alert = await this.alertCtrl.create({
-                mode: 'md',
-                header: this.text.alHeader,
-                message: this.text.alText,
-                buttons: [
-                    {text: 'Ok'}
-                ]
-            });
-            await alert.present();
+            this.errorAlert();
         } else {
             this.loadEl.dismiss();
             this.paymentIntent.status = payment.paymentIntent.status;

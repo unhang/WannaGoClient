@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // basePath: 'https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0',
-  basePath: 'https://wannago.cf'
+  basePath: 'https://wannago.cf',
+  // basePath: 'https://wannago.ml'
 };
 
 /*
