@@ -12,7 +12,7 @@ export class SearchResultComponent implements OnInit {
 
     @Input() stays: StayDetail [] = [];
 
-    constructor(private router: Router,) {
+    constructor(private router: Router) {
     }
 
     ngOnInit() {

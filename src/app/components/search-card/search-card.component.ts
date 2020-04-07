@@ -89,7 +89,6 @@ export class GoSearchCard implements OnInit {
                         check_in: this.convertDate(this.check_in),
                         check_out: this.convertDate(this.check_out),
                         guest_count: this.guest_count,
-                        pages: 1
                     }
                 }
             );

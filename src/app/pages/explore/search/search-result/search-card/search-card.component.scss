@@ -12,4 +12,11 @@
     }
 
   }
+
+  @media screen and (min-width: 575px) {
+    ion-card {
+      height: 410px;
+      overflow: hidden;
+    }
+  }
 }
