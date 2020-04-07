@@ -1,6 +1,6 @@
 <ion-card>
     <ion-card-header>
-        <ion-card-title>{{stayDetail.price}}đ</ion-card-title>
+        <ion-card-title>{{stayDetail.price | currency:'VND'}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -14,7 +14,7 @@
         <ion-grid class="ion-no-padding">
             <ion-row class="ion-justify-content-between">
                 <ion-col>{{text.price}}</ion-col>
-                <ion-col class="ion-text-end">{{stayDetail.price}}đ</ion-col>
+                <ion-col class="ion-text-end">{{stayDetail.price | currency:'VND'}}</ion-col>
             </ion-row>
         </ion-grid>
         <ion-button (click)="goToBookingInfo()"

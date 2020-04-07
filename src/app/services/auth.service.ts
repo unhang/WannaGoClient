@@ -11,8 +11,7 @@ export class AuthService {
     private userInfo: UserInfo = {...JSON.parse(localStorage.getItem('user'))};
     isAuthenticated: boolean;
 
-    constructor(private navController: NavController,
-                private router: Router) {
+    constructor() {
         this.isAuthenticated = this.accessToken ? true : false;
     }
 

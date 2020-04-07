@@ -13,6 +13,10 @@ import {HostCardComponent} from './host-card/host-card.component';
 import {DescriptionComponent} from './description/description.component';
 import {MapPreviewComponent} from './map-preview/map-preview.component';
 import {BookingCardComponent} from './booking-card/booking-card.component';
+import {CommentComponent} from './comment/comment.component';
+import {NzInputModule, NzRateModule} from 'ng-zorro-antd';
+import {CommentDetailComponent} from './comment/comment-detail/comment-detail.component';
+import {PostCommentComponent} from './comment/post-comment/post-comment.component';
 
 @NgModule({
     imports: [
@@ -21,6 +25,8 @@ import {BookingCardComponent} from './booking-card/booking-card.component';
         IonicModule,
         StayDetailPageRoutingModule,
         ComponentModule,
+        NzInputModule,
+        NzRateModule
     ],
     declarations: [
         StayDetailPage,
@@ -29,6 +35,9 @@ import {BookingCardComponent} from './booking-card/booking-card.component';
         DescriptionComponent,
         MapPreviewComponent,
         BookingCardComponent,
+        CommentComponent,
+        CommentDetailComponent,
+        PostCommentComponent,
     ]
 })
 export class StayDetailPageModule {

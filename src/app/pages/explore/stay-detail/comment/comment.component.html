@@ -1,0 +1,28 @@
+<div *ngIf="!loading">
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>{{txt.cardTitle}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <div>
+                <app-comment-detail *ngFor="let comment of comments"
+                                    [comment]="comment"></app-comment-detail>
+                <!-- add comment mode -->
+                <div class="ion-padding-vertical"
+                     *ngIf="postCommentMode">
+                    <app-post-comment [stayId]="stayId" [userId]="userId"
+                                      (onPosted)="postSucceeded($event)"
+                                      (onCancel)="postCommentMode = false"></app-post-comment>
+                </div>
+                <div  class="ion-padding-vertical"
+                      *ngIf="!postCommentMode">
+                    <div *ngIf="comments.length === 0">
+                        <ion-text>{{txt.noComments}}</ion-text>
+                    </div>
+                    <ion-button (click)="onPostComment()" expand="block">{{txt.addCmtBtn}}</ion-button>
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+</div>

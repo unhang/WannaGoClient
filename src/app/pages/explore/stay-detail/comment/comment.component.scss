@@ -1,0 +1,21 @@
+@media screen and (max-width: 767px) {
+  ion-card {
+    --background: transparent;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+
+    ion-card-header {
+      padding-left: 0;
+      padding-right: 0;
+
+    }
+
+    ion-card-content {
+      padding-left: 0;
+      padding-right: 0;
+
+    }
+  }
+
+}

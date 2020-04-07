@@ -1,0 +1,17 @@
+<div *ngIf="comment">
+    <ion-grid>
+        <ion-row class="comment ion-padding-vertical">
+            <ion-col size="2">
+                <div>
+                    <img [src]="comment.userAvatar" alt="">
+                </div>
+                <div><ion-text>{{comment.userName}}</ion-text></div>
+            </ion-col>
+            <ion-col size="9" push="1">
+                <nz-rate [ngModel]="comment.commentRate"></nz-rate>
+                <div class="comment__guard"><ion-text color="success"><ion-icon name="shield-checkmark"></ion-icon>&nbsp;{{txt.guard}}</ion-text></div>
+                <p class="comment__text" [innerText]="comment.comment"></p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>

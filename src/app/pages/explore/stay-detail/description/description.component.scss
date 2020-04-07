@@ -1,6 +1,8 @@
 .primary-info {
+
   font-size: 14px;
   ion-item {
+    --background: transparent;
     --min-height: 36px;
     ion-icon {
       font-size: 18px;
@@ -11,4 +13,7 @@
       margin: 0;
     }
   }
+}
+ion-item {
+  --background: transparent;
 }
