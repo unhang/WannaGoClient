@@ -8,6 +8,7 @@ import {ComponentModule} from 'src/app/components/component.module';
 import {SearchPage} from './search.page';
 import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchCardComponent} from './search-result/search-card/search-card.component';
+import {NgZorroAntdModule} from "ng-zorro-antd";
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {SearchCardComponent} from './search-result/search-card/search-card.compo
         FormsModule,
         IonicModule,
         SearchPageRoutingModule,
-        ComponentModule
+        ComponentModule,
+        NgZorroAntdModule
     ],
     declarations: [
         SearchPage,

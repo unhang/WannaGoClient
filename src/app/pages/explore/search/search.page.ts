@@ -18,7 +18,7 @@ export class SearchPage implements OnInit {
     guestCount: number;
     page: number;
     stays: StaySearch;
-    totals = [];
+    totals: number;
     pageView = 1;
     constructor(private route: ActivatedRoute,
                 private stayService: StayService) {
@@ -41,7 +41,8 @@ export class SearchPage implements OnInit {
         this.stayService.search(this.checkIn, this.checkOut, this.cityId, this.guestCount, this.pageView)
             .subscribe((result: StaySearch) => {
                 this.stays = result;
-                this.totals = new Array(Math.round(result.totalCount / 20));
+                this.totals = result.totalCount;
+                console.log(this.totals);
             });
     }
 
@@ -51,6 +52,5 @@ export class SearchPage implements OnInit {
             .subscribe((result: StaySearch) => {
                 this.stays = result;
             });
-        window.scrollTo(0, 0);
     }
 }
