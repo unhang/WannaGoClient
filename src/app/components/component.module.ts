@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {NzDatePickerModule, NzSelectModule} from 'ng-zorro-antd';
+import {NzAutocompleteModule, NzDatePickerModule, NzIconModule, NzInputModule, NzSelectModule} from 'ng-zorro-antd';
 
 import {GoHeader} from './header/header.component';
 import {GoInput} from './input/input.component';
@@ -32,6 +32,9 @@ import {GoFooterComponent} from './footer/footer.component';
         FormsModule,
         NzDatePickerModule,
         NzSelectModule,
+        NzAutocompleteModule,
+        NzInputModule,
+        NzIconModule,
     ],
     exports: [
         GoHeader,

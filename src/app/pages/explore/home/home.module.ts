@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
-import {NzDatePickerModule} from 'ng-zorro-antd';
+import {NzDatePickerModule, NzInputModule} from 'ng-zorro-antd';
 import {IonicModule} from '@ionic/angular';
 import {HomePageRoutingModule} from './home-routing.module';
 

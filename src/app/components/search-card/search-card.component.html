@@ -10,35 +10,17 @@
                         <ion-label class="ion-text-uppercase" position="stacked">
                             <ion-text>{{ text.address }}</ion-text>
                         </ion-label>
-                        <ion-input [(ngModel)]="city_name"
-                                   class="ion-padding-start"
-                                   debounce="500"
-                                   (ionInput)="searchNow()">
-                            <ion-icon class="suffix-icon"
-                                      color="medium"
-                                      name="location-outline"></ion-icon>
-                        </ion-input>
-                        <input [(ngModel)]="city_id" hidden>
+                        <nz-input-group nzSize="large" [nzSuffix]="suffixIconLocation">
+                            <input nz-input
+                                   [(ngModel)]="cityName"
+                                   (ngModelChange)="onCityChange()"
+                                   [nzAutocomplete]="autoCity">
+                        </nz-input-group>
+                        <ng-template #suffixIconLocation>
+                            <i nz-icon nzType="search"></i>
+                        </ng-template>
+                        <nz-autocomplete nzBackfill [nzDataSource]="filteredCities" #autoCity></nz-autocomplete>
                     </ion-item>
-                </ion-col>
-                <ion-col size="12">
-                    <div class="listCityArr" *ngIf="showCityArr">
-                        <ion-list *ngFor="let cityItem of cityArr">
-                            <ion-item *ngIf="cityItem.show === 1"
-                                      lines="none"
-                                      (click)="getSelectedValue(cityItem.code_place, cityItem.name_place)">
-                                <ion-label color="medium"
-                                           class="ion-justify-content-start ion-align-items-center">
-                                    <ion-icon style="line-height: 17px;"
-                                              name="location"></ion-icon>
-                                    <ion-text class="go-font-weight-700" s
-                                              tyle="font-size: 14px; line-height: 17px;">
-                                        {{cityItem.name_place}}
-                                    </ion-text>
-                                </ion-label>
-                            </ion-item>
-                        </ion-list>
-                    </div>
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -47,7 +29,7 @@
                         <ion-label class="ion-text-uppercase" position="stacked">
                             <ion-text>{{ text.checkIn }}</ion-text>
                         </ion-label>
-                        <nz-date-picker [(ngModel)]="check_in"
+                        <nz-date-picker [(ngModel)]="checkIn"
                                         [nzDisabledDate]="disabledDate"
                                         readOnly="true"
                                         nzSize='large'
@@ -60,7 +42,7 @@
                         <ion-label class="ion-text-uppercase" position="stacked">
                             <ion-text>{{ text.checkOut }}</ion-text>
                         </ion-label>
-                        <nz-date-picker [(ngModel)]="check_out"
+                        <nz-date-picker [(ngModel)]="checkOut"
                                         [nzDisabledDate]="disabledDate"
                                         readOnly="true"
                                         nzSize='large'
@@ -75,7 +57,7 @@
                         <ion-label class="ion-text-uppercase" position="stacked">
                             <ion-text>{{ text.people }}</ion-text>
                         </ion-label>
-                        <ion-input [(ngModel)]="guest_count"
+                        <ion-input [(ngModel)]="guestCount"
                                    type="number">
                             <ion-icon class="suffix-icon" color="medium" name="person-outline"></ion-icon>
                         </ion-input>
