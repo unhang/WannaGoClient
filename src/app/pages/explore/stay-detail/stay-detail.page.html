@@ -1,11 +1,13 @@
-<ion-content [scrollEvents]="true"
-             (ionScroll)="scrollCheck($event)">
+<ion-content [scrollEvents]="true">
     <go-header [hasSearch]="true"
                [styles]="[headerStyle.sticky]"></go-header>
 
     <ng-container *ngIf="stayDetail">
-        <app-gallery-cover *ngIf="stayDetail.imgUrls.length !==0"
-                           [imgUrls]="stayDetail.imgUrls"></app-gallery-cover>
+        <ng-container *ngIf="stayDetail.imgUrls">
+            <app-gallery-cover *ngIf="stayDetail.imgUrls.length !==0"
+                               [imgUrls]="stayDetail.imgUrls"></app-gallery-cover>
+        </ng-container>
+
     </ng-container>
     <ion-grid fixed="true">
         <ion-row>
@@ -20,11 +22,13 @@
                 <app-host-card *ngIf="hostInfo"
                                [host]="hostInfo"></app-host-card>
                 <app-booking-card *ngIf="stayDetail"
-                                  [stayDetail]="stayDetail"></app-booking-card>
+                                  [stayDetail]="stayDetail"
+                                  (BookingBtnClicked)="goToBookingInfo()"></app-booking-card>
             </ion-col>
         </ion-row>
     </ion-grid>
     <go-footer></go-footer>
     <go-payment-tab *ngIf="stayDetail"
+                    (BookingBtnClicked)="goToBookingInfo()"
                     [price]="stayDetail.price"></go-payment-tab>
 </ion-content>

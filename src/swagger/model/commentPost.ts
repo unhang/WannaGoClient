@@ -16,6 +16,10 @@ export interface CommentPost {
      */
     userId?: number;
     /**
+     * id của stay được comment
+     */
+    stayId?: number;
+    /**
      * Nội dung của comment
      */
     comment?: string;

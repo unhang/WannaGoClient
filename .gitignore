@@ -32,4 +32,5 @@ npm-debug.log*
 /ios
 /android
 /.gradle
+/.firebase
 

@@ -1,80 +1,99 @@
-<ion-grid fixed="true">
+<ion-grid fixed="true" [formGroup]="bookingForm">
     <ion-row>
-        <ion-col size="12"  size-md="6">
+        <ion-col size="12" size-md="6">
+            <app-login-card></app-login-card>
+        </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin-top ion-margin-bottom">
+        <ion-col size="12" size-md="6">
             <div class="title">
-                <h2><ion-text>{{text.step1Text}}</ion-text></h2>
+                <ion-text color="secondary">{{text.step12Text}}</ion-text>
             </div>
             <ion-row>
-<!--                <ion-col size="12">-->
-<!--                    <app-login-card></app-login-card>-->
-<!--                </ion-col>-->
                 <ion-col size="12">
                     <ion-item>
-                        <ion-label class="label-font-size" position="floating">
-                            {{ text.numCustomers }}
+                        <ion-label color="medium" class="label-font-size" position="floating">
+                            {{ text.customerName }}
+                            <ion-text color="danger">*</ion-text>
                         </ion-label>
-                        <ion-input type="number" placeholder="{{ text.numCustomers }}"></ion-input>
+                        <ion-input formControlName="customerName"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
             <ion-row>
+                <ion-col size="12" size-md="6">
+                    <ion-item>
+                        <ion-label color="medium" class="label-font-size" position="floating">
+                            {{ text.customerPhone }}
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input formControlName="phone" type="tel" ></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="12" size-md="6">
+                    <ion-item>
+                        <ion-label color="medium" class="label-font-size" position="floating">
+                            {{ text.customerEmail }}
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input formControlName="email" type="email"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin-top ion-margin-bottom">
+        <ion-col size="12" size-md="6">
+            <div class="title">
+                <ion-text color="secondary">{{text.step1Text}}</ion-text>
+            </div>
+            <ion-row>
+                <ion-col size-md="3" size="12">
+                    <ion-item>
+                        <ion-label color="medium" class="label-font-size" position="floating">
+                            {{ text.numCustomers }}
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input type="number" formControlName="guestCount"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin-top">
                 <div class="titleMin">
-                    <h4><ion-text>{{text.step13Text}}</ion-text></h4>
+                    <h4>
+                        <ion-text color="secondary">{{text.step13Text}}</ion-text>
+                    </h4>
                 </div>
+            </ion-row>
+            <ion-row class="ion-no-padding">
                 <ion-col size="6">
                     <ion-card class="date-booking">
                         <div class="card-text">{{text.startDateBookinng}}</div>
-                        <span>21/02/2020</span>
+                        <span>{{booking.checkIn | date:'MM/dd/yyyy'}}</span>
                         <div class="card-text">Thứ 6</div>
                     </ion-card>
                 </ion-col>
                 <ion-col size="6">
                     <ion-card class="date-booking">
                         <div class="card-text">{{text.endDateBookinng}}</div>
-                        <span>21/02/2020</span>
+                        <span>{{booking.checkOut | date:'MM/dd/yyyy'}}</span>
                         <div class="card-text">Thứ 6</div>
                     </ion-card>
                 </ion-col>
             </ion-row>
-        </ion-col>
-        <ion-col size="12" size-md="6">
-            <div class="title">
-                <h2><ion-text>{{text.step12Text}}</ion-text></h2>
-            </div>
             <ion-row>
-                <ion-col size="12">
-                    <ion-item>
-                        <ion-label class="label-font-size" position="floating">
-                            {{ text.customerName }}
-                        </ion-label>
-                        <ion-input placeholder="{{ text.customerName }}"></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size="6">
-                    <ion-item>
-                        <ion-label class="label-font-size" position="floating">
-                            {{ text.customerPhone }}
-                        </ion-label>
-                        <ion-input type="number"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size="6">
-                    <ion-item>
-                        <ion-label class="label-font-size" position="floating">
-                            {{ text.customerEmail }}
-                        </ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
+                <ion-text>{{text.totalPrice}}: {{booking.totalPrice | currency:'VND'}}</ion-text>
             </ion-row>
         </ion-col>
     </ion-row>
-    <ion-row>
-        <ion-col size="6">
-            <ion-button [routerLink]="['/explore/booking-info']"
-                        [queryParams]="{step: 2}">{{text.bookingInfoBtn}}</ion-button>
+    <ion-row class="ion-padding-top">
+        <ion-col size="12" size-md="6">
+            <ion-button (click)="updateBookingThenStep2()"
+                        [disabled]="bookingForm.invalid"
+                        expand="block">
+                {{text.bookingInfoBtn}}
+                <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+            </ion-button>
         </ion-col>
     </ion-row>
 </ion-grid>

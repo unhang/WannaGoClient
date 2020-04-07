@@ -7,7 +7,7 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 })
 export class GalleryCoverComponent implements OnInit {
     @Input() imgUrls = [];
-    @ViewChild('galleryThumbs', null) galleryThumbs: ElementRef;
+    // @ViewChild('galleryThumbs', null) galleryThumbs: ElementRef;
     galleryThumbsOpts: any = {
         spaceBetween: 10,
         slidesPerView: 6,

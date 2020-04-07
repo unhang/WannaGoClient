@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {StayDetail} from '../../../../../swagger';
 
 @Component({
@@ -18,10 +18,13 @@ export class DescriptionComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges() {
-      Object.keys(this.stayDetail.stayUtility).forEach(key => {
-        this.utilities = [...this.utilities, key];
-      });
-      console.log(this.utilities);
+        if (this.stayDetail.stayUtility) {
+            Object.keys(this.stayDetail.stayUtility).forEach(key => {
+                this.utilities = [...this.utilities, key];
+            });
+            console.log(this.utilities);
+        }
+
     }
 
 }

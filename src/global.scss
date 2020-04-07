@@ -42,9 +42,68 @@ ion-card {
 }
 
 .go-bg-gray {
-  background-color: #FCFCFC;
+  background: #FCFCFC;
+}
+
+.go-bg-gray-50 {
+  background: var(--ion-color-step-50);
+}
+
+.go-bg-gray-100 {
+  background: var(--ion-color-step-100);
+}
+
+.go-bg-gray-150 {
+  background: var(--ion-color-step-150);
+}
+
+.go-bg-gray-200 {
+  background: var(--ion-color-step-200);
+}
+
+.go-bg-gray-300 {
+  background: var(--ion-color-step-300);
 }
 
 .d-flex {
   display: flex;
+}
+
+.go-no-shadow {
+  box-shadow: none;
+}
+
+.go-text-bold {
+  font-weight: bold;
+}
+
+.go-text-bolder {
+  font-weight: bolder;
+}
+.go-font-weight-100 {
+  font-weight: 100;
+}
+.go-font-weight-200 {
+  font-weight: 200;
+}
+.go-font-weight-300 {
+  font-weight: 300;
+}
+.go-font-weight-400 {
+  font-weight: 400;
+}
+.go-font-weight-500 {
+  font-weight: 500;
+}
+.go-font-weight-600 {
+  font-weight: 600;
+}
+.go-font-weight-700 {
+  font-weight: 700;
+}
+.go-font-weight-800 {
+  font-weight: 800;
+}
+.go-font-weight-900 {
+  font-weight: 900;
 }

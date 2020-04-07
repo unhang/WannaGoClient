@@ -1,17 +1,28 @@
-<ion-card class="ion-no-margin">
-  <ion-row>
-    <ion-col size="12" size-md="8">
-      <ion-card-header>
-        <ion-card-title>{{text.title}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-text>{{text.description}}</ion-text>
-      </ion-card-content>
-    </ion-col>
-    <ion-col class="ion-hide-md-down" size="4">
-      <div class="box-img">
-        <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/visa_master_jcb.svg" alt="Wanago payment">
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-card>
+<div class="payment-container">
+<!--    <div class="ion-margin-bottom">-->
+<!--        <ion-input placeholder="Email"-->
+<!--                   class="StripeElement custom"-->
+<!--                   type="email">-->
+<!--            <ion-icon color="medium"-->
+<!--                      class="ion-padding-horizontal"-->
+<!--                      name="mail-outline"></ion-icon>-->
+<!--        </ion-input>-->
+<!--    </div>-->
+<!--    <div class="ion-margin-bottom">-->
+<!--        <ion-input placeholder="Tên trên thẻ"-->
+<!--                   class="StripeElement custom"-->
+<!--                   type="text">-->
+<!--            <ion-icon color="medium"-->
+<!--                      class="ion-padding-horizontal"-->
+<!--                      name="person-outline"></ion-icon>-->
+<!--        </ion-input>-->
+<!--    </div>-->
+    <div class="ion-margin-bottom" [id]="PAYMENT_CARD"></div>
+    <div><ion-text color="medium">Example: 4242 4242 4242 4242 - 04/24  &nbsp;&nbsp;&nbsp;&nbsp;CVC:242</ion-text></div>
+    <div>
+        <ion-button (click)="pay()"
+                    color="secondary"
+                    expand="block">Submit
+        </ion-button>
+    </div>
+</div>

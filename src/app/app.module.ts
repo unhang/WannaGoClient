@@ -1,17 +1,28 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 
+import {en_US, NgZorroAntdModule, NZ_I18N} from 'ng-zorro-antd';
+import {registerLocaleData} from '@angular/common';
+import en from '@angular/common/locales/en';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {HostService, StayService} from '../swagger';
-import {HttpClientModule} from '@angular/common/http';
+
+import {environment} from '../environments/environment';
+import {BASE_PATH, Configuration, ConfigurationParameters, UserService,} from 'src/swagger';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MockDataService} from './service/mock-data.service';
 import {ComponentModule} from './components/component.module';
+
+import {FormsModule} from '@angular/forms';
+import {AuthService} from './services/auth.service';
+
+registerLocaleData(en);
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,19 +32,36 @@ import {ComponentModule} from './components/component.module';
         IonicModule.forRoot({
             mode: 'ios',
             backButtonText: '',
-            backButtonIcon: 'arrow-back'
         }),
+        BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
-        ComponentModule
+        ComponentModule,
+        NgZorroAntdModule,
+        FormsModule,
     ],
     providers: [
         StatusBar,
         SplashScreen,
+        AuthService,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        StayService,
+        {provide: NZ_I18N, useValue: en_US},
+        {provide: BASE_PATH, useValue: environment.basePath},
+        {
+            provide: UserService,
+            useFactory: (authService: AuthService, httpClient: HttpClient) => {
+                const configurationParameters: ConfigurationParameters = {
+                    accessToken: (): string => {
+                        return authService.getAccessToken();
+                    },
+                    basePath: environment.basePath,
+                };
+                const configuration = new Configuration(configurationParameters);
+                return new UserService(httpClient, environment.basePath, configuration);
+            },
+            deps: [AuthService, HttpClient]
+        },
         MockDataService,
-        HostService,
     ],
     bootstrap: [AppComponent]
 })

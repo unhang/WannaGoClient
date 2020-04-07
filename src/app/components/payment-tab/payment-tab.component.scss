@@ -1,11 +1,9 @@
 .go-payment-tab {
   background-color: var(--ion-color-step-0);
+  position: fixed;
   width: 100vw;
   height: 70px;
-  position: sticky;
-  position: -webkit-sticky;
-  position: fixed;
-  bottom: 0;
+  bottom: 0px;
   z-index: 101;
   border-top: 1px solid var(--ion-color-step-50);
 }

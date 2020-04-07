@@ -1,0 +1,74 @@
+<ion-header class="ion-hide-sm-up">
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-back-button defaultHref="/pages/tabs/profile"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{text.header}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <go-header [hasSearch]="true"
+               class="ion-hide-sm-down"
+               [styles]="[headerStyle.sticky]"></go-header>
+    <div class="ion-padding-top ion-padding-bottom">
+        <ion-grid class="ion-padding-top" fixed="true">
+            <ion-row class="ion-margin-top">
+                <ion-col size-md="8">
+                    <ion-card class="ion-no-margin">
+                        <ion-card-header><h1 class="ion-hide-sm-down">{{text.header}}</h1></ion-card-header>
+                        <ion-card-content>
+                            <ion-row fixed="true">
+                                <ion-col size="12" size-sm="6">
+                                    <!-- hiển thị screen lớn -->
+                                    <h2>Ảnh đại diện</h2>
+                                    <div class="avatar">
+                                        <div>
+                                            <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/35830347.jpg"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                </ion-col>
+                                <ion-col size="12" size-sm="6">
+                                    <h2>Cập nhập thông tin</h2>
+                                    <ion-item>
+                                        <ion-label position="floating">Họ và tên</ion-label>
+                                        <ion-input></ion-input>
+                                    </ion-item>
+
+                                    <ion-item>
+                                        <ion-label position="floating">Tên tài khoản</ion-label>
+                                        <ion-input></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="floating">Email</ion-label>
+                                        <ion-input type="email"></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="floating">Số điện thoại</ion-label>
+                                        <ion-input></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="floating">Mật khẩu</ion-label>
+                                        <ion-input></ion-input>
+                                    </ion-item>
+                                    <ion-button expand="block" class="ion-margin-top">Cập nhật thông tin</ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+                <ion-col class="ion-hide-md-down" size-md="3" offset-md="1">
+                    <ion-button class="ion-margin-bottom"
+                                expand="block">{{text.btn1}}</ion-button>
+                    <ion-button expand="block"
+                                color="medium"
+                                fill="outline"
+                                [routerLink]="['/pages', 'tabs', 'profile', 'booking-history']">{{text.btn2}}</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <go-footer class="ion-hide-sm-down"></go-footer>
+</ion-content>

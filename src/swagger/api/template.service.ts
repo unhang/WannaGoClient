@@ -23,7 +23,9 @@ import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables'
 import { Configuration }                                     from '../configuration';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TemplateService {
 
     protected basePath = 'https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0';
@@ -90,9 +92,9 @@ export class TemplateService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/user/createWithList`,
-            body,
+        return this.httpClient.request<any>('post',`${this.basePath}/user/createWithList`,
             {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -131,7 +133,7 @@ export class TemplateService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.delete<any>(`${this.basePath}/user/${encodeURIComponent(String(username))}`,
+        return this.httpClient.request<any>('delete',`${this.basePath}/user/${encodeURIComponent(String(username))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -173,7 +175,7 @@ export class TemplateService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<User>(`${this.basePath}/user/${encodeURIComponent(String(username))}`,
+        return this.httpClient.request<User>('get',`${this.basePath}/user/${encodeURIComponent(String(username))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -223,9 +225,9 @@ export class TemplateService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/user/${encodeURIComponent(String(username))}`,
-            body,
+        return this.httpClient.request<any>('put',`${this.basePath}/user/${encodeURIComponent(String(username))}`,
             {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

@@ -1,34 +1,96 @@
-.search-card {
+ion-card.search-card {
+  border-radius: 4px;
   transition: ease-in-out all .3s;
-
+  padding: 1rem;
   &:hover, &:active {
     box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.3);
-    transform: translate(0,-5px);
+    transform: translate(0, -5px);
   }
 
   ion-card-header {
-    h2 {
-      font-weight: 600;
-      line-height: 1.3;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
-      color: black;
-      padding: 0 1rem;
-      margin: .5rem 0 0 0;
+    padding-bottom: 0;
+    //text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+    ion-card-title {
+      color: var(--ion-color-dark);
+      font-size: 36px;
+      font-weight: 700;
     }
   }
 
   ion-card-content {
-    padding: 0 2rem 2rem;
-
     ion-item {
-      --margin-top: 1rem;
+      //--margin-top: 1rem;
       --padding-start: 0;
     }
-
     ion-button {
-      width: 40%;
+      width: 100%;
       padding: .1rem;
-      margin: 1.5rem 0 0 auto;
+      margin: 1.5rem auto;
+      margin-bottom: 0;
     }
   }
+}
+
+
+ion-item.search-item {
+  margin-top: 12px;
+  ion-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: rgba(44, 47, 52, 0.76);
+  }
+
+  ion-input {
+    border: 1px solid rgba(143, 153, 169, 0.22);
+    border-radius: 4px;
+    --padding-start: 8px;
+    --padding-end: 40px;
+    input.native-input.sc-ion-input-ios {
+      padding-left: 8px !important;
+      width: 90%;
+    }
+    &.has-focus {
+      border-color: var(--ion-color-primary);
+    }
+  }
+}
+
+.range-picker-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(44, 47, 52, 0.76);
+}
+
+.listCityArr {
+  height: calc(44px * 3);
+  overflow-y: scroll;
+  width: 100%;
+  position: absolute;
+  z-index: 99;
+  padding: 0rem 1rem 1rem;
+  background: white;
+  box-shadow: 1px 1px 3px #7d7d7d;
+}
+
+.listCityArr::-webkit-scrollbar {
+  width: 5px;
+  background: #0000000d;
+}
+
+.listCityArr::-webkit-scrollbar-thumb {
+  height: 3px;
+  background: #ff672a;
+}
+
+nz-range-picker {
+  border-radius: 4px;
+  height: 40px;
+  padding-right: 8px;
+}
+
+
+.suffix-icon {
+  position: absolute;
+  bottom: 11px;
+  right: 11px;
 }

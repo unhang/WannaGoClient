@@ -1,9 +1,38 @@
 <ion-content>
-    <go-header [hasSearch]="true"
+    <go-header class="ion-hide-sm-down" [hasSearch]="true"
                [styles]="[headerStyle.sticky]"></go-header>
-    <div>
-        WTF
-    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item lines="none">
+                    <ion-avatar slot="start">
+                        <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/35830347.jpg"
+                             alt="">
+                    </ion-avatar>
+                    <ion-label>
+                        <h1>user name o day</h1>
+                        <p><ion-text color="primary">Xem thông tin chi tiết</ion-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                    <p>Chúng tôi yêu cầu người dùng cung cấp một số thôn tin chi tiết trước khi đi nghỉ hoặc cho thuê nhà, vì vậy xin hãy bắt đầu bằng cách cung cấp thông </p>
+                </ion-item>
+                <ion-item-group>
+                    <ion-item-divider>
+                        <ion-label>Cài đặt tài khoản</ion-label>
+                    </ion-item-divider>
+
+                    <ion-item [routerLink]="['/pages', 'tabs', 'profile', 'profile-info']">
+                        <ion-label>Thông tin cá nhân</ion-label>
+                    </ion-item>
+                    <ion-item [routerLink]="['/pages', 'tabs', 'profile', 'booking-history']">
+                        <ion-label>Lịch sử đặt phòng</ion-label>
+                    </ion-item>
+                </ion-item-group>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
     <go-footer></go-footer>
-    <go-tab></go-tab>
 </ion-content>
+
+
