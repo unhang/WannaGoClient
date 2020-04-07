@@ -31,9 +31,9 @@
     border-bottom: 1px solid var(--ion-color-step-100);
     //box-shadow: 8px 0px 12px var(--ion-color-step-300);
     .header__container-navs-button {
-      color: black;
+      color: var(--ion-text-color);
       &:hover, &:active {
-        box-shadow: 0 2px black;
+        box-shadow: 0 2px var(--ion-text-color);
         cursor: pointer;
       }
     }
