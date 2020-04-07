@@ -37,14 +37,16 @@ export class GoSearchCard implements OnInit {
 
     text: any = {};
 
-    city_id: number;
-    city_name: string;
-    check_in: Date;
-    check_out: Date;
-    guest_count: number;
+    checkIn: Date;
+    checkOut: Date;
+    guestCount: number;
     showCityArr: boolean;
 
     cityArr = cities.cities;
+    citiesData = cities.cities;
+    filteredCities: string[] = [];
+    cityId: number;
+    cityName: string;
 
     constructor(private router: Router) {
     }
@@ -53,63 +55,70 @@ export class GoSearchCard implements OnInit {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
-    searchNow() {
-        if (this.city_name === '' || this.city_name == null) {
-            this.showCityArr = false;
-        } else {
-            this.showCityArr = true;
-        }
-
-        this.cityArr = this.cityArr.map(city => {
-            if (city.name_place.indexOf(this.city_name) > -1) {
-                return {...city, show: 1};
-            } else {
-                return {...city, show: 0};
-            }
+    onCityChange() {
+        const cityName = this.convertNonAccent(this.cityName);
+        const filteredCities = this.citiesData.filter(city => {
+            const namePlace = this.convertNonAccent(city.name_place);
+            return namePlace.indexOf(cityName) > -1;
         });
+        console.table(filteredCities);
+        if (filteredCities.length === 1) {
+            this.cityId = filteredCities[0].code_place;
+            console.log(this.cityId);
+        }
+        this.filteredCities = filteredCities.map(city => city.name_place);
     }
 
-    getSelectedValue(placeCode, placeName) {
-        this.city_id = placeCode;
-        this.city_name = placeName;
-        this.showCityArr = false;
+    convertNonAccent(inputValue: string): string {
+        inputValue = inputValue.toLowerCase();
+        inputValue = inputValue.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
+        inputValue = inputValue.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
+        inputValue = inputValue.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+        inputValue = inputValue.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
+        inputValue = inputValue.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
+        inputValue = inputValue.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
+        inputValue = inputValue.replace(/đ/g, 'd');
+        // Some system encode vietnamese combining accent as individual utf-8 characters
+        inputValue = inputValue.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ''); // Huyền sắc hỏi ngã nặng
+        inputValue = inputValue.replace(/\u02C6|\u0306|\u031B/g, ''); // Â, Ê, Ă, Ơ, Ư
+        return inputValue;
     }
 
     search() {
-        // TODO: viết hàm validate this.check_in < this.check_out
+        // TODO: viết hàm validate this.checkIn < this.checkOut
 
         // return nếu chưa đủ điều kiện tìm kiếm
         // Gán trục tiếp giá trị = , return phải click button search 3 lần, mới thực hiện function
-            this.handleEmptyInput();
-            this.router.navigate(
-                ['pages', 'tabs', 'explore', 'search'],
-                {
-                    queryParams: {
-                        city_id: this.city_id,
-                        check_in: this.convertDate(this.check_in),
-                        check_out: this.convertDate(this.check_out),
-                        guest_count: this.guest_count,
-                        pages: 1
-                    }
+        this.handleEmptyInput();
+        this.router.navigate(
+            ['pages', 'tabs', 'explore', 'search'],
+            {
+                queryParams: {
+                    city_id: this.cityId,
+                    check_in: this.convertDate(this.checkIn),
+                    check_out: this.convertDate(this.checkOut),
+                    guest_count: this.guestCount,
+                    pages: 1
                 }
-            );
+            }
+        );
     }
 
     handleEmptyInput() {
-        if (!this.city_id) {
-            this.city_id = 197;
+        if (!this.cityId) {
+            this.cityId = 197;
         }
 
-        if (!this.check_in) {
-            this.check_in = new Date();
+        if (!this.checkIn) {
+            this.checkIn = new Date();
         }
 
-        if (!this.check_out) {
-            this.check_out = new Date(Date.now() + 1*24*60*60*1000);
+        if (!this.checkOut) {
+            this.checkOut = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
         }
 
-        if (!this.guest_count) {
-            this.guest_count = 2;
+        if (!this.guestCount) {
+            this.guestCount = 2;
         }
     }
 
@@ -119,8 +128,8 @@ export class GoSearchCard implements OnInit {
             inputDate.getFullYear();
     }
 
-    disabledDate = (current: Date): boolean => {
-        const comparedDate = this.check_in ? this.check_in : new Date();
+    disabledDate(current: Date): boolean {
+        const comparedDate = this.checkIn ? this.checkIn : new Date();
         return dateFn.differenceInCalendarDays(current, comparedDate) < 0;
-    };
+    }
 }
