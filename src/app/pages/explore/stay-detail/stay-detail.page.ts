@@ -6,6 +6,7 @@ import {AuthService} from '../../../services/auth.service';
 import {LoadingController} from '@ionic/angular';
 import {SpinnerOptService} from '../../../services/spinner-opt.service';
 import {NightCountService} from '../../../services/night-count.service';
+import {TabBarService} from '../../../services/tab-bar.service';
 
 @Component({
     selector: 'app-stay-detail',
@@ -28,6 +29,10 @@ export class StayDetailPage implements OnInit {
     text: any = {};
 
     loadEl: any;
+    currentUrl: string[];
+    backBtnUrl: string;
+
+    isMobile: boolean;
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
@@ -36,11 +41,15 @@ export class StayDetailPage implements OnInit {
                 private authService: AuthService,
                 private nightCountService: NightCountService,
                 private loadCtrl: LoadingController,
+                private tabBarService: TabBarService,
                 private spinnerOptService: SpinnerOptService,
                 private bookingService: BookingService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
         this.stayId = +this.route.snapshot.params['id'];
-        console.log(this.stayId);
+        this.currentUrl = this.router.url.split('?');
+        this.backBtnUrl = '/pages/tabs/explore/search?' + this.currentUrl[this.currentUrl.length - 1];
+        this.isMobile = window.innerWidth < 767;
+
     }
 
     ngOnInit() {
@@ -56,6 +65,7 @@ export class StayDetailPage implements OnInit {
                 this.getStayDetail();
             }
         });
+        this.tabBarService.hideTabBar.next(true);
     }
 
     getStayDetail() {
@@ -85,12 +95,11 @@ export class StayDetailPage implements OnInit {
     sumPrice(pricePerNight: number, discount: number): number {
         const checkIn = this.route.snapshot.queryParams['check_in'];
         const checkOut = this.route.snapshot.queryParams['check_out'];
-        return (this.nightCountService.nightCount(checkIn, checkOut) / 86400000) * (discount ?  discount : pricePerNight);
+        return (this.nightCountService.nightCount(checkIn, checkOut) / 86400000) * (discount ? discount : pricePerNight);
     }
 
     async goToBookingInfo() {
         if (this.authService.isAuthenticated === false) {
-            console.log(this.router.url);
             this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
                 queryParams: {
                     returnUrl: this.router.url || '/'
@@ -121,7 +130,6 @@ export class StayDetailPage implements OnInit {
         this.bookingService.addBooking(bookingPost, this.lang)
             .subscribe((booking: Booking) => {
                 this.loadEl.dismiss();
-                console.log(booking);
                 this.router.navigate(
                     ['/pages/tabs/explore/booking-info'],
                     {
@@ -133,5 +141,9 @@ export class StayDetailPage implements OnInit {
                 );
             });
 
+    }
+
+    ionViewDidLeave() {
+        this.tabBarService.hideTabBar.next(false);
     }
 }

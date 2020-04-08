@@ -48,6 +48,14 @@ const routes: Routes = [
                 ]
             },
             {
+                path: 'booking',
+                loadChildren: () => import('./booking/booking.module').then( m => m.BookingPageModule)
+            },
+            {
+                path: 'favorite',
+                loadChildren: () => import('./favorite/favorite.module').then( m => m.FavoritePageModule)
+            },
+            {
                 path: 'profile',
                 children: [
                     {
@@ -83,6 +91,7 @@ const routes: Routes = [
         redirectTo: '/pages/tabs/explore/home',
         pathMatch: 'full'
     },
+
 ];
 
 @NgModule({

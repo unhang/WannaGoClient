@@ -1,6 +1,15 @@
+<ion-header *ngIf="isMobile">
+    <ion-toolbar color="primary">
+        <ion-buttons>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{step === 1 ? text.step1Text : text.step2Text}}</ion-title>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
-    <div  class="go-bg-gray-50">
-        <go-header [hasSearch]="true"
+    <div class="go-bg-gray-50">
+        <go-header *ngIf="!isMobile"
+                   [hasSearch]="true"
                    [styles]="[headerStyle.sticky]"></go-header>
         <div class="content ion-padding-top">
             <ion-grid fixed="true">

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {TabBarService} from '../services/tab-bar.service';
 
 @Component({
     selector: 'app-pages',
@@ -22,12 +22,17 @@ export class PagesPage implements OnInit {
     };
 
     text: any = {};
-
-    constructor() {
+    hideTabBar = false;
+    isMobile: boolean;
+    constructor(private tabBarService: TabBarService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
+        this.isMobile = window.innerWidth < 767;
     }
 
     ngOnInit() {
+        this.tabBarService.hideTabBar.subscribe((control) => {
+            this.hideTabBar = control;
+        });
     }
 
 }
