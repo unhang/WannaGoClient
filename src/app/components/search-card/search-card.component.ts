@@ -40,9 +40,7 @@ export class GoSearchCard implements OnInit {
     checkIn: Date;
     checkOut: Date;
     guestCount: number;
-    showCityArr: boolean;
 
-    cityArr = cities.cities;
     citiesData = cities.cities;
     filteredCities: string[] = [];
     cityId: number;

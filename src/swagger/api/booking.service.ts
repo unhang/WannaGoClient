@@ -113,6 +113,103 @@ export class BookingService {
     }
 
     /**
+     * cancelBookingById()
+     * bật delete flag cho booking theo bookingId gửi kèm request
+     * @param bookingId 
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public cancelBookingById(bookingId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public cancelBookingById(bookingId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public cancelBookingById(bookingId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public cancelBookingById(bookingId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (bookingId === null || bookingId === undefined) {
+            throw new Error('Required parameter bookingId was null or undefined when calling cancelBookingById.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('delete',`${this.basePath}/api/booking/${encodeURIComponent(String(bookingId))}/cancel-booking`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * getAllBookedList()
+     * get danh sách tất cả booking đã tạo, bao gồm cả booking bị cancel với delete flag
+     * @param userId 
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getAllBookedList(userId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Booking>>;
+    public getAllBookedList(userId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Booking>>>;
+    public getAllBookedList(userId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Booking>>>;
+    public getAllBookedList(userId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getAllBookedList.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Booking>>('get',`${this.basePath}/api/booking/${encodeURIComponent(String(userId))}/all-booked-list`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * getBookingById()
      * lấy thông tin booking theo booking_id
      * @param bookingId 
@@ -200,6 +297,104 @@ export class BookingService {
         ];
 
         return this.httpClient.request<Array<Booking>>('get',`${this.basePath}/api/booking/${encodeURIComponent(String(userId))}/history`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * getCompletedList()
+     * get danh sách booking đã tạo, với status succeeded
+     * @param userId 
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getCompletedList(userId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Booking>>;
+    public getCompletedList(userId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Booking>>>;
+    public getCompletedList(userId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Booking>>>;
+    public getCompletedList(userId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getCompletedList.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Booking>>('get',`${this.basePath}/api/booking/${encodeURIComponent(String(userId))}/completed-list`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * getPendingList()
+     * get danh sách booking đã tạo, với status pending
+     * @param userId 
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getPendingList(userId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Booking>>;
+    public getPendingList(userId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Booking>>>;
+    public getPendingList(userId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Booking>>>;
+    public getPendingList(userId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getPendingList.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Booking>>('get',`${this.basePath}/api/booking/${encodeURIComponent(String(userId))}/pending-list`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

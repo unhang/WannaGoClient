@@ -1,4 +1,16 @@
 ion-tab-bar {
+  height: 40px;
   padding-bottom: 4px;
   padding-top: 4px;
+  ion-tab-button{
+    ion-icon {
+      font-size: 24px;
+    }
+    ion-label {
+      font-size: 11px;
+      letter-spacing: 0px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
 }
