@@ -1,0 +1,47 @@
+<div *ngIf="stay && booking && !deleted"
+     class="card">
+    <div class="card__image">
+        <img [src]="stay.imgUrls[0]" alt="wannago khach sang">
+    </div>
+    <div class="card__content">
+        <div class="card__content__date">
+            <ion-text>{{booking.checkIn.replace('-', '/')}} - {{booking.checkOut.replace('-', '/')}}</ion-text>
+        </div>
+        <div class="card__content__name">
+            <ion-text color="primary">{{booking.stayName}}</ion-text>
+        </div>
+        <div class="card__content__guest">
+            <div>
+                <ion-text>{{txt.guestCount}}: {{booking.guestCount}}</ion-text>
+            </div>
+            <div>
+                <ion-text>{{txt.city}}: {{ stay.district + ', '}}{{stay.city}}</ion-text>
+            </div>
+        </div>
+        <div class="card__content__price">
+            <ion-text>{{txt.price + ': '}}</ion-text>
+            <ion-text *ngIf="stay.discount > 0"
+                      class="card__content__price--original">
+                <span [ngClass]="{'highlight-price': stay.discount}">{{stay.discount | currency:'VND'}}</span>
+                {{txt.subPrice}}&nbsp;
+            </ion-text>
+            <ion-text class="card__content__price--original"
+                      [ngClass]="{'stroke': stay.discount}">
+                <span [ngClass]="{'highlight-price': !stay.discount}">{{stay.price | currency:'VND'}}</span>
+                {{ stay.discount ? '' : txt.subPrice}}</ion-text>
+        </div>
+
+        <div *ngIf="actionBtnON"class="card__actions">
+            <ion-button
+                        size="small"
+                        size-md="normal"
+                        color="primary">{{txt.actionBtn1}}</ion-button>
+            <ion-button (click)="cancelBooking()"
+                        size="small"
+                        size-md="normal"
+                        fill="outline"
+                        color="medium">{{txt.actionBtn2}}</ion-button>
+        </div>
+    </div>
+
+</div>

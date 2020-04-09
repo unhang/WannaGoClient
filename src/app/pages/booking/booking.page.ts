@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Booking, BookingService} from '../../../swagger';
 import {AuthService} from '../../services/auth.service';
+import {HeaderStyle} from '../../constant/HeaderStyle';
 
 @Component({
     selector: 'app-booking',
@@ -24,16 +25,15 @@ export class BookingPage implements OnInit {
     ) {
     }
 
+    headerStyle = HeaderStyle;
+
     ngOnInit() {
     }
 
     ionViewDidEnter() {
         this.bookingService.getPendingList(this.autheService.getUserInfo().userId)
             .subscribe((pendingList: Booking[]) => {
-                console.log(pendingList);
-            });
-        this.bookingService.getCompletedList(this.autheService.getUserInfo().userId)
-            .subscribe((pendingList: Booking[]) => {
+                this.pendingBookings = pendingList;
                 console.log(pendingList);
             });
     }
