@@ -18,6 +18,8 @@ export class SearchPage implements OnInit {
     guestCount: number;
     page: number;
     stays: StaySearch;
+    totals: number;
+    pageView = 1;
 
     constructor(private route: ActivatedRoute,
                 private stayService: StayService) {
@@ -26,7 +28,6 @@ export class SearchPage implements OnInit {
     ngOnInit() { }
 
     ionViewDidEnter() {
-        console.log('search')
         this.route.queryParamMap
             .subscribe((queryParam: ParamMap) => {
                 this.getStay(queryParam);
@@ -34,12 +35,21 @@ export class SearchPage implements OnInit {
     }
 
     getStay(queryParam: ParamMap) {
-        const cityId = +queryParam.get('city_id');
-        const checkIn = queryParam.get('check_in');
-        const checkOut = queryParam.get('check_out');
-        const guestCount = +queryParam.get('guest_count');
-        const pages = +queryParam.get('pages');
-        this.stayService.search(checkIn, checkOut, cityId, guestCount, pages)
+        this.cityId = +queryParam.get('city_id');
+        this.checkIn = queryParam.get('check_in');
+        this.checkOut = queryParam.get('check_out');
+        this.guestCount = +queryParam.get('guest_count');
+        this.stayService.search(this.checkIn, this.checkOut, this.cityId, this.guestCount, this.pageView)
+            .subscribe((result: StaySearch) => {
+                this.stays = result;
+                this.totals = result.totalCount;
+                console.log(this.totals);
+            });
+    }
+
+    getPanigation(numPage) {
+        this.pageView = numPage;
+        this.stayService.search(this.checkIn, this.checkOut, this.cityId, this.guestCount, this.pageView)
             .subscribe((result: StaySearch) => {
                 this.stays = result;
             });
