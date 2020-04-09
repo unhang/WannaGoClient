@@ -43,7 +43,6 @@ export class SearchPage implements OnInit {
             .subscribe((result: StaySearch) => {
                 this.stays = result;
                 this.totals = result.totalCount;
-                console.log(this.totals);
             });
     }
 
