@@ -11,10 +11,14 @@ import {HeaderStyle} from '../../constant/HeaderStyle';
 export class BookingPage implements OnInit {
     lang = localStorage.getItem('lang');
     textEn: any = {
-        title: 'Your bookings'
+        title: 'Your bookings',
+        noBooking: 'You dont any bookings yet',
+        suggestBtn: 'Click here to start booking'
     };
     textVn: any = {
-        title: 'Chuyến đi'
+        title: 'Chuyến đi',
+        noBooking: 'Bạn chưa có đặt phòng nào',
+        suggestBtn: 'Bấm vào đây để tìm phòng'
     };
     text: any = this.lang === 'en' ? this.textEn : this.textVn;
 

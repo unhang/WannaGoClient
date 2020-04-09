@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Booking, BookingService, StayDetail, StayService} from '../../../swagger';
 import {AlertController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'go-history-card',
@@ -40,6 +41,7 @@ export class GoHistoryCard implements OnInit, OnChanges {
     txt = this.lang === 'en' ? this.textEn : this.textVn;
 
     constructor(private stayService: StayService,
+                private router: Router,
                 private bookingService: BookingService,
                 private alertCtrl: AlertController) {
     }
@@ -55,6 +57,12 @@ export class GoHistoryCard implements OnInit, OnChanges {
             .subscribe((stay: StayDetail) => this.stay = stay);
     }
 
+
+    goToPayment() {
+        this.router.navigate(['/pages/tabs/explore/booking-info'], {
+            queryParams: {step: 2, booking_id: this.booking.bookingId}
+        });
+    }
 
     async cancelBooking() {
         const alert = await this.alertCtrl.create({

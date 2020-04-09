@@ -32,10 +32,10 @@
         </div>
 
         <div *ngIf="actionBtnON"class="card__actions">
-            <ion-button
+            <ion-button (click)="goToPayment()"
                         size="small"
                         size-md="normal"
-                        color="primary">{{txt.actionBtn1}}</ion-button>
+                        color="primary">{{txt.actionBtn1}}</ion-button>&nbsp;
             <ion-button (click)="cancelBooking()"
                         size="small"
                         size-md="normal"
