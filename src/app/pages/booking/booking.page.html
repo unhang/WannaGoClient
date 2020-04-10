@@ -1,10 +1,37 @@
-<ion-content class="ion-padding">
+<ion-content>
+    <go-header class="ion-hide-sm-down" [hasSearch]="true"
+               [styles]="[headerStyle.sticky]"></go-header>
     <ion-grid>
         <ion-row>
-            <h1>
-                <ion-text>{{text.title}}</ion-text>
-            </h1>
-            <img src="../../../assets/undraw/undraw_travel_mode_7sf4.svg" alt="">
+            <ion-col size="12" sizeMd="3">
+                <h1>
+                    <ion-text>{{text.title}}</ion-text>
+                </h1>
+                <div>
+                    <img src="../../../assets/undraw/undraw_travel_mode_7sf4.svg" alt="">
+                </div>
+            </ion-col>
+            <!-- khong co phong-->
+            <ion-col *ngIf="pendingBookings.length === 0">
+
+                <div class="ion-text-center">
+                    <ion-text>{{text.noBooking}}</ion-text>
+                </div>
+                <div>
+                    <ion-button routerLink='/pages/tabs/explore/home' expand="block" color="primary">{{text.suggestBtn}}</ion-button>
+                </div>
+            </ion-col>
+
+            <ion-col *ngIf="pendingBookings.length > 0" size="12" sizeMd="9">
+                <ion-row>
+                    <ion-col size="12" sizeMd="3"
+                             *ngFor="let booking of pendingBookings">
+                        <go-history-card class="ion-padding-horizontal"
+                                         [actionBtnON]="true"
+                                         [booking]="booking"></go-history-card>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>

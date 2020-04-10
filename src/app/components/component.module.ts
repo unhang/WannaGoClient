@@ -12,6 +12,7 @@ import {GoPaymentTab} from './payment-tab/payment-tab.component';
 import {GoSearchCard} from './search-card/search-card.component';
 import {GoStayCardComponent} from './stay-card/stay-card.component';
 import {GoFooterComponent} from './footer/footer.component';
+import {GoHistoryCard} from './history-card/history-card.component';
 
 
 
@@ -23,7 +24,8 @@ import {GoFooterComponent} from './footer/footer.component';
         GoPaymentTab,
         GoSearchCard,
         GoStayCardComponent,
-        GoFooterComponent
+        GoFooterComponent,
+        GoHistoryCard,
     ],
     imports: [
         CommonModule,
@@ -43,7 +45,8 @@ import {GoFooterComponent} from './footer/footer.component';
         GoPaymentTab,
         GoSearchCard,
         GoStayCardComponent,
-        GoFooterComponent
+        GoFooterComponent,
+        GoHistoryCard,
     ]
 })
 export class ComponentModule {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Booking, BookingService} from '../../../swagger';
 import {AuthService} from '../../services/auth.service';
+import {HeaderStyle} from '../../constant/HeaderStyle';
 
 @Component({
     selector: 'app-booking',
@@ -10,10 +11,14 @@ import {AuthService} from '../../services/auth.service';
 export class BookingPage implements OnInit {
     lang = localStorage.getItem('lang');
     textEn: any = {
-        title: 'Your bookings'
+        title: 'Your bookings',
+        noBooking: 'You dont any bookings yet',
+        suggestBtn: 'Click here to start booking'
     };
     textVn: any = {
-        title: 'Chuyến đi'
+        title: 'Chuyến đi',
+        noBooking: 'Bạn chưa có đặt phòng nào',
+        suggestBtn: 'Bấm vào đây để tìm phòng'
     };
     text: any = this.lang === 'en' ? this.textEn : this.textVn;
 
@@ -24,16 +29,15 @@ export class BookingPage implements OnInit {
     ) {
     }
 
+    headerStyle = HeaderStyle;
+
     ngOnInit() {
     }
 
     ionViewDidEnter() {
         this.bookingService.getPendingList(this.autheService.getUserInfo().userId)
             .subscribe((pendingList: Booking[]) => {
-                console.log(pendingList);
-            });
-        this.bookingService.getCompletedList(this.autheService.getUserInfo().userId)
-            .subscribe((pendingList: Booking[]) => {
+                this.pendingBookings = pendingList;
                 console.log(pendingList);
             });
     }
