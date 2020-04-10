@@ -47,8 +47,8 @@ export class ProfileInfoPage implements OnInit {
 
   update() {
     const userForm: UserInfo = {...this.updateUserInfo.value};
-    console.log(userForm);
     this.userService.update(userForm).subscribe((userInfo: UserInfo) => {
+        this.authService.setUserInfo(userInfo);
         this.presentToast();
         }
     );
