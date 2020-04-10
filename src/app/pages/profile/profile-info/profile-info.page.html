@@ -19,41 +19,36 @@
                     <ion-card class="ion-no-margin">
                         <ion-card-header><h1 class="ion-hide-sm-down">{{text.header}}</h1></ion-card-header>
                         <ion-card-content>
-                            <ion-row fixed="true">
+                            <ion-row fixed="true" [formGroup]="updateUserInfo">
                                 <ion-col size="12" size-sm="6">
                                     <!-- hiển thị screen lớn -->
                                     <h2>Ảnh đại diện</h2>
                                     <div class="avatar">
                                         <div>
-                                            <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/35830347.jpg"
-                                                 alt="">
+                                            <img [src]="userInfo.avatar!= null ? userInfo.avatar : 'https://wannago.cf/storage/library/notfound.png'" alt="user avtart">
                                         </div>
                                     </div>
                                 </ion-col>
                                 <ion-col size="12" size-sm="6">
                                     <h2>Cập nhập thông tin</h2>
+                                    <input type="hidden" formControlName="userId">
                                     <ion-item>
                                         <ion-label position="floating">Họ và tên</ion-label>
-                                        <ion-input></ion-input>
-                                    </ion-item>
-
-                                    <ion-item>
-                                        <ion-label position="floating">Tên tài khoản</ion-label>
-                                        <ion-input></ion-input>
+                                        <ion-input type="text" formControlName="name"></ion-input>
                                     </ion-item>
                                     <ion-item>
                                         <ion-label position="floating">Email</ion-label>
-                                        <ion-input type="email"></ion-input>
+                                        <ion-input type="email" formControlName="emailAddress"></ion-input>
                                     </ion-item>
                                     <ion-item>
                                         <ion-label position="floating">Số điện thoại</ion-label>
-                                        <ion-input></ion-input>
+                                        <ion-input type="text" formControlName="phone"></ion-input>
                                     </ion-item>
-                                    <ion-item>
+                                    <!-- <ion-item>
                                         <ion-label position="floating">Mật khẩu</ion-label>
-                                        <ion-input></ion-input>
-                                    </ion-item>
-                                    <ion-button expand="block" class="ion-margin-top">Cập nhật thông tin</ion-button>
+                                        <ion-input type="text"></ion-input>
+                                    </ion-item> -->
+                                    <ion-button expand="block" class="ion-margin-top" (click)="update()">Cập nhật thông tin</ion-button>
                                 </ion-col>
                             </ion-row>
                         </ion-card-content>
