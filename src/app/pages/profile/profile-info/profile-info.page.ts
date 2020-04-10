@@ -57,6 +57,7 @@ export class ProfileInfoPage implements OnInit {
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Cập nhập thông tin thành công!',
+      color: 'dark',
       duration: 2000
     });
     toast.present();
