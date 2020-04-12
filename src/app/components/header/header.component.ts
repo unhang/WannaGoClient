@@ -1,5 +1,6 @@
 import {AfterContentInit, AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'go-header',
@@ -36,7 +37,8 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
     text: any = {};
     isSignIn: boolean;
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService,
+                private navCtrl: NavController) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
@@ -54,5 +56,10 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
 
     signOut() {
         this.authService.signOut();
+    }
+
+    resetNavRoot() {
+        // this.navCtrl.pop
+        this.navCtrl.navigateRoot('/pages/tabs/explore/home');
     }
 }

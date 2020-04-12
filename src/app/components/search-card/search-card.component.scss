@@ -2,13 +2,19 @@ ion-card.search-card {
   border-radius: 4px;
   transition: ease-in-out all .3s;
   padding: 1rem;
+
   &:hover, &:active {
     box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.3);
     transform: translate(0, -5px);
   }
 
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
+
   ion-card-header {
     padding-bottom: 0;
+
     ion-card-title {
       color: var(--ion-color-dark);
       font-size: 36px;
@@ -16,6 +22,7 @@ ion-card.search-card {
       font-weight: 700;
       @media screen and (max-width: 767px) {
         font-size: 24px;
+        letter-spacing: 0px;
       }
     }
   }
@@ -24,7 +31,15 @@ ion-card.search-card {
     ion-item {
       //--margin-top: 1rem;
       --padding-start: 0;
+      --padding-end: 0;
+
+      .item-native {
+        .item-inner {
+          padding: 0;
+        }
+      }
     }
+
     ion-button {
       width: 100%;
       padding: .1rem;
@@ -37,6 +52,7 @@ ion-card.search-card {
 
 ion-item.search-item {
   margin-top: 12px;
+
   ion-label {
     font-size: 12px;
     font-weight: 800;
@@ -48,10 +64,12 @@ ion-item.search-item {
     border-radius: 4px;
     --padding-start: 8px;
     --padding-end: 40px;
+
     input.native-input.sc-ion-input-ios {
       padding-left: 8px !important;
       width: 90%;
     }
+
     &.has-focus {
       border-color: var(--ion-color-primary);
     }

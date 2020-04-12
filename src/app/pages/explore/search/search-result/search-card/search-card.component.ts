@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-// @ts-ignore
 import {StayDetail} from 'src/swagger';
+import {NavController} from '@ionic/angular';
 
 
 @Component({
@@ -10,12 +10,41 @@ import {StayDetail} from 'src/swagger';
 })
 export class SearchCardComponent implements OnInit {
 
-    @Input() stay: StayDetail
+    isMobile = window.innerWidth < 767;
+    slicePoint = this.isMobile ? 33 : 24;
+    @Input() stay: StayDetail;
 
-    constructor() {
+    topSlideOpts: any = {
+        preloadImages: true,
+        slidesPerView: 1,
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            dynamicBullets: false,
+            // renderBullet: (index, className) => {
+            //     return '<span class="' + className + '">' + (index + 1) + '</span>';
+            // }
+            bulletClass: 'go-bullet',
+            bulletActiveClass: 'go-bullet-activate'
+        },
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+    };
+
+    constructor(private navCtrl: NavController) {
     }
 
     ngOnInit() {
+    }
+
+
+    goToStayDetail(stayId: number) {
+        this.navCtrl.navigateForward(['/pages', 'tabs', 'explore', stayId, 'stay'], {queryParamsHandling: 'preserve'});
     }
 
 }

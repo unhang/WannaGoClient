@@ -22,7 +22,6 @@ export class DescriptionComponent implements OnInit, OnChanges {
             Object.keys(this.stayDetail.stayUtility).forEach(key => {
                 this.utilities = [...this.utilities, key];
             });
-            console.log(this.utilities);
         }
 
     }

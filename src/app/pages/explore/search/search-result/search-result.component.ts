@@ -11,15 +11,12 @@ import {Router} from '@angular/router';
 export class SearchResultComponent implements OnInit {
 
     @Input() stays: StayDetail [] = [];
-
-    constructor(private router: Router,) {
+    @Input() onLoading = true;
+    constructor(private router: Router) {
     }
 
     ngOnInit() {
     }
 
-    goToStayDetail(stayId: number) {
-        this.router.navigate(['/pages', 'tabs', 'explore', stayId, 'stay'], {queryParamsHandling: 'preserve'});
-    }
 
 }

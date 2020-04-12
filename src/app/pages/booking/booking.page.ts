@@ -13,11 +13,13 @@ export class BookingPage implements OnInit {
     lang = localStorage.getItem('lang');
     textEn: any = {
         title: 'Your bookings',
+        subTitle: 'List of stays you have been booking',
         noBooking: 'You dont any bookings yet',
         suggestBtn: 'Click here to start booking'
     };
     textVn: any = {
         title: 'Chuyến đi',
+        subTitle: 'dánh sách các chuyến đi bạn đã đặt chỗ',
         noBooking: 'Bạn chưa có đặt phòng nào',
         suggestBtn: 'Bấm vào đây để tìm phòng'
     };
@@ -38,7 +40,6 @@ export class BookingPage implements OnInit {
         this.bookingService.getPendingList(this.autheService.getUserInfo().userId)
             .subscribe((pendingList: Booking[]) => {
                 this.pendingBookings = pendingList;
-                console.log(pendingList);
             });
     }
 }

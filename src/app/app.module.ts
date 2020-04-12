@@ -33,11 +33,11 @@ registerLocaleData(en);
             mode: 'ios',
             backButtonText: '',
         }),
+        NgZorroAntdModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
         ComponentModule,
-        NgZorroAntdModule,
         FormsModule,
     ],
     providers: [

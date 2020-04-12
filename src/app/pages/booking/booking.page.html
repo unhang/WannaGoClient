@@ -7,6 +7,7 @@
                 <h1>
                     <ion-text>{{text.title}}</ion-text>
                 </h1>
+                <ion-text>{{text.subTitle}}</ion-text>
                 <div>
                     <img src="../../../assets/undraw/undraw_travel_mode_7sf4.svg" alt="">
                 </div>
@@ -18,7 +19,8 @@
                     <ion-text>{{text.noBooking}}</ion-text>
                 </div>
                 <div>
-                    <ion-button routerLink='/pages/tabs/explore/home' expand="block" color="primary">{{text.suggestBtn}}</ion-button>
+                    <ion-button routerLink='/pages/tabs/explore/home' expand="block"
+                                color="primary">{{text.suggestBtn}}</ion-button>
                 </div>
             </ion-col>
 
@@ -26,8 +28,7 @@
                 <ion-row>
                     <ion-col size="12" sizeMd="3"
                              *ngFor="let booking of pendingBookings">
-                        <go-history-card class="ion-padding-horizontal"
-                                         [actionBtnON]="true"
+                        <go-history-card [actionBtnON]="true"
                                          [booking]="booking"></go-history-card>
                     </ion-col>
                 </ion-row>

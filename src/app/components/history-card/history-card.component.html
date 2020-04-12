@@ -5,7 +5,7 @@
     </div>
     <div class="card__content">
         <div class="card__content__date">
-            <ion-text>{{booking.checkIn.replace('-', '/')}} - {{booking.checkOut.replace('-', '/')}}</ion-text>
+            <ion-text>{{booking.checkIn.split('-').join('/')}} - {{booking.checkOut.split('-').join('/')}}</ion-text>
         </div>
         <div class="card__content__name">
             <ion-text color="primary">{{booking.stayName}}</ion-text>

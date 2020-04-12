@@ -8,7 +8,10 @@ import {HeaderStyle} from '../../../constant/HeaderStyle';
 })
 export class HomePage implements OnInit {
     headerStyle: any = HeaderStyle;
-    constructor() {  }
+    isMobile = window.innerWidth < 767;
+
+    constructor() {
+    }
 
     ngOnInit() {
     }

@@ -1,28 +1,40 @@
 <ion-card>
-    <img [src]="stay.imgUrls[0]" alt="">
+    <ion-slides pager="true"
+                class="slide-container"
+                [options]="topSlideOpts">
+        <ion-slide *ngFor="let img of stay.imgUrls">
+            <ion-img height="auto" width="auto" [src]="img"></ion-img>
+        </ion-slide>
+    </ion-slides>
+
     <ion-card-header>
         <ion-card-subtitle color="primary">
             {{stay.stayTypeName}}
         </ion-card-subtitle>
-        <ion-card-title>
-            {{stay.stayName}}
+        <ion-card-title class="ion-text-capitalize">
+            {{ stay.stayName.length > slicePoint ? (stay.stayName.substr(0, slicePoint) + '...') : stay.stayName}}
         </ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-
-        <ion-text class="">
-            <h6>{{stay.price | currency:'VND'}}</h6>
-        </ion-text>
-        <ion-text>
-            <h6>Sao nè: {{stay.rate}} bình luận: {{stay.ratingCount}}</h6>
-        </ion-text>
-        <ion-text>
-            <p>
+    <ion-card-content class="content">
+        <div class="content__description">
+            <div>
                 {{stay.guestCount + ' khách・' + stay.bedCount + ' phòng・' + stay.bathCount + ' phòng tắm '}}
-            </p>
-        </ion-text>
-        <ion-text>
-            <h5>{{stay.district}}, {{stay.city}}</h5>
-        </ion-text>
+            </div>
+            <div>
+                <ng-container *ngIf="stay.discount > 0">
+                    <ion-text class="content__description--bold">{{stay.discount | currency:'VND'}}/đêm</ion-text>&nbsp;&nbsp;
+                    <ion-text class="content__description--lineThrough">{{stay.price | currency:'VND'}}</ion-text>
+                </ng-container>
+                <ng-container *ngIf="stay.discount == 0 || !stay.discount">
+                    <ion-text class="content__description--bold">{{stay.price | currency:'VND'}} /đêm</ion-text>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="content_rate">
+            <nz-rate [ngModel]="stay.rate" nzDisabled></nz-rate>&nbsp;
+            <ion-text *ngIf="stay.ratingCount">{{stay.ratingCount}}</ion-text>
+        </div>
     </ion-card-content>
 </ion-card>
+

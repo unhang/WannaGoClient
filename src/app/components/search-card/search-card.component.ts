@@ -19,7 +19,7 @@ export class GoSearchCard implements OnInit {
         people: 'Số người',
         money: 'Mức giá',
         checkIn: 'Ngày đi',
-        checkOut: 'Ngày ',
+        checkOut: 'Ngày về',
         searchBtn: 'TÌM KIẾM'
     };
     textEn: any = {
@@ -59,10 +59,8 @@ export class GoSearchCard implements OnInit {
             const namePlace = this.convertNonAccent(city.name_place);
             return namePlace.indexOf(cityName) > -1;
         });
-        console.table(filteredCities);
         if (filteredCities.length === 1) {
             this.cityId = filteredCities[0].code_place;
-            console.log(this.cityId);
         }
         this.filteredCities = filteredCities.map(city => city.name_place);
     }
