@@ -7,7 +7,7 @@
         </ion-slide>
     </ion-slides>
 
-    <ion-card-header>
+    <ion-card-header (click)="goToStayDetail(stay.stayId)">
         <ion-card-subtitle color="primary">
             {{stay.stayTypeName}}
         </ion-card-subtitle>
@@ -15,7 +15,7 @@
             {{ stay.stayName.length > slicePoint ? (stay.stayName.substr(0, slicePoint) + '...') : stay.stayName}}
         </ion-card-title>
     </ion-card-header>
-    <ion-card-content class="content">
+    <ion-card-content class="content"  (click)="goToStayDetail(stay.stayId)">
         <div class="content__description">
             <div>
                 {{stay.guestCount + ' khách・' + stay.bedCount + ' phòng・' + stay.bathCount + ' phòng tắm '}}
