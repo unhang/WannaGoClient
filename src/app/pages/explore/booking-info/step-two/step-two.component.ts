@@ -55,7 +55,6 @@ export class StepTwoComponent implements OnInit, AfterViewInit {
         this.bookingService.getBookingById(this.bookingId)
             .subscribe((booking: Booking) => {
                 this.booking = booking;
-                console.log(this.booking);
                 this.getStayDetail(this.booking.stayId);
             });
     }
@@ -64,7 +63,6 @@ export class StepTwoComponent implements OnInit, AfterViewInit {
         this.stayService.getStayDetail(stayId)
             .subscribe((stayDetail: StayDetail) => {
                 this.stayDetail = stayDetail;
-                console.log(this.stayDetail.imgUrls);
             });
     }
 }

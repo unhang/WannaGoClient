@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {HeaderStyle} from '../../../constant/HeaderStyle';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-booking-info',
@@ -28,8 +29,13 @@ export class BookingInfoPage implements OnInit {
     isMobile = window.innerWidth < 767;
 
     constructor(private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                private navCtrl: NavController) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
+    }
+
+    resetNavRoot() {
+        this.navCtrl.navigateRoot('/pages/tabs/explore/home');
     }
 
 

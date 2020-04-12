@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Booking, BookingService} from '../../../swagger';
 import {AuthService} from '../../services/auth.service';
 import {HeaderStyle} from '../../constant/HeaderStyle';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-booking',
@@ -25,8 +26,7 @@ export class BookingPage implements OnInit {
     pendingBookings: Booking[] = [];
 
     constructor(private bookingService: BookingService,
-                private autheService: AuthService
-    ) {
+                private autheService: AuthService) {
     }
 
     headerStyle = HeaderStyle;

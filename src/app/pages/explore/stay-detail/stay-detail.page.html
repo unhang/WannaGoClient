@@ -1,9 +1,14 @@
 <ion-header *ngIf="isMobile && stayDetail" >
     <ion-toolbar color="primary">
-        <ion-buttons>
+        <ion-buttons slot="start">
             <ion-back-button [defaultHref]="backBtnUrl"></ion-back-button>
         </ion-buttons>
         <ion-title>{{stayDetail.stayName}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button slot="icon-only" (click)="resetNavRoot()">
+                <ion-icon name="home-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content [scrollEvents]="true">

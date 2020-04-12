@@ -3,7 +3,7 @@ import {HeaderStyle} from '../../../constant/HeaderStyle';
 import {Booking, BookingService, CommentDetail, HostInfo, HostService, StayDetail, StayService, UserInfo} from '../../../../swagger';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
-import {LoadingController} from '@ionic/angular';
+import {LoadingController, NavController} from '@ionic/angular';
 import {SpinnerOptService} from '../../../services/spinner-opt.service';
 import {NightCountService} from '../../../services/night-count.service';
 import {TabBarService} from '../../../services/tab-bar.service';
@@ -43,6 +43,7 @@ export class StayDetailPage implements OnInit {
                 private loadCtrl: LoadingController,
                 private tabBarService: TabBarService,
                 private spinnerOptService: SpinnerOptService,
+                private navCtrl: NavController,
                 private bookingService: BookingService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
         this.stayId = +this.route.snapshot.params['id'];
@@ -78,6 +79,10 @@ export class StayDetailPage implements OnInit {
                 this.loadEl.dismiss();
             });
 
+    }
+
+    resetNavRoot() {
+        this.navCtrl.navigateRoot('/pages/tabs/explore/home');
     }
 
     getHostInfo(hostId: number) {
