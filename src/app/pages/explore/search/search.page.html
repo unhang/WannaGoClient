@@ -1,5 +1,14 @@
+<ion-header *ngIf="isMobile" >
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button [defaultHref]="backBtnUrl"></ion-back-button>
+        </ion-buttons>
+<!--        <ion-title>{{stayDetail.stayName}}</ion-title>-->
+        <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
-    <go-header
+    <go-header *ngIf="!isMobile"
         [logoBlack]="true"
         [hasSearch]="true"
         [styles]="[headerStyle.sticky]"></go-header>

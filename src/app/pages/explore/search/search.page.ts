@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderStyle} from 'src/app/constant/HeaderStyle';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {StaySearch, StayService} from '../../../../swagger';
 
 @Component({
@@ -11,6 +11,8 @@ import {StaySearch, StayService} from '../../../../swagger';
 export class SearchPage implements OnInit {
 
     headerStyle = HeaderStyle;
+    isMobile = window.innerWidth < 767;
+    backBtnUrl = '/pages/tabs/explore/home';
 
     cityId: number;
     checkIn: string;
@@ -22,13 +24,15 @@ export class SearchPage implements OnInit {
     pageView = 1;
 
     constructor(private route: ActivatedRoute,
+                private router: Router,
                 private stayService: StayService) {
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+    }
 
     ionViewDidEnter() {
-        console.log('search')
+        console.log('search');
         this.route.queryParamMap
             .subscribe((queryParam: ParamMap) => {
                 this.getStay(queryParam);

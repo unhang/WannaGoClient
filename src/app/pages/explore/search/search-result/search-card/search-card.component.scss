@@ -1,6 +1,7 @@
 :host {
   ion-card {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 8px;
+    margin-bottom: 12px;
+    margin-top: 12px;
     transition: 300ms;
     &:hover {
       box-shadow: rgba(black, 0.3) 0px 3px 10px;
