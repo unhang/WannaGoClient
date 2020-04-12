@@ -12,16 +12,20 @@
 
 ion-header {
   padding: 0;
+
   ion-toolbar {
     --background: #ff672a;
     --border-width: 0;
     --color: white;
+
     ion-buttons {
       --color: white;
+
       ion-back-button {
         color: white;
       }
     }
+
     ion-title {
       text-transform: uppercase;
     }
@@ -29,7 +33,9 @@ ion-header {
 }
 
 ion-content {
+  --background: var(--go-app-background);
   padding-bottom: 3rem;
+
   ion-card-header h1 {
     color: black;
     font-weight: 600;
@@ -56,6 +62,7 @@ ion-content {
 
     .avatar {
       max-width: 200px;
+
       img {
         width: 100%;
       }

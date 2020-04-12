@@ -29,6 +29,8 @@ ion-header {
 }
 
 ion-content {
+  --background: var(--go-app-background);
+
   ion-card-header h1 {
     color: black;
     font-weight: 600;
