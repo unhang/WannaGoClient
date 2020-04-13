@@ -20,7 +20,6 @@ import {NzCarouselModule, NzPaginationModule, NzRateModule} from 'ng-zorro-antd'
         NzPaginationModule,
         NzRateModule,
         NzCarouselModule,
-        // ScrollingModule,
     ],
     declarations: [
         SearchPage,

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {StayDetail} from 'src/swagger';
 import {NavController} from '@ionic/angular';
 
@@ -8,7 +8,7 @@ import {NavController} from '@ionic/angular';
     templateUrl: './search-card.component.html',
     styleUrls: ['./search-card.component.scss'],
 })
-export class SearchCardComponent implements OnInit {
+export class SearchCardComponent implements OnInit, OnChanges {
 
     isMobile = window.innerWidth < 767;
     slicePoint = this.isMobile ? 33 : 24;
@@ -21,19 +21,16 @@ export class SearchCardComponent implements OnInit {
             el: '.swiper-pagination',
             type: 'bullets',
             dynamicBullets: false,
-            // renderBullet: (index, className) => {
-            //     return '<span class="' + className + '">' + (index + 1) + '</span>';
-            // }
             bulletClass: 'go-bullet',
             bulletActiveClass: 'go-bullet-activate'
         },
-        coverflowEffect: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-        },
+        // coverflowEffect: {
+        //     rotate: 50,
+        //     stretch: 0,
+        //     depth: 100,
+        //     modifier: 1,
+        //     slideShadows: true,
+        // },
     };
 
     constructor(private navCtrl: NavController) {
@@ -45,6 +42,9 @@ export class SearchCardComponent implements OnInit {
 
     goToStayDetail(stayId: number) {
         this.navCtrl.navigateForward(['/pages', 'tabs', 'explore', stayId, 'stay'], {queryParamsHandling: 'preserve'});
+    }
+
+    ngOnChanges(): void {
     }
 
 }

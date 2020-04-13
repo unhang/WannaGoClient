@@ -1,0 +1,4 @@
+<button class="fav-btn" (click)="toggleFav()">
+  <ion-icon *ngIf="!isFavorite" name="heart-outline"></ion-icon>
+  <ion-icon class="fav-btn-active"*ngIf="isFavorite" name="heart"></ion-icon>
+</button>

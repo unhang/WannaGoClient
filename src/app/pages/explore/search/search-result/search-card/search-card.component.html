@@ -1,15 +1,28 @@
 <ion-card>
     <ion-slides pager="true"
+                (click)="goToStayDetail(stay.stayId)"
                 class="slide-container"
                 [options]="topSlideOpts">
         <ion-slide *ngFor="let img of stay.imgUrls">
-            <ion-img height="auto" width="auto" [src]="img"></ion-img>
+            <img height="200px" width="100%" [src]="img" />
         </ion-slide>
     </ion-slides>
 
-    <ion-card-header (click)="goToStayDetail(stay.stayId)">
-        <ion-card-subtitle color="primary">
-            {{stay.stayTypeName}}
+    <ion-card-header  (click)="goToStayDetail(stay.stayId)">
+        <ion-card-subtitle>
+            <div class="subtitle">
+                <div claas="subtitle__item">
+                    <ion-text>{{stay.stayTypeName}}</ion-text>
+                </div>
+                <div class="subtitle__item rating">
+                    <ion-text class="subtitle__item--bold">
+                        <ion-icon name="star"></ion-icon>
+                        {{' ' + (stay.rate ? stay.rate : '')}}</ion-text>
+                    <ion-text class="subtitle__item--medium"
+                            *ngIf="stay.ratingCount">({{stay.ratingCount}})
+                    </ion-text>
+                </div>
+            </div>
         </ion-card-subtitle>
         <ion-card-title class="ion-text-capitalize">
             {{ stay.stayName.length > slicePoint ? (stay.stayName.substr(0, slicePoint) + '...') : stay.stayName}}
@@ -17,10 +30,10 @@
     </ion-card-header>
     <ion-card-content class="content"  (click)="goToStayDetail(stay.stayId)">
         <div class="content__description">
-            <div>
+            <div class="content__description__item">
                 {{stay.guestCount + ' khách・' + stay.bedCount + ' phòng・' + stay.bathCount + ' phòng tắm '}}
             </div>
-            <div>
+            <div class="content__description__item">
                 <ng-container *ngIf="stay.discount > 0">
                     <ion-text class="content__description--bold">{{stay.discount | currency:'VND'}}/đêm</ion-text>&nbsp;&nbsp;
                     <ion-text class="content__description--lineThrough">{{stay.price | currency:'VND'}}</ion-text>
@@ -31,10 +44,11 @@
             </div>
         </div>
 
-        <div class="content_rate">
-            <nz-rate [ngModel]="stay.rate" nzDisabled></nz-rate>&nbsp;
-            <ion-text *ngIf="stay.ratingCount">{{stay.ratingCount}}</ion-text>
-        </div>
+        <!--        <div class="content_rate">-->
+        <!--            <nz-rate [ngModel]="stay.rate" nzDisabled></nz-rate>&nbsp;-->
+        <!--            <ion-text *ngIf="stay.ratingCount">{{stay.ratingCount}}</ion-text>-->
+        <!--        </div>-->
     </ion-card-content>
+    <go-favorite-btn></go-favorite-btn>
 </ion-card>
 

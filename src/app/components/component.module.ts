@@ -13,6 +13,7 @@ import {GoSearchCard} from './search-card/search-card.component';
 import {GoStayCardComponent} from './stay-card/stay-card.component';
 import {GoFooterComponent} from './footer/footer.component';
 import {GoHistoryCard} from './history-card/history-card.component';
+import {GoFavoriteBtn} from './favorite-btn/favorite-btn.component';
 
 
 
@@ -26,6 +27,7 @@ import {GoHistoryCard} from './history-card/history-card.component';
         GoStayCardComponent,
         GoFooterComponent,
         GoHistoryCard,
+        GoFavoriteBtn
     ],
     imports: [
         CommonModule,
@@ -47,6 +49,7 @@ import {GoHistoryCard} from './history-card/history-card.component';
         GoStayCardComponent,
         GoFooterComponent,
         GoHistoryCard,
+        GoFavoriteBtn
     ]
 })
 export class ComponentModule {

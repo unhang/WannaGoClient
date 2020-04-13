@@ -1,3 +1,10 @@
 ion-grid  {
   --ion-grid-width: 1200px;
+  ion-row {
+    ion-col{
+      $margin: 4px;
+      margin-top: $margin;
+      margin-bottom: $margin;
+    }
+  }
 }
