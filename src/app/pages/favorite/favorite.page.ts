@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {HeaderStyle} from '../../constant/HeaderStyle';
 
 @Component({
     selector: 'app-favorite',
@@ -13,6 +14,8 @@ export class FavoritePage implements OnInit {
     textVn: any = {
         title: 'Đã lưu'
     };
+    headerStyle = HeaderStyle;
+
     text: any = this.lang === 'en' ? this.textEn : this.textVn;
 
     constructor() {

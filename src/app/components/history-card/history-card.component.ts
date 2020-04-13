@@ -12,6 +12,8 @@ export class GoHistoryCard implements OnInit, OnChanges {
 
     @Input() booking: Booking;
     @Input() actionBtnON: boolean;
+    @Input() hasFavoriteBtn = false;
+
     stay: StayDetail;
     deleted = false;
 
