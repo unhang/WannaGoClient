@@ -22,7 +22,9 @@ import { CommentPost } from '../model/commentPost';
 import { HighlightPlaces } from '../model/highlightPlaces';
 import { StayByTypeArray } from '../model/stayByTypeArray';
 import { StayDetail } from '../model/stayDetail';
+import { StayFavorite } from '../model/stayFavorite';
 import { StaySearch } from '../model/staySearch';
+import { UserFavorite } from '../model/userFavorite';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -61,6 +63,107 @@ export class StayService {
         return false;
     }
 
+
+    /**
+     * addFavorite()
+     * thêm 1 record vào table t_stay_favorite
+     * @param body Thông tin post của comment
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public addFavorite(body?: StayFavorite, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<StayFavorite>;
+    public addFavorite(body?: StayFavorite, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StayFavorite>>;
+    public addFavorite(body?: StayFavorite, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StayFavorite>>;
+    public addFavorite(body?: StayFavorite, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<StayFavorite>('post',`${this.basePath}/api/stay/add-favorite`,
+            {
+                body: body,
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * getFavorite()
+     * Lấy danh sách id của các stay đã like bằng user_id đi kem req
+     * @param userId 
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getFavorite(userId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<UserFavorite>>;
+    public getFavorite(userId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<UserFavorite>>>;
+    public getFavorite(userId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<UserFavorite>>>;
+    public getFavorite(userId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getFavorite.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<UserFavorite>>('get',`${this.basePath}/api/stay/${encodeURIComponent(String(userId))}/get-favorite`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     /**
      * getSlicesByType()
@@ -247,6 +350,54 @@ export class StayService {
         return this.httpClient.request<CommentPost>('post',`${this.basePath}/api/stay/comments`,
             {
                 body: body,
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * removeFavorite()
+     * remove 1 stay đã liked
+     * @param favoriteId 
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public removeFavorite(favoriteId: number, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public removeFavorite(favoriteId: number, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public removeFavorite(favoriteId: number, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public removeFavorite(favoriteId: number, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (favoriteId === null || favoriteId === undefined) {
+            throw new Error('Required parameter favoriteId was null or undefined when calling removeFavorite.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('delete',`${this.basePath}/api/stay/${encodeURIComponent(String(favoriteId))}/remove-favorite`,
+            {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

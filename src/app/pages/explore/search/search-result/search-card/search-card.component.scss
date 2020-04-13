@@ -37,6 +37,7 @@
 
             &--medium {
               color: var(--ion-color-medium);
+              font-size: 14px;
             }
 
             &--bold {
@@ -69,10 +70,8 @@
     ion-card-content .content {
       &__description {
         font-size: 16px;
-        //line-height: 24px;
         &__item {
           line-height: 22px;
-          //text-align: ;
         }
         &--bold {
           font-weight: bold;
@@ -81,7 +80,7 @@
 
         &--lineThrough {
           text-decoration: line-through;
-          //-webkit-text-decoration-style: li;
+          -webkit-text-decoration-line: line-through;
         }
       }
     }
