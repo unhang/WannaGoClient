@@ -33,5 +33,4 @@ npm-debug.log*
 /android
 /.gradle
 /.firebaserc
-package.lock
 
