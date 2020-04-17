@@ -30,7 +30,7 @@
     "core-js": "^2.5.4",
     "date-fns": "^2.11.0",
     "jwt-decode": "^2.2.0",
-    "ng-zorro-antd": "^8.5.2",
+    "ng-zorro-antd": "^9.0.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
