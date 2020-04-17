@@ -70,10 +70,8 @@ export class ConfirmFormComponent implements OnInit {
             password: this.newPasswordForm.get('password').value,
             secret: this.newPasswordForm.get('secret').value
         };
-        console.log(newPassword);
         this.userService.changePassword(newPassword)
             .subscribe((res: ResetPasswordRequestResult) => {
-                console.log(res);
                 if (res.status === 1) {
                     this.onConfirmSucceed();
                 } else {

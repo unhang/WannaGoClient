@@ -48,7 +48,7 @@ export class ChangePasswordPage implements OnInit {
                 if (this.isMobile) {
                     this.router.navigate(['/pages', 'tabs', 'profile']);
                 } else {
-                    this.router.navigate(['/pages', 'tabs', 'profile-info']);
+                    this.router.navigate(['/pages', 'tabs', 'profile', 'profile-info']);
                 }
             }, 3000);
         });
