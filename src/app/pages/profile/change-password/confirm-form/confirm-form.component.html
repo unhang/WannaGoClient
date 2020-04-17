@@ -1,0 +1,56 @@
+<div class="form" [formGroup]="newPasswordForm">
+    <div class="form__header">
+        <span>{{text.header}}</span>
+    </div>
+    <div class="form__input"
+         *ngIf="newPasswordForm.get('password').value !== newPasswordForm.get('confirmPassword').value &&
+                newPasswordForm.get('confirmPassword').value !== null &&
+                newPasswordForm.get('password').value !== null">
+        <label class="form__input__label--error">{{text.passwordError}}</label>
+    </div>
+    <div class="form__input">
+        <label>{{text.password}}:</label>
+        <nz-input-group [nzSuffix]="suffixTemplatePassword">
+            <input nz-input
+                   [type]="passwordFlg ? 'password' : 'text'"
+                   formControlName="password">
+            <ng-template #suffixTemplatePassword>
+                <i nz-icon [nzType]="passwordFlg ? 'eye-invisible' : 'eye'"
+                   (click)="passwordFlg = !passwordFlg"></i>
+            </ng-template>
+        </nz-input-group>
+    </div>
+    <div class="form__input">
+        <label>{{text.confirmPassword}}:</label>
+        <nz-input-group [nzSuffix]="suffixTemplateConfirm">
+            <input nz-input
+                   [type]="confirmPasswordFlg ? 'password' : 'text'"
+                   formControlName="confirmPassword">
+            <ng-template #suffixTemplateConfirm>
+                <i nz-icon [nzType]="confirmPasswordFlg ? 'eye-invisible' : 'eye'"
+                   (click)="confirmPasswordFlg = !confirmPasswordFlg"></i>
+            </ng-template>
+        </nz-input-group>
+    </div>
+    <div class="form__input">
+        <label>{{text.secret}}:</label>
+        <nz-input-group [nzSuffix]="suffixTemplateKey">
+            <input nz-input
+                   type="text"
+                   formControlName="secret">
+            <ng-template #suffixTemplateKey>
+                <i nz-icon nzType="key"></i>
+            </ng-template>
+        </nz-input-group>
+    </div>
+    <div class="form__actions">
+        <div>
+            <button nz-button>{{text.btn1}}</button>
+        </div>
+        <div>
+            <button nz-button nzType="primary"
+                    [disabled]="newPasswordForm.invalid || disabledBtn"
+                    (click)="submit()">{{text.btn2}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.form {
+  &__header{
+    font-size: 24px;
+    color: #1e2023;
+    text-align: center;
+  }
+  &__input {
+    margin: 8px 0;
+    &__label {
+
+    }
+  }
+
+  &__actions {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+}

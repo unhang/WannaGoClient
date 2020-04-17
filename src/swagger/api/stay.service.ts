@@ -72,11 +72,14 @@ export class StayService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addFavorite(body?: StayFavorite, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<StayFavorite>;
-    public addFavorite(body?: StayFavorite, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StayFavorite>>;
-    public addFavorite(body?: StayFavorite, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StayFavorite>>;
-    public addFavorite(body?: StayFavorite, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public addFavorite(body: StayFavorite, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<StayFavorite>;
+    public addFavorite(body: StayFavorite, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StayFavorite>>;
+    public addFavorite(body: StayFavorite, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StayFavorite>>;
+    public addFavorite(body: StayFavorite, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling addFavorite.');
+        }
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -315,11 +318,14 @@ export class StayService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postStayComment(body?: CommentPost, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<CommentPost>;
-    public postStayComment(body?: CommentPost, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CommentPost>>;
-    public postStayComment(body?: CommentPost, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CommentPost>>;
-    public postStayComment(body?: CommentPost, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postStayComment(body: CommentPost, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<CommentPost>;
+    public postStayComment(body: CommentPost, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CommentPost>>;
+    public postStayComment(body: CommentPost, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CommentPost>>;
+    public postStayComment(body: CommentPost, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling postStayComment.');
+        }
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});

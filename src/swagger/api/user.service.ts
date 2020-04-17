@@ -18,6 +18,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { AccessToken } from '../model/accessToken';
+import { NewPassword } from '../model/newPassword';
+import { ResetEmailAddress } from '../model/resetEmailAddress';
+import { ResetPasswordRequestResult } from '../model/resetPasswordRequestResult';
 import { SignIn } from '../model/signIn';
 import { UserInfo } from '../model/userInfo';
 
@@ -58,6 +61,61 @@ export class UserService {
         return false;
     }
 
+
+    /**
+     * changePassword()
+     * password mới
+     * @param body chứa object là email cần đổi password
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public changePassword(body: NewPassword, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<ResetPasswordRequestResult>;
+    public changePassword(body: NewPassword, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResetPasswordRequestResult>>;
+    public changePassword(body: NewPassword, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResetPasswordRequestResult>>;
+    public changePassword(body: NewPassword, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling changePassword.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<ResetPasswordRequestResult>('post',`${this.basePath}/api/user/change-password`,
+            {
+                body: body,
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     /**
      * getUserInfo()
@@ -111,6 +169,61 @@ export class UserService {
     }
 
     /**
+     * resetPassword()
+     * lấy thông tin của user
+     * @param body chứa object là email cần đổi password
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public resetPassword(body: ResetEmailAddress, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<ResetPasswordRequestResult>;
+    public resetPassword(body: ResetEmailAddress, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResetPasswordRequestResult>>;
+    public resetPassword(body: ResetEmailAddress, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResetPasswordRequestResult>>;
+    public resetPassword(body: ResetEmailAddress, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling resetPassword.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<ResetPasswordRequestResult>('post',`${this.basePath}/api/user/reset-password`,
+            {
+                body: body,
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * signIn()
      * api đăng nhập của user
      * @param body object request đăng nhập
@@ -118,11 +231,14 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public signIn(body?: SignIn, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<AccessToken>;
-    public signIn(body?: SignIn, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccessToken>>;
-    public signIn(body?: SignIn, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccessToken>>;
-    public signIn(body?: SignIn, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public signIn(body: SignIn, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<AccessToken>;
+    public signIn(body: SignIn, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccessToken>>;
+    public signIn(body: SignIn, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccessToken>>;
+    public signIn(body: SignIn, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling signIn.');
+        }
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -222,11 +338,14 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public update(body?: UserInfo, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<UserInfo>;
-    public update(body?: UserInfo, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserInfo>>;
-    public update(body?: UserInfo, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserInfo>>;
-    public update(body?: UserInfo, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public update(body: UserInfo, lang?: string, observe?: 'body', reportProgress?: boolean): Observable<UserInfo>;
+    public update(body: UserInfo, lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserInfo>>;
+    public update(body: UserInfo, lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserInfo>>;
+    public update(body: UserInfo, lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling update.');
+        }
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
