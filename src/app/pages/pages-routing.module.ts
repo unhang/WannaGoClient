@@ -49,11 +49,11 @@ const routes: Routes = [
             },
             {
                 path: 'booking',
-                loadChildren: () => import('./booking/booking.module').then( m => m.BookingPageModule)
+                loadChildren: () => import('./booking/booking.module').then(m => m.BookingPageModule)
             },
             {
                 path: 'favorite',
-                loadChildren: () => import('./favorite/favorite.module').then( m => m.FavoritePageModule)
+                loadChildren: () => import('./favorite/favorite.module').then(m => m.FavoritePageModule)
             },
             {
                 path: 'profile',
@@ -81,6 +81,10 @@ const routes: Routes = [
                     {
                         path: 'profile-info',
                         loadChildren: () => import('./profile/profile-info/profile-info.module').then(m => m.ProfileInfoPageModule)
+                    },
+                    {
+                        path: 'change-password',
+                        loadChildren: () => import('./profile/change-password/change-password.module').then(m => m.ChangePasswordPageModule)
                     },
                 ]
             }

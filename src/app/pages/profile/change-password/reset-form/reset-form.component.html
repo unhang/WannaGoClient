@@ -1,0 +1,26 @@
+<div class="form">
+    <div class="form__header">
+        <span>{{text.header}}</span>
+    </div>
+    <div class="form__input">
+        <label>{{text.formLabel}}:</label>
+        <nz-input-group [nzSuffix]="suffixTemplate">
+            <input nz-input
+                   type="email"
+                   [formControl]="emailAddress">
+            <ng-template #suffixTemplate>
+                <i nz-icon nzType="mail"></i>
+            </ng-template>
+        </nz-input-group>
+    </div>
+    <div class="form__actions">
+        <div>
+            <button nz-button>{{text.btn1}}</button>
+        </div>
+        <div>
+            <button nz-button nzType="primary"
+                    [disabled]="emailAddress.invalid || disabledBtn"
+                    (click)="submit()">{{text.btn2}}</button>
+        </div>
+    </div>
+</div>
