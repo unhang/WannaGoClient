@@ -3,7 +3,7 @@ import {HeaderStyle} from '../../constant/HeaderStyle';
 import {AuthService} from '../../services/auth.service';
 import {StayService, UserInfo, StayFavorite} from '../../../swagger';
 import { ModalController } from '@ionic/angular';
-import { LoginPageModule } from '../profile/login/login.module';
+import { GoSignIn } from '../../components/sign-in/sign-in.component';
 @Component({
     selector: 'app-favorite',
     templateUrl: './favorite.page.html',
@@ -58,12 +58,12 @@ export class FavoritePage implements OnInit {
             });
     }
 
-    //Start Xử lí chưa đăng nhập
+    // Start Xử lí chưa đăng nhập
     async presentModal() {
         const modal = await this.modalController.create({
-            component: LoginPageModule  // Modal cần show
+            component: GoSignIn  // Modal cần show
         });
         return await modal.present();
     }
-    //End Xử lí chưa đăng nhập
+    // End Xử lí chưa đăng nhập
 }

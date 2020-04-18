@@ -4,7 +4,7 @@ import {AuthService} from '../../services/auth.service';
 import {HeaderStyle} from '../../constant/HeaderStyle';
 import {NavController} from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { LoginPageModule } from '../profile/login/login.module';
+import { GoSignIn } from '../../components/sign-in/sign-in.component';
 @Component({
     selector: 'app-booking',
     templateUrl: './booking.page.html',
@@ -60,7 +60,7 @@ export class BookingPage implements OnInit {
     // Start Xử lí chưa đăng nhập
     async presentModal() {
         const modal = await this.modalController.create({
-            component: LoginPageModule  // Modal cần show
+            component: GoSignIn  // Modal cần show
         });
         return await modal.present();
     }
