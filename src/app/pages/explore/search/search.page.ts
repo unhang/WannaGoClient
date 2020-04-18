@@ -4,6 +4,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {StaySearch, StayService, UserInfo} from '../../../../swagger';
 import {IonContent} from '@ionic/angular';
 import {AuthService} from '../../../services/auth.service';
+
 @Component({
     selector: 'app-search',
     templateUrl: './search.page.html',
@@ -71,12 +72,8 @@ export class SearchPage implements OnInit {
     getFavorite() {
         if (this.authService.isAuthenticated === true) {
             const userInfo: UserInfo = this.authService.getUserInfo();
-
             this.stayService.getFavorite(userInfo.userId)
-                .subscribe(res => {
-                    this.favorites = res;
-                    console.log(this.favorites);
-                });
+                .subscribe(res => this.favorites = res);
         }
     }
 }

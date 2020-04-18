@@ -43,11 +43,14 @@
             </ng-template>
         </nz-input-group>
     </div>
-
-    <div>
-        <button nzBlock nz-button nzType="primary"
-                [disabled]="newPasswordForm.invalid || disabledBtn"
-                (click)="submit()">{{text.btn2}}</button>
+    <div class="form__actions">
+        <div>
+            <button nz-button>{{text.btn1}}</button>
+        </div>
+        <div>
+            <button nz-button nzType="primary"
+                    [disabled]="newPasswordForm.invalid || disabledBtn"
+                    (click)="submit()">{{text.btn2}}</button>
+        </div>
     </div>
-
 </div>
