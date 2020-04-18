@@ -18,26 +18,18 @@ export class GoFavoriteBtn implements OnInit {
     keyFavorite: number;
     lang = localStorage.getItem('lang');
     textEn: any = {
-        guestCount: 'Guests',
-        price: 'Price',
-        subPrice: '/night',
-        city: 'City',
-        actionBtn1: 'Payment',
-        actionBtn2: 'Cancel this booking',
         alertHeader: 'Alert',
         alertMessage: 'Are you sure to remove favorite?',
-        alertCancelBtn: 'Cancel'
+        alertMessageAdd: "Please login to favorite this stay!",
+        alertCancelBtn: 'Cancel',
+        alertLogin: 'Login',
     };
     textVn: any = {
-        guestCount: 'Số khách',
-        price: 'Giá',
-        subPrice: '/đêm',
-        city: 'Địa điểm',
-        actionBtn1: 'Thanh toán',
-        actionBtn2: 'Xóa đặt phòng',
         alertHeader: 'Thông báo',
         alertMessage: 'Bạn xác nhận hủy yêu thích?',
-        alertCancelBtn: 'Thoát'
+        alertMessageAdd: "Xin mời đăng nhập để sử dụng chức năng",
+        alertCancelBtn: 'Thoát',
+        alertLogin: 'Đăng nhập'
     };
     txt = this.lang === 'en' ? this.textEn : this.textVn;
 
@@ -76,18 +68,10 @@ export class GoFavoriteBtn implements OnInit {
          * tham khảo behavior của button 'Hủy đặt phòng' của component:  /components/history-card.component.ts,
          * nếu user chọn OK, gọi API remove favorite, sau khi remove, update this.isFavorite = false;
          */
-
-        if (this.authService.isAuthenticated === false) {
-            this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
-                queryParams: {
-                    returnUrl: this.router.url || '/'
-                },
-            });
-        }
-
         const alert = await this.alertCtrl.create({
             header: this.txt.alertHeader,
             message: this.txt.alertMessage,
+            mode: 'md',
             buttons: [
                 {
                     text: 'OK',
@@ -126,13 +110,37 @@ export class GoFavoriteBtn implements OnInit {
          * sau khi remove, update this.isFavorite = true;
          */
         if (this.authService.isAuthenticated === false) {
-            this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
-                queryParams: {
-                    returnUrl: this.router.url || '/'
-                },
+            const alert = await this.alertCtrl.create({
+                header: this.txt.alertHeader,
+                message: this.txt.alertMessageAdd,
+                mode: 'md',
+                buttons: [
+                    {
+                        text: this.txt.alertLogin,
+                        role: 'login',
+                        handler: () => {
+                            this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
+                                queryParams: {
+                                    returnUrl: this.router.url || '/'
+                                },
+                            });
+                        }
+                    },
+                    {
+                        text: this.txt.alertCancelBtn,
+                        role: 'cancel',
+                        handler: () => {
+                        }
+                    },
+                ]
             });
+            await alert.present();
+        } else {
+            this.addFavorite()
         }
+    }
 
+    private addFavorite() {
         const userInfo: UserInfo = this.authService.getUserInfo();
         const stayFavovirePost: StayFavorite = {
             userId: userInfo.userId,

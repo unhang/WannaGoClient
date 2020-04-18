@@ -69,20 +69,14 @@ export class SearchPage implements OnInit {
     }
 
     getFavorite() {
-        if (this.authService.isAuthenticated === false) {
-            this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
-                queryParams: {
-                    returnUrl: this.router.url || '/'
-                },
-            });
+        if (this.authService.isAuthenticated === true) {
+            const userInfo: UserInfo = this.authService.getUserInfo();
+
+            this.stayService.getFavorite(userInfo.userId)
+                .subscribe(res => {
+                    this.favorites = res;
+                    console.log(this.favorites);
+                });
         }
-
-        const userInfo: UserInfo = this.authService.getUserInfo();
-
-        this.stayService.getFavorite(userInfo.userId)
-            .subscribe(res => {
-                this.favorites = res;
-                console.log(this.favorites);
-            });
     }
 }
