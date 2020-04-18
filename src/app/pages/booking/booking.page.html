@@ -12,8 +12,21 @@
                     <img src="../../../assets/undraw/undraw_travel_mode_7sf4.svg" alt="">
                 </div>
             </ion-col>
+
+            <!-- chưa đăng nhập-->
+            <ion-col *ngIf="isLogin === false">
+                <div class="ion-text-center">
+                    <ion-text>{{text.noLogin}}</ion-text>
+                </div>
+                <div>
+                    <ion-button expand="block"
+                                color="primary"
+                                (click)="presentModal()" >{{text.loginBtn}}</ion-button>
+                </div>
+            </ion-col>
+
             <!-- khong co phong-->
-            <ion-col *ngIf="pendingBookings.length === 0">
+            <ion-col *ngIf="pendingBookings.length === 0 && isLogin === true">
 
                 <div class="ion-text-center">
                     <ion-text>{{text.noBooking}}</ion-text>

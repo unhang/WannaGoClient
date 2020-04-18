@@ -70,6 +70,9 @@
                                 fill="outline"
                                 [routerLink]="['/pages', 'tabs', 'profile', 'booking-history']">{{text.btn2}}</ion-button>
                 </ion-col>
+                <ion-col class="ion-hide-md-up" size="12" >
+                    <div class="btn-logout" (click)="logout()">{{text.logout}}</div>
+                </ion-col>
             </ion-row>
         </ion-grid>
     </div>

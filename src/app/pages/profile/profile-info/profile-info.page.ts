@@ -3,8 +3,9 @@ import {HeaderStyle} from '../../../constant/HeaderStyle';
 import {AuthService} from '../../../services/auth.service';
 import {UserInfo, UserService} from '../../../../swagger';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ToastController} from '@ionic/angular';
+import {ToastController, NavController} from '@ionic/angular';
 import {Router} from '@angular/router';
+import {AlertController} from '@ionic/angular';
 
 @Component({
     selector: 'app-profile-info',
@@ -17,13 +18,21 @@ export class ProfileInfoPage implements OnInit {
     textVn: any = {
         header: 'Thông tin tài khoản',
         btn1: 'Cài đặt tài khoản',
-        btn2: 'Đặt chỗ của tôi'
+        btn2: 'Đặt chỗ của tôi',
+        logout: 'Đăng xuất',
+        alertHeader: 'Thông báo',
+        alertMessage: 'Bạn có chắc muốn đăng xuất khỏi ứng dụng',
+        alertCancelBtn: 'Không',
     };
 
     textEn: any = {
         header: 'Account information',
         btn1: 'Profile setting',
-        btn2: 'My bookings'
+        btn2: 'My bookings',
+        logout: 'Logout',
+        alertHeader: 'Alert',
+        alertMessage: 'Are you sure to remove favorite?',
+        alertCancelBtn: 'Cancel',
     };
 
     text: any = {};
@@ -40,7 +49,9 @@ export class ProfileInfoPage implements OnInit {
                 private fb: FormBuilder,
                 private router: Router,
                 private userService: UserService,
-                public toastController: ToastController) {
+                public toastController: ToastController,
+                private alertCtrl: AlertController,
+                private navCtrl: NavController) {
         this.text = this.lang === 'ev' ? this.textEn : this.textVn;
     }
 
@@ -67,5 +78,29 @@ export class ProfileInfoPage implements OnInit {
 
     changePassword() {
         this.router.navigate(['/pages', 'tabs', 'profile', 'change-password']);
+    }
+
+    async logout() {
+        const alert = await this.alertCtrl.create({
+            header: this.text.alertHeader,
+            message: this.text.alertMessage,
+            mode: 'md',
+            buttons: [
+                {
+                    text: 'OK',
+                    role: 'OK',
+                    handler: () => (
+                        this.authService.signOut()
+                    )
+                },
+                {
+                    text: this.text.alertCancelBtn,
+                    role: 'cancel',
+                    handler: () => {
+                    }
+                },
+            ]
+        });
+        await alert.present();
     }
 }

@@ -4,14 +4,14 @@
         <img [src]="stay.imgUrls[0]" alt="wannago khach sang">
     </div>
     <div class="card__content">
-        <div class="card__content__date">
+        <div class="card__content__date" *ngIf="actionBtnON">
             <ion-text>{{booking.checkIn.split('-').join('/')}} - {{booking.checkOut.split('-').join('/')}}</ion-text>
         </div>
         <div class="card__content__name">
-            <ion-text color="primary">{{booking.stayName}}</ion-text>
+            <ion-text color="primary">{{stay.stayName}}</ion-text>
         </div>
         <div class="card__content__guest">
-            <div>
+            <div *ngIf="actionBtnON">
                 <ion-text>{{txt.guestCount}}: {{booking.guestCount}}</ion-text>
             </div>
             <div>
@@ -29,6 +29,11 @@
                       [ngClass]="{'stroke': stay.discount}">
                 <span [ngClass]="{'highlight-price': !stay.discount}">{{stay.price | currency:'VND'}}</span>
                 {{ stay.discount ? '' : txt.subPrice}}</ion-text>
+        </div>
+
+        <div *ngIf="!actionBtnON" class="card__actions">
+            <go-favorite-btn [stayId]="stay.stayId"
+                             [favorites]="favorites"></go-favorite-btn>
         </div>
 
         <div *ngIf="actionBtnON"class="card__actions">

@@ -20,14 +20,14 @@ export class GoFavoriteBtn implements OnInit {
     textEn: any = {
         alertHeader: 'Alert',
         alertMessage: 'Are you sure to remove favorite?',
-        alertMessageAdd: "Please login to favorite this stay!",
+        alertMessageAdd: 'Please login to favorite this stay!',
         alertCancelBtn: 'Cancel',
         alertLogin: 'Login',
     };
     textVn: any = {
         alertHeader: 'Thông báo',
         alertMessage: 'Bạn xác nhận hủy yêu thích?',
-        alertMessageAdd: "Xin mời đăng nhập để sử dụng chức năng",
+        alertMessageAdd: 'Xin mời đăng nhập để sử dụng chức năng',
         alertCancelBtn: 'Thoát',
         alertLogin: 'Đăng nhập'
     };
