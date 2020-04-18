@@ -1,7 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../../../../../swagger';
-import {AuthService} from '../../../../services/auth.service';
 import {NewPassword} from '../../../../../swagger/model/newPassword';
 import {ResetPasswordRequestResult} from '../../../../../swagger/model/resetPasswordRequestResult';
 import {ToastController} from '@ionic/angular';
@@ -33,11 +32,9 @@ export class ConfirmFormComponent implements OnInit {
         btn2: 'Xác nhận',
         alertMsg: 'Đã xảy ra lỗi'
     };
-
-
     text = this.lang === 'en' ? this.textEn : this.textVn;
     @Output() confirmSucceeded = new EventEmitter();
-
+    @Input() payloadEmailAddress: string;
     newPasswordForm = this.fb.group({
         password: this.fb.control(null, [Validators.required]),
         confirmPassword: this.fb.control(null, [Validators.required]),
@@ -56,7 +53,6 @@ export class ConfirmFormComponent implements OnInit {
 
     constructor(private fb: FormBuilder,
                 private toastCtrl: ToastController,
-                private authService: AuthService,
                 private userService: UserService) {
     }
 
@@ -66,7 +62,7 @@ export class ConfirmFormComponent implements OnInit {
     submit() {
         this.disabledBtn = true;
         const newPassword: NewPassword = {
-            emailAddress: this.authService.getUserInfo().emailAddress,
+            emailAddress: this.payloadEmailAddress,
             password: this.newPasswordForm.get('password').value,
             secret: this.newPasswordForm.get('secret').value
         };

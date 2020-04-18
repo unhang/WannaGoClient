@@ -8,6 +8,7 @@ import {LoginPageRoutingModule} from './login-routing.module';
 
 import {LoginPage} from './login.page';
 import {GoFormLoginComponent} from './form-login/form-login.component';
+import {ComponentModule} from '../../../components/component.module';
 
 @NgModule({
     imports: [

@@ -3,7 +3,8 @@ import {UserService} from '../../../../../swagger';
 import {FormControl, Validators} from '@angular/forms';
 import {ResetEmailAddress} from '../../../../../swagger/model/resetEmailAddress';
 import {ResetPasswordRequestResult} from '../../../../../swagger/model/resetPasswordRequestResult';
-import {ToastController} from '@ionic/angular';
+import {NavController, ToastController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-reset-form',
@@ -28,10 +29,13 @@ export class ResetFormComponent implements OnInit {
     };
     text = this.lang === 'en' ? this.textEn : this.textVn;
 
-    @Output() sendSucceeded = new EventEmitter();
+    @Output() sendSucceeded = new EventEmitter<string>();
     emailAddress = new FormControl(null, [Validators.email, Validators.required]);
     disabledBtn: boolean;
+
     constructor(private userService: UserService,
+                private router: Router,
+                private navCtrl: NavController,
                 private toastCtrl: ToastController) {
     }
 
@@ -55,8 +59,12 @@ export class ResetFormComponent implements OnInit {
             });
     }
 
+    goBack() {
+        this.navCtrl.pop();
+    }
+
     private onSendSucceed() {
-        this.sendSucceeded.emit();
+        this.sendSucceeded.emit(this.emailAddress.value);
     }
 
     private async warning() {
