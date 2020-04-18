@@ -49,6 +49,7 @@
         <!--            <ion-text *ngIf="stay.ratingCount">{{stay.ratingCount}}</ion-text>-->
         <!--        </div>-->
     </ion-card-content>
-    <go-favorite-btn></go-favorite-btn>
+    <go-favorite-btn [stayId]="stay.stayId"
+                     [favorites]="favorites"></go-favorite-btn>
 </ion-card>
 
