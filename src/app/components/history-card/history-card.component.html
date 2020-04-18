@@ -31,6 +31,11 @@
                 {{ stay.discount ? '' : txt.subPrice}}</ion-text>
         </div>
 
+        <div *ngIf="!actionBtnON" class="card__actions">
+            <go-favorite-btn [stayId]="stay.stayId"
+                             [favorites]="favorites"></go-favorite-btn>
+        </div>
+
         <div *ngIf="actionBtnON"class="card__actions">
             <ion-button (click)="goToPayment()"
                         size="small"

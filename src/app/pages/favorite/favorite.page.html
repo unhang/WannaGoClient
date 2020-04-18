@@ -42,7 +42,8 @@
                     <ion-col size="12" sizeMd="3"
                              *ngFor="let favorite of listFavorite">
                         <go-history-card [hasFavoriteBtn]="false"
-                                        [booking]="favorite"></go-history-card>
+                                        [booking]="favorite"
+                                        [favorites]="listFavorite"></go-history-card>
                     </ion-col>
                 </ion-row>
             </ion-col>
