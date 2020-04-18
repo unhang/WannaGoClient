@@ -60,6 +60,34 @@ export class GoFavoriteBtn implements OnInit {
         }
     }
 
+    async checkLogin() {
+        const alert = await this.alertCtrl.create({
+            header: this.txt.alertHeader,
+            message: this.txt.alertMessageAdd,
+            mode: 'md',
+            buttons: [
+                {
+                    text: this.txt.alertLogin,
+                    role: 'login',
+                    handler: () => {
+                        this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
+                            queryParams: {
+                                returnUrl: this.router.url || '/'
+                            },
+                        });
+                    }
+                },
+                {
+                    text: this.txt.alertCancelBtn,
+                    role: 'cancel',
+                    handler: () => {
+                    }
+                },
+            ]
+        });
+        await alert.present();
+    }
+
     async removeFav() {
         // TODO: thực các thao tác trong comment sau
         /**
@@ -68,6 +96,14 @@ export class GoFavoriteBtn implements OnInit {
          * tham khảo behavior của button 'Hủy đặt phòng' của component:  /components/history-card.component.ts,
          * nếu user chọn OK, gọi API remove favorite, sau khi remove, update this.isFavorite = false;
          */
+        if (this.authService.isAuthenticated === false) {
+            this.checkLogin();
+        } else {
+            this.successRemove()
+        }
+    }
+
+    async successRemove() {
         const alert = await this.alertCtrl.create({
             header: this.txt.alertHeader,
             message: this.txt.alertMessage,
@@ -110,31 +146,7 @@ export class GoFavoriteBtn implements OnInit {
          * sau khi remove, update this.isFavorite = true;
          */
         if (this.authService.isAuthenticated === false) {
-            const alert = await this.alertCtrl.create({
-                header: this.txt.alertHeader,
-                message: this.txt.alertMessageAdd,
-                mode: 'md',
-                buttons: [
-                    {
-                        text: this.txt.alertLogin,
-                        role: 'login',
-                        handler: () => {
-                            this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
-                                queryParams: {
-                                    returnUrl: this.router.url || '/'
-                                },
-                            });
-                        }
-                    },
-                    {
-                        text: this.txt.alertCancelBtn,
-                        role: 'cancel',
-                        handler: () => {
-                        }
-                    },
-                ]
-            });
-            await alert.present();
+            this.checkLogin();
         } else {
             this.addFavorite()
         }
