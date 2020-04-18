@@ -24,7 +24,7 @@ export class ChangePasswordPage implements OnInit {
 
     mode = this.RESET_MODE;
     isMobile = window.innerWidth < 767;
-
+    resetPendingEmailAddress: string;
     constructor(private toastCtrl: ToastController,
                 private router: Router) {
     }
@@ -32,7 +32,9 @@ export class ChangePasswordPage implements OnInit {
     ngOnInit() {
     }
 
-    emailSent() {
+    emailSent(payload) {
+        this.resetPendingEmailAddress = payload;
+        console.log(payload);
         this.mode = this.CONFIRM_MODE;
     }
 

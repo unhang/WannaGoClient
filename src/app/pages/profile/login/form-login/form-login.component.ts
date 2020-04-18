@@ -71,10 +71,15 @@ export class GoFormLoginComponent implements OnInit {
                 this.loadEl.dismiss();
 
                 if (this.route.snapshot.queryParams['returnUrl']) {
-                    this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl']);
+                    this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'])
+                        .then(() => {
+                            location.reload();
+                        });
                 } else {
-                    this.router.navigate(['/pages']);
-
+                    this.router.navigate(['/pages'])
+                        .then(() => {
+                            location.reload();
+                        });
                 }
             });
     }

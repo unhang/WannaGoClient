@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {RouterModule} from '@angular/router';
-import {FormsModule} from '@angular/forms';
-import {NzAutocompleteModule, NzDatePickerModule, NzIconModule, NzInputModule, NzSelectModule} from 'ng-zorro-antd';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NzAutocompleteModule, NzButtonModule, NzDatePickerModule, NzIconModule, NzInputModule, NzSelectModule} from 'ng-zorro-antd';
 
 import {GoHeader} from './header/header.component';
 import {GoInput} from './input/input.component';
@@ -14,6 +14,7 @@ import {GoStayCardComponent} from './stay-card/stay-card.component';
 import {GoFooterComponent} from './footer/footer.component';
 import {GoHistoryCard} from './history-card/history-card.component';
 import {GoFavoriteBtn} from './favorite-btn/favorite-btn.component';
+import {GoSignIn} from './sign-in/sign-in.component';
 
 
 
@@ -27,18 +28,21 @@ import {GoFavoriteBtn} from './favorite-btn/favorite-btn.component';
         GoStayCardComponent,
         GoFooterComponent,
         GoHistoryCard,
-        GoFavoriteBtn
+        GoFavoriteBtn,
+        GoSignIn,
     ],
     imports: [
         CommonModule,
         IonicModule,
         RouterModule,
         FormsModule,
+        ReactiveFormsModule,
         NzDatePickerModule,
         NzSelectModule,
         NzAutocompleteModule,
         NzInputModule,
         NzIconModule,
+        NzButtonModule
     ],
     exports: [
         GoHeader,
@@ -49,7 +53,8 @@ import {GoFavoriteBtn} from './favorite-btn/favorite-btn.component';
         GoStayCardComponent,
         GoFooterComponent,
         GoHistoryCard,
-        GoFavoriteBtn
+        GoFavoriteBtn,
+        GoSignIn,
     ]
 })
 export class ComponentModule {
