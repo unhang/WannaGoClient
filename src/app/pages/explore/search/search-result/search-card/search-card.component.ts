@@ -13,6 +13,7 @@ export class SearchCardComponent implements OnInit, OnChanges {
     isMobile = window.innerWidth < 767;
     slicePoint = this.isMobile ? 33 : 24;
     @Input() stay: StayDetail;
+    @Input() favorites: any;
 
     topSlideOpts: any = {
         preloadImages: true,

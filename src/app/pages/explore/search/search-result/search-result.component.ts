@@ -9,6 +9,7 @@ import {StayDetail} from 'src/swagger';
 export class SearchResultComponent implements OnInit {
 
     @Input() stays: StayDetail [] = [];
+    @Input() favorites: any;
     @Input() onLoading = true;
 
     constructor() {
@@ -16,6 +17,4 @@ export class SearchResultComponent implements OnInit {
 
     ngOnInit() {
     }
-
-
 }

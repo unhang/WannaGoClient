@@ -11,6 +11,7 @@
                [hasSearch]="true"
                [styles]="[headerStyle.sticky]"></go-header>
     <app-search-result [stays]="stays? stays.result : []"
+                       [favorites]="favorites? favorites : []"
                        [onLoading]="onLoading"></app-search-result>
     <ion-grid class="ion-no-padding" fixed="true">
         <ion-row>

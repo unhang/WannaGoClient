@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HeaderStyle} from 'src/app/constant/HeaderStyle';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {StaySearch, StayService} from '../../../../swagger';
+import {StaySearch, StayService, UserInfo} from '../../../../swagger';
 import {IonContent} from '@ionic/angular';
-
+import {AuthService} from '../../../services/auth.service';
 @Component({
     selector: 'app-search',
     templateUrl: './search.page.html',
@@ -25,13 +25,16 @@ export class SearchPage implements OnInit {
     stays: StaySearch;
     totals: number;
     pageView = 1;
+    favorites: any;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private stayService: StayService) {
+                private stayService: StayService,
+                private authService: AuthService) {
     }
 
     ngOnInit() {
+        this.getFavorite();
     }
 
     ionViewDidEnter() {
@@ -62,6 +65,24 @@ export class SearchPage implements OnInit {
             .subscribe((result: StaySearch) => {
                 this.stays = result;
                 this.onLoading = false;
+            });
+    }
+
+    getFavorite() {
+        if (this.authService.isAuthenticated === false) {
+            this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
+                queryParams: {
+                    returnUrl: this.router.url || '/'
+                },
+            });
+        }
+
+        const userInfo: UserInfo = this.authService.getUserInfo();
+
+        this.stayService.getFavorite(userInfo.userId)
+            .subscribe(res => {
+                this.favorites = res;
+                console.log(this.favorites);
             });
     }
 }

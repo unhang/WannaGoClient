@@ -11,6 +11,7 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class GoFavoriteBtn implements OnInit {
     @Input() stayId: number;
+    @Input() favorites: any;
 
     isFavorite: boolean;
     favoriteId: number;
@@ -24,7 +25,7 @@ export class GoFavoriteBtn implements OnInit {
         actionBtn1: 'Payment',
         actionBtn2: 'Cancel this booking',
         alertHeader: 'Alert',
-        alertMessageRemove: 'Are you sure to remove favorite?',
+        alertMessage: 'Are you sure to remove favorite?',
         alertCancelBtn: 'Cancel'
     };
     textVn: any = {
@@ -35,7 +36,7 @@ export class GoFavoriteBtn implements OnInit {
         actionBtn1: 'Thanh toán',
         actionBtn2: 'Xóa đặt phòng',
         alertHeader: 'Thông báo',
-        alertMessageRemove: 'Bạn xác nhận hủy yêu thích?',
+        alertMessage: 'Bạn xác nhận hủy yêu thích?',
         alertCancelBtn: 'Thoát'
     };
     txt = this.lang === 'en' ? this.textEn : this.textVn;
@@ -52,24 +53,11 @@ export class GoFavoriteBtn implements OnInit {
     }
 
     checkFavorite() {
-        if (this.authService.isAuthenticated === false) {
-            this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
-                queryParams: {
-                    returnUrl: this.router.url || '/'
-                },
-            });
+        if (this.favorites.find(el => el.stayId === this.stayId)) {
+            this.isFavorite = true;
+        } else {
+            this.isFavorite = false;
         }
-
-        const userInfo: UserInfo = this.authService.getUserInfo();
-
-        this.stayService.getFavorite(userInfo.userId)
-            .subscribe(res => {
-                if (res.find(el => el.stayId === this.stayId)) {
-                    this.isFavorite = true;
-                } else {
-                    this.isFavorite = false;
-                }
-            });
     }
 
     toggleFav() {

@@ -35,7 +35,7 @@ import { Configuration }                                     from '../configurat
 })
 export class StayService {
 
-    protected basePath = 'https://virtadserver.swaggerhub.com/unhang/WannaGo/1.0.0';
+    protected basePath = 'https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
