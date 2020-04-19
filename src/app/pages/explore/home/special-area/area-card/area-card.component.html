@@ -8,7 +8,7 @@
     </ion-text>
     <ion-text class="price">
       <div>{{ text.avgPrice }}</div>
-      <span class="numPrice">{{place.averagePrice}} {{text.unitPrice}}</span>
+      <span class="numPrice">{{place.averagePrice | currency:'VND'}} </span>
     </ion-text>
   </ion-card-content>
 </ion-card>

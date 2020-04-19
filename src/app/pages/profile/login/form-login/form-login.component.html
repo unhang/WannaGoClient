@@ -13,7 +13,7 @@
     </ion-col>
     <ion-col size="12">
         <ion-item>
-            <ion-input formControlName="password" type="password" placeholder="{{ text.plpassword }}"></ion-input>
+            <ion-input (keypress)='eventHandler($event)' formControlName="password" type="password" placeholder="{{ text.plpassword }}"></ion-input>
         </ion-item>
     </ion-col>
 </ion-row>
