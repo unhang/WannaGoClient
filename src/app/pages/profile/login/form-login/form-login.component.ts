@@ -50,6 +50,20 @@ export class GoFormLoginComponent implements OnInit {
 
     ngOnInit() {
     }
+    
+    async eventHandler(event){
+        if(event.keyCode==13){
+            this.loadEl = await this.loadCtrl.create(this.spinnerOptService.createOpts());
+            await this.loadEl.present();
+    
+            const signIn: SignIn = {...this.loginForm.value};
+            this.userService.signIn(signIn).subscribe((accessToken: AccessToken) => {
+                this.authService.setAccessToken(accessToken.accessToken);
+                this.getUserInfo();
+            });
+        }
+       
+    }
 
     async signIn() {
         this.loadEl = await this.loadCtrl.create(this.spinnerOptService.createOpts());
