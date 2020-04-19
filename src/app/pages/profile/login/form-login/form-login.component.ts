@@ -65,9 +65,7 @@ export class GoFormLoginComponent implements OnInit {
     getUserInfo() {
         this.userService.getUserInfo()
             .subscribe((userInfo: UserInfo) => {
-                console.log(userInfo);
                 this.authService.setUserInfo(userInfo);
-                console.log(this.authService.getUserInfo());
                 this.loadEl.dismiss();
 
                 if (this.route.snapshot.queryParams['returnUrl']) {

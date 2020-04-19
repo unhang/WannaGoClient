@@ -34,7 +34,6 @@ export class ChangePasswordPage implements OnInit {
 
     emailSent(payload) {
         this.resetPendingEmailAddress = payload;
-        console.log(payload);
         this.mode = this.CONFIRM_MODE;
     }
 

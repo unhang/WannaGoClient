@@ -39,6 +39,5 @@ export class GoTypeCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    // console.log(this.sliceTypes);
   }
 }

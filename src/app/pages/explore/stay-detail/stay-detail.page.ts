@@ -3,10 +3,11 @@ import {HeaderStyle} from '../../../constant/HeaderStyle';
 import {Booking, BookingService, CommentDetail, HostInfo, HostService, StayDetail, StayService, UserInfo} from '../../../../swagger';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
-import {LoadingController, NavController} from '@ionic/angular';
+import {LoadingController, ModalController, NavController} from '@ionic/angular';
 import {SpinnerOptService} from '../../../services/spinner-opt.service';
 import {NightCountService} from '../../../services/night-count.service';
 import {TabBarService} from '../../../services/tab-bar.service';
+import {GoSignIn} from '../../../components/sign-in/sign-in.component';
 
 @Component({
     selector: 'app-stay-detail',
@@ -44,6 +45,7 @@ export class StayDetailPage implements OnInit {
                 private tabBarService: TabBarService,
                 private spinnerOptService: SpinnerOptService,
                 private navCtrl: NavController,
+                private modalCtrl: ModalController,
                 private bookingService: BookingService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
         this.stayId = +this.route.snapshot.params['id'];
@@ -104,12 +106,17 @@ export class StayDetailPage implements OnInit {
     }
 
     async goToBookingInfo() {
+        const modal = await this.modalCtrl.create({
+            component: GoSignIn,
+            cssClass: 'custom-modal'
+        });
+        let modalDismissed;
         if (this.authService.isAuthenticated === false) {
-            this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
-                queryParams: {
-                    returnUrl: this.router.url || '/'
-                },
-            });
+            await modal.present();
+            modalDismissed = await modal.onDidDismiss().then(res => res);
+            if (!modalDismissed.data['succeeded']) {
+                return;
+            }
         }
 
         await this.loadEl.present();

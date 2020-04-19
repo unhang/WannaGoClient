@@ -13,3 +13,22 @@ ion-card {
     color: black;
   }
 }
+
+
+ion-modal {
+  .custom-modal {
+    @media only screen and(min-width: 768px) {
+      .modal-wrapper.sc-ion-modal-ios, .modal-shadow.sc-ion-modal-ios {
+        --width: 400px;
+        --height: 240px;
+        min-height: 240px !important;
+        max-height: 240px !important;
+        height: 240px !important;
+      }
+      .sc-ion-modal-ios-h {
+        --min-height: 240px;
+        --max-height: 24px;
+      }
+    }
+  }
+}

@@ -105,7 +105,6 @@ export class PaymentCardComponent implements OnInit, OnChanges {
             this.loadEl.dismiss();
             return;
         }
-        console.log(this.booking);
         this.stripeService.paymentIntent({...this.booking})
             .subscribe(
                 (paymentIntent: PaymentIntent) => {

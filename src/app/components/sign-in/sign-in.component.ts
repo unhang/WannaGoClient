@@ -76,7 +76,9 @@ export class GoSignIn implements OnInit {
     }
 
     succeeded() {
-        this.modalCtrl.dismiss()
+        this.modalCtrl.dismiss({
+            succeeded: true
+        })
             .then(() => {
                 this.loader.dismiss();
                 this.disabledFlg = true;
@@ -85,6 +87,8 @@ export class GoSignIn implements OnInit {
     }
 
     cancel() {
-        this.modalCtrl.dismiss();
+        this.modalCtrl.dismiss({
+            succeeded: false
+        });
     }
 }

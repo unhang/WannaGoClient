@@ -39,7 +39,6 @@ export class GoSlicesTypeComponent implements OnInit {
     this.stayService.getSlicesByType(this.lang)
         .subscribe((res: StayByTypeArray) => {
           this.sliceTypes = this.mockDataService.multiply<StayByType>(res, 10);
-          // console.log(this.sliceTypes);
         });
   }
 

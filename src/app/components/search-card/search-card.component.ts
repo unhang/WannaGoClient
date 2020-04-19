@@ -132,7 +132,6 @@ export class GoSearchCard implements OnInit {
 
     disabledDateOfCheckOut = (oldDate: Date): boolean => {
         const currentDate = new Date(this.checkIn.getTime() + (24 * 60 * 60 * 1000));
-        // console.log(this.checkIn + 1)
         return differenceInCalendarDays(oldDate, currentDate) < 0;
     }
 }

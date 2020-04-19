@@ -8,7 +8,7 @@ import {StayDetail} from '../../../swagger';
 })
 export class GoStayCardComponent implements OnInit {
 
-  @Input() stay: StayDetail
+  @Input() stay: StayDetail;
 
   constructor() { }
 

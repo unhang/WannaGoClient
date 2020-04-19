@@ -59,7 +59,6 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
     }
 
     resetNavRoot() {
-        // this.navCtrl.pop
         this.navCtrl.navigateRoot('/pages/tabs/explore/home');
     }
 }
