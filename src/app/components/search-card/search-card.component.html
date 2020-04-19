@@ -30,11 +30,11 @@
                             <ion-text>{{ text.checkIn }}</ion-text>
                         </ion-label>
                         <nz-date-picker [(ngModel)]="checkIn"
-                                        [nzDisabledDate]="disabledDate"
-                                        readOnly="true"
-                                        nzSize='large'
-                                        nzFormat="dd/MM/yyyy"
-                                        nzPlaceHolder=""></nz-date-picker>
+                                        [nzDisabledDate]="disabledDateOfCheckIn"
+                                        nzSize="large"
+                                        nzPlaceHolder=""
+                                        [nzShowToday]="false"
+                                        nzFormat="dd/MM/yyyy"></nz-date-picker>
                     </ion-item>
                 </ion-col>
                 <ion-col size="6">
@@ -43,11 +43,11 @@
                             <ion-text>{{ text.checkOut }}</ion-text>
                         </ion-label>
                         <nz-date-picker [(ngModel)]="checkOut"
-                                        [nzDisabledDate]="disabledDate"
-                                        readOnly="true"
-                                        nzSize='large'
-                                        nzFormat="dd/MM/yyyy"
-                                        nzPlaceHolder=""></nz-date-picker>
+                                        [nzDisabledDate]="disabledDateOfCheckOut"
+                                        nzSize="large"
+                                        nzPlaceHolder=""
+                                        [nzShowToday]="false"
+                                        nzFormat="dd/MM/yyyy"></nz-date-picker>
                     </ion-item>
                 </ion-col>
             </ion-row>

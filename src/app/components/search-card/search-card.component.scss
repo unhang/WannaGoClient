@@ -1,11 +1,11 @@
 ion-card.search-card {
   border-radius: 4px;
-  transition: ease-in-out all .3s;
+  //transition: ease-in-out all .3s;
   padding: 1rem;
 
   &:hover, &:active {
     box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.3);
-    transform: translate(0, -5px);
+    //transform: translate(0, -5px);
   }
 
   @media screen and (max-width: 767px) {

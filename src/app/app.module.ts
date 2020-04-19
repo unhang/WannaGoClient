@@ -7,14 +7,14 @@ import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 
-import {en_US, NgZorroAntdModule, NZ_I18N} from 'ng-zorro-antd';
+import {en_US, NZ_I18N} from 'ng-zorro-antd';
 import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
 import {environment} from '../environments/environment';
-import {BASE_PATH, Configuration, ConfigurationParameters, UserService,} from 'src/swagger';
+import {BASE_PATH, Configuration, ConfigurationParameters, UserService} from 'src/swagger';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MockDataService} from './service/mock-data.service';
 import {ComponentModule} from './components/component.module';
@@ -33,7 +33,6 @@ registerLocaleData(en);
             mode: 'ios',
             backButtonText: '',
         }),
-        // NgZorroAntdModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,

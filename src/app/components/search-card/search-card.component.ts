@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import * as dateFn from 'date-fns';
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 import {Router} from '@angular/router';
 import * as cities from './cities.data';
 
@@ -39,6 +39,7 @@ export class GoSearchCard implements OnInit {
 
     checkIn: Date;
     checkOut: Date;
+    today = new Date();
     guestCount: number;
 
     citiesData = cities.cities;
@@ -94,6 +95,7 @@ export class GoSearchCard implements OnInit {
                     check_in: this.convertDate(this.checkIn),
                     check_out: this.convertDate(this.checkOut),
                     guest_count: this.guestCount,
+                    page: 1
                 }
             }
         );
@@ -123,8 +125,14 @@ export class GoSearchCard implements OnInit {
             inputDate.getFullYear();
     }
 
-    disabledDate(current: Date): boolean {
-        const comparedDate = this.checkIn ? this.checkIn : new Date();
-        return dateFn.differenceInCalendarDays(current, comparedDate) < 0;
+    disabledDateOfCheckIn = (oldDate: Date): boolean =>{
+        const currentDate = new Date();
+        return differenceInCalendarDays(oldDate, currentDate) < 0;
+    }
+
+    disabledDateOfCheckOut = (oldDate: Date): boolean => {
+        const currentDate = new Date(this.checkIn.getTime() + (24 * 60 * 60 * 1000));
+        // console.log(this.checkIn + 1)
+        return differenceInCalendarDays(oldDate, currentDate) < 0;
     }
 }

@@ -25,7 +25,6 @@ export class SearchPage implements OnInit {
     page: number;
     stays: StaySearch;
     totals: number;
-    pageView = 1;
     favorites: any;
 
     constructor(private route: ActivatedRoute,
@@ -41,16 +40,21 @@ export class SearchPage implements OnInit {
     ionViewDidEnter() {
         this.route.queryParamMap
             .subscribe((queryParam: ParamMap) => {
-                this.getStay(queryParam);
+                this.setQuery(queryParam);
+                this.getStay();
             });
     }
 
-    getStay(queryParam: ParamMap) {
+    setQuery(queryParam: ParamMap) {
         this.cityId = +queryParam.get('city_id');
         this.checkIn = queryParam.get('check_in');
         this.checkOut = queryParam.get('check_out');
         this.guestCount = +queryParam.get('guest_count');
-        this.stayService.search(this.checkIn, this.checkOut, this.cityId, this.guestCount, this.pageView)
+        this.page = +queryParam.get('page');
+    }
+
+    getStay() {
+        this.stayService.search(this.checkIn, this.checkOut, this.cityId, this.guestCount, this.page)
             .subscribe((result: StaySearch) => {
                 this.stays = result;
                 this.totals = result.totalCount;
@@ -61,12 +65,15 @@ export class SearchPage implements OnInit {
     async getPanigation(numPage) {
         this.onLoading = true;
         await this.searchContent.scrollToTop(500);
-        this.pageView = numPage;
-        this.stayService.search(this.checkIn, this.checkOut, this.cityId, this.guestCount, this.pageView)
-            .subscribe((result: StaySearch) => {
-                this.stays = result;
-                this.onLoading = false;
-            });
+        this.page = numPage;
+        this.router.navigate(['/pages', 'tabs', 'explore', 'search'],
+            {
+                relativeTo: this.route,
+                queryParams: {page: this.page},
+                queryParamsHandling: 'merge'
+            }
+        );
+        this.getStay();
     }
 
     getFavorite() {
