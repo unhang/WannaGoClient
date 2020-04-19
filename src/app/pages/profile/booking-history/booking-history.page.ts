@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderStyle} from '../../../constant/HeaderStyle';
-import {BookingHistory, BookingService} from '../../../../swagger';
+import {Booking, BookingService} from '../../../../swagger';
 import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
+import {LoadingController} from '@ionic/angular';
+import {SpinnerOptService} from '../../../services/spinner-opt.service';
 
 @Component({
     selector: 'app-booking-history',
@@ -48,19 +51,41 @@ export class BookingHistoryPage implements OnInit {
     };
     text: any = {};
 
-    bookingHistory: BookingHistory[] = [];
+    allBooking: Booking[] = [];
+    isMobile = window.innerWidth < 767;
 
-    constructor(private bookingService: BookingService,
-                private authService: AuthService) {
+    load: any;
+
+    constructor(private router: Router,
+                private loadCtrl: LoadingController,
+                private spinnerOptService: SpinnerOptService,
+                private authService: AuthService,
+                private bookingService: BookingService) {
         this.text = this.lang === 'ev' ? this.textEn : this.textVn;
     }
 
+
     ngOnInit() {
-        this.bookingService.getBookingHistory(this.authService.getUserInfo().userId)
-            .subscribe((bookingHistory: BookingHistory[]) => {
-                this.bookingHistory = bookingHistory;
-                console.table(this.bookingHistory);
+
+    }
+
+    ionViewDidEnter() {
+        this.loadCtrl.create(this.spinnerOptService.createOpts())
+            .then(loadEl => {
+                loadEl.present()
+                    .then(() => {
+                        this.bookingService.getAllBookedList(this.authService.getUserInfo().userId)
+                            .subscribe((allBooking: Booking[]) => {
+                                this.allBooking = allBooking;
+                                console.table(this.allBooking);
+                                loadEl.dismiss();
+                            });
+                    });
             });
+    }
+
+    goToStayDetail(stayId: number) {
+        this.router.navigate(['/pages', 'tabs', 'explore', stayId, 'stay']);
     }
 
 }

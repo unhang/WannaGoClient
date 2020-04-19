@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { GoServiceComponent } from './go-service.component';
+import { GoService } from './go-service.component';
 
-describe('GoServiceComponent', () => {
-  let component: GoServiceComponent;
-  let fixture: ComponentFixture<GoServiceComponent>;
+describe('GoService', () => {
+  let component: GoService;
+  let fixture: ComponentFixture<GoService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GoServiceComponent ],
+      declarations: [ GoService ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GoServiceComponent);
+    fixture = TestBed.createComponent(GoService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

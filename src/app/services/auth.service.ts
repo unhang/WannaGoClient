@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UserInfo} from '../../swagger';
+import {Router} from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,7 @@ export class AuthService {
     private userInfo: UserInfo = {...JSON.parse(localStorage.getItem('user'))};
     isAuthenticated: boolean;
 
-    constructor() {
+    constructor(private router: Router) {
         this.isAuthenticated = this.accessToken ? true : false;
     }
 
@@ -43,6 +44,7 @@ export class AuthService {
         this.isAuthenticated = false;
         localStorage.removeItem('accessToken');
         localStorage.removeItem('user');
-        window.location.reload();
+        this.router.navigate(['/pages', 'tabs', 'explore', 'home'])
+            .then(() => window.location.reload());
     }
 }

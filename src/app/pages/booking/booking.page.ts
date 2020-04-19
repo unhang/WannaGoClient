@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Booking, BookingService} from '../../../swagger';
 import {AuthService} from '../../services/auth.service';
 import {HeaderStyle} from '../../constant/HeaderStyle';
-import {NavController} from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
-import { GoSignIn } from '../../components/sign-in/sign-in.component';
+import {ModalController} from '@ionic/angular';
+import {GoSignIn} from '../../components/sign-in/sign-in.component';
+
 @Component({
     selector: 'app-booking',
     templateUrl: './booking.page.html',
@@ -62,7 +62,7 @@ export class BookingPage implements OnInit {
         const modal = await this.modalController.create({
             component: GoSignIn  // Modal cần show
         });
-        return await modal.present();
+        await modal.present();
     }
     // End Xử lí chưa đăng nhập
 }

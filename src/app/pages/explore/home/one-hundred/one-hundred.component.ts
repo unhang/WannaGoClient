@@ -26,18 +26,18 @@ export class GoOneHundredComponent implements OnInit {
     text: any = {};
     stays: StayDetail [] = [];
     topSlideOpts: any = {
-        slidesPerView: 5,
-        pagination: false,
+        slidesPerView: 3.5,
+        pagination: true,
         breakpoints: {
             // when window width is <= 320px
             320: {
-                slidesPerView: 1,
+                slidesPerView: 1.5,
                 spaceBetween: 10,
                 pagination: true
             },
             // when window width is <= 480px
             480: {
-                slidesPerView: 1,
+                slidesPerView: 1.5,
                 spaceBetween: 20,
                 pagination: true,
             },
@@ -45,7 +45,7 @@ export class GoOneHundredComponent implements OnInit {
             980: {
                 slidesPerView: 3
             }
-        }
+        },
     };
 
     constructor(private router: Router,
@@ -56,16 +56,14 @@ export class GoOneHundredComponent implements OnInit {
     ngOnInit() {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
         // TODO: viet api cho component này
-        // this.stayService.ge
-        // setTimeout(() => {
-        //     this.stayService.search('01-05-2020', '31-05-2020', 79, 12, 1, 'vn')
-        //         .subscribe((res)) => {
-        //             this.stays = res);
-        //         });
-        // }, 500);
+        setTimeout(() => {
+            this.stayService.getStayHot(this.lang).subscribe((res: StayDetail[]) => {
+                this.stays = res;
+            });
+        }, 500);
     }
 
     goToStayDetail(stayId: number) {
-        this.router.navigate(['/explore', stayId, 'stay']);
+        this.router.navigate(['/pages', 'tabs', 'explore', stayId, 'stay']);
     }
 }

@@ -1,28 +1,28 @@
 <ion-card>
-  <img [src]="stay.imgUrls[0]" alt="">
-  <ion-card-header>
-    <ion-card-subtitle color="primary">
-      {{stay.stayTypeName}}
-    </ion-card-subtitle>
-    <ion-card-title>
-      {{stay.stayName}}
-    </ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
+    <img [src]="stay.imgUrls[0]" alt="">
+    <ion-card-header>
+        <ion-card-subtitle color="primary">
+            {{stay.stayTypeName}}
+        </ion-card-subtitle>
+        <ion-card-title>
+            <ion-text color="primary">{{stay.stayName.slice(0, 25)}}</ion-text>
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
 
-    <ion-text class="">
-      <h6>{{stay.price | currency}}</h6>
-    </ion-text>
-    <ion-text>
-      <h6>Sao nè: {{stay.rate}} bình luận: {{stay.ratingCount}}</h6>
-    </ion-text>
-    <ion-text>
-      <p>
-        {{stay.guestCount + ' khách・' + stay.bedCount + ' phòng・' + stay.bathCount + ' phòng tắm '}}
-      </p>
-    </ion-text>
-    <ion-text>
-      <h5>{{stay.district}}, {{stay.city}}</h5>
-    </ion-text>
-  </ion-card-content>
+        <ion-text class="">
+            <h6>{{stay.price | currency:'VND'}}</h6>
+        </ion-text>
+        <ion-text>
+            <h6>Sao nè: {{stay.rate}} bình luận: {{stay.ratingCount}}</h6>
+        </ion-text>
+        <ion-text>
+            <p>
+                {{stay.guestCount + ' khách・' + stay.bedCount + ' phòng・' + stay.bathCount + ' phòng tắm '}}
+            </p>
+        </ion-text>
+<!--        <ion-text>-->
+<!--            <h5>{{stay.district}}, {{stay.city}}</h5>-->
+<!--        </ion-text>-->
+    </ion-card-content>
 </ion-card>

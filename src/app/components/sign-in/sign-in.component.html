@@ -1,39 +1,42 @@
-<div class="form" [formGroup]="signInForm">
-    <div class="form__header">
-        <span>{{text.header}}</span>
-    </div>
-    <div class="form__input">
-        <label>{{text.emailAddress}}:</label>
-        <nz-input-group [nzSuffix]="suffixUser">
-            <input nz-input
-                   type="email"
-                   formControlName="emailAddress">
-            <ng-template #suffixUser>
-                <i nz-icon nzType="user"></i>
-            </ng-template>
-        </nz-input-group>
-    </div>
-    <div class="form__input">
-        <label>{{text.password}}:</label>
-        <nz-input-group [nzSuffix]="suffixEye">
-            <input nz-input
-                   [type]="passwordFlg ? 'password' : 'text'"
-                   formControlName="password">
-            <ng-template #suffixEye>
-                <i nz-icon [nzType]="passwordFlg ? 'eye-invisible' : 'eye'"
-                   (click)="passwordFlg = !passwordFlg"></i>
-            </ng-template>
-        </nz-input-group>
+<div class="container">
+    <div class="form" [formGroup]="signInForm">
+        <div class="form__header">
+            <span>{{text.header}}</span>
+        </div>
+        <div class="form__input">
+            <label>{{text.emailAddress}}:</label>
+            <nz-input-group [nzSuffix]="suffixUser">
+                <input nz-input
+                       type="email"
+                       formControlName="emailAddress">
+                <ng-template #suffixUser>
+                    <i nz-icon nzType="user"></i>
+                </ng-template>
+            </nz-input-group>
+        </div>
+        <div class="form__input">
+            <label>{{text.password}}:</label>
+            <nz-input-group [nzSuffix]="suffixEye">
+                <input nz-input
+                       [type]="passwordFlg ? 'password' : 'text'"
+                       formControlName="password">
+                <ng-template #suffixEye>
+                    <i nz-icon [nzType]="passwordFlg ? 'eye-invisible' : 'eye'"
+                       (click)="passwordFlg = !passwordFlg"></i>
+                </ng-template>
+            </nz-input-group>
+        </div>
+
+        <div class="form__actions">
+            <div>
+                <button nz-button (click)="cancel()">{{text.btn1}}</button>
+            </div>
+            <div>
+                <button nz-button nzType="primary"
+                        [disabled]="signInForm.invalid || disabledFlg"
+                        (click)="submit()">{{text.btn2}}</button>
+            </div>
+        </div>
     </div>
 
-    <div class="form__actions">
-        <div>
-            <button nz-button>{{text.btn1}}</button>
-        </div>
-        <div>
-            <button nz-button nzType="primary"
-                    [disabled]="signInForm.invalid || disabledFlg"
-                    (click)="submit()">{{text.btn2}}</button>
-        </div>
-    </div>
 </div>

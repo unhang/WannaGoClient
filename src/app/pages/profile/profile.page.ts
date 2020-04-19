@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderStyle} from '../../constant/HeaderStyle';
+import {AuthService} from '../../services/auth.service';
+import {ModalController} from '@ionic/angular';
+import {GoSignIn} from '../../components/sign-in/sign-in.component';
 
 @Component({
     selector: 'app-profile',
@@ -11,17 +14,31 @@ export class ProfilePage implements OnInit {
     isMobile = window.innerWidth < 767;
     lang = localStorage.getItem('lang');
     textEn: any = {
-        title: 'User Info'
+        title: 'User Info',
+        loginBtn: 'Sign in',
+        noLogin: 'Please login to access this feature'
     };
     textVn: any = {
-        title: 'Thông tin người dùng'
+        title: 'Thông tin người dùng',
+        loginBtn: 'Đăng nhập',
+        noLogin: 'Xin hãy đăng nhập'
     };
     text = this.lang === 'en' ? this.textEn : this.textVn;
 
-    constructor() {
+    isLogin = this.authService.isAuthenticated;
+
+    constructor(private authService: AuthService,
+                private modalCtrl: ModalController) {
     }
 
     ngOnInit() {
+    }
+
+    async presentModal() {
+        const modal = await this.modalCtrl.create({
+            component: GoSignIn
+        });
+        modal.present();
     }
 
 }

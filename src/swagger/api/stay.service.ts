@@ -311,6 +311,50 @@ export class StayService {
     }
 
     /**
+     * getStayHot()
+     * Lấy 10 địa điểm nôi bật nhất
+     * @param lang Ngôn ngữ（vn） - vn - en 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getStayHot(lang?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<StayDetail>>;
+    public getStayHot(lang?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<StayDetail>>>;
+    public getStayHot(lang?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<StayDetail>>>;
+    public getStayHot(lang?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (lang !== undefined && lang !== null) {
+            queryParameters = queryParameters.set('lang', <any>lang);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<StayDetail>>('get',`${this.basePath}/api/stay/get-stay-hot`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * postStayComment()
      * post comment
      * @param body Thông tin post của comment

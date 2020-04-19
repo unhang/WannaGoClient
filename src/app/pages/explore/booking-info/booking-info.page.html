@@ -1,7 +1,10 @@
 <ion-header *ngIf="isMobile">
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
+            <ion-button slot="icon-only"
+                        (click)="goBack()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-button>
         </ion-buttons>
         <ion-title>{{step === 1 ? text.step1Text : text.step2Text}}</ion-title>
         <ion-buttons slot="end">

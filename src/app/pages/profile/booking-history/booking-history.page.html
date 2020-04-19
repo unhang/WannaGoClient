@@ -10,73 +10,50 @@
 </ion-header>
 <ion-content>
     <go-header [hasSearch]="true"
-               class="ion-hide-sm-down"
+               *ngIf="!isMobile"
                [styles]="[headerStyle.sticky]"></go-header>
     <div class="ion-padding-top">
-        <ion-grid class="ion-padding-top" fixed="true">
-            <ion-row class="ion-margin-top">
-                <ion-col size-md="8">
-                    <ion-card class="ion-no-margin">
-                        <ion-card-header><h1 class="ion-hide-sm-down">{{text.header}}</h1></ion-card-header>
-                        <ion-card-content>
-                            <div class="box-stay-details">
-                                <ion-row class="ion-margin-bottom">
-                                    <ion-col size="12"><h2 class="title-stay active">Ngày 21/02/2020 - 2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</h2></ion-col>
-                                    <ion-col size="12" size-md="6">
-                                        <ion-row>
-                                            <ion-col size="12">
-                                                <ion-item>
-                                                    <ion-label class="label-font-size" position="floating">
-                                                        {{ text.numCustomers }}
-                                                    </ion-label>
-                                                    <ion-input type="number" placeholder="{{ text.numCustomers }}"></ion-input>
-                                                </ion-item>
-                                            </ion-col>
-                                        </ion-row>
-                                        <ion-row>
-                                            <ion-col size="12">
-                                                <div class="titleMin">
-                                                    <h4><ion-text>{{text.time}}</ion-text></h4>
-                                                </div>
-                                            </ion-col>
-                                            <ion-col size="12" size-md="6">
-                                                <ion-card class="date-booking go-no-shadow">
-                                                    <div class="card-text">{{text.startDateBookinng}}</div>
-                                                    <span>21/02/2020</span>
-                                                    <div class="card-text">Thứ 6</div>
-                                                </ion-card>
-                                            </ion-col>
-                                            <ion-col size="12" size-md="6">
-                                                <ion-card class="date-booking go-no-shadow">
-                                                    <div class="card-text">{{text.endDateBookinng}}</div>
-                                                    <span>21/02/2020</span>
-                                                    <div class="card-text">Thứ 6</div>
-                                                </ion-card>
-                                            </ion-col>
-                                        </ion-row>
-                                    </ion-col>
-                                    <ion-col size="12" size-md="6">
-                                        <h4><ion-text>{{text.step13Text}}</ion-text></h4>
-                                        <div class="box-description">Địa điểm: Ngũ Hành Sơn, Đà Nẵng</div>
-                                        <div class="box-img">
-                                            <img src="https://www.tranduythien.net/wp-content/uploads/2020/02/090ab768-d4fe-40ae-b84d-c828fb4dfa36.jpg" alt="">
-                                        </div>
-                                    </ion-col>
-                                </ion-row>
-                            </div>
-                            <div class="box-stay-details">
-                                <ion-row><ion-col size="12"><h2 class="title-stay">Ngày 21/02/2020 - 2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</h2></ion-col></ion-row>
-                            </div>
-                            <div class="box-stay-details">
-                                <ion-row><ion-col size="12"><h2 class="title-stay">Ngày 21/02/2020 - 2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</h2></ion-col></ion-row>
-                            </div>
-                            <div class="box-stay-details">
-                                <ion-row><ion-col size="12"><h2 class="title-stay">Ngày 21/02/2020 - 2 đêm tại S. CAMELLIA 2 _ Managed by SONG CAT HOME</h2></ion-col></ion-row>
-                            </div>
-                        </ion-card-content>
+        <ion-grid class="" fixed="true">
+            <ion-row>
+                <ion-col sizeMd="8">
+                    <ion-card *ngIf="!isMobile"
+                              class="ion-no-margin">
+                        <ion-card-header>
+                            <ion-text>{{text.header}}</ion-text>
+                        </ion-card-header>
                     </ion-card>
+
+                    <div class="booking-card"
+                         *ngFor="let booking of allBooking">
+                        <div class="booking-card__status">
+                            <div>
+                                <ion-text [color]="booking.status ==='succeeded' ? 'success' : 'danger'">{{booking.status}}</ion-text>
+                            </div>
+                        </div>
+                        <div class="booking-card__content">
+                            <div class="booking-card__content__items date">
+                                <div>{{booking.checkIn.split('-').join('/')}}-{{booking.checkOut.split('-').join('/')}}</div>
+                            </div>
+                            <div class="booking-card__content__items stay-name">
+                                <div>{{booking.stayName}}</div>
+                            </div>
+                            <div class="booking-card__content__items flex">
+                                <div class="flex__item">
+                                    <span class="bolder">{{'Số khách: '}}</span>
+                                    <span>{{booking.guestCount}}</span>
+                                </div>
+                                <div class="flex__item">
+                                    <span class="bolder">{{'Tổng tiền: '}}</span>
+                                    <span>{{booking.totalPrice | currency:'VND'}}</span>
+                                </div>
+                            </div>
+                            <div class="booking-card__content__items detail">
+                                <div (click)="goToStayDetail(booking.stayId)">{{'chi tiết'}}</div>
+                            </div>
+                        </div>
+                    </div>
                 </ion-col>
-                <ion-col class="ion-hide-md-down" size-md="3" offset-md="1">
+                <ion-col class="ion-hide-md-down" sizeMd="3" offset-md="1">
                     <ion-button class="ion-margin-bottom no-active-page"
                                 color="medium"
                                 fill="outline"
@@ -87,5 +64,5 @@
             </ion-row>
         </ion-grid>
     </div>
-    <go-footer class="ion-hide-sm-down"></go-footer>
+    <go-footer *ngIf="!isMobile"></go-footer>
 </ion-content>

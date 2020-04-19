@@ -2,10 +2,10 @@
   padding: 1.5rem 0 2.5rem 0;
 
   ion-grid {
-    --ion-grid-column-padding: 15px;
+    --ion-grid-column-padding: 8px;
 
     .title {
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.2rem;
 
       h2 {
         font-weight: 600;
@@ -18,4 +18,15 @@
     }
 
   }
+}
+
+
+.swiper-swrapper {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+ion-slide {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }

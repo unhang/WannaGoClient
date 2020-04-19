@@ -1,22 +1,26 @@
-.form {
-  &__header{
-    font-size: 24px;
-    color: #1e2023;
-    text-align: center;
-  }
-  &__input {
-    margin: 8px 0;
-    &__label {
-      &--error {
-        color: var(--ion-color-danger);
-        font-weight: bold;
+.container {
+  padding: 10px;
+  .form {
+    &__header{
+      font-size: 24px;
+      color: #1e2023;
+      text-align: center;
+    }
+    &__input {
+      margin: 8px 0;
+      &__label {
+        &--error {
+          color: var(--ion-color-danger);
+          font-weight: bold;
+        }
       }
+    }
+
+    &__actions {
+      margin: 8px 0;
+      display: flex;
+      justify-content: space-between;
     }
   }
 
-  &__actions {
-    margin: 8px 0;
-    display: flex;
-    justify-content: space-between;
-  }
 }

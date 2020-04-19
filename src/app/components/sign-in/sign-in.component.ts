@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {UserService} from '../../../swagger';
+import {AccessToken, SignIn, UserInfo, UserService} from '../../../swagger';
+import {LoadingController, ModalController} from '@ionic/angular';
+import {AuthService} from '../../services/auth.service';
+import {SpinnerOptService} from '../../services/spinner-opt.service';
 
 @Component({
     selector: 'go-sign-in',
@@ -35,15 +38,53 @@ export class GoSignIn implements OnInit {
 
     disabledFlg: boolean;
     passwordFlg = true;
+    loader: any;
 
     constructor(private fb: FormBuilder,
+                private spinnerOptService: SpinnerOptService,
+                private loadCtrl: LoadingController,
+                private authService: AuthService,
+                private modalCtrl: ModalController,
                 private userService: UserService) {
     }
 
     ngOnInit() {
     }
 
-    submit() {
+    async submit() {
+        this.loader = await this.loadCtrl.create(this.spinnerOptService.createOpts());
+        this.loader.present();
+        const sigin: SignIn = {
+            ...this.signInForm.value
+        };
         this.disabledFlg = true;
+        this.userService.signIn(sigin).subscribe((accessToken: AccessToken) => {
+            this.setAccessToken(accessToken.accessToken);
+        });
+    }
+
+    setAccessToken(accessToken: string) {
+        this.authService.setAccessToken(accessToken);
+        this.userService.getUserInfo(accessToken).subscribe((userInfo: UserInfo) => {
+            this.setUserInfo(userInfo);
+        });
+    }
+
+    setUserInfo(userInfo: UserInfo) {
+        this.authService.setUserInfo(userInfo);
+        this.succeeded();
+    }
+
+    succeeded() {
+        this.modalCtrl.dismiss()
+            .then(() => {
+                this.loader.dismiss();
+                this.disabledFlg = true;
+                location.reload();
+            });
+    }
+
+    cancel() {
+        this.modalCtrl.dismiss();
     }
 }

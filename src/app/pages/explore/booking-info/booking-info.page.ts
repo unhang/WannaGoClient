@@ -49,4 +49,7 @@ export class BookingInfoPage implements OnInit {
         });
     }
 
+    goBack() {
+        this.navCtrl.back();
+    }
 }

@@ -151,4 +151,8 @@ export class StayDetailPage implements OnInit {
     ionViewDidLeave() {
         this.tabBarService.hideTabBar.next(false);
     }
+
+    goBack() {
+        this.navCtrl.back();
+    }
 }
