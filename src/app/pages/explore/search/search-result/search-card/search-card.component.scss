@@ -6,7 +6,6 @@
 
     &:hover {
       box-shadow: rgba(black, 0.3) 0px 3px 10px;
-      //cursor: pointer;
     }
 
     ion-slides .slide-container {
@@ -79,7 +78,7 @@
         }
 
         &--lineThrough {
-          text-decoration: line-through;
+          text-decoration-line: line-through;
           -webkit-text-decoration-line: line-through;
         }
       }

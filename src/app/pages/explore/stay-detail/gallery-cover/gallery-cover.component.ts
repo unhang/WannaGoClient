@@ -37,6 +37,8 @@ export class GalleryCoverComponent implements OnInit {
         pagination: {
             el: '.swiper-pagination',
             type: 'bullets',
+            bulletClass: 'go-bullet',
+            bulletActiveClass: 'go-bullet-activate',
             dynamicBullets: true,
         },
         coverflowEffect: {

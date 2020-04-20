@@ -36,7 +36,9 @@ export class ProfilePage implements OnInit {
 
     async presentModal() {
         const modal = await this.modalCtrl.create({
-            component: GoSignIn
+            component: GoSignIn,
+            cssClass: 'custom-modal',
+            swipeToClose: true
         });
         modal.present();
     }

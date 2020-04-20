@@ -126,3 +126,36 @@ ion-card {
   display: inline-block;
   border-radius: 50%;
 }
+
+
+.custom-modal .modal-wrapper {
+  --height: 95%;
+  position: absolute;
+  bottom: 0;
+  @media only screen and(min-width: 768px) {
+    --border-radius: 6px;
+    --border-top-left-radius: 6px !important;
+    --border-top-right-radius: 6px !important;
+    border-top-right-radius: 8px !important;
+    top: 20%;
+    --width: 400px !important;
+    --height: 255px !important;
+    min-height: 255px !important;
+    max-height: 255px !important;
+    height: 255px !important;
+    .modal-wrapper.sc-ion-modal-ios, .modal-shadow.sc-ion-modal-ios {
+      --width: 400px !important;
+      --height: 255px !important;
+      min-height: 255px !important;
+      max-height: 255px !important;
+      height: 255px !important;
+    }
+  }
+}
+
+nz-input-group.ant-input-affix-wrapper,
+nz-date-picker.ant-picker,
+button.ant-btn
+{
+  border-radius: 4px;
+}

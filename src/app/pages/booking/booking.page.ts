@@ -60,7 +60,9 @@ export class BookingPage implements OnInit {
     // Start Xử lí chưa đăng nhập
     async presentModal() {
         const modal = await this.modalController.create({
-            component: GoSignIn  // Modal cần show
+            component: GoSignIn,
+            cssClass: 'custom-modal',
+            swipeToClose: true
         });
         await modal.present();
     }

@@ -61,7 +61,9 @@ export class FavoritePage implements OnInit {
     // Start Xử lí chưa đăng nhập
     async presentModal() {
         const modal = await this.modalController.create({
-            component: GoSignIn  // Modal cần show
+            component: GoSignIn,
+            cssClass: 'custom-modal',
+            swipeToClose: true
         });
         return await modal.present();
     }

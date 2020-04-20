@@ -76,37 +76,8 @@ ion-item.search-item {
   }
 }
 
-//.range-picker-label {
-//  font-size: 12px;
-//  font-weight: 800;
-//  color: rgba(44, 47, 52, 0.76);
-//}
-
-//.listCityArr {
-//  height: calc(44px * 3);
-//  overflow-y: scroll;
-//  width: 100%;
-//  position: absolute;
-//  z-index: 99;
-//  padding: 0rem 1rem 1rem;
-//  background: white;
-//  box-shadow: 1px 1px 3px #7d7d7d;
-//}
-//
-//.listCityArr::-webkit-scrollbar {
-//  width: 5px;
-//  background: #0000000d;
-//}
-//
-//.listCityArr::-webkit-scrollbar-thumb {
-//  height: 3px;
-//  background: #ff672a;
-//}
-
-nz-range-picker {
-  border-radius: 4px;
-  height: 40px;
-  padding-right: 8px;
+nz-date-picker {
+  width: 100% !important;
 }
 
 nz-select {

@@ -5,7 +5,7 @@
         </div>
         <div class="form__input">
             <label>{{text.emailAddress}}:</label>
-            <nz-input-group [nzSuffix]="suffixUser">
+            <nz-input-group nzSize="large" [nzSuffix]="suffixUser">
                 <input nz-input
                        type="email"
                        formControlName="emailAddress">
@@ -16,7 +16,7 @@
         </div>
         <div class="form__input">
             <label>{{text.password}}:</label>
-            <nz-input-group [nzSuffix]="suffixEye">
+            <nz-input-group nzSize="large" [nzSuffix]="suffixEye">
                 <input nz-input
                        [type]="passwordFlg ? 'password' : 'text'"
                        formControlName="password">

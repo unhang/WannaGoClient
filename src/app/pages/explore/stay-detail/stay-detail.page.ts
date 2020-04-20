@@ -50,7 +50,6 @@ export class StayDetailPage implements OnInit {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
         this.stayId = +this.route.snapshot.params['id'];
         this.currentUrl = this.router.url.split('?');
-        this.backBtnUrl = '/pages/tabs/explore/search?' + this.currentUrl[this.currentUrl.length - 1];
         this.isMobile = window.innerWidth < 767;
 
     }
@@ -108,7 +107,8 @@ export class StayDetailPage implements OnInit {
     async goToBookingInfo() {
         const modal = await this.modalCtrl.create({
             component: GoSignIn,
-            cssClass: 'custom-modal'
+            cssClass: 'custom-modal',
+            swipeToClose: true
         });
         let modalDismissed;
         if (this.authService.isAuthenticated === false) {

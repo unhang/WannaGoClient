@@ -57,10 +57,17 @@
                         <ion-label class="ion-text-uppercase" position="stacked">
                             <ion-text>{{ text.people }}</ion-text>
                         </ion-label>
-                        <ion-input [(ngModel)]="guestCount"
-                                   type="number">
-                            <ion-icon class="suffix-icon" color="medium" name="person-outline"></ion-icon>
-                        </ion-input>
+                        <!--                        <ion-input [(ngModel)]="guestCount"-->
+                        <!--                                   type="number">-->
+                        <!--                            <ion-icon class="suffix-icon" color="medium" name="person-outline"></ion-icon>-->
+                        <!--                        </ion-input>-->
+                        <nz-input-group [nzSuffix]="userSuffix" nzSize="large">
+                            <input nz-input type="number"
+                                   [(ngModel)]="guestCount">
+                            <ng-template #userSuffix>
+                                <i nz-icon nzType="user"></i>
+                            </ng-template>
+                        </nz-input-group>
                     </ion-item>
                 </ion-col>
             </ion-row>

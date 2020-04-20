@@ -9,20 +9,16 @@
         </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-
         <ion-text class="">
-            <h6>{{stay.price | currency:'VND'}}</h6>
+            <h6>{{text.price}}: {{stay.price | currency:'VND'}}</h6>
         </ion-text>
         <ion-text>
-            <h6>Số sao: {{stay.rate}} bình luận: {{stay.ratingCount}}</h6>
+            <h6>{{text.starCount}}: <span><ion-icon name="star"></ion-icon></span> ({{stay.rate}}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{text.comments}}: {{stay.ratingCount}}</h6>
         </ion-text>
         <ion-text>
             <p>
-                {{stay.guestCount + ' khách・' + stay.bedCount + ' phòng・' + stay.bathCount + ' phòng tắm '}}
+                {{stay.guestCount + ' '+ text.guest + '・' + stay.bedCount + ' '+  text.bedRoom+'・' + stay.bathCount + ' ' + text.bathRoom}}
             </p>
         </ion-text>
-<!--        <ion-text>-->
-<!--            <h5>{{stay.district}}, {{stay.city}}</h5>-->
-<!--        </ion-text>-->
     </ion-card-content>
 </ion-card>

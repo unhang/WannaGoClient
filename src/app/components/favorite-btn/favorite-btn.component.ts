@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AlertController} from '@ionic/angular';
+import {AlertController, ModalController} from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
-import {StayService, UserInfo, StayFavorite} from '../../../swagger';
+import {StayFavorite, StayService, UserInfo} from '../../../swagger';
 import {Router} from '@angular/router';
-import { ThrowStmt } from '@angular/compiler';
+import {GoSignIn} from '../sign-in/sign-in.component';
+
 @Component({
     selector: 'go-favorite-btn',
     templateUrl: './favorite-btn.component.html',
@@ -33,8 +34,11 @@ export class GoFavoriteBtn implements OnInit {
     };
     txt = this.lang === 'en' ? this.textEn : this.textVn;
 
+    alert: any;
+
     // TODO: Inject StayService vào Param của constructor
     constructor(private router: Router,
+                private modalCtrl: ModalController,
                 private stayService: StayService,
                 private alertCtrl: AlertController,
                 private authService: AuthService) {
@@ -61,7 +65,7 @@ export class GoFavoriteBtn implements OnInit {
     }
 
     async checkLogin() {
-        const alert = await this.alertCtrl.create({
+        this.alert = await this.alertCtrl.create({
             header: this.txt.alertHeader,
             message: this.txt.alertMessageAdd,
             mode: 'md',
@@ -69,23 +73,26 @@ export class GoFavoriteBtn implements OnInit {
                 {
                     text: this.txt.alertLogin,
                     role: 'login',
-                    handler: () => {
-                        this.router.navigate(['/pages', 'tabs', 'profile', 'login'], {
-                            queryParams: {
-                                returnUrl: this.router.url || '/'
-                            },
-                        });
-                    }
+                    handler: () => this.openSignInModal()
                 },
                 {
                     text: this.txt.alertCancelBtn,
-                    role: 'cancel',
-                    handler: () => {
-                    }
+                    role: 'cancel'
                 },
             ]
         });
-        await alert.present();
+        await this.alert.present();
+    }
+
+
+    async openSignInModal() {
+        await this.alert.dismiss();
+        const modal = await this.modalCtrl.create({
+            component: GoSignIn,
+            cssClass: 'custom-modal',
+            swipeToClose: true
+        });
+        await modal.present();
     }
 
     async removeFav() {
@@ -99,12 +106,12 @@ export class GoFavoriteBtn implements OnInit {
         if (this.authService.isAuthenticated === false) {
             this.checkLogin();
         } else {
-            this.successRemove()
+            this.successRemove();
         }
     }
 
     async successRemove() {
-        const alert = await this.alertCtrl.create({
+        this.alert = await this.alertCtrl.create({
             header: this.txt.alertHeader,
             message: this.txt.alertMessage,
             mode: 'md',
@@ -116,13 +123,11 @@ export class GoFavoriteBtn implements OnInit {
                 },
                 {
                     text: this.txt.alertCancelBtn,
-                    role: 'cancel',
-                    handler: () => {
-                    }
+                    role: 'cancel'
                 },
             ]
         });
-        await alert.present();
+        await this.alert.present();
     }
 
     private removeFavorite() {
@@ -148,7 +153,7 @@ export class GoFavoriteBtn implements OnInit {
         if (this.authService.isAuthenticated === false) {
             this.checkLogin();
         } else {
-            this.addFavorite()
+            this.addFavorite();
         }
     }
 

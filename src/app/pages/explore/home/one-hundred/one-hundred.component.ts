@@ -26,24 +26,12 @@ export class GoOneHundredComponent implements OnInit {
     text: any = {};
     stays: StayDetail [] = [];
     topSlideOpts: any = {
-        slidesPerView: 3.5,
+        slidesPerView: 3.8,
         pagination: true,
         breakpoints: {
-            // when window width is <= 320px
-            320: {
-                slidesPerView: 1.5,
-                spaceBetween: 10,
-                pagination: true
-            },
-            // when window width is <= 480px
-            480: {
-                slidesPerView: 1.5,
-                spaceBetween: 20,
-                pagination: true,
-            },
-            // when window width is <= 640px
-            980: {
-                slidesPerView: 3
+            767: {
+                spaceBetween: '0px',
+                slidesPerView: 1.2
             }
         },
     };

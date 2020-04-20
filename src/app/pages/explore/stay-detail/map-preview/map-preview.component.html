@@ -1,1 +1,5 @@
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4432225906776!2d106.6261721143373!3d10.853854560728795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752a20be133a37%3A0x2222564f53ae228d!2zQ8O0bmcgVmnDqm4gUGjhuqduIE3hu4FtIFF1YW5nIFRydW5n!5e0!3m2!1svi!2s!4v1582387018363!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+<!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4432225906776!2d106.6261721143373!3d10.853854560728795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752a20be133a37%3A0x2222564f53ae228d!2zQ8O0bmcgVmnDqm4gUGjhuqduIE3hu4FtIFF1YW5nIFRydW5n!5e0!3m2!1svi!2s!4v1582387018363!5m2!1svi!2s"-->
+<!--        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>-->
+<iframe *ngIf="lat && lng"
+        [src]="'https://www.google.com/maps/embed/v1/search?center='+ key + '&q='+lat+',' + lng +'&zoom=14'"
+        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
