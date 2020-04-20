@@ -21,6 +21,7 @@ import {ComponentModule} from './components/component.module';
 
 import {FormsModule} from '@angular/forms';
 import {AuthService} from './services/auth.service';
+import {AgmCoreModule} from '@agm/core';
 
 registerLocaleData(en);
 
@@ -38,6 +39,9 @@ registerLocaleData(en);
         HttpClientModule,
         ComponentModule,
         FormsModule,
+        AgmCoreModule.forRoot({
+            apiKey: environment.mapApiKey
+        })
     ],
     providers: [
         StatusBar,
@@ -60,7 +64,7 @@ registerLocaleData(en);
             },
             deps: [AuthService, HttpClient]
         },
-        MockDataService,
+        MockDataService
     ],
     bootstrap: [AppComponent]
 })

@@ -17,6 +17,7 @@ import {CommentComponent} from './comment/comment.component';
 import {NzInputModule, NzRateModule} from 'ng-zorro-antd';
 import {CommentDetailComponent} from './comment/comment-detail/comment-detail.component';
 import {PostCommentComponent} from './comment/post-comment/post-comment.component';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import {PostCommentComponent} from './comment/post-comment/post-comment.componen
         StayDetailPageRoutingModule,
         ComponentModule,
         NzInputModule,
-        NzRateModule
+        NzRateModule,
+        AgmCoreModule
     ],
     declarations: [
         StayDetailPage,

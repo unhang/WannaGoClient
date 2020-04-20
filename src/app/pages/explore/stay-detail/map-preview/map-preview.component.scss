@@ -1,3 +1,12 @@
 iframe {
   width: 100%;
 }
+
+agm-map {
+  height: 400px;
+  border-radius: 12px;
+
+  .agm-map-container-inner {
+    border-radius: 12px;
+  }
+}

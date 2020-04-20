@@ -3,10 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  // basePath: 'https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0',
-  basePath: 'https://wannago.cf',
-  // basePath: 'https://wannago.ml'
+    production: false,
+    // basePath: 'https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0',
+    basePath: 'https://wannago.cf',
+    mapApiKey: 'AIzaSyCvIj7s2hPfVknqi8lycbNQQ7DlqeFytcU'
 };
 
 /*

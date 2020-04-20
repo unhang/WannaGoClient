@@ -1,15 +1,21 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-map-preview',
-  templateUrl: './map-preview.component.html',
-  styleUrls: ['./map-preview.component.scss'],
+    selector: 'app-map-preview',
+    templateUrl: './map-preview.component.html',
+    styleUrls: ['./map-preview.component.scss'],
 })
-export class MapPreviewComponent {
-  @Input() lng: number;
-  @Input() lat: number;
-  key = 'AIzaSyCvIj7s2hPfVknqi8lycbNQQ7DlqeFytcU';
+export class MapPreviewComponent implements OnInit {
+    @Input() lng: number;
+    @Input() lat: number;
 
-  constructor() { }
+    // tslint:disable-next-line:ban-types
+    location: Object;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
 
 }
