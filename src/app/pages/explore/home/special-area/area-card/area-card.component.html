@@ -1,14 +1,16 @@
 <ion-card class="place-item"
-          [ngStyle]="{'background-image': 'url(' + place.imgUrl + ')', 'background-size': 'cover'}"
->
-  <ion-card-content>
-    <ion-text class="brand">
-      <h3><ion-text color="light">{{place.cityName}}</ion-text></h3>
-      <div>{{place.totalStays}} {{text.addressPrice}}</div>
-    </ion-text>
-    <ion-text class="price">
-      <div>{{ text.avgPrice }}</div>
-      <span class="numPrice">{{place.averagePrice | currency:'VND'}} </span>
-    </ion-text>
-  </ion-card-content>
+          (click)="goToSearch()"
+          [ngStyle]="{'background-image': 'url(' + place.imgUrl + ')', 'background-size': 'cover'}">
+    <ion-card-content>
+        <ion-text class="brand">
+            <h3>
+                <ion-text color="light">{{place.cityName}}</ion-text>
+            </h3>
+            <div>{{place.totalStays}} {{text.addressPrice}}</div>
+        </ion-text>
+        <ion-text class="price">
+            <div>{{ text.avgPrice }}</div>
+            <span class="numPrice">{{place.averagePrice | currency:'VND'}} </span>
+        </ion-text>
+    </ion-card-content>
 </ion-card>

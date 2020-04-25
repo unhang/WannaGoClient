@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 import {Router} from '@angular/router';
 import * as cities from './cities.data';
+import {DateUtilityService} from '../../services/date-utility.service';
 
 @Component({
     selector: 'go-search-card',
@@ -47,7 +48,8 @@ export class GoSearchCard implements OnInit {
     cityId: number;
     cityName: string;
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private dateUtil: DateUtilityService) {
     }
 
     ngOnInit() {
@@ -92,8 +94,8 @@ export class GoSearchCard implements OnInit {
             {
                 queryParams: {
                     city_id: this.cityId,
-                    check_in: this.convertDate(this.checkIn),
-                    check_out: this.convertDate(this.checkOut),
+                    check_in: this.dateUtil.convertDate(this.checkIn),
+                    check_out: this.dateUtil.convertDate(this.checkOut),
                     guest_count: this.guestCount,
                     page: 1
                 }
@@ -119,13 +121,7 @@ export class GoSearchCard implements OnInit {
         }
     }
 
-    private convertDate(inputDate): string {
-        return ('0' + inputDate.getDate()).slice(-2) + '-' +
-            ('0' + (inputDate.getMonth() + 1)).slice(-2) + '-' +
-            inputDate.getFullYear();
-    }
-
-    disabledDateOfCheckIn = (oldDate: Date): boolean =>{
+    disabledDateOfCheckIn = (oldDate: Date): boolean => {
         const currentDate = new Date();
         return differenceInCalendarDays(oldDate, currentDate) < 0;
     }

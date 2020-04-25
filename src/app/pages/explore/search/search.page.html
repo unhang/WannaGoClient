@@ -10,9 +10,16 @@
                [logoBlack]="true"
                [hasSearch]="true"
                [styles]="[headerStyle.sticky]"></go-header>
+    <app-search-param [checkIn]="searchParamCheckIn"
+                      [checkOut]="searchParamCheckOut"
+                      [searchCount]="totals"
+                      [guestCount]="guestCount"></app-search-param>
+
     <app-search-result [stays]="stays? stays.result : []"
+                       [searchCount]="totals"
                        [favorites]="favorites? favorites : []"
                        [onLoading]="onLoading"></app-search-result>
+
     <ion-grid class="ion-no-padding" fixed="true">
         <ion-row>
             <ion-col size-xs="12">

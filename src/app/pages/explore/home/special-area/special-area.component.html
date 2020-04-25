@@ -4,17 +4,17 @@
             <ion-col size="12">
                 <div class="title">
                     <ion-text><h2>{{ text.title }}</h2></ion-text>
-                    <div class="text-between">
-                        {{ text.description }}
-                        <a href="#">
-                            {{ text.loadMore }}
-                        </a>
-                    </div>
+<!--                    <div class="text-between">-->
+<!--                        {{ text.description }}-->
+<!--                        <a href="#">-->
+<!--                            {{ text.loadMore }}-->
+<!--                        </a>-->
+<!--                    </div>-->
                 </div>
             </ion-col>
         </ion-row>
         <ion-row *ngIf="highLightPlaces.length === 0">
-            <ion-col ize-md="4" size-sm="6" size-xs="12"
+            <ion-col sizeMd="4" sizeSm="6"
                      *ngFor="let i of [1,2,3,4,5]">
                 <ion-card>
                     <div style="width: 100%; height: 200px; background: var(--ion-color-step-100)"></div>
@@ -29,11 +29,8 @@
         </ion-row>
         <ion-row *ngIf="highLightPlaces">
             <ng-container *ngFor="let place of highLightPlaces; index as i">
-                <ion-col *ngIf="i > 1" size-md="4" size-sm="6" size-xs="12">
-                    <go-area-card routerLink='/' [place]="place"></go-area-card>
-                </ion-col>
-                <ion-col *ngIf="i < 2" size-md="6" size-sm="6" size-xs="12">
-                    <go-area-card routerLink='/' [place]="place"></go-area-card>
+                <ion-col size="12" [sizeMd]="i > 1 ? '4' : '6'" sizeSm="6">
+                    <go-area-card [place]="place"></go-area-card>
                 </ion-col>
             </ng-container>
         </ion-row>

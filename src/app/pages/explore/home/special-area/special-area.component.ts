@@ -25,10 +25,7 @@ export class GoSpecialAreaComponent implements OnInit {
     text: any = {};
     highLightPlaces: HighlightPlace[] = [];
 
-    constructor(
-        private stayService: StayService
-    ) {
-    }
+    constructor(private stayService: StayService) { }
 
     ngOnInit() {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;

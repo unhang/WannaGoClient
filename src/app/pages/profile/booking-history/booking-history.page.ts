@@ -77,7 +77,6 @@ export class BookingHistoryPage implements OnInit {
                         this.bookingService.getAllBookedList(this.authService.getUserInfo().userId)
                             .subscribe((allBooking: Booking[]) => {
                                 this.allBooking = allBooking;
-                                console.table(this.allBooking);
                                 loadEl.dismiss();
                             });
                     });

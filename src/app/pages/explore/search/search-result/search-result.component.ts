@@ -12,6 +12,15 @@ export class SearchResultComponent implements OnInit {
     @Input() favorites: any;
     @Input() onLoading = true;
 
+    lang = localStorage.getItem('lang');
+    textEn = {
+        result: 'Result count: '
+    };
+    textVn = {
+        result: 'Số lượng kết quả: '
+    };
+    text = this.lang === 'en' ? this.textEn : this.textVn;
+
     constructor() {
     }
 

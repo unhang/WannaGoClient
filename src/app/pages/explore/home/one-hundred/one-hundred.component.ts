@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StayDetail, StayService} from '../../../../../swagger';
 import {Router} from '@angular/router';
 import {MockDataService} from '../../../../service/mock-data.service';
+import {DateUtilityService} from '../../../../services/date-utility.service';
 
 @Component({
     selector: 'go-one-hundred',
@@ -38,12 +39,11 @@ export class GoOneHundredComponent implements OnInit {
 
     constructor(private router: Router,
                 private stayService: StayService,
-                private mockDataService: MockDataService) {
+                private dateUtil: DateUtilityService) {
     }
 
     ngOnInit() {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
-        // TODO: viet api cho component này
         setTimeout(() => {
             this.stayService.getStayHot(this.lang).subscribe((res: StayDetail[]) => {
                 this.stays = res;
@@ -51,7 +51,17 @@ export class GoOneHundredComponent implements OnInit {
         }, 500);
     }
 
-    goToStayDetail(stayId: number) {
-        this.router.navigate(['/pages', 'tabs', 'explore', stayId, 'stay']);
+
+    goToStayDetail(stayId: number, cityId: number) {
+        console.log(cityId);
+        this.router.navigate(['/pages', 'tabs', 'explore', stayId, 'stay'], {
+            queryParams: {
+                city_id: cityId,
+                guest_count: 2,
+                check_in: this.dateUtil.convertDate(new Date()),
+                check_out: this.dateUtil.convertDate(new Date(Date.now() + (24 * 60 * 60 * 1000))),
+                page: 1,
+            }
+        });
     }
 }
