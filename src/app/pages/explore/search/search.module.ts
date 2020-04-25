@@ -8,7 +8,16 @@ import {ComponentModule} from 'src/app/components/component.module';
 import {SearchPage} from './search.page';
 import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchCardComponent} from './search-result/search-card/search-card.component';
-import {NzCarouselModule, NzPaginationModule, NzRateModule} from 'ng-zorro-antd';
+import {
+    NzButtonModule,
+    NzCarouselModule,
+    NzDatePickerModule,
+    NzIconModule,
+    NzInputModule,
+    NzPaginationModule,
+    NzRateModule
+} from 'ng-zorro-antd';
+import {SearchParamComponent} from './search-param/search-param.component';
 
 @NgModule({
     imports: [
@@ -20,11 +29,16 @@ import {NzCarouselModule, NzPaginationModule, NzRateModule} from 'ng-zorro-antd'
         NzPaginationModule,
         NzRateModule,
         NzCarouselModule,
+        NzInputModule,
+        NzDatePickerModule,
+        NzIconModule,
+        NzButtonModule
     ],
     declarations: [
         SearchPage,
         SearchResultComponent,
-        SearchCardComponent
+        SearchCardComponent,
+        SearchParamComponent
     ]
 })
 export class SearchPageModule {

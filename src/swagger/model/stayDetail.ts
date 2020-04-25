@@ -73,6 +73,10 @@ export interface StayDetail {
      */
     discount?: number;
     /**
+     * city code from database
+     */
+    cityId?: number;
+    /**
      * tên thành phố lấy từ bảng tỉnh
      */
     city?: string;

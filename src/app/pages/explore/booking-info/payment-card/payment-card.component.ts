@@ -152,8 +152,10 @@ export class PaymentCardComponent implements OnInit, OnChanges {
 
             this.stripeService.confirmPayment({...this.paymentIntent})
                 .subscribe((paymentIntent) => {
-                    // this.router.navigate(['/pages', 'tabs', 'profile', 'booking-history']);
-                    this.navCtrl.navigateRoot('/pages/tabs/profile/booking-history');
+                    this.navCtrl.navigateRoot('/pages/tabs/explore/home')
+                        .then(() => {
+                            this.navCtrl.navigateRoot('/pages/tabs/profile/booking-history');
+                        });
                 });
         }
     }

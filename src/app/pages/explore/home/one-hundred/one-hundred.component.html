@@ -35,7 +35,7 @@
                             class="slide-container"
                             [options]="topSlideOpts">
                     <ion-slide *ngFor="let stay of stays">
-                        <go-stay-card (click)="goToStayDetail(stay.stayId)"
+                        <go-stay-card (click)="goToStayDetail(stay.stayId, stay.cityId)"
                                       [stay]="stay"></go-stay-card>
                     </ion-slide>
                 </ion-slides>

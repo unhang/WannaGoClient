@@ -27,6 +27,11 @@ export class SearchPage implements OnInit {
     totals: number;
     favorites: any;
 
+    /*
+    * param for SearchParamComponent*/
+    searchParamCheckIn: Date;
+    searchParamCheckOut: Date;
+
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private stayService: StayService,
@@ -51,6 +56,25 @@ export class SearchPage implements OnInit {
         this.checkOut = queryParam.get('check_out');
         this.guestCount = +queryParam.get('guest_count');
         this.page = +queryParam.get('page');
+        this.setParamForSearchParamComponent();
+    }
+
+    setParamForSearchParamComponent() {
+        const checkInArr = this.checkIn.split('-');
+        let tmp = checkInArr[0];
+        checkInArr[0] = checkInArr[1];
+        checkInArr[1] = tmp;
+        const checkIn = checkInArr.join('-');
+
+        const checkOutArr = this.checkOut.split('-');
+        tmp = checkOutArr[0];
+        checkOutArr[0] = checkOutArr[1];
+        checkOutArr[1] = tmp;
+        const checkOut = checkOutArr.join('-');
+
+        // const checkIn = this.searchParamCheckIn
+        this.searchParamCheckIn = new Date(checkIn);
+        this.searchParamCheckOut = new Date(checkOut);
     }
 
     getStay() {

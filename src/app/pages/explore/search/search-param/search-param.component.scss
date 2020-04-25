@@ -1,0 +1,10 @@
+ion-grid  {
+  --ion-grid-width: 1200px;
+  ion-row {
+    ion-col {
+      nz-date-picker {
+        width: 100%;
+      }
+    }
+  }
+}
