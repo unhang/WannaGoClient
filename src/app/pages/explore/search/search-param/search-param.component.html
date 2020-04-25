@@ -5,14 +5,14 @@
         </ion-row>
         <ion-row>
             <ion-col size="12" sizeSm="3"><h4 style="margin: 0">{{text.filter}}: </h4></ion-col>
-            <ion-col size="4" sizeSm="2" offetSm="2">
+            <ion-col size="4.5" sizeSm="2" offsetSm="2">
                 <nz-date-picker [(ngModel)]="checkIn"
                                 [nzDisabledDate]="disabledDateOfCheckIn"
                                 [nzPlaceHolder]="text.placeholderCheckIn"
                                 [nzShowToday]="false"
                                 nzFormat="dd/MM/yyyy"></nz-date-picker>
             </ion-col>
-            <ion-col size="4" sizeSm="2">
+            <ion-col size="4.5" sizeSm="2">
                 <nz-date-picker [(ngModel)]="checkOut"
                                 [nzDisabledDate]="disabledDateOfCheckOut"
                                 [nzPlaceHolder]="text.placeholderCheckOut"
@@ -20,7 +20,7 @@
                                 nzFormat="dd/MM/yyyy"></nz-date-picker>
 
             </ion-col>
-            <ion-col size="4" sizeSm="2">
+            <ion-col size="3" sizeSm="2">
                 <nz-input-group [nzSuffix]="guestSuffix">
                     <input nz-input type="number"
                            [(ngModel)]="guestCount"
@@ -31,7 +31,7 @@
                     </ng-template>
                 </nz-input-group>
             </ion-col>
-            <ion-col size="4" sizeSm="1">
+            <ion-col size="4.5" sizeSm="1">
                 <button nz-button nzType="primary" nzBlock="true">{{text.apply}}</button>
             </ion-col>
         </ion-row>
