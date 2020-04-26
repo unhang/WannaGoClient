@@ -5,12 +5,11 @@
     --ion-grid-column-padding: 8px;
 
     .title {
-      margin-bottom: 0.2rem;
-
       h2 {
-        font-weight: 600;
+        margin: 0;
+        font-weight: 700 !important;
+        line-height: 48px;
       }
-
       .text-between {
         display: flex;
         justify-content: space-between;
