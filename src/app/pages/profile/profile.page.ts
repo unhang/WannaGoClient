@@ -3,6 +3,7 @@ import {HeaderStyle} from '../../constant/HeaderStyle';
 import {AuthService} from '../../services/auth.service';
 import {ModalController} from '@ionic/angular';
 import {GoSignIn} from '../../components/sign-in/sign-in.component';
+import {UserInfo} from '../../../swagger';
 
 @Component({
     selector: 'app-profile',
@@ -26,12 +27,14 @@ export class ProfilePage implements OnInit {
     text = this.lang === 'en' ? this.textEn : this.textVn;
 
     isLogin = this.authService.isAuthenticated;
+    userInfo: UserInfo;
 
     constructor(private authService: AuthService,
                 private modalCtrl: ModalController) {
     }
 
     ngOnInit() {
+        this.userInfo = this.authService.getUserInfo();
     }
 
     async presentModal() {

@@ -17,6 +17,8 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
     logoBlackUrl = 'https://wannago.cf/storage/library/logo1024x1024_opacity.png';
     logoWhiteUrl = 'https://wannago.cf/storage/library/logo1024x1024_color_white_opacity.png';
 
+    mobileLogo = 'https://wannago.cf/storage/library/logo4096x4096_big_bg_opacity.png';
+
     textVn: any = {
         btn1: 'Trở thành chủ nhà',
         btn2: 'Trợ giúp',
@@ -36,7 +38,7 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
 
     text: any = {};
     isSignIn: boolean;
-
+    isMobile = window.innerWidth < 767;
     constructor(private authService: AuthService,
                 private navCtrl: NavController) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;

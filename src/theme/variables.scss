@@ -90,9 +90,22 @@
   --ion-color-step-850: #262626;
   --ion-color-step-900: #191919;
   --ion-color-step-950: #0d0d0d;
+  @font-face {
+    font-family: 'Montserrat', sans-serif;
+    src: url('https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2');
+  }
+
+
+    --ion-font-family:  'Montserrat', sans-serif;
+  $font-family-ios-base:  'Montserrat', sans-serif;
+  $font-family-md-base: 'Montserrat', sans-serif;
+  $font-family-wp-base: 'Montserrat', sans-serif;
+
 
   --ion-text-color: var(--ion-color-step-800);
   --go-border-gray: var(--ion-color-step-100);
 
   --go-app-background: #f0f2f5;
 }
+
+

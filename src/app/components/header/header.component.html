@@ -3,9 +3,14 @@
     <ion-row class="header__container ion-justify-content-between ion-align-items-center">
         <ion-col size-sm="2" size-md="1"
                  class="header__container-logo">
-            <img class="ion-margin-start" width="40px" height="40px"
+            <img *ngIf="!isMobile"
+                 class="ion-margin-start" width="40px" height="40px"
                  (click)="resetNavRoot()"
                  [src]="logoBlack ? logoBlackUrl : logoWhiteUrl">
+            <img *ngIf="isMobile"
+                 class="ion-margin-start" width="80px" height="80px"
+                 (click)="resetNavRoot()"
+                 [src]="mobileLogo">
         </ion-col>
         <ion-col size="10" size-md="3" *ngIf="hasSearch">
         </ion-col>
