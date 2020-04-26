@@ -22,7 +22,7 @@
     }
 
     ion-card-header {
-      padding-bottom: 0;
+      padding-bottom: 5px;
 
       ion-card-subtitle {
         margin: 0;
@@ -30,13 +30,13 @@
           display: flex;
           justify-content: space-between;
           font-weight: lighter;
-          line-height: 22px;
+          line-height: 20px;
           &__item {
-            font-size: 16px;
+            font-size: 14px;
 
             &--medium {
               color: var(--ion-color-medium);
-              font-size: 14px;
+              font-size: 12px;
             }
 
             &--bold {
@@ -54,8 +54,8 @@
 
       ion-card-title {
         font-size: 16px;
-        font-weight: normal;
-        color: var(--ion-color-dark);
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.81);
         &:focus {
           cursor: pointer;
         }
@@ -68,13 +68,13 @@
     }
     ion-card-content .content {
       &__description {
-        font-size: 16px;
+        font-size: 14px;
         &__item {
-          line-height: 22px;
+          line-height: 20px;
         }
         &--bold {
           font-weight: bold;
-          color: var(--ion-color-dark);
+          color: var(--ion-color-primary);
         }
 
         &--lineThrough {

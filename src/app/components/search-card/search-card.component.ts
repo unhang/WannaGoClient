@@ -21,7 +21,7 @@ export class GoSearchCard implements OnInit {
         money: 'Mức giá',
         checkIn: 'Ngày đi',
         checkOut: 'Ngày về',
-        searchBtn: 'TÌM KIẾM'
+        searchBtn: 'Tìm kiếm'
     };
     textEn: any = {
         subtitle: '',
@@ -33,7 +33,7 @@ export class GoSearchCard implements OnInit {
         money: 'Money',
         checkIn: 'Check in',
         checkOut: 'Check out',
-        searchBtn: 'SEARCH'
+        searchBtn: 'Search'
     };
 
     text: any = {};

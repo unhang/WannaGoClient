@@ -16,10 +16,11 @@ ion-card.search-card {
     padding-bottom: 0;
 
     ion-card-title {
-      color: rgba(0, 0, 0, 0.66);
+      color: rgba(0, 0, 0, 0.7);
       font-size: 36px;
       letter-spacing: -2px;
       font-weight: 700;
+      --ion-font-family:  'Bungee Shade', cursive !important;
       @media screen and (max-width: 767px) {
         font-size: 24px;
         letter-spacing: 0px;
@@ -55,11 +56,14 @@ ion-item.search-item {
   margin-top: 12px;
   --min-height: 54px;
   ion-label {
-    font-size: 12px;
-    line-height: 13px;
-    font-weight: 800;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 700 !important;
     margin: 5px 0px 2px 0px;
     color: rgba(44, 47, 52, 0.76);
+    ion-text {
+      font-weight: 700 !important;
+    }
   }
 
   ion-input {

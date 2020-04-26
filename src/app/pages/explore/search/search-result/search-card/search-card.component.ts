@@ -11,7 +11,7 @@ import {NavController} from '@ionic/angular';
 export class SearchCardComponent implements OnInit, OnChanges {
 
     isMobile = window.innerWidth < 767;
-    slicePoint = this.isMobile ? 33 : 24;
+    slicePoint = this.isMobile ? 30 : 21;
     @Input() stay: StayDetail;
     @Input() favorites: any;
 

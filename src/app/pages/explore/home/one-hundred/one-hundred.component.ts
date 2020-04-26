@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StayDetail, StayService} from '../../../../../swagger';
 import {Router} from '@angular/router';
-import {MockDataService} from '../../../../service/mock-data.service';
 import {DateUtilityService} from '../../../../services/date-utility.service';
 
 @Component({

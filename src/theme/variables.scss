@@ -5,16 +5,16 @@
 :root {
 
   --ion-color-primary: #ff6205;
-  --ion-color-primary-rgb: 255,98,5;
+  --ion-color-primary-rgb: 255, 98, 5;
   --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 0,0,0;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
   --ion-color-primary-shade: #e05604;
   --ion-color-primary-tint: #ff721e;
 
   --ion-color-secondary: #2d699f;
-  --ion-color-secondary-rgb: 45,105,159;
+  --ion-color-secondary-rgb: 45, 105, 159;
   --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #285c8c;
   --ion-color-secondary-tint: #4278a9;
 
@@ -26,9 +26,9 @@
   --ion-color-tertiary-tint: #7e57ff;
 
   --ion-color-success: #65d37e;
-  --ion-color-success-rgb: 101,211,126;
+  --ion-color-success-rgb: 101, 211, 126;
   --ion-color-success-contrast: #000000;
-  --ion-color-success-contrast-rgb: 0,0,0;
+  --ion-color-success-contrast-rgb: 0, 0, 0;
   --ion-color-success-shade: #59ba6f;
   --ion-color-success-tint: #74d78b;
 
@@ -47,9 +47,9 @@
   --ion-color-danger-tint: #f25454;
 
   --ion-color-dark: rgba(44, 47, 52, 0.95);
-  --ion-color-dark-rgb: 44,47,52;
+  --ion-color-dark-rgb: 44, 47, 52;
   --ion-color-dark-contrast: #ffffff;
-  --ion-color-dark-contrast-rgb: 255,255,255;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
   --ion-color-dark-shade: #27292e;
   --ion-color-dark-tint: #414448;
 
@@ -90,16 +90,12 @@
   --ion-color-step-850: #262626;
   --ion-color-step-900: #191919;
   --ion-color-step-950: #0d0d0d;
-  @font-face {
-    font-family: 'Montserrat', sans-serif;
-    src: url('https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2');
-  }
 
 
-    --ion-font-family:  'Montserrat', sans-serif;
-  $font-family-ios-base:  'Montserrat', sans-serif;
-  $font-family-md-base: 'Montserrat', sans-serif;
-  $font-family-wp-base: 'Montserrat', sans-serif;
+
+  //--ion-font-family: 'Montserrat', sans-serif;
+  --ion-font-family:  'Comfortaa', cursive;
+
 
 
   --ion-text-color: var(--ion-color-step-800);

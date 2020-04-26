@@ -7,10 +7,10 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item class="search-item" lines="none">
-                        <ion-label class="ion-text-uppercase" position="stacked">
+                        <ion-label position="stacked">
                             <ion-text>{{ text.address }}</ion-text>
                         </ion-label>
-                        <nz-input-group nzSize="large" [nzSuffix]="suffixIconLocation">
+                        <nz-input-group  [nzSuffix]="suffixIconLocation">
                             <input nz-input
                                    [(ngModel)]="cityName"
                                    (ngModelChange)="onCityChange()"
@@ -26,12 +26,12 @@
             <ion-row>
                 <ion-col size="6">
                     <ion-item class="search-item" lines="none">
-                        <ion-label class="ion-text-uppercase" position="stacked">
+                        <ion-label position="stacked">
                             <ion-text>{{ text.checkIn }}</ion-text>
                         </ion-label>
                         <nz-date-picker [(ngModel)]="checkIn"
                                         [nzDisabledDate]="disabledDateOfCheckIn"
-                                        nzSize="large"
+
                                         nzPlaceHolder=""
                                         [nzShowToday]="false"
                                         nzFormat="dd/MM/yyyy"></nz-date-picker>
@@ -39,12 +39,12 @@
                 </ion-col>
                 <ion-col size="6">
                     <ion-item class="search-item" lines="none">
-                        <ion-label class="ion-text-uppercase" position="stacked">
+                        <ion-label position="stacked">
                             <ion-text>{{ text.checkOut }}</ion-text>
                         </ion-label>
                         <nz-date-picker [(ngModel)]="checkOut"
                                         [nzDisabledDate]="disabledDateOfCheckOut"
-                                        nzSize="large"
+
                                         nzPlaceHolder=""
                                         [nzShowToday]="false"
                                         nzFormat="dd/MM/yyyy"></nz-date-picker>
@@ -54,14 +54,14 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item class="search-item" lines="none">
-                        <ion-label class="ion-text-uppercase" position="stacked">
+                        <ion-label position="stacked">
                             <ion-text>{{ text.people }}</ion-text>
                         </ion-label>
                         <!--                        <ion-input [(ngModel)]="guestCount"-->
                         <!--                                   type="number">-->
                         <!--                            <ion-icon class="suffix-icon" color="medium" name="person-outline"></ion-icon>-->
                         <!--                        </ion-input>-->
-                        <nz-input-group [nzSuffix]="userSuffix" nzSize="large">
+                        <nz-input-group [nzSuffix]="userSuffix" >
                             <input nz-input type="number"
                                    [(ngModel)]="guestCount">
                             <ng-template #userSuffix>
@@ -75,6 +75,6 @@
         </ion-grid>
         <ion-button class="go-font-weight-700"
                     expand="block"
-                    (click)='search()'>{{text.searchBtn}}</ion-button>
+                    (click)='search()'><ion-icon name="search-outline"></ion-icon>&nbsp;&nbsp;&nbsp;{{text.searchBtn}}</ion-button>
     </ion-card-content>
 </ion-card>
