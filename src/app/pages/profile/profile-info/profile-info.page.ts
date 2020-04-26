@@ -3,9 +3,8 @@ import {HeaderStyle} from '../../../constant/HeaderStyle';
 import {AuthService} from '../../../services/auth.service';
 import {UserInfo, UserService} from '../../../../swagger';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ToastController, NavController} from '@ionic/angular';
+import {AlertController, NavController, ToastController} from '@ionic/angular';
 import {Router} from '@angular/router';
-import {AlertController} from '@ionic/angular';
 
 @Component({
     selector: 'app-profile-info',
