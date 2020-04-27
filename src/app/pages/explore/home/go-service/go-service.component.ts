@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'go-service',
   templateUrl: './go-service.component.html',
-  styleUrls: ['./go-service.component.scss'],
+  styleUrls: ['./go-service.component.scss', '../home.page.scss'],
 })
 export class GoService implements OnInit {
 

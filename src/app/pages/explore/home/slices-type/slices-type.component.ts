@@ -5,7 +5,7 @@ import {MockDataService} from '../../../../service/mock-data.service';
 @Component({
   selector: 'go-slices-type',
   templateUrl: './slices-type.component.html',
-  styleUrls: ['./slices-type.component.scss'],
+  styleUrls: ['./slices-type.component.scss', '../home.page.scss'],
 })
 export class GoSlicesTypeComponent implements OnInit {
 

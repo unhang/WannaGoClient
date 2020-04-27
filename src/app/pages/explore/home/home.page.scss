@@ -14,3 +14,11 @@ ion-header {
 ion-content {
   --background: var(--go-app-background);
 }
+
+.section--header {
+  margin: 0;
+  font-weight: 700 !important;
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+  }
+}

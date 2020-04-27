@@ -1,22 +1,24 @@
 <div class="go-slices-type">
-  <ion-grid fixed="true">
-    <ion-row>
-      <ion-col size="12">
-        <div class="title">
-          <h2><ion-text color="primary">{{ text.title }}</ion-text></h2>
-          <div class="text-between">
-            {{ text.description }}
-            <a href="#">
-              {{ text.loadMore }}
-            </a>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        <go-type-card [sliceTypes]="sliceTypes"></go-type-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid fixed="true">
+        <ion-row>
+            <ion-col size="12">
+                <div class="title">
+                    <h2 class="section--header">
+                        <ion-text color="primary">{{ text.title }}</ion-text>
+                    </h2>
+                    <div class="text-between">
+                        {{ text.description }}
+                        <a href="#">
+                            {{ text.loadMore }}
+                        </a>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <go-type-card [sliceTypes]="sliceTypes"></go-type-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </div>

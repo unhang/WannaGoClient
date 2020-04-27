@@ -6,7 +6,7 @@ import {DateUtilityService} from '../../../../services/date-utility.service';
 @Component({
     selector: 'go-one-hundred',
     templateUrl: './one-hundred.component.html',
-    styleUrls: ['./one-hundred.component.scss'],
+    styleUrls: ['./one-hundred.component.scss', '../home.page.scss'],
 })
 export class GoOneHundredComponent implements OnInit {
 

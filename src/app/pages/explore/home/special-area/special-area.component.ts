@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HighlightPlace, StayService} from '../../../../../swagger';
-import {MockDataService} from '../../../../service/mock-data.service';
 
 @Component({
     selector: 'go-special-area',
     templateUrl: './special-area.component.html',
-    styleUrls: ['./special-area.component.scss'],
+    styleUrls: ['./special-area.component.scss', '../home.page.scss'],
 })
 export class GoSpecialAreaComponent implements OnInit {
 
@@ -25,7 +24,8 @@ export class GoSpecialAreaComponent implements OnInit {
     text: any = {};
     highLightPlaces: HighlightPlace[] = [];
 
-    constructor(private stayService: StayService) { }
+    constructor(private stayService: StayService) {
+    }
 
     ngOnInit() {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
