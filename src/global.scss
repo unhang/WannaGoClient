@@ -169,3 +169,10 @@ button.ant-btn
 {
   border-radius: 4px;
 }
+
+
+nz-switch.custom-switch {
+  button.ant-switch {
+    background-color: var(--ion-color-primary) !important;
+  }
+}

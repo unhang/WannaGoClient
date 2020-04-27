@@ -8,7 +8,7 @@ import {AlertController, NavController} from '@ionic/angular';
     styleUrls: ['./header.component.scss'],
 })
 export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
-    lang = localStorage.getItem('lang');
+
     // class style từ header.component.scss
     @Input() styles: string [] = [];
     @Input() logoBlack = true;
@@ -18,6 +18,12 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
     logoWhiteUrl = 'https://wannago.cf/storage/library/logo1024x1024_color_white_opacity.png';
     mobileLogo = 'https://wannago.cf/storage/library/logo4096x4096_big_bg_opacity.png';
 
+    lang = localStorage.getItem('lang');
+    LANG = {
+        EN: 'EN',
+        VN: 'VN'
+    };
+    selectedLang = this.lang === 'en' ? this.LANG.EN : this.LANG.VN;
     textVn: any = {
         btn1: 'Trở thành chủ nhà',
         btn2: 'Trợ giúp',
@@ -27,14 +33,19 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
         btn6: 'Đăng xuất',
         dropdown: {
             menu1: 'Cài đặt tài khoản',
-            menu2: 'Đặt chỗ của tôi'
+            menu2: 'Đặt chỗ của tôi',
+            menu3: 'Tiếng Việt'
         },
         alert: {
             header: 'Cảnh báo',
             message: 'Bạn có muốn xác nhận Đăng xuất',
             okBtn: 'Đồng ý',
             cancelBtn: 'Hủy'
-        }
+        },
+        languages: {
+            EN: 'Tiếng Anh',
+            VN: 'Tiếng Việt'
+        },
     };
     textEn: any = {
         btn1: 'Become host',
@@ -45,17 +56,22 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
         btn6: 'Sign out',
         dropdown: {
             menu1: 'Account setting',
-            menu2: 'Booking history'
+            menu2: 'Booking history',
+            menu3: 'English'
         },
         alert: {
             header: 'Warning',
             message: 'Are you sure to sign out',
             okBtn: 'Ok',
             cancelBtn: 'Cancel'
-        }
+        },
+        languages: {
+            EN: 'English',
+            VN: 'Vietnamese'
+        },
     };
-
     text: any = {};
+
     isSignIn: boolean;
     isMobile = window.innerWidth < 767;
 
@@ -100,5 +116,10 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
 
     resetNavRoot() {
         this.navCtrl.navigateRoot('/pages/tabs/explore/home');
+    }
+
+    saveDefaultLanguage() {
+        localStorage.setItem('lang', this.selectedLang.toLocaleLowerCase());
+        location.reload();
     }
 }

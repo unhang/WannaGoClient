@@ -31,10 +31,12 @@ ion-card.search-card {
   ion-card-content {
     --padding-end: 10px;
     ion-item {
-      //--margin-top: 1rem;
       --padding-start: 0;
       --padding-end: 0;
 
+      @media screen and (max-width: 767px){
+         margin-top:4px;
+      }
       .item-native {
         .item-inner {
           padding: 0;

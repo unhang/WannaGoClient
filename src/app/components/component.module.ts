@@ -9,8 +9,9 @@ import {
     NzDatePickerModule,
     NzDropDownModule,
     NzIconModule,
-    NzInputModule,
-    NzSelectModule, NzTypographyModule
+    NzInputModule, NzPopoverModule, NzRadioModule,
+    NzSelectModule, NzSwitchModule,
+    NzTypographyModule,
 } from 'ng-zorro-antd';
 
 import {GoHeader} from './header/header.component';
@@ -52,7 +53,10 @@ import {GoSignIn} from './sign-in/sign-in.component';
         NzIconModule,
         NzButtonModule,
         NzDropDownModule,
-        NzTypographyModule
+        NzTypographyModule,
+        NzSwitchModule,
+        NzPopoverModule,
+        NzRadioModule
     ],
     exports: [
         GoHeader,

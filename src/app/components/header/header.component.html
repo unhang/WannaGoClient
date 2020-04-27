@@ -41,15 +41,43 @@
                         </ion-col>
                         <nz-dropdown-menu #accountDropdown>
                             <ul nz-menu nzSelectable>
-                                <li nz-menu-item routerLink='/pages/tabs/profile/profile-info'>{{text.dropdown.menu1}}</li>
-                                <li nz-menu-item routerLink='/pages/tabs/profile/booking-history'>{{text.dropdown.menu2}}</li>
+                                <li nz-menu-item routerLink='/pages/tabs/profile/profile-info'>
+                                    <i nz-icon nzType="user" nzTheme="outline"></i>&nbsp;
+                                    {{text.dropdown.menu1}}
+                                </li>
+                                <li nz-menu-item routerLink='/pages/tabs/profile/booking-history'>
+                                    <i nz-icon nzType="calendar" nzTheme="outline"></i>&nbsp;
+                                    {{text.dropdown.menu2}}
+                                </li>
                                 <li nz-menu-divider></li>
                                 <li nz-menu-item nz-typography nzType="danger" (click)="signOut()">
-                                    <span nz-typography nzType="danger">{{text.btn6}}</span>
+                                    <span nz-typography nzType="danger">
+                                        <i nz-icon nzType="logout" nzTheme="outline"></i>&nbsp;
+                                        {{text.btn6}}
+                                    </span>
                                 </li>
                             </ul>
                         </nz-dropdown-menu>
                     </ng-container>
+
+                    <ion-col size="auto" class="header__container-navs-button">
+                        <i nz-icon
+                           nzType="global"
+                           nzTheme="outline"
+                           nz-dropdown [nzDropdownMenu]="langDropdown"></i>
+                        <nz-dropdown-menu #langDropdown>
+                            <div nz-menu nzSelectable>
+                                <nz-radio-group [(ngModel)]="selectedLang" (ngModelChange)="saveDefaultLanguage()">
+                                    <div nz-menu-item>
+                                        <label nz-radio [nzValue]="LANG.EN">{{text.languages.EN}}</label>
+                                    </div>
+                                    <div nz-menu-item>
+                                        <label nz-radio [nzValue]="LANG.VN">{{text.languages.VN}}</label>
+                                    </div>
+                                </nz-radio-group>
+                            </div>
+                        </nz-dropdown-menu>
+                    </ion-col>
                 </ion-row>
             </ion-grid>
         </ion-col>
