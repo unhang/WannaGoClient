@@ -1,8 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {UserService} from '../../../../../swagger';
 import {FormControl, Validators} from '@angular/forms';
-import {ResetEmailAddress} from '../../../../../swagger/model/resetEmailAddress';
-import {ResetPasswordRequestResult} from '../../../../../swagger/model/resetPasswordRequestResult';
+import {ResetEmailAddress, ResetPasswordRequestResult, UserService} from '../../../../../swagger';
 import {NavController, ToastController} from '@ionic/angular';
 import {Router} from '@angular/router';
 

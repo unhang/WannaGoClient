@@ -105,20 +105,21 @@ export class StayDetailPage implements OnInit {
     }
 
     async goToBookingInfo() {
-        const modal = await this.modalCtrl.create({
-            component: GoSignIn,
-            cssClass: 'custom-modal',
-            swipeToClose: true
-        });
-        let modalDismissed;
-        if (this.authService.isAuthenticated === false) {
+        let signIn: any;
+        if (!this.authService.isAuthenticated) {
+            const modal = await this.modalCtrl.create({
+                component: GoSignIn,
+                cssClass: 'custom-modal',
+                swipeToClose: true
+            });
             await modal.present();
-            modalDismissed = await modal.onDidDismiss().then(res => res);
-            if (!modalDismissed.data['succeeded']) {
-                return;
-            }
+            signIn = await modal.onDidDismiss();
+        }
+        if (signIn.role !== 'succeeded') {
+            return;
         }
 
+        // is authenticated case
         await this.loadEl.present();
 
         const userInfo: UserInfo = this.authService.getUserInfo();

@@ -53,8 +53,9 @@ export class BookingHistoryPage implements OnInit {
 
     allBooking: Booking[] = [];
     isMobile = window.innerWidth < 767;
-
     load: any;
+
+    emptyMode = false;
 
     constructor(private router: Router,
                 private loadCtrl: LoadingController,
@@ -67,7 +68,6 @@ export class BookingHistoryPage implements OnInit {
 
 
     ngOnInit() {
-
     }
 
     ionViewDidEnter() {
@@ -78,6 +78,7 @@ export class BookingHistoryPage implements OnInit {
                         this.bookingService.getAllBookedList(this.authService.getUserInfo().userId)
                             .subscribe((allBooking: Booking[]) => {
                                 this.allBooking = allBooking;
+                                this.emptyMode = allBooking.length === 0;
                                 loadEl.dismiss();
                             });
                     });

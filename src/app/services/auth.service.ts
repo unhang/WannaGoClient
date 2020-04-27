@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {UserInfo} from '../../swagger';
 import {Router} from '@angular/router';
+import {ModalController} from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +11,9 @@ export class AuthService {
     private userInfo: UserInfo = {...JSON.parse(localStorage.getItem('user'))};
     isAuthenticated: boolean;
 
-    constructor(private router: Router) {
-        this.isAuthenticated = this.accessToken ? true : false;
+    constructor(private router: Router,
+                private modalCtrl: ModalController) {
+        this.isAuthenticated = !!this.accessToken;
     }
 
     getUserInfo(): UserInfo {

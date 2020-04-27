@@ -8,6 +8,7 @@ import {ProfilePageRoutingModule} from './profile-routing.module';
 
 import {ProfilePage} from './profile.page';
 import {ComponentModule} from '../../components/component.module';
+import {NzIconModule} from 'ng-zorro-antd';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {ComponentModule} from '../../components/component.module';
         FormsModule,
         IonicModule,
         ProfilePageRoutingModule,
-        ComponentModule
+        ComponentModule,
+        NzIconModule
     ],
     declarations: [ProfilePage]
 })

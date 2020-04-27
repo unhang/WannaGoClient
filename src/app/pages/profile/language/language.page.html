@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons>
+            <ion-back-button defaultHref="/pages/tabs/profile"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{text.header}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div>
+        <ion-grid fixed="true">
+            <ion-row>
+                <ion-col class="top-content">
+                    <h2 class="top-conent__header">{{text.title}}</h2>
+                    <p class="top-conent__description">{{text.description}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="middle-content">
+                    <h4>{{text.section}}</h4>
+                    <div>
+                        <nz-radio-group [(ngModel)]="selectedLang">
+                            <label nz-radio [nzValue]="LANG.EN">{{text.languages.EN}}</label>
+                            <label nz-radio [nzValue]="LANG.VI">{{text.languages.VI}}</label>
+                        </nz-radio-group>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

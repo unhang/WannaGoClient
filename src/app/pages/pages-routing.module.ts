@@ -86,6 +86,11 @@ const routes: Routes = [
                         path: 'change-password',
                         loadChildren: () => import('./profile/change-password/change-password.module').then(m => m.ChangePasswordPageModule)
                     },
+                    {
+                        path: 'language',
+                        loadChildren: () => import('./profile/language/language.module').then( m => m.LanguagePageModule)
+                    }
+
                 ]
             }
         ]

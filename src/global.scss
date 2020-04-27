@@ -137,6 +137,8 @@ ion-card {
 
 
 .custom-modal .modal-wrapper {
+
+  $custom-modal-height: 278px;
   --height: 95%;
   position: absolute;
   bottom: 0;
@@ -147,16 +149,16 @@ ion-card {
     border-top-right-radius: 8px !important;
     top: 20%;
     --width: 400px !important;
-    --height: 255px !important;
-    min-height: 255px !important;
-    max-height: 255px !important;
-    height: 255px !important;
+    --height: $custom-modal-height !important;
+    min-height: $custom-modal-height !important;
+    max-height: $custom-modal-height !important;
+    height: $custom-modal-height !important;
     .modal-wrapper.sc-ion-modal-ios, .modal-shadow.sc-ion-modal-ios {
       --width: 400px !important;
-      --height: 255px !important;
-      min-height: 255px !important;
-      max-height: 255px !important;
-      height: 255px !important;
+      --height: $custom-modal-height !important;
+      min-height: $custom-modal-height !important;
+      max-height: $custom-modal-height !important;
+      height: $custom-modal-height !important;
     }
   }
 }

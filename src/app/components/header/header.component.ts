@@ -1,6 +1,6 @@
 import {AfterContentInit, AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {NavController} from '@ionic/angular';
+import {AlertController, NavController} from '@ionic/angular';
 
 @Component({
     selector: 'go-header',
@@ -16,7 +16,6 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
 
     logoBlackUrl = 'https://wannago.cf/storage/library/logo1024x1024_opacity.png';
     logoWhiteUrl = 'https://wannago.cf/storage/library/logo1024x1024_color_white_opacity.png';
-
     mobileLogo = 'https://wannago.cf/storage/library/logo4096x4096_big_bg_opacity.png';
 
     textVn: any = {
@@ -29,6 +28,12 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
         dropdown: {
             menu1: 'Cài đặt tài khoản',
             menu2: 'Đặt chỗ của tôi'
+        },
+        alert: {
+            header: 'Cảnh báo',
+            message: 'Bạn có muốn xác nhận Đăng xuất',
+            okBtn: 'Đồng ý',
+            cancelBtn: 'Hủy'
         }
     };
     textEn: any = {
@@ -41,13 +46,21 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
         dropdown: {
             menu1: 'Account setting',
             menu2: 'Booking history'
+        },
+        alert: {
+            header: 'Warning',
+            message: 'Are you sure to sign out',
+            okBtn: 'Ok',
+            cancelBtn: 'Cancel'
         }
     };
 
     text: any = {};
     isSignIn: boolean;
     isMobile = window.innerWidth < 767;
+
     constructor(private authService: AuthService,
+                private alertCtrl: AlertController,
                 private navCtrl: NavController) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
@@ -64,8 +77,25 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
         this.isSignIn = this.authService.isSignIn;
     }
 
-    signOut() {
-        this.authService.signOut();
+    async signOut() {
+        const alert = await this.alertCtrl.create({
+            mode: 'md',
+            header: this.text.alert.header,
+            message: this.text.alert.message,
+            buttons: [
+                {
+                    text: this.text.alert.okBtn,
+                    role: 'OK',
+                    handler: () => this.authService.signOut()
+                },
+                {
+                    text: this.text.alert.cancelBtn,
+                    role: 'cancel'
+                }
+            ],
+            backdropDismiss: true
+        });
+        await alert.present();
     }
 
     resetNavRoot() {
