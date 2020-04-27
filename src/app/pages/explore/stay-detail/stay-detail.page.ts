@@ -114,9 +114,9 @@ export class StayDetailPage implements OnInit {
             });
             await modal.present();
             signIn = await modal.onDidDismiss();
-        }
-        if (signIn.role !== 'succeeded') {
-            return;
+            if (signIn?.role !== 'succeeded') {
+                return;
+            }
         }
 
         // is authenticated case

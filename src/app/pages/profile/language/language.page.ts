@@ -6,13 +6,12 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./language.page.scss'],
 })
 export class LanguagePage implements OnInit {
-
+    lang = localStorage.getItem('lang') || 'vn';
     LANG = {
         EN: 'EN',
-        VI: 'VI'
+        VN: 'VN'
     };
-
-    lang = localStorage.getItem('lang') || '';
+    selectedLang = this.lang === 'en' ? this.LANG.EN : this.LANG.VN;
     textEn: any = {
         header: 'Language options',
         title: 'Change language',
@@ -20,8 +19,9 @@ export class LanguagePage implements OnInit {
         section: 'Languages',
         languages: {
             EN: 'English',
-            VI: 'Vietnamese'
-        }
+            VN: 'Vietnamese'
+        },
+        saveBtn: 'Save'
     };
     textVn: any = {
         header: 'Tùy chọn ngôn ngữ',
@@ -30,11 +30,12 @@ export class LanguagePage implements OnInit {
         section: 'Ngôn ngữ',
         languages: {
             EN: 'Tiếng Anh',
-            VI: 'Tiếng Việt'
-        }
+            VN: 'Tiếng Việt'
+        },
+        saveBtn: 'Lưu'
     };
     text = this.lang === 'en' ? this.textEn : this.textVn;
-    selectedLang = this.lang === 'en' ? this.LANG.EN : this.LANG.VI;
+
 
     constructor() {
     }
@@ -42,4 +43,8 @@ export class LanguagePage implements OnInit {
     ngOnInit() {
     }
 
+    saveDefaultLanguage() {
+        localStorage.setItem('lang', this.selectedLang.toLocaleLowerCase());
+        location.reload();
+    }
 }

@@ -7,7 +7,7 @@ import {IonicModule} from '@ionic/angular';
 import {LanguagePageRoutingModule} from './language-routing.module';
 
 import {LanguagePage} from './language.page';
-import {NzRadioModule} from 'ng-zorro-antd';
+import {NzButtonModule, NzIconModule, NzRadioModule} from 'ng-zorro-antd';
 
 @NgModule({
     imports: [
@@ -15,7 +15,9 @@ import {NzRadioModule} from 'ng-zorro-antd';
         FormsModule,
         IonicModule,
         LanguagePageRoutingModule,
-        NzRadioModule
+        NzRadioModule,
+        NzButtonModule,
+        NzIconModule
     ],
     declarations: [LanguagePage]
 })

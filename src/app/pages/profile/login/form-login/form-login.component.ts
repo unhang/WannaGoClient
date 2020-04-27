@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../../services/auth.service';
 import {AccessToken, SignIn, UserInfo, UserService} from '../../../../../swagger';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LoadingController} from '@ionic/angular';
+import {AlertController, LoadingController} from '@ionic/angular';
 import {SpinnerOptService} from '../../../../services/spinner-opt.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -20,6 +20,11 @@ export class GoFormLoginComponent implements OnInit {
         btnLogin: 'Đăng nhập',
         linkForget: 'Quên mật khẩu?',
         linkRegister: 'Chưa có tài khoản?',
+        alert: {
+            header: 'Sign in failed',
+            loginFailedMsg: 'Email or password was wrong',
+            okBtn: 'Ok'
+        },
     };
     textEn: any = {
         title: 'Login',
@@ -28,6 +33,11 @@ export class GoFormLoginComponent implements OnInit {
         btnLogin: 'Login',
         linkForget: 'Forget password?',
         linkRegister: 'Don\'t have account?',
+        alert: {
+            header: 'Đăng nhập thất bại',
+            loginFailedMsg: 'Email hoặc mật khẩu sai',
+            okBtn: 'Ok'
+        },
     };
     text: any = {};
 
@@ -44,6 +54,7 @@ export class GoFormLoginComponent implements OnInit {
                 private spinnerOptService: SpinnerOptService,
                 private router: Router,
                 private route: ActivatedRoute,
+                private alertCtrl: AlertController,
                 private fb: FormBuilder) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
@@ -72,9 +83,27 @@ export class GoFormLoginComponent implements OnInit {
             (error) => {
                 // No.21
                 // Thực thi xử lý login error từ thời điểm này trở đi
-                console.log(error); // <- console.log này mang tính tham khảo, em nhớ xóa đi khi làm xong
+                // console.log(error); // <- console.log này mang tính tham khảo, em nhớ xóa đi khi làm xong
+                this.loginFailedHandler();
             }
         );
+    }
+
+    private async loginFailedHandler() {
+        await this.loadEl.dismiss();
+        const alert = await this.alertCtrl.create({
+            mode: 'md',
+            header: this.text.alert.header,
+            message: this.text.alert.loginFailedMsg,
+            buttons: [
+                {
+                    text: this.text.alert.okBtn,
+                    role: 'OK',
+                }
+            ],
+            backdropDismiss: true
+        });
+        await alert.present();
     }
 
     getUserInfo() {

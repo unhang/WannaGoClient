@@ -22,9 +22,21 @@
                     <h4>{{text.section}}</h4>
                     <div>
                         <nz-radio-group [(ngModel)]="selectedLang">
-                            <label nz-radio [nzValue]="LANG.EN">{{text.languages.EN}}</label>
-                            <label nz-radio [nzValue]="LANG.VI">{{text.languages.VI}}</label>
+                            <div>
+                                <label nz-radio [nzValue]="LANG.EN">{{text.languages.EN}}</label>
+                            </div>
+                            <div>
+                                <label nz-radio [nzValue]="LANG.VN">{{text.languages.VN}}</label>
+                            </div>
                         </nz-radio-group>
+                    </div>
+                    <br>
+                    <div>
+                        <button nz-button nzType="primary" nzBlock
+                                [disabled]="selectedLang.toLocaleLowerCase() === lang"
+                                (click)="saveDefaultLanguage()">
+                            <i nz-icon nzType="global"></i>&nbsp;&nbsp;{{text.saveBtn}}
+                        </button>
                     </div>
                 </ion-col>
             </ion-row>

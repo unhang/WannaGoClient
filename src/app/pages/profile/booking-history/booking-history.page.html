@@ -66,7 +66,7 @@
             </ion-row>
 
             <!-- Trường hợp không có dữ liệu-->
-            <ion-row>
+            <ion-row *ngIf="emptyMode">
                 <ion-col>
                     <nz-empty></nz-empty>
                 </ion-col>
