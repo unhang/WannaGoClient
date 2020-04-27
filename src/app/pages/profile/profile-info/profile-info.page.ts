@@ -22,6 +22,12 @@ export class ProfileInfoPage implements OnInit {
         alertHeader: 'Thông báo',
         alertMessage: 'Bạn có chắc muốn đăng xuất khỏi ứng dụng',
         alertCancelBtn: 'Không',
+        pfAvatar: 'Ảnh đại diện',
+        pfUpdateInfo: 'Cập nhập thông tin',
+        pfName: 'Họ và tên',
+        pfEmail: 'Hộp thư điện tử',
+        pfPhoneNumber: 'Số điện thoại',
+        pfChangePwd: 'Đổi mật khẩu',
     };
 
     textEn: any = {
@@ -32,6 +38,12 @@ export class ProfileInfoPage implements OnInit {
         alertHeader: 'Alert',
         alertMessage: 'Are you sure to remove favorite?',
         alertCancelBtn: 'Cancel',
+        pfAvatar: 'Your avatar',
+        pfUpdateInfo: 'Update your profile',
+        pfName: 'Full name',
+        pfEmail: 'Email',
+        pfPhoneNumber: 'Phone number',
+        pfChangePwd: 'Change password',
     };
 
     text: any = {};

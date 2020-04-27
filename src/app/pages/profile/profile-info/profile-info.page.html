@@ -22,7 +22,7 @@
                             <ion-row fixed="true" [formGroup]="updateUserInfo">
                                 <ion-col size="12" size-sm="6">
                                     <!-- hiển thị screen lớn -->
-                                    <h2>Ảnh đại diện</h2>
+                                    <h2>{{text.pfAvatar}}</h2>
                                     <div class="avatar">
                                         <div>
                                             <img [src]="userInfo.avatar!= null ? userInfo.avatar : 'https://wannago.cf/storage/library/notfound.png'"
@@ -31,29 +31,27 @@
                                     </div>
                                 </ion-col>
                                 <ion-col size="12" size-sm="6">
-                                    <h2>Cập nhập thông tin</h2>
+                                    <h2>{{text.pfUpdateInfo}}</h2>
                                     <input type="hidden" formControlName="userId">
                                     <ion-item>
-                                        <ion-label position="floating" color="secondary" color="secondary">Họ và tên
+                                        <ion-label position="floating" color="secondary" color="secondary">{{text.pfName}}
                                         </ion-label>
                                         <ion-input type="text" formControlName="name"></ion-input>
                                     </ion-item>
                                     <ion-item>
-                                        <ion-label position="floating" color="secondary">Email</ion-label>
+                                        <ion-label position="floating" color="secondary">{{text.pfEmail}}</ion-label>
                                         <ion-input type="email" formControlName="emailAddress" readonly></ion-input>
                                     </ion-item>
                                     <ion-item>
-                                        <ion-label position="floating" color="secondary">Số điện thoại</ion-label>
+                                        <ion-label position="floating" color="secondary">{{text.pfPhoneNumber}}</ion-label>
                                         <ion-input type="text" formControlName="phone"></ion-input>
                                     </ion-item>
-                                    <ion-button expand="block" class="ion-margin-top" (click)="update()">Cập nhật thông
-                                        tin
-                                    </ion-button>
+                                    <ion-button expand="block" class="ion-margin-top" (click)="update()">{{text.pfUpdateInfo}}</ion-button>
                                     <ion-row>
                                         <ion-col class="ion-text-justify">
                                             <ion-text class="ion-text-justify"
                                                       color="secondary"
-                                                      (click)="changePassword()">Đổi mật khẩu
+                                                      (click)="changePassword()">{{text.pfChangePwd}}
                                             </ion-text>
                                         </ion-col>
                                     </ion-row>
