@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastController} from '@ionic/angular';
+import {NavController, ToastController} from '@ionic/angular';
 import {Router} from '@angular/router';
 
 @Component({
@@ -25,7 +25,9 @@ export class ChangePasswordPage implements OnInit {
     mode = this.RESET_MODE;
     isMobile = window.innerWidth < 767;
     resetPendingEmailAddress: string;
+
     constructor(private toastCtrl: ToastController,
+                private navCtrl: NavController,
                 private router: Router) {
     }
 
@@ -53,5 +55,9 @@ export class ChangePasswordPage implements OnInit {
                 }
             }, 3000);
         });
+    }
+
+    goback() {
+        this.navCtrl.pop();
     }
 }
