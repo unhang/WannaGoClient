@@ -58,6 +58,7 @@ export class ProfileInfoPage implements OnInit {
     }
 
     update() {
+        if (!this.updateUserInfo.dirty) {return;}
         const userForm: UserInfo = {...this.updateUserInfo.value};
         this.userService.update(userForm).subscribe((userInfo: UserInfo) => {
                 this.authService.setUserInfo(userInfo);
@@ -101,5 +102,10 @@ export class ProfileInfoPage implements OnInit {
             ]
         });
         await alert.present();
+    }
+
+    goToBookingHistory() {
+        this.navCtrl.pop()
+            .then(() => this.router.navigate(['/pages', 'tabs', 'profile', 'booking-history']));
     }
 }

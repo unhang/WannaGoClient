@@ -22,17 +22,33 @@
                              routerLink='/pages/tabs/explore/home'>{{text.btn1}}</ion-col>
                     <ion-col size="auto" class="header__container-navs-button"
                              routerLink='/pages/tabs/explore/faqs'>{{text.btn2}}</ion-col>
+
+                    <!-- Hiển thị khi chưa sign in-->
                     <ng-container *ngIf="!isSignIn">
                         <ion-col size="auto" class="header__container-navs-button"
                                  routerLink='/pages/tabs/profile/login'>{{text.btn3}}</ion-col>
                         <ion-col size="auto" class="header__container-navs-button"
                                  routerLink='/pages/tabs/profile/register'>{{text.btn4}}</ion-col>
                     </ng-container>
+
+                    <!-- Hiển thị khi đã sign in-->
                     <ng-container *ngIf="isSignIn">
-                        <ion-col size="auto" class="header__container-navs-button"
-                                 routerLink='/pages/tabs/profile/profile-info'>{{text.btn5}}</ion-col>
-                        <ion-col size="auto" class="header__container-navs-button"
-                                 (click)="signOut()">{{text.btn6}}</ion-col>
+                        <ion-col size="auto" class="header__container-navs-button">
+                            <span routerLink='/pages/tabs/profile/profile-info'>{{text.btn5}}</span>
+                            <i nz-icon nzType="more"
+                               nzTheme="outline"
+                               nz-dropdown [nzDropdownMenu]="accountDropdown"></i>
+                        </ion-col>
+                        <nz-dropdown-menu #accountDropdown>
+                            <ul nz-menu nzSelectable>
+                                <li nz-menu-item routerLink='/pages/tabs/profile/profile-info'>{{text.dropdown.menu1}}</li>
+                                <li nz-menu-item routerLink='/pages/tabs/profile/booking-history'>{{text.dropdown.menu2}}</li>
+                                <li nz-menu-divider></li>
+                                <li nz-menu-item nz-typography nzType="danger" (click)="signOut()">
+                                    <span nz-typography nzType="danger">{{text.btn6}}</span>
+                                </li>
+                            </ul>
+                        </nz-dropdown-menu>
                     </ng-container>
                 </ion-row>
             </ion-grid>

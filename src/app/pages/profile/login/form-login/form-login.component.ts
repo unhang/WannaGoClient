@@ -50,19 +50,11 @@ export class GoFormLoginComponent implements OnInit {
 
     ngOnInit() {
     }
-    
-    async eventHandler(event){
-        if(event.keyCode==13){
-            this.loadEl = await this.loadCtrl.create(this.spinnerOptService.createOpts());
-            await this.loadEl.present();
-    
-            const signIn: SignIn = {...this.loginForm.value};
-            this.userService.signIn(signIn).subscribe((accessToken: AccessToken) => {
-                this.authService.setAccessToken(accessToken.accessToken);
-                this.getUserInfo();
-            });
+
+    eventHandler(event) {
+        if (event.keyCode === 13) {
+            this.signIn();
         }
-       
     }
 
     async signIn() {
@@ -70,10 +62,19 @@ export class GoFormLoginComponent implements OnInit {
         await this.loadEl.present();
 
         const signIn: SignIn = {...this.loginForm.value};
-        this.userService.signIn(signIn).subscribe((accessToken: AccessToken) => {
-            this.authService.setAccessToken(accessToken.accessToken);
-            this.getUserInfo();
-        });
+        this.userService.signIn(signIn).subscribe(
+            // thông thường, khi 1 Observable thành công, function đầu tiên (tên là next())tương tự như ".then()"  của Promise
+            (accessToken: AccessToken) => {
+                this.authService.setAccessToken(accessToken.accessToken);
+                this.getUserInfo();
+            },
+            // trong trường hợp nó phát ra 1 error, thì function thứ 2 chính là error(),
+            (error) => {
+                // No.21
+                // Thực thi xử lý login error từ thời điểm này trở đi
+                console.log(error); // <- console.log này mang tính tham khảo, em nhớ xóa đi khi làm xong
+            }
+        );
     }
 
     getUserInfo() {

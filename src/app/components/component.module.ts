@@ -3,7 +3,15 @@ import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NzAutocompleteModule, NzButtonModule, NzDatePickerModule, NzIconModule, NzInputModule, NzSelectModule} from 'ng-zorro-antd';
+import {
+    NzAutocompleteModule,
+    NzButtonModule,
+    NzDatePickerModule,
+    NzDropDownModule,
+    NzIconModule,
+    NzInputModule,
+    NzSelectModule, NzTypographyModule
+} from 'ng-zorro-antd';
 
 import {GoHeader} from './header/header.component';
 import {GoInput} from './input/input.component';
@@ -42,7 +50,9 @@ import {GoSignIn} from './sign-in/sign-in.component';
         NzAutocompleteModule,
         NzInputModule,
         NzIconModule,
-        NzButtonModule
+        NzButtonModule,
+        NzDropDownModule,
+        NzTypographyModule
     ],
     exports: [
         GoHeader,

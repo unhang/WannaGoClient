@@ -3,7 +3,7 @@ import {HeaderStyle} from '../../../constant/HeaderStyle';
 import {Booking, BookingService} from '../../../../swagger';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
-import {LoadingController} from '@ionic/angular';
+import {LoadingController, NavController} from '@ionic/angular';
 import {SpinnerOptService} from '../../../services/spinner-opt.service';
 
 @Component({
@@ -60,6 +60,7 @@ export class BookingHistoryPage implements OnInit {
                 private loadCtrl: LoadingController,
                 private spinnerOptService: SpinnerOptService,
                 private authService: AuthService,
+                private navCtrl: NavController,
                 private bookingService: BookingService) {
         this.text = this.lang === 'ev' ? this.textEn : this.textVn;
     }
@@ -85,6 +86,11 @@ export class BookingHistoryPage implements OnInit {
 
     goToStayDetail(stayId: number) {
         this.router.navigate(['/pages', 'tabs', 'explore', stayId, 'stay']);
+    }
+
+    goToProfileInfo() {
+        this.navCtrl.pop()
+            .then(() => this.router.navigate(['/pages', 'tabs', 'profile', 'profile-info']));
     }
 
 }

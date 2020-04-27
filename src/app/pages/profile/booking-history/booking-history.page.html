@@ -58,7 +58,7 @@
                                 color="medium"
                                 fill="outline"
                                 expand="block"
-                                [routerLink]="['/pages', 'tabs', 'profile', 'profile-info']">{{text.btn1}}</ion-button>
+                                (click)="goToProfileInfo()">{{text.btn1}}</ion-button>
                     <ion-button expand="block">{{text.btn2}}</ion-button>
                 </ion-col>
             </ion-row>

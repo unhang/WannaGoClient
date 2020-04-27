@@ -25,7 +25,11 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
         btn3: 'Đăng nhập',
         btn4: 'Đăng ký',
         btn5: 'Tài khoản',
-        btn6: 'Đăng xuất'
+        btn6: 'Đăng xuất',
+        dropdown: {
+            menu1: 'Cài đặt tài khoản',
+            menu2: 'Đặt chỗ của tôi'
+        }
     };
     textEn: any = {
         btn1: 'Become host',
@@ -33,7 +37,11 @@ export class GoHeader implements OnInit, AfterViewInit, AfterContentInit {
         btn3: 'Sign up',
         btn4: 'Sign in',
         btn5: 'Account',
-        btn6: 'Sign out'
+        btn6: 'Sign out',
+        dropdown: {
+            menu1: 'Account setting',
+            menu2: 'Booking history'
+        }
     };
 
     text: any = {};
