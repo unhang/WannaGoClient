@@ -101,15 +101,11 @@ export class ProfileInfoPage implements OnInit {
                 {
                     text: 'OK',
                     role: 'OK',
-                    handler: () => (
-                        this.authService.signOut()
-                    )
+                    handler: () => this.authService.signOut()
                 },
                 {
                     text: this.text.alertCancelBtn,
-                    role: 'cancel',
-                    handler: () => {
-                    }
+                    role: 'cancel'
                 },
             ]
         });
