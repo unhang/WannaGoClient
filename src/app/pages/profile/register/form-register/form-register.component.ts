@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserInfo, UserService} from '../../../../../swagger';
 import {Router} from '@angular/router';
-import {LoadingController, AlertController} from '@ionic/angular';
+import {LoadingController} from '@ionic/angular';
 import {SpinnerOptService} from '../../../../services/spinner-opt.service';
 
 @Component({
@@ -23,6 +23,7 @@ export class FormRegisterComponent implements OnInit {
         btnLogin: 'Mở tài khoản',
         linkForget: 'Quên mật khẩu?',
         linkRegister: 'Chưa có tài khoản?',
+        emailValidText: 'Email không hợp lệ'
     };
     textEn: any = {
         title: 'Register',
@@ -35,6 +36,7 @@ export class FormRegisterComponent implements OnInit {
         btnLogin: 'Create account',
         linkForget: 'forgot password?',
         linkRegister: 'Sign up',
+        emailValidText: 'Email invalid'
     };
     text: any = {};
     signUpForm: FormGroup = this.fb.group({
