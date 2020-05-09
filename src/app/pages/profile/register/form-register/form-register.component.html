@@ -30,6 +30,7 @@
                 </ion-label>
                 <ion-input formControlName="emailAddress"></ion-input>
             </ion-item>
+            <p *ngIf="emailInvalid" style="color: red; padding: 1rem 2rem 0; margin: 0">Email không hợp lệ</p>
         </ion-col>
         <ion-col size="12">
             <ion-item lines="none">
