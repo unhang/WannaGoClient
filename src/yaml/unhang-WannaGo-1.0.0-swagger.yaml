@@ -1,0 +1,1364 @@
+openapi: 3.0.0
+info:
+  description: |
+    This is a sample Petstore server.  You can find
+    out more about Swagger at
+    [http://swagger.io](http://swagger.io) or on
+    [irc.freenode.net, #swagger](http://swagger.io/irc/).
+  version: "1.0.0"
+  title: WannaGo Client API
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+
+
+paths:
+  /api/stay/search:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    - in: query
+      name: 'check_in'
+      description: 'Ngày check in'
+      schema:
+        type: string
+        example: '01-05-2020'
+      required: true
+    - in: query
+      name: 'check_out'
+      description: 'Ngày check out'
+      schema:
+        type: string
+        example: '31-05-2020'
+      required: true
+    - in: query
+      name: 'city_id'
+      description: 'Thành phố lựa chọn'
+      schema:
+        type: integer
+        example: 79
+      required: true
+    - in: query
+      name: 'guest_count'
+      description: 'Số lượng khách'
+      schema:
+        type: integer
+        example: 12
+      required: true
+    - in: query
+      name: 'page'
+      description: 'trang hiện tại'
+      schema:
+        type: integer
+        example: 1
+      required: true
+    get:
+      tags:
+        - stay
+      summary: search()
+      description: danh sách tìm kiếm
+      operationId: search
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StaySearch'      
+  /api/stay/get-highlight-places:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    get:
+      summary: 'stayGetHighlightPlaces()'
+      description: get danh sách địa điểm nổi bật trên trang chủ
+      operationId: stayGetHighlightPlaces
+      tags: 
+        - stay
+      responses:
+        '200': 
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighlightPlaces'
+  /api/stay/get-slices-by-type:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    get:
+      summary: 'getSlicesByType()' 
+      description: lấy danh sách "TÌM THEO LOẠI CHỖ NGHỈ" tìm nơi ở theo địa điểm 
+      operationId: getSlicesByType
+      tags:
+        - stay
+      responses:
+        '200':
+          description: lấy danh sách thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StayByTypeArray'
+  /api/stay/{stay_id}/detail:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    - in: path
+      name: 'stay_id'
+      description: id của stay
+      schema:
+        type: integer
+        example: 122
+      required: true
+    get:
+      summary: 'getStayDetail()'
+      description: lấy thông tin chi tiết của stay, trong trang
+      operationId: getStayDetail
+      tags:
+        - stay
+      responses:
+        '200':
+          description: lấy danh sách thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StayDetail'  
+  /api/stay/{stay_id}/comments:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    - in: path
+      name: 'stay_id'
+      description: lấy comment của stay thông qua stay_id
+      schema:
+        type: integer
+        example: 123
+      required: true
+    get:
+      summary: 'getStayComments()'
+      description: get comment của stay theo id
+      operationId: getStayComments
+      tags:
+        - stay
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref : '#/components/schemas/CommentDetail'
+  /api/stay/comments:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    post:
+      summary: 'postStayComment()'
+      description: post comment
+      operationId: postStayComment
+      tags:
+        - stay
+      requestBody:
+        description: Thông tin post của comment
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentPost'
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentPost'
+  /api/stay/add-favorite:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    post:
+      summary: 'addFavorite()'
+      description: 'thêm 1 record vào table t_stay_favorite'
+      operationId: addFavorite
+      tags:
+        - stay
+      requestBody:
+        description: Thông tin post của comment
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StayFavorite'
+      responses:
+        200:
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StayFavorite'
+                
+  /api/stay/{favorite_id}/remove-favorite:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    - in: path
+      name: 'favorite_id'
+      schema:
+        type: integer
+        example: 789
+      required: true
+    delete:
+      summary: 'removeFavorite()'
+      description: 'remove 1 stay đã liked'
+      operationId: removeFavorite
+      tags:
+        - stay
+      responses:
+        200:
+          description: 'OK'
+                  
+  /api/stay/{user_id}/get-favorite:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    - in: path
+      name: 'user_id'
+      schema:
+        type: integer
+        example: 789
+      required: true
+    get:
+      summary: 'getFavorite()'
+      description: 'Lấy danh sách id của các stay đã like bằng user_id đi kem req'
+      operationId: getFavorite
+      tags:
+        - stay
+      responses:
+        200:
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserFavorite'
+              
+  /api/stay/get-stay-hot:
+    parameters: 
+    - $ref: '#/components/parameters/Language'
+    get:
+      tags:
+        - stay
+      summary: getStayHot()
+      description: 'Lấy 10 địa điểm nôi bật nhất'
+      operationId: getStayHot
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StayDetail'     
+  
+  /api/host/{host_id}/info:
+    parameters: 
+    - $ref: '#/components/parameters/Language'
+    - in: path
+      name: 'host_id'
+      schema:
+        type: integer
+        example: 789
+      required: true
+    get:
+      summary: 'getHostInfo()'
+      description: lấy thông cơ bản của Host
+      operationId: getHostInfo
+      tags:
+        - host
+      responses:
+        '200':
+          description: lấy danh sách thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostInfo'  
+    
+  /api/booking/{booking_id}/get:
+    parameters: 
+    - $ref: '#/components/parameters/Language'
+    - in: path
+      name: 'booking_id'
+      schema:
+        type: integer
+        example: 789
+      required: true
+    get:
+      tags:
+        - booking
+      summary: 'getBookingById()'
+      description: lấy thông tin booking theo booking_id
+      operationId: getBookingById
+      responses:
+        200:
+          description: Trả về object Booking chứa thông tin bookingư
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+  /api/booking/add:
+    parameters:
+    - $ref: '#/components/parameters/Language'      
+    post:
+      tags:
+        - booking
+      summary: 'addBooking()'
+      description: tạo booking stay cho user
+      operationId: addBooking
+      requestBody:
+        $ref: '#/components/requestBodies/Booking'
+      responses:
+        '200':
+          description: 'trả về thông tin sau khi đã add một booking mới'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+  /api/booking/{user_id}/pending-list:
+    parameters:
+    - $ref: '#/components/parameters/Language' 
+    - in: path
+      name: 'user_id'
+      schema:
+        type: integer
+        example: 789
+      required: true
+    get:
+      tags:
+        - booking
+      summary: 'getPendingList()'
+      description: get danh sách booking đã tạo, với status pending
+      operationId: getPendingList
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+  /api/booking/{user_id}/completed-list:
+    parameters:
+    - $ref: '#/components/parameters/Language' 
+    - in: path
+      name: 'user_id'
+      schema:
+        type: integer
+        example: 789
+      required: true
+    get:
+      tags:
+        - booking
+      summary: 'getCompletedList()'
+      description: get danh sách booking đã tạo, với status succeeded
+      operationId: getCompletedList
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+  /api/booking/{user_id}/all-booked-list:
+    parameters:
+    - $ref: '#/components/parameters/Language' 
+    - in: path
+      name: 'user_id'
+      schema:
+        type: integer
+        example: 789
+      required: true
+    get:
+      tags:
+        - booking
+      summary: 'getAllBookedList()'
+      description: get danh sách tất cả booking đã tạo, bao gồm cả booking bị cancel với delete flag
+      operationId: getAllBookedList
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+                  
+  /api/booking/{booking_id}/cancel-booking:
+    parameters:
+    - $ref: '#/components/parameters/Language' 
+    - in: path
+      name: 'booking_id'
+      schema:
+        type: integer
+        example: 789
+      required: true
+    delete:
+      tags:
+        - booking
+      summary: 'cancelBookingById()'
+      description: bật delete flag cho booking theo bookingId gửi kèm request
+      operationId: cancelBookingById
+      responses:
+        '200':
+          description: 'OK'
+      
+  /api/booking/update:
+    parameters:
+    - $ref: '#/components/parameters/Language'      
+    put:
+      tags:
+        - booking
+      summary: 'updateBooking()'
+      description: tạo booking stay cho user, căn bản giống như addBooking, chỉ khác tên
+      operationId: updateBooking
+      requestBody:
+        $ref: '#/components/requestBodies/Booking'
+      responses:
+        '200':
+          description: 'trả về thông tin sau khi đã add một booking mới'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+  /api/booking/{user_id}/history: 
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    - in: path
+      name: 'user_id'
+      description: 'userId dùng để get lịch sử booking'
+      schema:
+        type: integer
+        example: 789
+      required: true
+    get:
+      tags:
+        - booking
+      summary: 'getBookingHistory()'
+      description: 'lấy danh sách booking của user'
+      operationId: 'getBookingHistory'
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+  /api/stripe/payment-intent:
+    post:
+      tags:
+        - stripe
+      summary: 'paymentIntent()'
+      operationId: paymentIntent
+      description: 'khởi tạo stripe payment object dựa trên thông tin booking (theo user id)'
+      requestBody:
+        $ref: '#/components/requestBodies/Booking'
+      responses:
+        '200':
+          description: 'trả về thông tin sau khi đã add một booking mới'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentIntent'
+  /api/stripe/confirm-payment:
+    post:
+      tags:
+        - stripe
+      requestBody:
+        $ref: '#/components/requestBodies/PaymentIntent'
+      summary: 'confirmPayment()'
+      operationId: confirmPayment
+      description: 'xác nhận thanh toán khi get được client_secret từ /api/stripe/payment-intent'
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentIntent'
+      
+  /api/user/signin:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    post:
+      tags:
+        - user
+      summary: 'signIn()'
+      description: 'api đăng nhập của user'
+      operationId: signIn
+      requestBody:
+        description: 'object request đăng nhập'
+        required: true
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/SignIn'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+  /api/user/signup:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    post:
+      tags:
+        - user
+      summary: 'signUp()'
+      description: 'api đăng ký tài khoản cho user'
+      operationId: signUp'
+      requestBody:
+        description: 'object request đăng nhập'
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/UserInfo'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+  /api/user/update: 
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    post:
+      tags:
+        - user
+      summary: 'update()'
+      description: 'api đăng ký tài khoản cho user'
+      operationId: update
+      requestBody:
+        required: true
+        description: 'object request đăng nhập'
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/UserInfo'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+    
+  /api/user/info:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    get:
+      summary: 'getUserInfo()'
+      description: lấy thông tin của user
+      security:
+        - bearerAuth: []
+      operationId: getUserInfo
+      tags:
+        - user
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      
+  /api/user/reset-password:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    post:
+      summary: 'resetPassword()'
+      description: lấy thông tin của user
+      operationId: resetPassword
+      tags:
+        - user
+      requestBody:
+        description: 'chứa object là email cần đổi password'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetEmailAddress'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResetPasswordRequestResult'
+  /api/user/change-password:
+    parameters:
+    - $ref: '#/components/parameters/Language'
+    post:
+      summary: 'changePassword()'
+      description: password mới
+      operationId: changePassword
+      tags:
+        - user
+      requestBody:
+        description: 'chứa object là email cần đổi password'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPassword'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResetPasswordRequestResult'
+  #Template
+  # /user/createWithList:
+  #   post:
+  #     tags:
+  #       - template
+  #     summary: Creates list of users with given input array
+  #     operationId: createUsersWithListInput
+  #     responses:
+  #       default:
+  #         description: successful operation
+  #     requestBody:
+  #       $ref: '#/components/requestBodies/UserArray'
+  # /user/{username}:
+  #   get:
+  #     tags:
+  #       - template
+  #     summary: Get user by user name
+  #     operationId: getUserByName
+  #     parameters:
+  #       - name: username
+  #         in: path
+  #         description: The name that needs to be fetched. Use user1 for testing.
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       '200':
+  #         description: successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/User'
+  #           application/xml:
+  #             schema:
+  #               $ref: '#/components/schemas/User'
+  #       '400':
+  #         description: Invalid username supplied
+  #       '404':
+  #         description: User not found
+  #   put:
+  #     tags:
+  #       - template
+  #     summary: Updated user
+  #     description: This can only be done by the logged in user.
+  #     operationId: updateUser
+  #     parameters:
+  #       - name: username
+  #         in: path
+  #         description: name that need to be updated
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       '400':
+  #         description: Invalid user supplied
+  #       '404':
+  #         description: User not found
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/User'
+  #       description: Updated user object
+  #       required: true
+  #   delete:
+  #     tags:
+  #       - template
+  #     summary: Delete user
+  #     description: This can only be done by the logged in user.
+  #     operationId: deleteUser
+  #     parameters:
+  #       - name: username
+  #         in: path
+  #         description: The name that needs to be deleted
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       '400':
+  #         description: Invalid username supplied
+  #       '404':
+  #         description: User not found
+
+# externalDocs:
+#   description: Find out more about Swagger
+#   url: 'http://swagger.io'
+
+components:
+  parameters:
+    Language:
+      in: query
+      name: 'lang'
+      description: |
+        Ngôn ngữ（vn）
+        - vn
+        - en
+      schema:
+        type: string
+  schemas:
+    HighlightPlaces:
+      type: array
+      items:
+        $ref: '#/components/schemas/HighlightPlace'
+      minItems: 5
+      maxItems: 5
+    HighlightPlace:
+      type: object
+      properties:
+        imgUrl: 
+          type: string
+          description: hình nền của 5 địa diểm nổi bật
+          example: https://www.tranduythien.net/wp-content/uploads/2020/02/du-lich-sapa.jpg
+        cityCode:
+          type: integer
+          description: City code
+          example: 672
+        cityName:
+          type: string
+          description: City name
+          example: Đà Lạt
+        averagePrice:
+          type: integer
+          description: Average price
+          example: 666668
+        totalStays:
+          type: integer
+          description: total counts of stays in City
+          example: 2024
+    StaySearch:
+      type: object
+      properties: 
+        totalCount:
+          type: integer
+          description: 'Tổng số stay tìm được theo điều kiện query'
+          example: 150
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/StayDetail'
+          minItems: 20
+          maxItems: 20
+          multipleOf: 20
+    StayDetail:
+      type: object
+      properties:
+        hostId:
+          type: integer
+          description: Id của Host
+          example: 789
+        stayTypeName:
+          type: string
+          description: stay_type from m_code
+          example: 'Biệt Thự'
+        stayId:
+          type: integer
+          description: stay_id
+          example: 101
+        lng:
+          type: number
+          format: float
+          description: tung độ vị trí google map
+          example: 10.806132,
+        lat:
+          type: number
+          format: float
+          description: vĩ độ vị trí google map
+          example: 106.715823
+        stayName:
+          type: string
+          description: stay_name
+          example: 'Căn Hộ Vinhome Siêu To Khổng Lồ Lọt Xuống Dòng'
+        stayDescription:
+          type: string
+          description: description
+          example: 'Đặt tại thành phố Hồ Chí Minh, căn hộ tuyệt vời với hồ bơi vô cực mở. Quét qua khung cảnh thành phố và dòng sông tuyệt đẹp, nấu bữa sáng trong nhà bếp đầy đủ tiện nghi với lò vi sóng, ngả trên ghế sofa lớn với ánh sáng ban ngày chiếu qua. Pickup & tour có sẵn!'
+        areaSquare: 
+          type: integer
+          description: Diện tíchc của stay
+          example: 102
+        rate:
+          type: number
+          format: float
+          description: rating_point
+          example: 4.5
+        ratingCount:
+          type: integer
+          description: rating count
+          example: 27
+        guestCount:
+          type: integer
+          description: guest_count
+          example: 12
+        bedCount:
+          type: integer
+          description: bed_count
+          example: 5
+        bathCount:
+          type: integer
+          description: bath_count
+          example: 4
+        price:
+          type: integer
+          description: price
+          example: 1222333
+        discount:
+          type: integer
+          description: discounted price
+          example: 66
+        cityId:
+          type: integer
+          description: city code from database
+          example: 179
+        city:
+          type: string
+          description: tên thành phố lấy từ bảng tỉnh
+          example: Hồ Chí Minh
+        district:
+          type: string
+          description: tên quận
+          example: Gò Vấp
+        ward:
+          type: string
+          description: tên phường/xã
+          example: Phường 12
+        street:
+          type: string
+          description: trong address
+          example: Phạm Văn Đồng
+        addressNumber:
+          type: string
+          description: số địa chỉ nhà
+          example: 123/456
+        stayUtility:
+          $ref: '#/components/schemas/StayUtility'
+        imgUrls:
+          type: array
+          items:
+            type: string
+            example: 'https://www.dalattrip.com/media/2012/10/Dalat-Vietnam-Dalat-central-lake.jpg'
+    CommentDetail:
+      type: object
+      properties:
+        commentId:
+          type: integer
+          description: Id của comment
+          example: 1123
+        comment:
+          type: string
+          description: nội dung comment
+          example: Chủ nhà nhiệt tình, phòng đẹp thoáng mát, đầy đủ tiện nghi
+        userId: 
+          type: integer
+          description: id của user đã post comment
+          example: 101
+        commentRate:
+          type: integer
+          description: điểm của user cho stay, tối đa 5
+          example: 4
+        userName:
+          type: string  
+          description: tên của user
+        userAvatar:
+          type: string
+          description: url đến avatar của user
+          example: https://c7.uihere.com/files/340/946/334/avatar-user-computer-icons-software-developer-avatar.jpg
+    CommentPost:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: id user
+          example: 101
+        stayId:
+          type: integer
+          description: id của stay được comment
+          example: 123
+        comment:
+          type: string
+          description: Nội dung của comment
+          example: Chủ nhà nhiệt tình, phòng đẹp thoáng mát, đầy đủ tiện nghi
+        commentRate:
+          type: integer
+          description: Điểm cho stay, không quá 5
+          example: 4
+    StayFavorite: 
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 123
+        stayId:
+          type: integer
+          example: 456
+    UserFavorite:
+      type: object
+      properties:
+        stayId:
+          type: integer
+          example: 123
+        favoriteId:
+          type: integer
+    StayAddress:
+      type: object
+      properties:
+        city:
+          type: string
+          description: tên thành phố lấy từ bảng tỉnh
+          example: Hồ Chí Minh
+        district:
+          type: string
+          description: tên quận
+          example: Gò Vấp
+        ward:
+          type: string
+          description: tên phường/xã
+          example: Phường 12
+        street:
+          type: string
+          description: trong address
+          example: Phạm Văn Đồng
+        addressNumber:
+          type: string
+          description: số địa chỉ nhà
+          example: 123/456
+    
+    StayUtility: 
+      type: object
+      properties:
+        wifi:
+          type: boolean
+          description: Tiện ích có/không
+          example: true
+        tivi:
+          type: boolean
+          description: Tiện ích có/không
+          example: true
+        smoking:
+          type: boolean
+          description: Tiện ích có/không
+          example: true
+        cooler:
+          type: boolean
+          description: Tiện ích có/không
+          example: true
+        refrigerator:
+          type: boolean
+          description: Tiện ích có/không
+          example: true
+        pool:
+          type: boolean
+          description: Tiện ích có/không
+          example: true
+        kitchen:
+          type: boolean
+          description: Tiện ích có/không
+          example: true
+    StayByTypeArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/StayByType'
+    StayByType:
+      type: object
+      properties:
+        stayTypeId:
+          type: integer
+          description: Mã loại của Stay
+          example: 1
+          
+    HostInfo:
+      type: object
+      properties:
+        avatarUrl: 
+          type: string
+          description: đường dẫn url image
+          example: 'https://www.tranduythien.net/wp-content/uploads/2020/02/35830347.jpg'
+        signInDate:
+          type: string
+          description: ngày Host tạo tài khoản host
+          example: '2020/01/01'
+        hostId:
+          type: integer
+          description: Id của Host
+          example: 789
+        hostName:
+          type: string
+          description: Họ và Tên host
+          example: Trần Duy Thiên
+        phoneNumber:
+          type: string
+          description: sđt của host
+          example: '0977 121 121'
+    
+    # -------------------- BOOKING --------------------#
+    BookingHistory:
+      type: object
+      properties:
+        stayName:
+          type: string
+          example: 'Căn Hộ Cao cấp'
+        stayId:
+          type: integer
+          example: 123
+        totalPrice:
+          type: integer
+          example: 10000000
+        guestCount:
+          type: integer
+          example: 2
+        checkIn:
+          type: string
+          example: 01-04-2020
+        checkOut:
+          type: string
+          example: 04-04-2020
+    Booking:
+      type: object
+      properties:
+        bookingId:
+          type: integer
+          description: |
+            - null khi gọi api/booking/add
+            - booking id phải có giá trị khi gọi api/booking/update
+          example: 45282
+        userId:
+          type: integer
+          description: id cuả user đặt booking
+          example: 1
+        customerName:
+          type: string
+          description: Tên của khách hàng, phải trùng tên CMND
+          example: Trần Duy Thiên
+        phone:
+          type: string
+          description: Số đt liên hệ xác minh khi đặt phòng
+          example: 098887655423
+        email:
+          type: string
+          description: email gửi cho người booking, có thể khác email của tài khoản
+          example: sampleemail@gmail.com
+        stayId:
+          type: integer
+          description: id của stay được booking
+          example: 123
+        stayName:
+          type: string
+          description: lấy tên cuả stay bỏ ở đây
+          example: 'S. CAMELLIA 2 _ Managed by SONG CAT HOME'
+        checkIn:
+          type: string
+          description: ngày check in
+          example: 01-04-2020
+        checkOut:
+          type: string
+          description: ngày check out
+          example: 04-04-2020
+        guestCount:
+          type: integer
+          description: Số lượng khách đăng booking
+          example: 2
+        totalPrice:
+          type: integer
+          description: giá tiền tính theo check-in và check-out
+          example: 1000000
+        stripePaymentId:
+          type: string
+          example: pi_1GP2o8GmBXNfqIUsv8Qpqg4s
+          description: |
+            - 'Chỉ trả cho client khi đã tạo PaymentIntent phía server'
+            - 'ban đầu Null khi client postt request booking'
+        stripePaymentClientSecret:
+          type: string
+          example: pi_1GP2o8GmBXNfqIUsv8Qpqg4s_secret_3Pim8t2nEQen2m9Crc0tqsY6f
+          description: |
+            - 'Chỉ trả cho client khi đã tạo PaymentIntent phía server'
+            - 'ban đầu Null khi client postt request booking'
+        status:
+          type: string
+          description: |
+            - 'Succeess | thành công'
+            - 'incomplete | chưa hoàn thành'
+          example: 'Success'
+    # -------------------- BOOKING --------------------#
+    
+    PaymentIntent:
+      type: object
+      properties:
+        id: 
+          type: string
+          example: pi_1GP2o8GmBXNfqIUsv8Qpqg4s
+        amount: 
+          type: integer
+          example: 500000
+        clientSecret: 
+          type: string 
+          description: |
+            - 'Chỉ trả cho client khi đã tạo PaymentIntent phía server'
+            - 'Null khi client postt request booking'
+          example: pi_1GP2o8GmBXNfqIUsv8Qpqg4s_secret_3Pim8t2nEQen2m9Crc0tqsY6f
+        created: 
+          type: integer
+          example: 1584779752
+        currency: 
+          type: string
+          example: vnd
+        customer:
+          type: string
+          example: wanngo
+        description:
+          type: string
+          example: null
+        receiptEmail: 
+          type: string
+          example: unhang@mgail.com
+        status:
+          type: string
+          description: |
+            - 'Succeess | thành công'
+            - 'incomplete | chưa hoàn thành'
+          example: 'Success'
+    
+    # -------------------- USER --------------------#
+    SignIn:
+      type: object
+      properties:
+        emailAddress: 
+          type: string
+          example: 'user@gmail.com'
+        password:
+          type: string
+          example: 12345678
+    AccessToken:
+      type: object
+      properties:
+        accessToken:
+          type: string  
+          example: 'eyysdgs.adf3412342.qr1341234='
+        expires:
+          type: integer
+          example: 3600
+        type: 
+          type: string
+          example: 'Bearer'
+    UserInfo:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: id của user
+          example: 12321
+        name:
+          type: string
+          description: Họ và tên của user
+          example: Nguyễn thị Lung linh
+        birthday:
+          type: string
+          example: '1990-01-01'
+        avatar:
+          type: string
+          example: 'https://www.tranduythien.net/wp-content/uploads/2020/02/35830347.jpg'
+        emailAddress:
+          type: string
+          description: email đăng ký của user
+          example: lunglinh@gmail.com
+        password:
+          type: string
+          description: null nếu request là GET, hoặc trả về response
+          example: 12312312
+        phone:
+          type: string
+          description: Số điện thoại của uuser
+          example: 0987654321
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      xml:
+        name: Category
+    ResetEmailAddress:
+      type: object
+      properties:
+        emailAddress:
+          type: string
+          description: 'email cần đổi password'
+          example: someone@gmail.com
+    ResetPasswordRequestResult:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: |
+            - 1: 'succeeded'
+            - 2: 'failed'
+          example: 1
+        message: 
+          type: string
+          description: 'message của status'
+    NewPassword:
+      type: object
+      properties:
+        password:
+          type: string
+          example: 'qwerqwj2452F'
+        emailAddress:
+          type: string
+          example: 'someone@gmail.com'
+        secret:
+          type: string
+          description: mã xác thực nhận được từ email, sau khi yêu cầu đổi password
+          example: 'H45FBBMW'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
+        username:
+          type: string
+          example: HAng
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phone:
+          type: string
+        userStatus:
+          type: integer
+          format: int32
+          description: User Status
+      xml:
+        name: User
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      xml:
+        name: Tag
+    Pet:
+      type: object
+      required:
+        - name
+        - photoUrls
+      properties:
+        id:
+          type: integer
+          format: int64
+        category:
+          $ref: '#/components/schemas/Category'
+        name:
+          type: string
+          example: doggie
+        photoUrls:
+          type: array
+          xml:
+            name: photoUrl
+            wrapped: true
+          items:
+            type: string
+        tags:
+          type: array
+          xml:
+            name: tag
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/Tag'
+        status:
+          type: string
+          description: pet status in the store
+          enum:
+            - available
+            - pending
+            - sold
+      xml:
+        name: Pet
+  requestBodies:
+    Booking:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Booking'
+      description: Booking object thêm vào record
+      required: true
+      
+    PaymentIntent:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentIntent'
+      description: tạo payment intent
+      required: true
+  
+    # Sample
+    Pet:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Pet'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Pet'
+      description: Pet object that needs to be added to the store
+      required: true
+    UserArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+      description: List of user object
+      required: true
+     # /Sample 
+  
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+
+# Added by API Auto Mocking Plugin
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/unhang/WannaGo/1.0.0
