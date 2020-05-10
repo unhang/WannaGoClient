@@ -63,7 +63,7 @@ export class BookingHistoryPage implements OnInit {
                 private authService: AuthService,
                 private navCtrl: NavController,
                 private bookingService: BookingService) {
-        this.text = this.lang === 'ev' ? this.textEn : this.textVn;
+        this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
 
 

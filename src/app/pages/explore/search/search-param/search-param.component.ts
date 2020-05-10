@@ -20,7 +20,7 @@ export class SearchParamComponent implements OnInit {
         placeholderGuestCount: 'Guest',
         apply: 'Apply',
         filter: 'Filer',
-        result: 'Result count: '
+        result: 'Search result'
     };
     textVn: any = {
         placeholderCheckIn: 'Ngày đi',
@@ -28,7 +28,7 @@ export class SearchParamComponent implements OnInit {
         placeholderGuestCount: 'Số khách',
         apply: 'Áp dụng',
         filter: 'Bộ lọc',
-        result: 'Số kết quả: '
+        result: 'Kết quả tìm kiếm'
     };
     text = this.lang === 'en' ? this.textEn : this.textVn;
 

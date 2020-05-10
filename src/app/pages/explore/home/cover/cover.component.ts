@@ -7,10 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CoverComponent implements OnInit {
 
-
-
-    constructor() {
-    }
+    constructor() {}
 
     ngOnInit() {
 

@@ -1,11 +1,11 @@
 .cover {
   height: 100vh;
-  background-image: url('src/assets/images/_photo_photo-shop-200108_1.jpg');
+  background-image: url('../../../../../assets/images/_photo_photo-shop-200108_1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 
   @media screen and (max-width: 767px) {
-    background-image: url('src/assets/undraw/undraw_journey_lwlj.svg');
+    background-image: url('../../../../../assets/undraw/undraw_journey_lwlj.svg');
     background-repeat: no-repeat;
     background-size: 300px;
     background-position: 70px 90%;

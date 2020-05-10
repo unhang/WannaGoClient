@@ -6,7 +6,6 @@
                     <ion-text>{{text.step2Text}}</ion-text>
                 </h1>
                 <ion-text>{{text.step2TextDescription}}</ion-text>
-                <ion-text>{{booking.totalPrice}}</ion-text>
             </div>
 
             <ion-list>
@@ -27,7 +26,8 @@
                         </ion-item>
                         <div class="ion-padding-bottom"
                              *ngIf="radioGroup.value === 'stripe'">
-                            <app-payment-card [booking]="booking"></app-payment-card>
+                            <app-payment-card [booking]="booking"
+                                                (paymentDone)="paymentSucceeded()"></app-payment-card>
                         </div>
 
                 </ion-radio-group>

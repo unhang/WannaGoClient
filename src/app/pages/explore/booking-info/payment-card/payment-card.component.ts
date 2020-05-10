@@ -1,7 +1,7 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {Booking, BookingService, PaymentIntent, StripeService} from '../../../../../swagger';
 import {SpinnerOptService} from '../../../../services/spinner-opt.service';
-import {AlertController, LoadingController, NavController} from '@ionic/angular';
+import {AlertController, LoadingController, NavController, ToastController} from '@ionic/angular';
 import {Router} from '@angular/router';
 
 declare var Stripe: any;
@@ -33,6 +33,7 @@ export class PaymentCardComponent implements OnInit, OnChanges {
     loadEl: any;
 
     @Input() booking: Booking;
+    @Output() paymentDone = new EventEmitter();
 
     stripe: any;
     elements: any;
@@ -50,6 +51,7 @@ export class PaymentCardComponent implements OnInit, OnChanges {
                 private router: Router,
                 private navCtrl: NavController,
                 private loadCtrl: LoadingController,
+                private toastCtrl: ToastController,
                 private spinnerOptService: SpinnerOptService) {
         this.text = this.lang === 'en' ? this.textEn : this.textVn;
     }
@@ -152,10 +154,7 @@ export class PaymentCardComponent implements OnInit, OnChanges {
 
             this.stripeService.confirmPayment({...this.paymentIntent})
                 .subscribe((paymentIntent) => {
-                    this.navCtrl.navigateRoot('/pages/tabs/explore/home')
-                        .then(() => {
-                            this.navCtrl.navigateRoot('/pages/tabs/profile/booking-history');
-                        });
+                    this.paymentDone.emit();
                 });
         }
     }

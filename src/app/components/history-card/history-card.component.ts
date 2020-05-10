@@ -71,6 +71,7 @@ export class GoHistoryCard implements OnInit, OnChanges {
         const alert = await this.alertCtrl.create({
             header: this.txt.alertHeader,
             message: this.txt.alertMessage,
+            mode: 'md',
             buttons: [
                 {
                     text: 'OK',
